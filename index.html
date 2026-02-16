@@ -198,53 +198,48 @@
         font-size: 1.18rem;
       }
 
-      .chat-card {
+      .hero-media {
+        display: grid;
+        gap: 14px;
+      }
+
+      .media-card {
         background: rgba(255, 255, 255, 0.09);
         border: 1px solid rgba(255, 255, 255, 0.25);
         border-radius: 20px;
-        padding: 18px;
+        overflow: hidden;
         box-shadow: 0 20px 56px rgba(70, 0, 0, 0.34);
       }
 
-      .chat-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 14px;
+      .media-card img {
+        width: 100%;
+        display: block;
       }
 
-      .status {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.82rem;
-        font-weight: 700;
+      .media-card.portrait img {
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center 16%;
       }
 
-      .dot {
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: #53d686;
-        box-shadow: 0 0 0 5px rgba(83, 214, 134, 0.2);
+      .media-card.interface img {
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background: #f5f7fa;
       }
 
-      .bubble {
-        border-radius: 14px;
-        padding: 12px 13px;
-        margin-top: 10px;
-        max-width: 90%;
-        font-size: 0.94rem;
+      .media-caption {
+        margin: 0;
+        padding: 12px 14px 13px;
+        font-size: 0.92rem;
+        color: #ffe4e4;
+        background: rgba(0, 0, 0, 0.17);
       }
 
-      .bubble.user {
-        margin-left: auto;
-        background: #ffe3e3;
-        color: #521818;
-      }
-
-      .bubble.bot {
-        background: rgba(255, 255, 255, 0.2);
+      .media-caption b {
+        display: block;
+        color: #ffffff;
+        margin-bottom: 2px;
       }
 
       .strip {
@@ -295,6 +290,54 @@
         display: block;
         color: #3a2323;
         margin-bottom: 4px;
+      }
+
+      .visual-proof {
+        padding-top: 58px;
+      }
+
+      .visual-grid {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: 1.1fr 1.1fr 0.8fr;
+        gap: 16px;
+      }
+
+      .visual-card {
+        margin: 0;
+        background: #fff;
+        border: 1px solid #ecdede;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .visual-card img {
+        width: 100%;
+        display: block;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+
+      .visual-card.portrait img {
+        aspect-ratio: 4 / 3;
+        object-position: center 18%;
+      }
+
+      .visual-card.interface img {
+        background: #f4f6f9;
+      }
+
+      .visual-card figcaption {
+        padding: 12px 14px 13px;
+        color: #5a5068;
+        font-size: 0.92rem;
+      }
+
+      .visual-card figcaption b {
+        display: block;
+        color: #3d2a2a;
+        margin-bottom: 3px;
       }
 
       .title {
@@ -560,6 +603,7 @@
 
         .grid-3,
         .quotes,
+        .visual-grid,
         .trust-list {
           grid-template-columns: 1fr 1fr;
         }
@@ -572,6 +616,7 @@
 
         .grid-3,
         .quotes,
+        .visual-grid,
         .trust-list,
         .hero-kpis {
           grid-template-columns: 1fr;
@@ -632,21 +677,25 @@
           </div>
         </div>
 
-        <aside class="chat-card" aria-label="Apercu de conversation">
-          <div class="chat-header">
-            <strong>Interface de discussion</strong>
-            <span class="status"><span class="dot"></span>En ligne</span>
-          </div>
-          <div class="bubble user">Je ressens une fatigue recurrente, comment la comprendre ?</div>
-          <div class="bubble bot">
-            D apres les principes du programme, commencons par explorer le contexte emotionnel et le rythme de
-            vos dernieres semaines. Je vous propose 3 pistes et 2 exercices pratiques pour avancer.
-          </div>
-          <div class="bubble user">Peux tu me faire un plan sur 7 jours ?</div>
-          <div class="bubble bot">
-            Oui. Voici un plan quotidien simple: observation, journal, respiration, question de sens et bilan.
-            Je peux aussi l adapter selon votre emploi du temps.
-          </div>
+        <aside class="hero-media" aria-label="Visuels de Michel Odoul Chat">
+          <figure class="media-card portrait">
+            <img src="assets/michel-odoul.jpg" alt="Photo de Michel Odoul" loading="eager" />
+            <figcaption class="media-caption">
+              <b>Michel Odoul</b>
+              Le chatbot s appuie sur les enseignements du programme L Initiation Corps-Esprit.
+            </figcaption>
+          </figure>
+          <figure class="media-card interface">
+            <img
+              src="assets/chatbot-interface.svg"
+              alt="Apercu de l interface de discussion du chatbot"
+              loading="eager"
+            />
+            <figcaption class="media-caption">
+              <b>Interface du chatbot</b>
+              Une experience de discussion simple, lisible et accessible 24h/24.
+            </figcaption>
+          </figure>
         </aside>
       </div>
     </section>
@@ -707,6 +756,41 @@
             </span>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section visual-proof" id="visuels">
+      <div class="container">
+        <span class="label">Visuels du produit</span>
+        <h2 class="title">Voyez concretement ce que vous allez utiliser</h2>
+        <p class="lead">
+          Pour faciliter la projection, voici la photo de Michel Odoul, l interface du chatbot et un visuel
+          d ambiance corps-esprit en coherence avec le parcours.
+        </p>
+
+        <div class="visual-grid">
+          <figure class="visual-card portrait">
+            <img src="assets/michel-odoul.jpg" alt="Portrait de Michel Odoul" loading="lazy" />
+            <figcaption>
+              <b>Michel Odoul</b>
+              Formateur et auteur, au coeur de la base de savoir utilisee par le chatbot.
+            </figcaption>
+          </figure>
+          <figure class="visual-card interface">
+            <img src="assets/chatbot-interface.svg" alt="Capture de l interface du chatbot" loading="lazy" />
+            <figcaption>
+              <b>Interface conversationnelle</b>
+              Posez vos questions et obtenez des reponses structurees en quelques secondes.
+            </figcaption>
+          </figure>
+          <figure class="visual-card">
+            <img src="assets/parcours-bien-etre.jpg" alt="Visuel complementaire du parcours corps-esprit" loading="lazy" />
+            <figcaption>
+              <b>Parcours corps-esprit</b>
+              Un accompagnement qui relie sens, emotions et mise en pratique concrete.
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
