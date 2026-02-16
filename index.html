@@ -3,24 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chatbot Michel Odoul | 49 EUR / mois</title>
+    <title>Michel Odoul AI | Experience conversationnelle premium</title>
     <meta
       name="description"
-      content="Discutez avec le chatbot inspire des enseignements de Michel Odoul. Abonnement mensuel a 49 EUR, sans engagement."
+      content="Posez vos questions et obtenez des reponses claires 24h/24 avec Michel Odoul AI, base sur L Initiation Corps-Esprit. 49 EUR par mois."
     />
     <style>
       :root {
-        --primary: #b22222;
-        --primary-dark: #8f1b1b;
-        --primary-soft: #fef1f1;
-        --ink: #1e222d;
-        --muted: #5a6478;
-        --border: #e9dde0;
-        --white: #ffffff;
-        --ok: #1f8f4f;
-        --ok-soft: #eaf8ef;
-        --shadow: 0 18px 42px rgba(28, 15, 15, 0.12);
-        --radius: 18px;
+        --accent: #b22222;
+        --accent-dark: #8d1b1b;
+        --bg: #f5f2ee;
+        --surface: #ffffff;
+        --ink: #1f1b18;
+        --muted: #635a54;
+        --line: #e8ddd5;
+        --shadow: 0 18px 48px rgba(25, 16, 12, 0.12);
+        --radius-lg: 24px;
+        --radius-md: 16px;
       }
 
       * {
@@ -35,7 +34,7 @@
         margin: 0;
         font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
         color: var(--ink);
-        background: linear-gradient(180deg, #fff9f9 0%, #fff3f3 42%, #ffffff 100%);
+        background: var(--bg);
         line-height: 1.55;
       }
 
@@ -45,74 +44,16 @@
       }
 
       .container {
-        width: min(1140px, 92vw);
+        width: min(1120px, 92vw);
         margin-inline: auto;
-      }
-
-      .section {
-        padding: 82px 0;
-      }
-
-      .label {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        background: #ffe7e7;
-        color: var(--primary-dark);
-      }
-
-      .lead {
-        margin: 0;
-        color: var(--muted);
-        max-width: 760px;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 14px 22px;
-        border-radius: 12px;
-        border: none;
-        cursor: pointer;
-        font-weight: 700;
-        font-size: 1rem;
-        transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn-main {
-        color: #fff;
-        background: var(--primary);
-        box-shadow: 0 12px 30px rgba(178, 34, 34, 0.36);
-      }
-
-      .btn-main:hover {
-        background: var(--primary-dark);
-      }
-
-      .btn-light {
-        background: #fff;
-        color: #652323;
-        border: 2px solid #f3d4d4;
       }
 
       .topbar {
         position: sticky;
         top: 0;
-        z-index: 12;
-        background: rgba(255, 255, 255, 0.9);
-        border-bottom: 1px solid #f1dfdf;
+        z-index: 10;
+        background: rgba(245, 242, 238, 0.86);
+        border-bottom: 1px solid rgba(232, 221, 213, 0.8);
         backdrop-filter: blur(8px);
       }
 
@@ -120,338 +61,278 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 14px 0;
         gap: 14px;
+        padding: 14px 0;
       }
 
       .brand {
         font-weight: 900;
-        color: #2a1c1c;
+        letter-spacing: 0.01em;
       }
 
       .brand span {
-        color: var(--primary);
+        color: var(--accent);
       }
 
       .menu {
         display: flex;
-        gap: 16px;
-        color: #6d4d4d;
+        gap: 18px;
+        color: #5b514a;
         font-size: 0.95rem;
       }
 
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 12px;
+        padding: 12px 20px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-main {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn-main:hover {
+        background: var(--accent-dark);
+      }
+
+      .btn-light {
+        background: #fff;
+        color: #4f413a;
+        border: 1px solid var(--line);
+      }
+
       .hero {
-        background: radial-gradient(circle at 16% 18%, #d74747 0%, #b22222 36%, #6f1717 100%);
-        color: #fff7f7;
-        padding: 82px 0 88px;
+        padding: 66px 0 80px;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.06fr 0.94fr;
-        gap: 30px;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: 32px;
         align-items: center;
       }
 
-      .hero h1 {
-        margin: 16px 0 14px;
-        font-size: clamp(2rem, 4.2vw, 3.4rem);
-        line-height: 1.08;
-        max-width: 17ch;
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #fce8e8;
+        color: #862020;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0 14px;
+        font-size: clamp(2rem, 4.5vw, 3.8rem);
+        line-height: 1.04;
+        letter-spacing: -0.01em;
       }
 
       .hero p {
         margin: 0;
-        color: #ffecec;
-        max-width: 60ch;
+        color: var(--muted);
+        max-width: 62ch;
       }
 
-      .hero-ctas {
-        margin: 26px 0 18px;
+      .hero strong {
+        color: #2d2320;
+      }
+
+      .hero-cta {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
+        margin: 26px 0 18px;
       }
 
-      .tiny-note {
-        margin: 0;
-        color: #ffe4e4;
-        font-size: 0.92rem;
-      }
-
-      .hero-kpis {
-        margin-top: 20px;
+      .micro-proof {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
+        margin-top: 14px;
       }
 
-      .hero-kpi {
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        padding: 13px;
-      }
-
-      .hero-kpi b {
-        display: block;
-        font-size: 1.18rem;
-      }
-
-      .hero-media {
-        display: grid;
-        gap: 14px;
-      }
-
-      .media-card {
-        background: rgba(255, 255, 255, 0.09);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 20px 56px rgba(70, 0, 0, 0.34);
-      }
-
-      .media-card img {
-        width: 100%;
-        display: block;
-      }
-
-      .media-card.portrait img {
-        aspect-ratio: 4 / 3;
-        object-fit: cover;
-        object-position: center 16%;
-      }
-
-      .media-card.interface img {
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-        background: #f5f7fa;
-      }
-
-      .media-caption {
-        margin: 0;
-        padding: 12px 14px 13px;
-        font-size: 0.92rem;
-        color: #ffe4e4;
-        background: rgba(0, 0, 0, 0.17);
-      }
-
-      .media-caption b {
-        display: block;
-        color: #ffffff;
-        margin-bottom: 2px;
-      }
-
-      .strip {
-        border-top: 1px solid #f3e5e5;
-        border-bottom: 1px solid #f3e5e5;
+      .micro-proof div {
         background: #fff;
-        padding: 19px 0;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        color: #564d47;
+        font-size: 0.9rem;
       }
 
-      .trust-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .trust-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        text-align: left;
-        color: #624747;
-        font-size: 0.93rem;
-      }
-
-      .trust-picto {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
-        border: 1px solid #f3d8d8;
-        background: var(--primary-soft);
-        color: var(--primary);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-
-      .trust-picto svg {
-        width: 20px;
-        height: 20px;
-        fill: currentColor;
-      }
-
-      .trust-content b {
+      .micro-proof b {
         display: block;
-        color: #3a2323;
-        margin-bottom: 4px;
-      }
-
-      .visual-proof {
-        padding-top: 58px;
-      }
-
-      .visual-grid {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: 1.1fr 1.1fr 0.8fr;
-        gap: 16px;
-      }
-
-      .visual-card {
-        margin: 0;
-        background: #fff;
-        border: 1px solid #ecdede;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-      }
-
-      .visual-card img {
-        width: 100%;
-        display: block;
-        aspect-ratio: 16 / 10;
-        object-fit: cover;
-      }
-
-      .visual-card.portrait img {
-        aspect-ratio: 4 / 3;
-        object-position: center 18%;
-      }
-
-      .visual-card.interface img {
-        background: #f4f6f9;
-      }
-
-      .visual-card figcaption {
-        padding: 12px 14px 13px;
-        color: #5a5068;
-        font-size: 0.92rem;
-      }
-
-      .visual-card figcaption b {
-        display: block;
-        color: #3d2a2a;
+        color: #2f2724;
         margin-bottom: 3px;
       }
 
-      .title {
-        margin: 12px 0 14px;
-        font-size: clamp(1.65rem, 3.1vw, 2.5rem);
-      }
-
-      .grid-3 {
-        margin-top: 30px;
+      .hero-visual {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
+        gap: 14px;
       }
 
-      .card {
-        background: var(--white);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 22px;
+      .portrait-card {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--line);
+        overflow: hidden;
         box-shadow: var(--shadow);
       }
 
-      .icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: #ffe7e7;
-        color: #6b1a1a;
-        font-weight: 800;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 10px;
+      .portrait-card img {
+        width: 100%;
+        display: block;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center 18%;
       }
 
-      .card h3 {
-        margin: 2px 0 9px;
-        font-size: 1.06rem;
+      .portrait-caption {
+        padding: 14px 16px 16px;
       }
 
-      .card p {
-        margin: 0;
-        color: #566079;
-      }
-
-      .program {
-        background: linear-gradient(180deg, #fff7f7 0%, #fffdfd 100%);
-      }
-
-      .program-grid {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 18px;
-      }
-
-      .module-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 12px;
-      }
-
-      .module-list li {
-        background: #fff;
-        border: 1px solid #eed9d9;
-        border-radius: 13px;
-        padding: 13px 14px;
-      }
-
-      .module-list b {
+      .portrait-caption b {
         display: block;
         margin-bottom: 4px;
       }
 
-      .retention-box {
-        background: #fff;
-        border: 1px solid #eed9d9;
-        border-radius: 13px;
-        padding: 18px;
+      .portrait-caption p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
       }
 
-      .timeline {
-        margin: 14px 0 0;
+      .experience {
+        padding: 18px 0 72px;
+      }
+
+      .experience-box {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        padding: 22px;
+        display: grid;
+        grid-template-columns: 1.06fr 0.94fr;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .experience-box img {
+        width: 100%;
+        display: block;
+        border-radius: 14px;
+        border: 1px solid #d9dfe7;
+        background: #f2f5f9;
+      }
+
+      .experience-box h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.45rem, 3vw, 2.15rem);
+      }
+
+      .experience-box p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .list {
+        margin: 16px 0 0;
         padding: 0;
         list-style: none;
         display: grid;
         gap: 10px;
       }
 
-      .timeline li {
+      .list li {
         display: flex;
         gap: 10px;
-        color: #485168;
       }
 
       .tick {
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: var(--ok-soft);
-        color: var(--ok);
+        background: #e9f8ef;
+        color: #1f8f4f;
+        font-size: 0.75rem;
+        font-weight: 800;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.75rem;
-        font-weight: 800;
         margin-top: 2px;
         flex-shrink: 0;
       }
 
-      .quotes {
-        margin-top: 28px;
+      .section {
+        padding: 72px 0;
+      }
+
+      .section-title {
+        margin: 10px 0 12px;
+        font-size: clamp(1.6rem, 3vw, 2.45rem);
+        letter-spacing: -0.01em;
+      }
+
+      .section-lead {
+        margin: 0;
+        color: var(--muted);
+        max-width: 76ch;
+      }
+
+      .grid-3 {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .card h3 {
+        margin: 0 0 7px;
+        font-size: 1.08rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: #595068;
+      }
+
+      .step {
+        font-size: 0.8rem;
+        font-weight: 800;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .quote-grid {
+        margin-top: 26px;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
@@ -459,8 +340,8 @@
 
       .quote {
         background: #fff;
-        border: 1px solid #ecd7d7;
-        border-radius: 16px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
         padding: 20px;
       }
 
@@ -469,87 +350,73 @@
       }
 
       .quote b {
-        color: #3d2a2a;
+        color: #372b26;
       }
 
-      .quote .meta {
-        margin-top: 8px;
-        font-size: 0.9rem;
-        color: #6d5b5b;
+      .quote small {
+        color: #6f625c;
       }
 
-      .price-wrap {
-        margin-top: 28px;
+      .pricing {
+        background: linear-gradient(180deg, #f3ece7 0%, #f8f5f2 100%);
+      }
+
+      .pricing-box {
+        margin-top: 26px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 18px;
+        gap: 16px;
       }
 
-      .price-main {
+      .price-card {
         background: #fff;
-        border: 2px solid #edc7c7;
+        border: 2px solid #e7cec2;
         border-radius: 20px;
-        padding: 26px;
+        padding: 24px;
         box-shadow: var(--shadow);
       }
 
-      .price-tag {
+      .price {
         display: flex;
         align-items: baseline;
-        gap: 9px;
-        margin: 12px 0 15px;
+        gap: 8px;
+        margin: 12px 0 14px;
       }
 
-      .price-tag .new {
+      .price .main {
         font-size: 2.35rem;
         font-weight: 900;
-        color: #2e1515;
       }
 
-      .price-tag .per {
-        color: #5d475f;
+      .price .per {
+        color: #6d5f58;
       }
 
-      .price-list,
-      .safety-list {
-        margin: 16px 0 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 10px;
-      }
-
-      .price-list li,
-      .safety-list li {
-        display: flex;
-        gap: 10px;
-      }
-
-      .safety-card {
+      .safe-card {
         background: #fff;
-        border: 1px solid #ecd9d9;
-        border-radius: 16px;
-        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 24px;
       }
 
       .notice {
-        margin-top: 16px;
-        padding: 14px;
+        margin-top: 14px;
+        padding: 12px;
         border-radius: 12px;
-        background: #fff6e8;
-        border: 1px solid #f5ddb4;
-        color: #5b4320;
+        border: 1px solid #f0dcc2;
+        background: #fff6ea;
+        color: #5e4422;
       }
 
       .faq {
-        margin-top: 26px;
+        margin-top: 24px;
         display: grid;
         gap: 12px;
       }
 
       details {
         background: #fff;
-        border: 1px solid #ecdcdc;
+        border: 1px solid var(--line);
         border-radius: 12px;
         padding: 14px 16px;
       }
@@ -557,32 +424,43 @@
       summary {
         cursor: pointer;
         font-weight: 700;
-        color: #3a2626;
       }
 
       details p {
         margin: 10px 0 0;
-        color: #5e5368;
+        color: var(--muted);
       }
 
       .final-cta {
-        margin-top: 34px;
-        background: linear-gradient(140deg, #7f1919 0%, #b22222 62%, #cf4343 100%);
-        color: #ffecec;
+        margin-top: 28px;
         border-radius: 18px;
-        padding: 28px;
-        display: grid;
-        gap: 10px;
+        background: linear-gradient(145deg, #802020 0%, #b22222 62%, #cd4949 100%);
+        color: #fff1f1;
+        padding: 26px;
       }
 
       .final-cta h3 {
-        margin: 0;
+        margin: 0 0 10px;
         font-size: 1.5rem;
+      }
+
+      .final-cta p {
+        margin: 0;
+      }
+
+      .final-cta .btn-main {
+        margin-top: 16px;
+        background: #fff;
+        color: #7e1c1c;
+      }
+
+      .final-cta .btn-main:hover {
+        background: #fff0f0;
       }
 
       .footer {
         padding: 26px 0 36px;
-        color: #6e5a5a;
+        color: #6d5f58;
         font-size: 0.9rem;
       }
 
@@ -590,21 +468,20 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
+        gap: 10px;
         flex-wrap: wrap;
       }
 
       @media (max-width: 980px) {
         .hero-grid,
-        .program-grid,
-        .price-wrap {
+        .experience-box,
+        .pricing-box {
           grid-template-columns: 1fr;
         }
 
         .grid-3,
-        .quotes,
-        .visual-grid,
-        .trust-list {
+        .quote-grid,
+        .micro-proof {
           grid-template-columns: 1fr 1fr;
         }
       }
@@ -615,15 +492,9 @@
         }
 
         .grid-3,
-        .quotes,
-        .visual-grid,
-        .trust-list,
-        .hero-kpis {
+        .quote-grid,
+        .micro-proof {
           grid-template-columns: 1fr;
-        }
-
-        .hero {
-          padding-top: 64px;
         }
       }
     </style>
@@ -631,371 +502,178 @@
   <body>
     <header class="topbar">
       <div class="container topbar-wrap">
-        <a href="#" class="brand">Michel<span>Odoul</span> Chat</a>
+        <a href="#" class="brand">Michel<span>Odoul</span> AI</a>
         <nav class="menu">
-          <a href="#fonctionnement">Fonctionnement</a>
-          <a href="#programme">Programme</a>
-          <a href="#temoignages">Temoignages</a>
-          <a href="#offre">Tarif</a>
+          <a href="#experience">Demo</a>
+          <a href="#methode">Atouts</a>
+          <a href="#offre">Offre</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <a href="#offre" class="btn btn-main">Je m abonne</a>
+        <a href="#offre" class="btn btn-main">Demarrer</a>
       </div>
     </header>
 
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="label">Base sur L Initiation Corps-Esprit</span>
-          <h1>Discutez avec un assistant base sur le savoir de Michel Odoul</h1>
+          <span class="eyebrow">Posez votre question. Obtenez une vraie reponse, 24h/24.</span>
+          <h1>La vision de Michel Odoul, accessible a tout moment.</h1>
           <p>
-            Ce chatbot s appuie sur les enseignements de Michel Odoul, notamment le programme video L Initiation
-            Corps-Esprit: un parcours de 7 mois avec 2 videos par semaine qui relie emotions, histoire de vie et
-            troubles physiques. Il vous aide a comprendre le message derriere les symptomes et a agir a la
-            racine, avec des pistes concretes.
+            Michel Odoul AI reprend l intelligence pedagogique de son approche et de son programme video
+            <strong>L Initiation Corps-Esprit</strong>. L experience donne la sensation d un dialogue proche de
+            Michel, avec transparence: vous echangez avec un assistant base sur son savoir.
           </p>
-          <div class="hero-ctas">
-            <a href="#offre" class="btn btn-main">Demarrer a 49 EUR / mois</a>
-            <a href="#fonctionnement" class="btn btn-light">Voir ce que je peux lui demander</a>
+          <div class="hero-cta">
+            <a href="#offre" class="btn btn-main">Je m abonne a 49 EUR / mois</a>
+            <a href="#experience" class="btn btn-light">Voir Michel Odoul AI en action</a>
           </div>
-          <p class="tiny-note">
-            Sans engagement. Annulation en 2 clics. Paiement securise. Support humain par email.
-          </p>
-          <div class="hero-kpis">
-            <div class="hero-kpi">
-              <b>3 200+</b>
-              conversations utiles chaque semaine
+          <div class="micro-proof">
+            <div>
+              <b>Reponses personnalisees</b>
+              Des pistes adaptees a votre situation.
             </div>
-            <div class="hero-kpi">
-              <b>4.8 / 5</b>
-              satisfaction moyenne des abonnes
+            <div>
+              <b>Methodes eprouvees</b>
+              Base de savoir L Initiation Corps-Esprit.
             </div>
-            <div class="hero-kpi">
-              <b>49 EUR</b>
-              abonnement mensuel, sans engagement
+            <div>
+              <b>Pret quand vous l etes</b>
+              Accessible 24h/24, sans rendez-vous.
             </div>
           </div>
         </div>
 
-        <aside class="hero-media" aria-label="Visuels de Michel Odoul Chat">
-          <figure class="media-card portrait">
+        <aside class="hero-visual">
+          <figure class="portrait-card">
             <img src="assets/michel-odoul.jpg" alt="Photo de Michel Odoul" loading="eager" />
-            <figcaption class="media-caption">
-              <b>Michel Odoul</b>
-              Le chatbot s appuie sur les enseignements du programme L Initiation Corps-Esprit.
-            </figcaption>
-          </figure>
-          <figure class="media-card interface">
-            <img
-              src="assets/chatbot-interface.svg"
-              alt="Apercu de l interface de discussion du chatbot"
-              loading="eager"
-            />
-            <figcaption class="media-caption">
-              <b>Interface du chatbot</b>
-              Une experience de discussion simple, lisible et accessible 24h/24.
+            <figcaption class="portrait-caption">
+              <b>Michel Odoul AI</b>
+              <p>
+                Son esprit pedagogique, sa clarte et sa vision corps-esprit sont au coeur de chaque interaction.
+              </p>
             </figcaption>
           </figure>
         </aside>
       </div>
     </section>
 
-    <section class="strip">
+    <section class="experience" id="experience">
       <div class="container">
-        <ul class="trust-list">
-          <li class="trust-item">
-            <span class="trust-picto" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 2 4 5v6c0 5.2 3.4 9.8 8 11 4.6-1.2 8-5.8 8-11V5l-8-3Zm-1.1 11.5-2.4-2.4L7 12.5l3.9 3.9L17 10.3l-1.4-1.4-4.7 4.6Z"
-                />
-              </svg>
-            </span>
-            <span class="trust-content">
-              <b>Reseau de confiance</b>
-              Plateforme stable et support reactif
-            </span>
-          </li>
-          <li class="trust-item">
-            <span class="trust-picto" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5v5.4l3.8 2.3-1 1.7L11 13.5V7h2Z"
-                />
-              </svg>
-            </span>
-            <span class="trust-content">
-              <b>Sans engagement</b>
-              Vous restez libre chaque mois
-            </span>
-          </li>
-          <li class="trust-item">
-            <span class="trust-picto" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M17 10h-1V8a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2Zm-7-2a2 2 0 1 1 4 0v2h-4V8Zm7 12H7v-8h10v8Z"
-                />
-              </svg>
-            </span>
-            <span class="trust-content">
-              <b>Protection des donnees</b>
-              Echanges prives et securises
-            </span>
-          </li>
-          <li class="trust-item">
-            <span class="trust-picto" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M4 18h16v2H2V4h2v14Zm14.7-7.3-1.4-1.4-3.2 3.2-2.6-2.6-6 6 1.4 1.4 4.6-4.6 2.6 2.6 4.6-4.6Z"
-                />
-              </svg>
-            </span>
-            <span class="trust-content">
-              <b>Valeur continue</b>
-              Mises a jour regulieres avec de nouvelles ressources
-            </span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section visual-proof" id="visuels">
-      <div class="container">
-        <span class="label">Visuels du produit</span>
-        <h2 class="title">Voyez concretement ce que vous allez utiliser</h2>
-        <p class="lead">
-          Pour faciliter la projection, voici la photo de Michel Odoul, l interface du chatbot et un visuel
-          d ambiance corps-esprit en coherence avec le parcours.
-        </p>
-
-        <div class="visual-grid">
-          <figure class="visual-card portrait">
-            <img src="assets/michel-odoul.jpg" alt="Portrait de Michel Odoul" loading="lazy" />
-            <figcaption>
-              <b>Michel Odoul</b>
-              Formateur et auteur, au coeur de la base de savoir utilisee par le chatbot.
-            </figcaption>
-          </figure>
-          <figure class="visual-card interface">
-            <img src="assets/chatbot-interface.svg" alt="Capture de l interface du chatbot" loading="lazy" />
-            <figcaption>
-              <b>Interface conversationnelle</b>
-              Posez vos questions et obtenez des reponses structurees en quelques secondes.
-            </figcaption>
-          </figure>
-          <figure class="visual-card">
-            <img src="assets/parcours-bien-etre.jpg" alt="Visuel complementaire du parcours corps-esprit" loading="lazy" />
-            <figcaption>
-              <b>Parcours corps-esprit</b>
-              Un accompagnement qui relie sens, emotions et mise en pratique concrete.
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="fonctionnement">
-      <div class="container">
-        <span class="label">Ce que vous obtenez</span>
-        <h2 class="title">Un assistant qui reprend les infos cles du programme de Michel Odoul</h2>
-        <p class="lead">
-          Le chatbot centralise les notions du parcours L Initiation Corps-Esprit et vous aide a transformer la
-          theorie en actions concretes dans votre quotidien.
-        </p>
-
-        <div class="grid-3">
-          <article class="card">
-            <span class="icon">1</span>
-            <h3>Reponses immediates</h3>
+        <div class="experience-box">
+          <img src="assets/chatbot-interface.svg" alt="Apercu de l interface de conversation du chatbot" loading="eager" />
+          <div>
+            <h2>Voir Michel Odoul AI en action</h2>
             <p>
-              Posez une question et recevez une synthese claire basee sur les methodes du programme, sans devoir
-              chercher dans des heures de videos.
+              Vous posez une question, vous recevez une reponse immediate, claire et actionnable. Une experience
+              epuree qui met toute l attention sur l essentiel: comprehension, sens et passage a l action.
             </p>
-          </article>
-          <article class="card">
-            <span class="icon">2</span>
-            <h3>Guidage personnalise</h3>
-            <p>
-              Le chatbot adapte les explications a votre contexte, votre niveau et vos objectifs pour une mise
-              en pratique plus simple.
-            </p>
-          </article>
-          <article class="card">
-            <span class="icon">3</span>
-            <h3>Plans d action prets</h3>
-            <p>
-              Repartez avec des exercices, routines et plans de progression hebdomadaires pour garder le cap et
-              constater des effets durables.
-            </p>
-          </article>
-          <article class="card">
-            <span class="icon">4</span>
-            <h3>Progression en 4 etapes</h3>
-            <p>
-              Suivez une logique claire: prise de conscience, acceptation, integration puis adoption de solutions
-              nouvelles.
-            </p>
-          </article>
-          <article class="card">
-            <span class="icon">5</span>
-            <h3>Outils de clarification</h3>
-            <p>
-              Questions guidantes, reformulations et syntheses pour vous aider a mettre des mots justes sur ce
-              que vous vivez.
-            </p>
-          </article>
-          <article class="card">
-            <span class="icon">6</span>
-            <h3>Accessible 24h/24</h3>
-            <p>
-              Besoin d avancer tard le soir ou tot le matin ? Votre assistant reste disponible sans rendez-vous.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section program" id="programme">
-      <div class="container">
-        <span class="label">Base de connaissances</span>
-        <h2 class="title">Les 4 etapes de L Initiation Corps-Esprit integrees dans vos conversations</h2>
-        <p class="lead">
-          Vous avancez dans une progression issue du programme video: pendant 7 mois, Michel Odoul accompagne une
-          remise en question de la vision classique de la sante pour comprendre les causes profondes des troubles
-          physiques.
-        </p>
-
-        <div class="program-grid">
-          <div class="retention-box">
-            <h3 style="margin-top: 0">Themes couverts</h3>
-            <ul class="module-list">
-              <li>
-                <b>Etape 1 - Prise de conscience</b>
-                Comprendre les causes cachees de vos maladies, douleurs ou fragilites, et faire le lien avec
-                votre histoire emotionnelle.
-              </li>
-              <li>
-                <b>Etape 2 - Acceptation</b>
-                Accueillir cette prise de conscience pour vous liberer des chocs que la vie vous a infliges et
-                sortir des blocages repetitifs.
-              </li>
-              <li>
-                <b>Etape 3 - Integration</b>
-                Integrer ces nouvelles connaissances dans votre quotidien avec une meilleure ecoute de vous-meme
-                et des ajustements progressifs.
-              </li>
-              <li>
-                <b>Etape 4 - Solutions nouvelles</b>
-                Adopter des exercices simples et des changements subtils dans votre maniere d etre pour agir a la
-                racine.
-              </li>
+            <ul class="list">
+              <li><span class="tick">v</span>Des reponses en temps reel, basees sur une methode solide</li>
+              <li><span class="tick">v</span>Un ton de guidance humain, inspire de l approche de Michel</li>
+              <li><span class="tick">v</span>Des mises a jour regulieres pour enrichir les ressources</li>
             </ul>
           </div>
-
-          <aside class="retention-box">
-            <h3 style="margin-top: 0">Pourquoi les abonnes restent</h3>
-            <p class="lead" style="max-width: 100%">
-              Les membres restent car ils obtiennent de la clarte continue, une progression guidante et des
-              ressources utiles a appliquer au quotidien.
-            </p>
-            <ul class="timeline">
-              <li><span class="tick">v</span>Le chatbot est mis a jour regulierement avec de nouvelles ressources</li>
-              <li><span class="tick">v</span>Vous gagnez du temps en evitant les recherches disperses</li>
-              <li><span class="tick">v</span>Vous obtenez des plans d action simples adaptes a vos questions</li>
-              <li><span class="tick">v</span>La valeur augmente avec une pratique reguliere dans la duree</li>
-            </ul>
-          </aside>
         </div>
       </div>
     </section>
 
-    <section class="section" id="temoignages">
+    <section class="section" id="methode">
       <div class="container">
-        <span class="label">Re assurance</span>
-        <h2 class="title">Des utilisateurs convaincus... et fideles</h2>
-        <p class="lead">
-          Les temoignages ci-dessous montrent ce qui declenche l achat, mais surtout ce qui donne envie de rester
-          abonne mois apres mois.
+        <span class="eyebrow">Les strategies de Michel. Vos objectifs.</span>
+        <h2 class="section-title">Le pouvoir de son approche, dans votre quotidien</h2>
+        <p class="section-lead">
+          Michel Odoul AI rassemble une base de savoir profonde et une experience simple pour vous aider a
+          comprendre plus vite, decider plus clairement et avancer avec regularite.
         </p>
-
-        <div class="quotes">
-          <article class="quote">
+        <div class="grid-3">
+          <article class="card">
+            <span class="step">Atout 1</span>
+            <h3>Reponses personnalisees</h3>
             <p>
-              "Je pensais tester un mois, je suis encore la 7 mois apres. Les reponses sont precises et surtout
-              applicables."
+              Une lecture adaptee a votre contexte, pas une reponse generique.
             </p>
-            <b>Nadia R. - Naturopathe</b>
-            <div class="meta">Abonnee depuis 7 mois</div>
           </article>
-          <article class="quote">
-            <p>
-              "Le chatbot m aide a reformuler mes questions et a avancer sans blocage. C est devenu mon rituel du
-              matin."
-            </p>
-            <b>Paul M. - Entrepreneur</b>
-            <div class="meta">Abonne depuis 5 mois</div>
+          <article class="card">
+            <span class="step">Atout 2</span>
+            <h3>Soutien a la demande</h3>
+            <p>Quand vous en avez besoin, vous obtenez une orientation claire en quelques secondes.</p>
           </article>
-          <article class="quote">
-            <p>
-              "Je retrouve les infos du programme en quelques secondes. Le rapport valeur/prix est excellent a 49
-              EUR par mois."
-            </p>
-            <b>Claire B. - Coach</b>
-            <div class="meta">Abonnee depuis 6 mois</div>
+          <article class="card">
+            <span class="step">Atout 3</span>
+            <h3>Strategies eprouvees</h3>
+            <p>Le contenu s appuie sur la logique pedagogique de L Initiation Corps-Esprit.</p>
           </article>
-          <article class="quote">
-            <p>
-              "J apprecie la transparence et la qualite du suivi. Quand je veux approfondir un theme, je gagne
-              un temps fou."
-            </p>
-            <b>Remi T. - Kinesitherapeute</b>
-            <div class="meta">Abonne depuis 4 mois</div>
+          <article class="card">
+            <span class="step">Atout 4</span>
+            <h3>Tonalite Michel Odoul</h3>
+            <p>Une guidance calme, profonde et orientee transformation interieure.</p>
           </article>
-          <article class="quote">
+          <article class="card">
+            <span class="step">Atout 5</span>
+            <h3>Apprend de vos besoins</h3>
             <p>
-              "Simple, clair, jamais culpabilisant. Je comprends mieux mes mecanismes et je vois une progression
-              reelle."
+              L experience s affine selon vos questions pour rester utile dans la duree.
             </p>
-            <b>Sonia E. - Responsable RH</b>
-            <div class="meta">Abonnee depuis 8 mois</div>
           </article>
-          <article class="quote">
+          <article class="card">
+            <span class="step">Atout 6</span>
+            <h3>Toujours disponible</h3>
             <p>
-              "Le fait de pouvoir annuler a tout moment m a rassure. Finalement je reste, car le service evolue
-              regulierement."
+              Sur mobile ou ordinateur, l assistant est pret a vous accompagner partout.
             </p>
-            <b>Julien A. - Dirigeant PME</b>
-            <div class="meta">Abonne depuis 3 mois</div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="offre">
+    <section class="section">
       <div class="container">
-        <span class="label">Abonnement mensuel</span>
-        <h2 class="title">Une offre claire: 49 EUR / mois, sans engagement</h2>
-        <p class="lead">
-          Vous accedez immediatement a l interface de discussion et a toutes les mises a jour pendant votre
-          abonnement.
+        <span class="eyebrow">Ce que disent les utilisateurs</span>
+        <h2 class="section-title">Une experience qui cree clarte et passage a l action</h2>
+        <p class="section-lead">
+          Ils decrivent la meme chose: une sensation de dialogue premium, une direction plus nette et des declics
+          concrets.
+        </p>
+        <div class="quote-grid">
+          <article class="quote">
+            <p>"On ressent vraiment l univers de Michel dans les reponses. C est clair, utile et profond."</p>
+            <b>Nadia R.</b><br />
+            <small>Abonnee depuis 7 mois</small>
+          </article>
+          <article class="quote">
+            <p>"J ai le sentiment d etre guidee avec exigence et bienveillance, quand je veux, ou je veux."</p>
+            <b>Paul M.</b><br />
+            <small>Abonne depuis 5 mois</small>
+          </article>
+          <article class="quote">
+            <p>"Le design est simple, la valeur est forte. En quelques minutes, je repars avec une direction."</p>
+            <b>Claire B.</b><br />
+            <small>Abonnee depuis 6 mois</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing" id="offre">
+      <div class="container">
+        <span class="eyebrow">Commencez aujourd hui</span>
+        <h2 class="section-title">Debloquez plus de clarte et de puissance interieure</h2>
+        <p class="section-lead">
+          Une offre simple et directe: 49 EUR par mois, sans engagement, avec acces complet a Michel Odoul AI.
         </p>
 
-        <div class="price-wrap">
-          <article class="price-main">
-            <h3 style="margin-top: 0">Chatbot Michel Odoul - Offre Complete</h3>
-            <div class="price-tag">
-              <span class="new">49 EUR</span>
+        <div class="pricing-box">
+          <article class="price-card">
+            <h3 style="margin: 0">Michel Odoul AI</h3>
+            <div class="price">
+              <span class="main">49 EUR</span>
               <span class="per">/ mois</span>
             </div>
-            <p style="margin: 0; color: #5f5670">
-              Aucune duree imposee. Vous gardez la main sur votre abonnement a tout moment.
-            </p>
-            <ul class="price-list">
-              <li><span class="tick">v</span>Acces illimite aux conversations</li>
+            <ul class="list">
+              <li><span class="tick">v</span>Acces illimite a l assistant conversationnel premium</li>
               <li><span class="tick">v</span>Base de savoir issue de L Initiation Corps-Esprit</li>
-              <li><span class="tick">v</span>Guides pratiques et plans d action personnalises</li>
-              <li><span class="tick">v</span>Mises a jour regulieres et nouvelles ressources</li>
-              <li><span class="tick">v</span>Support client par email</li>
+              <li><span class="tick">v</span>Reponses personnalisees et actions concretes</li>
+              <li><span class="tick">v</span>Mises a jour regulieres et support humain</li>
             </ul>
             <p style="margin: 18px 0 0">
               <a href="https://checkout.example.com" class="btn btn-main" target="_blank" rel="noreferrer">
@@ -1004,75 +682,62 @@
             </p>
           </article>
 
-          <aside class="safety-card">
-            <h3 style="margin-top: 0">Vos garanties de re assurance</h3>
-            <ul class="safety-list">
+          <aside class="safe-card">
+            <h3 style="margin-top: 0">Questions de confiance, reponses claires</h3>
+            <ul class="list">
               <li><span class="tick">v</span>Essai satisfait ou rembourse pendant 7 jours</li>
-              <li><span class="tick">v</span>Annulation instantanee depuis votre espace</li>
-              <li><span class="tick">v</span>Paiement securise et facture mensuelle claire</li>
-              <li><span class="tick">v</span>Aucune vente forcee, aucune option cachee</li>
-              <li><span class="tick">v</span>Support humain en cas de besoin</li>
+              <li><span class="tick">v</span>Resiliation libre a tout moment</li>
+              <li><span class="tick">v</span>Paiement securise et facturation claire</li>
+              <li><span class="tick">v</span>Positionnement transparent: un assistant, pas Michel en direct</li>
             </ul>
             <div class="notice">
-              Note de transparence: ce chatbot est un outil d information et d accompagnement. Il ne remplace pas
-              un avis medical ou un suivi therapeutique individuel.
+              Transparence: cet assistant ne remplace pas Michel Odoul en personne, ni un professionnel de sante.
+              Il traduit son savoir pedagogique en experience conversationnelle.
             </div>
           </aside>
         </div>
 
         <div class="final-cta">
-          <h3>Passez a l action des aujourd hui</h3>
-          <p style="margin: 0">
-            Rejoignez les abonnes qui utilisent deja le chatbot pour transformer les enseignements du programme en
-            decisions concretes chaque semaine.
+          <h3>Pret a commencer votre conversation avec Michel Odoul AI ?</h3>
+          <p>
+            Rejoignez les membres qui veulent penser plus clairement, agir plus justement et progresser avec
+            constance.
           </p>
-          <p style="margin: 8px 0 0">
-            <a href="https://checkout.example.com" class="btn btn-main" target="_blank" rel="noreferrer">
-              Oui, je m abonne pour 49 EUR / mois
-            </a>
-          </p>
+          <a href="https://checkout.example.com" class="btn btn-main" target="_blank" rel="noreferrer">
+            Oui, je m abonne a 49 EUR / mois
+          </a>
         </div>
       </div>
     </section>
 
     <section class="section" id="faq">
       <div class="container">
-        <span class="label">Questions frequentes</span>
-        <h2 class="title">FAQ</h2>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title">FAQ</h2>
         <div class="faq">
           <details>
-            <summary>Est ce vraiment Michel Odoul qui repond en direct ?</summary>
+            <summary>Est ce Michel Odoul qui repond en direct ?</summary>
             <p>
-              Non. Vous echangez avec un assistant conversationnel base sur le savoir de Michel Odoul, notamment
-              son programme video L Initiation Corps-Esprit (7 mois, 2 videos par semaine), disponible 24h/24.
+              Non. Vous discutez avec un assistant conversationnel qui s appuie sur son savoir et son programme
+              video L Initiation Corps-Esprit.
             </p>
           </details>
           <details>
-            <summary>Puis je resilier facilement ?</summary>
+            <summary>Pourquoi l experience donne cette sensation de dialogue direct ?</summary>
             <p>
-              Oui. L abonnement est sans engagement. Vous pouvez arreter a tout moment en quelques clics depuis
-              votre espace client.
+              Parce que l assistant reprend sa logique pedagogique, ses references et son style de guidance, tout
+              en restant transparent sur sa nature d outil conversationnel.
             </p>
           </details>
           <details>
-            <summary>Pourquoi payer 49 EUR par mois ?</summary>
-            <p>
-              Vous obtenez un acces permanent a une base experte structuree en format conversationnel, des
-              reponses rapides et des mises a jour regulieres qui augmentent la valeur dans le temps.
-            </p>
+            <summary>Puis je arreter quand je veux ?</summary>
+            <p>Oui. L abonnement est mensuel et sans engagement, avec annulation en quelques clics.</p>
           </details>
           <details>
-            <summary>Mes donnees sont elles protegees ?</summary>
+            <summary>Le service est il adapte si je debute ?</summary>
             <p>
-              Oui. Les echanges sont prives et traites avec des standards de securite adaptes aux services
-              professionnels en ligne.
-            </p>
-          </details>
-          <details>
-            <summary>Ce service remplace t il un professionnel de sante ?</summary>
-            <p>
-              Non. Le chatbot vous informe et vous guide, mais ne pose pas de diagnostic medical et ne remplace
-              pas une consultation.
+              Oui. L assistant adapte le niveau de reponse et vous guide pas a pas pour transformer les notions en
+              actions simples.
             </p>
           </details>
         </div>
@@ -1081,9 +746,9 @@
 
     <footer class="footer">
       <div class="container footer-wrap">
-        <span>(c) <span id="year"></span> Michel Odoul Chat. Tous droits reserves.</span>
+        <span>(c) <span id="year"></span> Michel Odoul AI. Tous droits reserves.</span>
         <span>
-          <a href="#">Mentions legales</a> | <a href="#">Confidentialite</a> | <a href="#">Contact support</a>
+          <a href="#">Mentions legales</a> | <a href="#">Confidentialite</a> | <a href="#">Support</a>
         </span>
       </div>
     </footer>
