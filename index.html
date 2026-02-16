@@ -3,23 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Michel Odoul AI | Experience conversationnelle premium</title>
+    <title>Michel Odoul AI | Interrogez Michel 24h/24</title>
     <meta
       name="description"
-      content="Posez vos questions et obtenez des reponses claires 24h/24 avec Michel Odoul AI, base sur L Initiation Corps-Esprit. 49 EUR par mois."
+      content="Michel Odoul AI est une experience interactive nourrie par la sagesse et les outils de Michel Odoul. 24h/24, abonnement mensuel ou annuel."
     />
     <style>
       :root {
-        --accent: #b22222;
-        --accent-dark: #8d1b1b;
-        --bg: #f5f2ee;
-        --surface: #ffffff;
-        --ink: #1f1b18;
-        --muted: #635a54;
-        --line: #e8ddd5;
-        --shadow: 0 18px 48px rgba(25, 16, 12, 0.12);
-        --radius-lg: 24px;
-        --radius-md: 16px;
+        --primary: #b22222;
+        --primary-dark: #8d1717;
+        --primary-soft: #ffe9e9;
+        --ink: #101627;
+        --text: #1c2338;
+        --muted: #5b657f;
+        --line: #e7eaf6;
+        --bg-1: #f7f9ff;
+        --bg-2: #fff8f6;
+        --card: #ffffff;
+        --ok: #1d8f57;
+        --ok-soft: #e7f8ef;
+        --shadow: 0 18px 44px rgba(18, 27, 52, 0.12);
+        --radius-xl: 24px;
+        --radius-lg: 18px;
+        --radius-md: 14px;
       }
 
       * {
@@ -33,9 +39,9 @@
       body {
         margin: 0;
         font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-        color: var(--ink);
-        background: var(--bg);
+        color: var(--text);
         line-height: 1.55;
+        background: linear-gradient(140deg, var(--bg-1) 0%, #f5f8ff 40%, var(--bg-2) 100%);
       }
 
       a {
@@ -44,41 +50,42 @@
       }
 
       .container {
-        width: min(1120px, 92vw);
+        width: min(1140px, 92vw);
         margin-inline: auto;
       }
 
       .topbar {
         position: sticky;
         top: 0;
-        z-index: 10;
-        background: rgba(245, 242, 238, 0.86);
-        border-bottom: 1px solid rgba(232, 221, 213, 0.8);
-        backdrop-filter: blur(8px);
+        z-index: 20;
+        border-bottom: 1px solid rgba(231, 234, 246, 0.85);
+        background: rgba(247, 249, 255, 0.82);
+        backdrop-filter: blur(10px);
       }
 
       .topbar-wrap {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 14px;
+        gap: 16px;
         padding: 14px 0;
       }
 
       .brand {
         font-weight: 900;
-        letter-spacing: 0.01em;
+        font-size: 1.04rem;
+        color: #12192d;
       }
 
       .brand span {
-        color: var(--accent);
+        color: var(--primary);
       }
 
       .menu {
         display: flex;
         gap: 18px;
-        color: #5b514a;
-        font-size: 0.95rem;
+        color: #4f5a79;
+        font-size: 0.94rem;
       }
 
       .btn {
@@ -86,12 +93,13 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        border-radius: 12px;
-        padding: 12px 20px;
-        font-weight: 700;
         border: none;
+        border-radius: 12px;
+        padding: 13px 20px;
+        font-size: 0.98rem;
+        font-weight: 700;
         cursor: pointer;
-        transition: transform 0.2s ease, background 0.2s ease;
+        transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
       }
 
       .btn:hover {
@@ -99,100 +107,110 @@
       }
 
       .btn-main {
-        background: var(--accent);
+        background: var(--primary);
         color: #fff;
+        box-shadow: 0 12px 28px rgba(178, 34, 34, 0.34);
       }
 
       .btn-main:hover {
-        background: var(--accent-dark);
+        background: var(--primary-dark);
       }
 
       .btn-light {
         background: #fff;
-        color: #4f413a;
-        border: 1px solid var(--line);
+        color: #4f5672;
+        border: 1px solid #dfe4f6;
       }
 
-      .hero {
-        padding: 66px 0 80px;
+      .section {
+        padding: 78px 0;
       }
 
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.02fr 0.98fr;
-        gap: 32px;
-        align-items: center;
-      }
-
-      .eyebrow {
+      .pill {
         display: inline-flex;
         align-items: center;
         gap: 8px;
         padding: 8px 12px;
         border-radius: 999px;
-        background: #fce8e8;
-        color: #862020;
+        background: var(--primary-soft);
+        color: #8d1a1a;
         font-size: 0.82rem;
         font-weight: 700;
         letter-spacing: 0.04em;
         text-transform: uppercase;
       }
 
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 72px 0 84px;
+      }
+
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(1px);
+        z-index: -1;
+      }
+
+      .hero::before {
+        width: 420px;
+        height: 420px;
+        right: -120px;
+        top: -100px;
+        background: radial-gradient(circle, rgba(178, 34, 34, 0.23) 0%, rgba(178, 34, 34, 0) 72%);
+      }
+
+      .hero::after {
+        width: 540px;
+        height: 540px;
+        left: -220px;
+        bottom: -220px;
+        background: radial-gradient(circle, rgba(72, 107, 255, 0.14) 0%, rgba(72, 107, 255, 0) 70%);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.06fr 0.94fr;
+        gap: 34px;
+        align-items: center;
+      }
+
       h1 {
-        margin: 18px 0 14px;
-        font-size: clamp(2rem, 4.5vw, 3.8rem);
+        margin: 16px 0 14px;
+        font-size: clamp(2rem, 4.4vw, 3.65rem);
         line-height: 1.04;
         letter-spacing: -0.01em;
+        color: var(--ink);
+        max-width: 15ch;
       }
 
       .hero p {
         margin: 0;
         color: var(--muted);
         max-width: 62ch;
-      }
-
-      .hero strong {
-        color: #2d2320;
+        font-size: 1.02rem;
       }
 
       .hero-cta {
+        margin-top: 24px;
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin: 26px 0 18px;
       }
 
-      .micro-proof {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .micro-proof div {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 12px;
-        color: #564d47;
-        font-size: 0.9rem;
-      }
-
-      .micro-proof b {
-        display: block;
-        color: #2f2724;
-        margin-bottom: 3px;
-      }
-
-      .hero-visual {
+      .hero-aside {
         display: grid;
         gap: 14px;
       }
 
-      .portrait-card {
-        background: var(--surface);
-        border-radius: var(--radius-lg);
+      .portrait-card,
+      .screen-card {
+        background: var(--card);
         border: 1px solid var(--line);
+        border-radius: var(--radius-xl);
         overflow: hidden;
         box-shadow: var(--shadow);
       }
@@ -205,64 +223,113 @@
         object-position: center 18%;
       }
 
-      .portrait-caption {
-        padding: 14px 16px 16px;
-      }
-
-      .portrait-caption b {
-        display: block;
-        margin-bottom: 4px;
-      }
-
-      .portrait-caption p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      .experience {
-        padding: 18px 0 72px;
-      }
-
-      .experience-box {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow);
-        padding: 22px;
-        display: grid;
-        grid-template-columns: 1.06fr 0.94fr;
-        gap: 18px;
-        align-items: center;
-      }
-
-      .experience-box img {
+      .screen-card img {
         width: 100%;
         display: block;
-        border-radius: 14px;
-        border: 1px solid #d9dfe7;
-        background: #f2f5f9;
+        background: #f3f6fb;
+        border-top: 1px solid #dce2ee;
       }
 
-      .experience-box h2 {
-        margin: 0 0 10px;
-        font-size: clamp(1.45rem, 3vw, 2.15rem);
+      .media-caption {
+        margin: 0;
+        padding: 12px 14px 14px;
+        color: #5f6782;
+        font-size: 0.93rem;
       }
 
-      .experience-box p {
+      .media-caption b {
+        display: block;
+        color: #2a324f;
+        margin-bottom: 3px;
+      }
+
+      .subhead {
+        margin: 10px 0 12px;
+        font-size: clamp(1.62rem, 3.1vw, 2.5rem);
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+      }
+
+      .lead {
         margin: 0;
         color: var(--muted);
+        max-width: 82ch;
       }
 
-      .list {
-        margin: 16px 0 0;
+      .feature-grid {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .feature-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .feature-card h3 {
+        margin: 0 0 8px;
+        font-size: 1.04rem;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: #586181;
+      }
+
+      .icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: var(--primary-soft);
+        color: #8e1f1f;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+
+      .wisdom {
+        background: linear-gradient(160deg, #0f1629 0%, #192445 52%, #1f2f63 100%);
+        color: #eef2ff;
+      }
+
+      .wisdom .subhead {
+        color: #ffffff;
+      }
+
+      .wisdom .lead {
+        color: #c9d4f7;
+      }
+
+      .wisdom-grid {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        align-items: start;
+      }
+
+      .wisdom-text p {
+        margin: 0 0 14px;
+        color: #d5ddf8;
+      }
+
+      .wisdom-list {
+        margin: 0;
         padding: 0;
         list-style: none;
         display: grid;
-        gap: 10px;
+        gap: 11px;
       }
 
-      .list li {
+      .wisdom-list li {
         display: flex;
         gap: 10px;
       }
@@ -271,78 +338,45 @@
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: #e9f8ef;
-        color: #1f8f4f;
-        font-size: 0.75rem;
-        font-weight: 800;
+        background: rgba(94, 243, 164, 0.18);
+        color: #52f3a3;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        font-size: 0.74rem;
+        font-weight: 800;
         margin-top: 2px;
         flex-shrink: 0;
       }
 
-      .section {
-        padding: 72px 0;
+      .wisdom-photo {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 18px;
+        padding: 10px;
       }
 
-      .section-title {
-        margin: 10px 0 12px;
-        font-size: clamp(1.6rem, 3vw, 2.45rem);
-        letter-spacing: -0.01em;
+      .wisdom-photo img {
+        width: 100%;
+        display: block;
+        border-radius: 12px;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
       }
 
-      .section-lead {
-        margin: 0;
-        color: var(--muted);
-        max-width: 76ch;
-      }
-
-      .grid-3 {
-        margin-top: 26px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .card {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        padding: 20px;
-        box-shadow: var(--shadow);
-      }
-
-      .card h3 {
-        margin: 0 0 7px;
-        font-size: 1.08rem;
-      }
-
-      .card p {
-        margin: 0;
-        color: #595068;
-      }
-
-      .step {
-        font-size: 0.8rem;
-        font-weight: 800;
-        color: var(--accent);
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-      }
-
-      .quote-grid {
-        margin-top: 26px;
+      .quotes {
+        margin-top: 28px;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
       }
 
       .quote {
-        background: #fff;
+        background: var(--card);
         border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        padding: 20px;
+        border-radius: var(--radius-lg);
+        padding: 22px;
+        box-shadow: var(--shadow);
       }
 
       .quote p {
@@ -350,62 +384,128 @@
       }
 
       .quote b {
-        color: #372b26;
+        color: #2f2a3f;
       }
 
-      .quote small {
-        color: #6f625c;
+      .quote-author {
+        color: #6d7694;
+        font-size: 0.92rem;
+      }
+
+      .quote-highlight {
+        background: linear-gradient(135deg, #b22222 0%, #dc4f4f 100%);
+        color: #fff4f4;
+        border-color: transparent;
+      }
+
+      .quote-highlight b,
+      .quote-highlight .quote-author {
+        color: #fff;
+      }
+
+      .how-grid {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .how-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .how-card h3 {
+        margin: 0 0 8px;
+        font-size: 1.04rem;
+      }
+
+      .how-card p {
+        margin: 0;
+        color: #5f6885;
       }
 
       .pricing {
-        background: linear-gradient(180deg, #f3ece7 0%, #f8f5f2 100%);
+        background: linear-gradient(180deg, #f8fbff 0%, #fff4f4 100%);
       }
 
-      .pricing-box {
-        margin-top: 26px;
+      .plans {
+        margin-top: 28px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        gap: 18px;
       }
 
-      .price-card {
+      .plan {
         background: #fff;
-        border: 2px solid #e7cec2;
+        border: 1px solid #e3e8f7;
         border-radius: 20px;
         padding: 24px;
         box-shadow: var(--shadow);
+        position: relative;
+      }
+
+      .plan.featured {
+        border: 2px solid #f0b6b6;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        background: #fff0f0;
+        color: #8c1a1a;
+      }
+
+      .plan h3 {
+        margin: 12px 0 6px;
+        font-size: 1.3rem;
       }
 
       .price {
         display: flex;
         align-items: baseline;
         gap: 8px;
-        margin: 12px 0 14px;
+        margin: 6px 0 10px;
       }
 
       .price .main {
-        font-size: 2.35rem;
+        font-size: 2.3rem;
         font-weight: 900;
+        color: #202844;
       }
 
       .price .per {
-        color: #6d5f58;
+        color: #6a728f;
       }
 
-      .safe-card {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: 24px;
+      .plan p {
+        margin: 0;
+        color: #5e6683;
       }
 
-      .notice {
-        margin-top: 14px;
-        padding: 12px;
-        border-radius: 12px;
-        border: 1px solid #f0dcc2;
-        background: #fff6ea;
-        color: #5e4422;
+      .plan-list {
+        margin: 14px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 9px;
+      }
+
+      .plan-list li {
+        display: flex;
+        gap: 10px;
+      }
+
+      .cta-wrap {
+        margin-top: 16px;
       }
 
       .faq {
@@ -424,43 +524,17 @@
       summary {
         cursor: pointer;
         font-weight: 700;
+        color: #202840;
       }
 
       details p {
         margin: 10px 0 0;
-        color: var(--muted);
-      }
-
-      .final-cta {
-        margin-top: 28px;
-        border-radius: 18px;
-        background: linear-gradient(145deg, #802020 0%, #b22222 62%, #cd4949 100%);
-        color: #fff1f1;
-        padding: 26px;
-      }
-
-      .final-cta h3 {
-        margin: 0 0 10px;
-        font-size: 1.5rem;
-      }
-
-      .final-cta p {
-        margin: 0;
-      }
-
-      .final-cta .btn-main {
-        margin-top: 16px;
-        background: #fff;
-        color: #7e1c1c;
-      }
-
-      .final-cta .btn-main:hover {
-        background: #fff0f0;
+        color: #606a87;
       }
 
       .footer {
-        padding: 26px 0 36px;
-        color: #6d5f58;
+        padding: 28px 0 36px;
+        color: #64708f;
         font-size: 0.9rem;
       }
 
@@ -468,20 +542,20 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 10px;
+        gap: 12px;
         flex-wrap: wrap;
       }
 
       @media (max-width: 980px) {
         .hero-grid,
-        .experience-box,
-        .pricing-box {
+        .wisdom-grid,
+        .how-grid,
+        .plans {
           grid-template-columns: 1fr;
         }
 
-        .grid-3,
-        .quote-grid,
-        .micro-proof {
+        .feature-grid,
+        .quotes {
           grid-template-columns: 1fr 1fr;
         }
       }
@@ -491,9 +565,8 @@
           display: none;
         }
 
-        .grid-3,
-        .quote-grid,
-        .micro-proof {
+        .feature-grid,
+        .quotes {
           grid-template-columns: 1fr;
         }
       }
@@ -502,124 +575,171 @@
   <body>
     <header class="topbar">
       <div class="container topbar-wrap">
-        <a href="#" class="brand">Michel<span>Odoul</span> AI</a>
+        <a class="brand" href="#">Michel <span>Odoul AI</span></a>
         <nav class="menu">
-          <a href="#experience">Demo</a>
-          <a href="#methode">Atouts</a>
-          <a href="#offre">Offre</a>
+          <a href="#sagesse">Sagesse</a>
+          <a href="#benefices">Benefices</a>
+          <a href="#abonnements">Abonnements</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <a href="#offre" class="btn btn-main">Demarrer</a>
+        <a class="btn btn-main" href="#abonnements">S abonner</a>
       </div>
     </header>
 
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Posez votre question. Obtenez une vraie reponse, 24h/24.</span>
-          <h1>La vision de Michel Odoul, accessible a tout moment.</h1>
+          <span class="pill">Michel Odoul AI</span>
+          <h1>Interrogez Michel 24h/24 et decodez les messages de votre corps.</h1>
           <p>
-            Michel Odoul AI reprend l intelligence pedagogique de son approche et de son programme video
-            <strong>L Initiation Corps-Esprit</strong>. L experience donne la sensation d un dialogue proche de
-            Michel, avec transparence: vous echangez avec un assistant base sur son savoir.
+            Michel Odoul AI est une experience interactive complete, nourrie par la sagesse et les outils eprouves
+            du fondateur de l Institut Francais de Shiatsu et auteur du best-seller "Dis-moi ou tu as mal, je te
+            dirai pourquoi".
           </p>
           <div class="hero-cta">
-            <a href="#offre" class="btn btn-main">Je m abonne a 49 EUR / mois</a>
-            <a href="#experience" class="btn btn-light">Voir Michel Odoul AI en action</a>
-          </div>
-          <div class="micro-proof">
-            <div>
-              <b>Reponses personnalisees</b>
-              Des pistes adaptees a votre situation.
-            </div>
-            <div>
-              <b>Methodes eprouvees</b>
-              Base de savoir L Initiation Corps-Esprit.
-            </div>
-            <div>
-              <b>Pret quand vous l etes</b>
-              Accessible 24h/24, sans rendez-vous.
-            </div>
+            <a class="btn btn-main" href="#abonnements">Echanger avec Michel maintenant</a>
+            <a class="btn btn-light" href="#sagesse">Decouvrir l experience</a>
           </div>
         </div>
-
-        <aside class="hero-visual">
+        <aside class="hero-aside" aria-label="Visuels Michel Odoul AI">
           <figure class="portrait-card">
-            <img src="assets/michel-odoul.jpg" alt="Photo de Michel Odoul" loading="eager" />
-            <figcaption class="portrait-caption">
+            <img src="assets/michel-odoul.jpg" alt="Portrait de Michel Odoul" loading="eager" />
+            <figcaption class="media-caption">
               <b>Michel Odoul AI</b>
-              <p>
-                Son esprit pedagogique, sa clarte et sa vision corps-esprit sont au coeur de chaque interaction.
-              </p>
+              Une interface premium, epuree et guidee par sa vision corps-esprit.
+            </figcaption>
+          </figure>
+          <figure class="screen-card">
+            <img src="assets/chatbot-interface.svg" alt="Capture de l interface du chatbot Michel Odoul AI" loading="eager" />
+            <figcaption class="media-caption">
+              <b>Conversation instantanee</b>
+              Reponses claires et personnalisees, en quelques secondes.
             </figcaption>
           </figure>
         </aside>
       </div>
     </section>
 
-    <section class="experience" id="experience">
+    <section class="section wisdom" id="sagesse">
       <div class="container">
-        <div class="experience-box">
-          <img src="assets/chatbot-interface.svg" alt="Apercu de l interface de conversation du chatbot" loading="eager" />
-          <div>
-            <h2>Voir Michel Odoul AI en action</h2>
+        <span class="pill" style="background: rgba(255, 255, 255, 0.14); color: #eef2ff">La sagesse de Michel dans votre poche</span>
+        <h2 class="subhead">L approche de Michel, disponible quand vous en avez besoin</h2>
+        <p class="lead">
+          Imaginez avoir un acces instantane a l approche de Michel Odoul sur la psycho-energetique, la psychologie
+          corporelle et l harmonie de vie a chaque fois que vous avez besoin de comprendre un symptome ou de
+          retrouver votre equilibre.
+        </p>
+        <div class="wisdom-grid">
+          <div class="wisdom-text">
+            <p>C est precisement ce qu offre Michel Odoul AI.</p>
             <p>
-              Vous posez une question, vous recevez une reponse immediate, claire et actionnable. Une experience
-              epuree qui met toute l attention sur l essentiel: comprehension, sens et passage a l action.
+              Cet outil revolutionnaire a ete forme sur des decennies de pratique, d enseignement et de recherches:
+              de ses ouvrages majeurs a ses conferences, en passant par ses concepts cles comme le Chemin de Vie et
+              la lecture du corps.
             </p>
-            <ul class="list">
-              <li><span class="tick">v</span>Des reponses en temps reel, basees sur une methode solide</li>
-              <li><span class="tick">v</span>Un ton de guidance humain, inspire de l approche de Michel</li>
-              <li><span class="tick">v</span>Des mises a jour regulieres pour enrichir les ressources</li>
-            </ul>
+            <p>
+              Il s exprime avec la bienveillance de Michel, offre des reponses personnalisees et vous aide a avancer
+              sur votre voie avec clarte et serenite.
+            </p>
+            <p>
+              Que vous traversiez une epreuve physique, un blocage emotionnel ou que vous cherchiez simplement a
+              harmoniser votre existence, Michel Odoul AI est la pour vous guider.
+            </p>
           </div>
+          <aside class="wisdom-photo">
+            <img src="assets/parcours-bien-etre.jpg" alt="Visuel d harmonie corps-esprit" loading="lazy" />
+            <ul class="wisdom-list" style="margin-top: 12px">
+              <li><span class="tick">v</span>Comprendre le sens des tensions et des maux</li>
+              <li><span class="tick">v</span>Retrouver un etat interieur plus stable</li>
+              <li><span class="tick">v</span>Avancer avec des actions simples et concretes</li>
+            </ul>
+          </aside>
         </div>
       </div>
     </section>
 
-    <section class="section" id="methode">
+    <section class="section">
       <div class="container">
-        <span class="eyebrow">Les strategies de Michel. Vos objectifs.</span>
-        <h2 class="section-title">Le pouvoir de son approche, dans votre quotidien</h2>
-        <p class="section-lead">
-          Michel Odoul AI rassemble une base de savoir profonde et une experience simple pour vous aider a
-          comprendre plus vite, decider plus clairement et avancer avec regularite.
-        </p>
-        <div class="grid-3">
-          <article class="card">
-            <span class="step">Atout 1</span>
+        <span class="pill">Ce que disent les utilisateurs</span>
+        <h2 class="subhead">Des retours forts, concrets et profonds</h2>
+        <div class="quotes">
+          <article class="quote">
+            <p>
+              "C est la meilleure application de decodage que j ai testee. Je pose des questions sur mes tensions
+              physiques que je n oserais dire a personne, et les reponses tombent juste. C est concret, ancre et
+              profond. C est comme avoir Michel a mes cotes pour m aider a comprendre le sens de ce que je vis."
+            </p>
+            <b>Marc A.</b>
+          </article>
+          <article class="quote">
+            <p>
+              "Incroyable. On peut tout lui demander, et on a l impression qu il nous repond directement avec sa
+              douceur habituelle. Cela m a aide a trouver la cause de mes maux de dos en quelques minutes. Un vrai
+              retour a l equilibre."
+            </p>
+            <b>Helene R.</b>
+          </article>
+          <article class="quote quote-highlight">
+            <p>"Le corps parle, l esprit entend. Comprendre son mal, c est deja s en liberer."</p>
+            <b>Michel Odoul</b>
+            <div class="quote-author">Citation de reference</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefices">
+      <div class="container">
+        <span class="pill">Les benefices cles</span>
+        <h2 class="subhead">L approche de Michel. Vos objectifs de vie.</h2>
+        <p class="lead">Un accompagnement digital pour transformer vos tensions en clarte, puis en decisions.</p>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="icon">1</span>
             <h3>Reponses personnalisees</h3>
             <p>
-              Une lecture adaptee a votre contexte, pas une reponse generique.
+              Michel Odoul AI analyse vos problematiques specifiques (douleurs, stress, doutes) selon les principes
+              de la psycho-energetique.
             </p>
           </article>
-          <article class="card">
-            <span class="step">Atout 2</span>
-            <h3>Soutien a la demande</h3>
-            <p>Quand vous en avez besoin, vous obtenez une orientation claire en quelques secondes.</p>
+          <article class="feature-card">
+            <span class="icon">2</span>
+            <h3>Soutien immediat</h3>
+            <p>
+              Obtenez des cles de comprehension et des pistes d action en temps reel sans attente, sans rendez-vous.
+            </p>
           </article>
-          <article class="card">
-            <span class="step">Atout 3</span>
+          <article class="feature-card">
+            <span class="icon">3</span>
             <h3>Strategies eprouvees</h3>
-            <p>Le contenu s appuie sur la logique pedagogique de L Initiation Corps-Esprit.</p>
-          </article>
-          <article class="card">
-            <span class="step">Atout 4</span>
-            <h3>Tonalite Michel Odoul</h3>
-            <p>Une guidance calme, profonde et orientee transformation interieure.</p>
-          </article>
-          <article class="card">
-            <span class="step">Atout 5</span>
-            <h3>Apprend de vos besoins</h3>
             <p>
-              L experience s affine selon vos questions pour rester utile dans la duree.
+              Accedez aux outils de l Institut Francais de Shiatsu pour transformer vos tensions en prises de
+              conscience.
             </p>
           </article>
-          <article class="card">
-            <span class="step">Atout 6</span>
-            <h3>Toujours disponible</h3>
+          <article class="feature-card">
+            <span class="icon">4</span>
+            <h3>La voix et l ethique de Michel</h3>
             <p>
-              Sur mobile ou ordinateur, l assistant est pret a vous accompagner partout.
+              Chaque reponse est impregnee de la psychologie et de la philosophie orientale que Michel transmet
+              depuis plus de 30 ans.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="icon">5</span>
+            <h3>Evolue avec vous</h3>
+            <p>
+              Plus vous echangez, plus l IA affine sa comprehension de votre parcours pour vous aider a rester
+              aligne sur votre Chemin de Vie.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="icon">6</span>
+            <h3>Experience premium</h3>
+            <p>
+              Une interface simple, moderne et epuree pour rester centre sur l essentiel: comprehension, equilibre,
+              action.
             </p>
           </article>
         </div>
@@ -628,116 +748,108 @@
 
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Ce que disent les utilisateurs</span>
-        <h2 class="section-title">Une experience qui cree clarte et passage a l action</h2>
-        <p class="section-lead">
-          Ils decrivent la meme chose: une sensation de dialogue premium, une direction plus nette et des declics
-          concrets.
+        <span class="pill">Comment ca fonctionne</span>
+        <h2 class="subhead">Des reponses en temps reel, basees sur des principes millenaires.</h2>
+        <p class="lead">
+          L IA Michel Odoul est disponible en plusieurs langues et a ete entrainee sur plus de 40 ans de pratique
+          et de techniques de sante naturelle.
         </p>
-        <div class="quote-grid">
-          <article class="quote">
-            <p>"On ressent vraiment l univers de Michel dans les reponses. C est clair, utile et profond."</p>
-            <b>Nadia R.</b><br />
-            <small>Abonnee depuis 7 mois</small>
+        <div class="how-grid">
+          <article class="how-card">
+            <h3>Changez d etat interieur</h3>
+            <p>Utilisez les rituels d ancrage et d energie de Michel pour revenir a un centre plus stable.</p>
           </article>
-          <article class="quote">
-            <p>"J ai le sentiment d etre guidee avec exigence et bienveillance, quand je veux, ou je veux."</p>
-            <b>Paul M.</b><br />
-            <small>Abonne depuis 5 mois</small>
+          <article class="how-card">
+            <h3>Liberez les blocages emotionnels</h3>
+            <p>Appliquez le decodage des messages du corps pour aller au-dela du symptome.</p>
           </article>
-          <article class="quote">
-            <p>"Le design est simple, la valeur est forte. En quelques minutes, je repars avec une direction."</p>
-            <b>Claire B.</b><br />
-            <small>Abonnee depuis 6 mois</small>
+          <article class="how-card">
+            <h3>Progressez vers l harmonie</h3>
+            <p>Mettez en pratique la loi des 5 elements et l equilibre Yin/Yang dans votre quotidien.</p>
+          </article>
+          <article class="how-card">
+            <h3>Retrouvez votre sens</h3>
+            <p>Reconnectez-vous a votre nature profonde pour reprendre la main sur votre trajectoire.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section pricing" id="offre">
+    <section class="section pricing" id="abonnements">
       <div class="container">
-        <span class="eyebrow">Commencez aujourd hui</span>
-        <h2 class="section-title">Debloquez plus de clarte et de puissance interieure</h2>
-        <p class="section-lead">
-          Une offre simple et directe: 49 EUR par mois, sans engagement, avec acces complet a Michel Odoul AI.
-        </p>
-
-        <div class="pricing-box">
-          <article class="price-card">
-            <h3 style="margin: 0">Michel Odoul AI</h3>
+        <span class="pill">Choisissez votre abonnement</span>
+        <h2 class="subhead">Deux options simples pour avancer a votre rythme</h2>
+        <div class="plans">
+          <article class="plan">
+            <h3>Michel Odoul AI Mensuel</h3>
             <div class="price">
               <span class="main">49 EUR</span>
               <span class="per">/ mois</span>
             </div>
-            <ul class="list">
-              <li><span class="tick">v</span>Acces illimite a l assistant conversationnel premium</li>
-              <li><span class="tick">v</span>Base de savoir issue de L Initiation Corps-Esprit</li>
-              <li><span class="tick">v</span>Reponses personnalisees et actions concretes</li>
-              <li><span class="tick">v</span>Mises a jour regulieres et support humain</li>
+            <p>Annulation possible a tout moment</p>
+            <ul class="plan-list">
+              <li><span class="tick">v</span>Acces illimite aux outils de decodage</li>
+              <li><span class="tick">v</span>Accompagnement personnalise au quotidien</li>
+              <li><span class="tick">v</span>La sagesse de Michel disponible 24h/24</li>
             </ul>
-            <p style="margin: 18px 0 0">
-              <a href="https://checkout.example.com" class="btn btn-main" target="_blank" rel="noreferrer">
-                Je demarre mon abonnement
+            <p class="cta-wrap">
+              <a class="btn btn-light" href="https://checkout.example.com/monthly" target="_blank" rel="noreferrer">
+                S abonner au mois
               </a>
             </p>
           </article>
 
-          <aside class="safe-card">
-            <h3 style="margin-top: 0">Questions de confiance, reponses claires</h3>
-            <ul class="list">
-              <li><span class="tick">v</span>Essai satisfait ou rembourse pendant 7 jours</li>
-              <li><span class="tick">v</span>Resiliation libre a tout moment</li>
-              <li><span class="tick">v</span>Paiement securise et facturation claire</li>
-              <li><span class="tick">v</span>Positionnement transparent: un assistant, pas Michel en direct</li>
-            </ul>
-            <div class="notice">
-              Transparence: cet assistant ne remplace pas Michel Odoul en personne, ni un professionnel de sante.
-              Il traduit son savoir pedagogique en experience conversationnelle.
+          <article class="plan featured">
+            <span class="badge">Offre privilege</span>
+            <h3>Michel Odoul AI Annuel</h3>
+            <div class="price">
+              <span class="main">390 EUR</span>
+              <span class="per">/ an</span>
             </div>
-          </aside>
-        </div>
-
-        <div class="final-cta">
-          <h3>Pret a commencer votre conversation avec Michel Odoul AI ?</h3>
-          <p>
-            Rejoignez les membres qui veulent penser plus clairement, agir plus justement et progresser avec
-            constance.
-          </p>
-          <a href="https://checkout.example.com" class="btn btn-main" target="_blank" rel="noreferrer">
-            Oui, je m abonne a 49 EUR / mois
-          </a>
+            <p>Economisez plus de 65% par rapport au tarif mensuel. Revenez a seulement 32,50 EUR / mois.</p>
+            <ul class="plan-list">
+              <li><span class="tick">v</span>30 jours satisfait ou rembourse</li>
+              <li><span class="tick">v</span>Un paiement unique pour une annee de transformation</li>
+              <li><span class="tick">v</span>Acces complet a toutes les ressources Michel Odoul AI</li>
+            </ul>
+            <p class="cta-wrap">
+              <a class="btn btn-main" href="https://checkout.example.com/yearly" target="_blank" rel="noreferrer">
+                S abonner a l annee
+              </a>
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="section" id="faq">
       <div class="container">
-        <span class="eyebrow">FAQ</span>
-        <h2 class="section-title">FAQ</h2>
+        <span class="pill">FAQ</span>
+        <h2 class="subhead">Foire aux questions</h2>
         <div class="faq">
           <details>
-            <summary>Est ce Michel Odoul qui repond en direct ?</summary>
+            <summary>Comment Michel Odoul AI peut-il m aider concretement ?</summary>
             <p>
-              Non. Vous discutez avec un assistant conversationnel qui s appuie sur son savoir et son programme
-              video L Initiation Corps-Esprit.
+              Vous obtenez des reponses personnalisees sur vos symptomes, vos blocages et vos enjeux de vie, avec
+              des pistes claires a appliquer immediatement.
             </p>
           </details>
           <details>
-            <summary>Pourquoi l experience donne cette sensation de dialogue direct ?</summary>
+            <summary>Puis-je resilier mon abonnement facilement ?</summary>
+            <p>Oui. La formule mensuelle est sans engagement et se resilie en quelques clics.</p>
+          </details>
+          <details>
+            <summary>Je ne suis pas technophile, est-ce simple a utiliser ?</summary>
             <p>
-              Parce que l assistant reprend sa logique pedagogique, ses references et son style de guidance, tout
-              en restant transparent sur sa nature d outil conversationnel.
+              Oui. L interface est volontairement epuree: vous ecrivez votre question, vous recevez une reponse
+              claire et actionnable.
             </p>
           </details>
           <details>
-            <summary>Puis je arreter quand je veux ?</summary>
-            <p>Oui. L abonnement est mensuel et sans engagement, avec annulation en quelques clics.</p>
-          </details>
-          <details>
-            <summary>Le service est il adapte si je debute ?</summary>
+            <summary>Quelle difference avec une seance de Shiatsu ou de psychologie ?</summary>
             <p>
-              Oui. L assistant adapte le niveau de reponse et vous guide pas a pas pour transformer les notions en
-              actions simples.
+              Michel Odoul AI est un assistant de guidance base sur ses enseignements. Il complete une demarche
+              personnelle, mais ne remplace pas une consultation avec un professionnel.
             </p>
           </details>
         </div>
