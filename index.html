@@ -264,12 +264,34 @@
       }
 
       .trust-item {
-        text-align: center;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        text-align: left;
         color: #624747;
         font-size: 0.93rem;
       }
 
-      .trust-item b {
+      .trust-picto {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        border: 1px solid #f3d8d8;
+        background: var(--primary-soft);
+        color: var(--primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .trust-picto svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+
+      .trust-content b {
         display: block;
         color: #3a2323;
         margin-bottom: 4px;
@@ -633,20 +655,56 @@
       <div class="container">
         <ul class="trust-list">
           <li class="trust-item">
-            <b>Reseau de confiance</b>
-            Plateforme stable et support reactif
+            <span class="trust-picto" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2 4 5v6c0 5.2 3.4 9.8 8 11 4.6-1.2 8-5.8 8-11V5l-8-3Zm-1.1 11.5-2.4-2.4L7 12.5l3.9 3.9L17 10.3l-1.4-1.4-4.7 4.6Z"
+                />
+              </svg>
+            </span>
+            <span class="trust-content">
+              <b>Reseau de confiance</b>
+              Plateforme stable et support reactif
+            </span>
           </li>
           <li class="trust-item">
-            <b>Sans engagement</b>
-            Vous restez libre chaque mois
+            <span class="trust-picto" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5v5.4l3.8 2.3-1 1.7L11 13.5V7h2Z"
+                />
+              </svg>
+            </span>
+            <span class="trust-content">
+              <b>Sans engagement</b>
+              Vous restez libre chaque mois
+            </span>
           </li>
           <li class="trust-item">
-            <b>Protection des donnees</b>
-            Echanges prives et securises
+            <span class="trust-picto" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17 10h-1V8a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2Zm-7-2a2 2 0 1 1 4 0v2h-4V8Zm7 12H7v-8h10v8Z"
+                />
+              </svg>
+            </span>
+            <span class="trust-content">
+              <b>Protection des donnees</b>
+              Echanges prives et securises
+            </span>
           </li>
           <li class="trust-item">
-            <b>Valeur continue</b>
-            Mises a jour regulieres avec de nouvelles ressources
+            <span class="trust-picto" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M4 18h16v2H2V4h2v14Zm14.7-7.3-1.4-1.4-3.2 3.2-2.6-2.6-6 6 1.4 1.4 4.6-4.6 2.6 2.6 4.6-4.6Z"
+                />
+              </svg>
+            </span>
+            <span class="trust-content">
+              <b>Valeur continue</b>
+              Mises a jour regulieres avec de nouvelles ressources
+            </span>
           </li>
         </ul>
       </div>
