@@ -82,7 +82,7 @@
       .modpath__meter {
         height: 8px;
         border-radius: 999px;
-        background: #e7edff;
+        background: rgba(10, 15, 57, 0.14);
         overflow: hidden;
       }
 
@@ -91,7 +91,7 @@
         height: 100%;
         width: 0;
         border-radius: 999px;
-        background: linear-gradient(90deg, #2f6bff 0%, #1fd0a2 100%);
+        background: linear-gradient(90deg, #0a0f39 0%, #ffd41d 100%);
         transition: width 0.35s ease;
       }
 
@@ -116,7 +116,7 @@
       }
 
       .modpath__ticks li.is-current {
-        color: #0f1a59;
+        color: #0a0f39;
       }
 
       .modpath__list {
@@ -299,16 +299,18 @@
         padding: 0;
         list-style: none;
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 8px;
         color: rgba(10, 15, 57, 0.78);
         font-size: 14.6px;
         line-height: 1.45;
+        text-align: left;
       }
 
       .step__videos li {
         position: relative;
         padding-left: 24px;
+        text-align: left;
       }
 
       .step__videos li::before {
@@ -382,7 +384,7 @@
 
         .step__cta {
           width: 100%;
-          justify-content: center;
+          justify-content: flex-start;
         }
       }
 
