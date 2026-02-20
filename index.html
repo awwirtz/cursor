@@ -3,290 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Programme Video - Passe au niveau superieur</title>
-    <meta
-      name="description"
-      content="Landing page de vente pour un programme video premium avec accompagnement, bonus et garantie."
-    />
+    <title>Progression en 5 modules</title>
     <style>
       :root {
-        --bg: #0b1020;
-        --bg-soft: #121933;
-        --card: #ffffff;
-        --text: #0d1222;
-        --text-light: #f5f7ff;
-        --muted: #97a2c6;
-        --primary: #6959ff;
-        --primary-hover: #5747ee;
-        --accent: #1fd0a2;
-        --danger: #ff5f79;
-        --shadow: 0 18px 40px rgba(10, 18, 40, 0.18);
-        --radius: 18px;
+        --ink: #0a0f39;
+        --muted: rgba(10, 15, 57, 0.7);
+        --line: rgba(47, 107, 255, 0.25);
+        --line-done: rgba(31, 208, 162, 0.65);
+        --blue: #2f6bff;
+        --green: #1fd0a2;
       }
 
       * {
         box-sizing: border-box;
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
         margin: 0;
         font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-        line-height: 1.55;
-        color: var(--text);
-        background: linear-gradient(160deg, #f4f6ff 0%, #eef2ff 35%, #f8fbff 100%);
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .container {
-        width: min(1120px, 92vw);
-        margin-inline: auto;
-      }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(105, 89, 255, 0.12);
-        color: #3f35b7;
-        font-size: 0.84rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-      }
-
-      .section {
-        padding: 84px 0;
-      }
-
-      .section h2 {
-        font-size: clamp(1.7rem, 3vw, 2.6rem);
-        margin: 12px 0 14px;
-      }
-
-      .section p.lead {
-        margin: 0;
-        max-width: 780px;
-        color: #455076;
-      }
-
-      .btn {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border: none;
-        border-radius: 12px;
-        padding: 14px 22px;
-        font-size: 1rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn-primary {
-        background: var(--primary);
-        color: #fff;
-        box-shadow: 0 10px 24px rgba(105, 89, 255, 0.35);
-      }
-
-      .btn-primary:hover {
-        background: var(--primary-hover);
-      }
-
-      .btn-outline {
-        border: 2px solid rgba(105, 89, 255, 0.28);
-        color: #2f3a63;
         background: #fff;
+        color: var(--ink);
       }
 
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.88);
-        border-bottom: 1px solid #e7ebff;
-        backdrop-filter: blur(8px);
-      }
-
-      .topbar-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 0;
-      }
-
-      .logo {
-        font-weight: 900;
-        font-size: 1.05rem;
-        letter-spacing: 0.02em;
-        color: #1f2951;
-      }
-
-      .logo span {
-        color: var(--primary);
-      }
-
-      .topbar nav {
-        display: flex;
-        gap: 18px;
-        font-size: 0.95rem;
-        color: #4f5a81;
-      }
-
-      .hero {
-        background: radial-gradient(circle at 20% 20%, #2a3370 0%, var(--bg) 42%, #070a15 100%);
-        color: var(--text-light);
-        padding: 88px 0 94px;
-        overflow: hidden;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 36px;
-        align-items: center;
-      }
-
-      .hero h1 {
-        font-size: clamp(2rem, 4.2vw, 3.5rem);
-        line-height: 1.1;
-        margin: 18px 0 16px;
-        max-width: 16ch;
-      }
-
-      .hero .subtitle {
-        margin: 0 0 28px;
-        max-width: 60ch;
-        color: #d4dbff;
-      }
-
-      .hero-cta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 26px;
-      }
-
-      .kpis {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .kpi {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 14px;
-        padding: 14px;
-      }
-
-      .kpi b {
-        display: block;
-        font-size: 1.2rem;
-      }
-
-      .preview-card {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 24px 52px rgba(7, 10, 21, 0.5);
-      }
-
-      .preview-media {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        background: linear-gradient(45deg, #1a2455, #5c4dff);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .play-btn {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        border: 0;
+      .modpath {
         background: #fff;
-        color: #2d3280;
-        font-size: 1.25rem;
-        font-weight: 800;
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+        padding: 58px 16px 66px;
+        color: var(--ink);
       }
 
-      .preview-content {
-        padding: 20px;
-        color: #e6ebff;
-      }
-
-      .preview-content h3 {
-        margin: 0 0 6px;
-      }
-
-      .strip {
-        padding: 20px 0;
-        border-bottom: 1px solid #e8ecff;
-        border-top: 1px solid #e8ecff;
-        background: #fff;
-      }
-
-      .logos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px 34px;
-        color: #7f8aaf;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-        font-size: 0.86rem;
-      }
-
-      .benefits-grid {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .card {
-        background: var(--card);
-        border-radius: var(--radius);
-        padding: 24px;
-        box-shadow: var(--shadow);
-      }
-
-      .card .icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: rgba(105, 89, 255, 0.13);
-        color: #3d33b2;
-        font-weight: 800;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 12px;
-      }
-
-      .program {
-        background: linear-gradient(180deg, #f5f8ff 0%, #ecf2ff 100%);
-        position: relative;
-        overflow: hidden;
+      .modpath__inner {
+        max-width: 1040px;
+        margin: 0 auto;
       }
 
       .modpath__head {
@@ -294,44 +41,48 @@
         margin-bottom: 26px;
       }
 
-      .modpath__head h2 {
-        margin: 10px 0 12px;
+      .modpath__kicker {
+        margin: 0 0 10px;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(10, 15, 57, 0.55);
+      }
+
+      .modpath__title {
+        margin: 0 0 10px;
+        font-size: clamp(26px, 3.1vw, 44px);
+        font-weight: 950;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        color: var(--ink);
+      }
+
+      .modpath__sub {
+        margin: 0 auto;
+        max-width: 760px;
+        font-size: 15.5px;
+        line-height: 1.55;
+        color: var(--muted);
       }
 
       .modpath__progress {
         position: sticky;
-        top: 74px;
-        z-index: 2;
-        margin-bottom: 22px;
-        padding: 16px;
-        border-radius: 16px;
-        border: 1px solid #d9e2ff;
+        top: 14px;
+        z-index: 5;
+        margin: 18px auto 24px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(10, 15, 57, 0.1);
         background: rgba(255, 255, 255, 0.92);
-        box-shadow: 0 14px 28px rgba(37, 59, 122, 0.12);
-        backdrop-filter: blur(5px);
-      }
-
-      .modpath__status {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-        color: #33436f;
-        font-size: 0.92rem;
-        font-weight: 700;
-      }
-
-      .modpath__status span:last-child {
-        color: #596693;
-        font-weight: 600;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 10px 24px rgba(10, 16, 40, 0.08);
       }
 
       .modpath__meter {
-        margin-top: 10px;
-        height: 10px;
+        height: 8px;
         border-radius: 999px;
-        background: #e8edff;
+        background: #e7edff;
         overflow: hidden;
       }
 
@@ -339,8 +90,9 @@
         display: block;
         height: 100%;
         width: 0;
-        background: linear-gradient(90deg, #6959ff 0%, #4f86ff 52%, #1fd0a2 100%);
-        transition: width 0.45s ease;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #2f6bff 0%, #1fd0a2 100%);
+        transition: width 0.35s ease;
       }
 
       .modpath__ticks {
@@ -353,522 +105,263 @@
       }
 
       .modpath__ticks li {
-        font-size: 0.72rem;
-        color: #7a86ad;
         text-align: center;
-        display: grid;
-        gap: 5px;
-        justify-items: center;
-      }
-
-      .modpath__ticks li::before {
-        content: "";
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: #cbd5f8;
-        transition: transform 0.2s ease, background 0.2s ease;
+        font-size: 12px;
+        font-weight: 900;
+        color: rgba(10, 15, 57, 0.45);
       }
 
       .modpath__ticks li.is-reached {
-        color: #2e3d69;
+        color: rgba(10, 15, 57, 0.8);
       }
 
-      .modpath__ticks li.is-reached::before {
-        background: #5f75ff;
-      }
-
-      .modpath__ticks li.is-current::before {
-        background: #1fd0a2;
-        transform: scale(1.25);
+      .modpath__ticks li.is-current {
+        color: #0f1a59;
       }
 
       .modpath__list {
         margin: 0;
-        padding: 6px 0 0;
+        padding: 0;
         list-style: none;
         display: grid;
-        gap: 20px;
+        gap: 14px;
       }
 
-      .modpath-step {
-        position: relative;
-        padding-left: 56px;
+      .step {
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 14px;
+        align-items: start;
         opacity: 0;
-        transform: translateY(22px);
-        transition: opacity 0.45s ease, transform 0.45s ease;
+        transform: translateY(16px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
       }
 
-      .modpath-step.is-visible {
+      .step.is-visible {
         opacity: 1;
         transform: translateY(0);
       }
 
-      .modpath-step::before {
-        content: "";
-        position: absolute;
-        left: 18px;
-        top: 36px;
-        bottom: -22px;
+      .step__rail {
+        display: grid;
+        grid-template-rows: 34px 1fr;
+        justify-items: center;
+      }
+
+      .step__dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        margin-top: 8px;
+        background: rgba(47, 107, 255, 0.12);
+        border: 2px solid rgba(47, 107, 255, 0.35);
+        box-shadow: 0 8px 20px rgba(47, 107, 255, 0.14);
+        transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      }
+
+      .step__line {
         width: 2px;
-        background: linear-gradient(180deg, #cfd9ff 0%, #e5e9fb 100%);
-      }
-
-      .modpath-step:last-child::before {
-        display: none;
-      }
-
-      .modpath-step::after {
-        content: attr(data-step);
-        position: absolute;
-        left: 0;
-        top: 10px;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        color: #445278;
-        font-size: 0.78rem;
-        font-weight: 800;
-        border: 2px solid #c9d5ff;
-        background: #f2f5ff;
-        box-shadow: 0 8px 18px rgba(57, 79, 144, 0.18);
-        transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
-      }
-
-      .modpath-step.is-complete::before {
-        background: linear-gradient(180deg, rgba(31, 208, 162, 0.8) 0%, rgba(105, 89, 255, 0.55) 100%);
-      }
-
-      .modpath-step.is-complete::after {
-        color: #066e56;
-        border-color: rgba(31, 208, 162, 0.55);
-        background: #e4fdf4;
-      }
-
-      .modpath-step.is-active::after {
-        color: #fff;
-        border-color: #4f62ff;
-        background: #4f62ff;
-        animation: modpathPulse 1.8s infinite;
-      }
-
-      .modpath-step__card {
-        border-radius: 18px;
-        border: 1px solid #dfe6ff;
-        background: #fff;
-        padding: 18px;
-        box-shadow: 0 16px 34px rgba(31, 46, 89, 0.09);
-        transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-      }
-
-      .modpath-step.is-active .modpath-step__card {
-        border-color: rgba(79, 134, 255, 0.55);
-        box-shadow: 0 18px 42px rgba(73, 96, 196, 0.2);
-        transform: translateY(-2px);
-      }
-
-      .modpath-step.is-complete .modpath-step__card {
-        border-color: rgba(31, 208, 162, 0.5);
-      }
-
-      .modpath-step__head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .modpath-step__badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 6px 11px;
+        margin-top: 8px;
+        min-height: 30px;
         border-radius: 999px;
-        border: 1px solid #d0dbff;
-        background: #f1f5ff;
-        color: #31406f;
-        font-size: 0.78rem;
-        font-weight: 800;
-        letter-spacing: 0.02em;
-        text-transform: uppercase;
+        background: linear-gradient(180deg, var(--line), rgba(10, 15, 57, 0.1));
+        transition: background 0.25s ease;
       }
 
-      .modpath-step__meta {
-        display: inline-flex;
-        align-items: center;
-        border-radius: 999px;
-        padding: 6px 10px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: #4f5f8d;
-        border: 1px solid #d7e2ff;
-        background: #eff4ff;
-      }
-
-      .modpath-step h3 {
-        margin: 10px 0 8px;
-        font-size: 1.24rem;
-        line-height: 1.25;
-      }
-
-      .modpath-step__lead {
-        margin: 0;
-        color: #4b577f;
-      }
-
-      .modpath-step__body {
-        margin-top: 14px;
-        display: grid;
-        grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-        gap: 14px;
-        align-items: start;
-      }
-
-      .modpath-step__media {
-        margin: 0;
-        border-radius: 14px;
-        overflow: hidden;
-        border: 1px solid #dfe7ff;
-        background: #111a3c;
-        min-height: 140px;
-      }
-
-      .modpath-step__media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .modpath-step__details details {
-        margin: 0;
-        border: 0;
-        padding: 0;
+      .step--last .step__line {
         background: transparent;
       }
 
-      .modpath-step__toggle {
-        list-style: none;
-        cursor: pointer;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        border-radius: 12px;
-        border: 1px solid #d8e2ff;
-        background: #f4f7ff;
-        padding: 11px 12px;
-        color: #2c3b66;
-        font-weight: 700;
+      .step.is-complete .step__dot {
+        border-color: rgba(31, 208, 162, 0.65);
+        background: rgba(31, 208, 162, 0.22);
       }
 
-      .modpath-step__toggle::-webkit-details-marker {
+      .step.is-complete .step__line {
+        background: linear-gradient(180deg, var(--line-done), rgba(31, 208, 162, 0.22));
+      }
+
+      .step.is-active .step__dot {
+        border-color: rgba(47, 107, 255, 0.78);
+        background: rgba(47, 107, 255, 0.22);
+        transform: scale(1.08);
+      }
+
+      .step__card {
+        border-radius: 26px;
+        padding: 18px 18px 14px;
+        background:
+          radial-gradient(700px 180px at 12% 0%, rgba(47, 107, 255, 0.09), transparent 58%),
+          radial-gradient(700px 180px at 90% 100%, rgba(255, 211, 106, 0.12), transparent 58%),
+          linear-gradient(180deg, #ffffff, #f7f9ff);
+        border: 1px solid rgba(10, 15, 57, 0.1);
+        box-shadow: 0 18px 45px rgba(10, 16, 40, 0.1);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
+
+      .step.is-active .step__card {
+        border-color: rgba(47, 107, 255, 0.36);
+        box-shadow: 0 20px 48px rgba(47, 107, 255, 0.16);
+        transform: translateY(-1px);
+      }
+
+      .step__top {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .step__badge {
+        width: 46px;
+        height: 46px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        font-weight: 950;
+        letter-spacing: 0.06em;
+        font-size: 13px;
+        color: rgba(10, 15, 57, 0.8);
+        background: rgba(47, 107, 255, 0.08);
+        border: 1px solid rgba(47, 107, 255, 0.16);
+      }
+
+      .step__title {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        font-weight: 950;
+        color: var(--ink);
+      }
+
+      .step__details {
+        margin-top: 10px;
+        border-top: 1px solid rgba(10, 15, 57, 0.1);
+        padding-top: 10px;
+      }
+
+      .step__cta {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(47, 107, 255, 0.08);
+        border: 1px solid rgba(47, 107, 255, 0.16);
+        color: rgba(10, 15, 57, 0.9);
+        font-weight: 900;
+        font-size: 13px;
+      }
+
+      .step__cta::-webkit-details-marker {
         display: none;
       }
 
-      .modpath-step__chev {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #cfd9ff;
-        background: #fff;
-        color: #49598a;
-        font-size: 0.78rem;
+      .step__chev {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.65);
+        border: 1px solid rgba(10, 15, 57, 0.1);
         transition: transform 0.2s ease;
       }
 
-      .modpath-step__details details[open] .modpath-step__chev {
+      details[open] .step__chev {
         transform: rotate(180deg);
       }
 
-      .modpath-step__videos {
-        margin: 12px 0 0;
+      .step__videos {
+        margin: 12px 0 2px;
         padding: 0;
         list-style: none;
         display: grid;
         gap: 8px;
-        counter-reset: video;
+        color: rgba(10, 15, 57, 0.78);
+        font-size: 14.6px;
+        line-height: 1.45;
       }
 
-      .modpath-step__videos li {
-        counter-increment: video;
+      .step__videos li {
         position: relative;
-        border: 1px solid #e3e9ff;
-        border-radius: 11px;
-        padding: 9px 10px 9px 40px;
-        background: #f8faff;
-        color: #384569;
+        padding-left: 24px;
       }
 
-      .modpath-step__videos li::before {
-        content: counter(video);
+      .step__videos li::before {
+        content: "✓";
         position: absolute;
-        left: 11px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
+        left: 0;
+        top: 0;
+        width: 18px;
+        height: 18px;
+        border-radius: 8px;
         display: grid;
         place-items: center;
-        color: #3e34b4;
-        font-size: 0.72rem;
-        font-weight: 700;
-        background: rgba(105, 89, 255, 0.16);
-      }
-
-      @keyframes modpathPulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(79, 98, 255, 0.35);
-        }
-        70% {
-          box-shadow: 0 0 0 10px rgba(79, 98, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(79, 98, 255, 0);
-        }
-      }
-
-      .proof-grid {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .quote {
-        padding: 22px;
-        border-radius: 16px;
-        background: #fff;
-        border: 1px solid #e6ebff;
-      }
-
-      .quote p {
-        margin: 0 0 10px;
-      }
-
-      .quote b {
-        color: #30406e;
-      }
-
-      .offer-wrap {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-
-      .offer-main {
-        background: #fff;
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-        padding: 28px;
-        border: 2px solid rgba(105, 89, 255, 0.16);
-      }
-
-      .price {
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-        margin: 14px 0 18px;
-      }
-
-      .price .old {
-        color: #8a94b6;
-        text-decoration: line-through;
-      }
-
-      .price .new {
-        color: #111939;
-        font-size: 2.2rem;
+        color: rgba(255, 211, 106, 0.95);
+        background: rgba(255, 211, 106, 0.18);
+        border: 1px solid rgba(255, 211, 106, 0.35);
         font-weight: 900;
-      }
-
-      .offer-list,
-      .checklist {
-        margin: 16px 0 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 10px;
-      }
-
-      .offer-list li,
-      .checklist li {
-        display: flex;
-        gap: 10px;
-      }
-
-      .bullet-ok {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: rgba(31, 208, 162, 0.18);
-        color: #067d60;
-        font-size: 0.8rem;
-        font-weight: 700;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
-
-      .urgency {
-        background: linear-gradient(140deg, #fff5f8 0%, #fff0f4 100%);
-        border: 1px solid #ffd9e2;
-        border-radius: 14px;
-        padding: 16px;
-      }
-
-      .urgency b {
-        color: #8e1634;
-      }
-
-      .guarantee {
-        margin-top: 18px;
-        padding: 14px 16px;
-        border-radius: 12px;
-        background: #f3fff9;
-        border: 1px solid #c9f5e5;
-      }
-
-      .faq {
-        margin-top: 28px;
-        display: grid;
-        gap: 12px;
-      }
-
-      details {
-        background: #fff;
-        border: 1px solid #e4e9ff;
-        border-radius: 12px;
-        padding: 14px 16px;
-      }
-
-      summary {
-        cursor: pointer;
-        font-weight: 700;
-        color: #222f58;
-      }
-
-      details p {
-        margin: 10px 0 0;
-        color: #4c5781;
-      }
-
-      .final-cta {
-        margin-top: 40px;
-        padding: 30px;
-        border-radius: 18px;
-        background: linear-gradient(140deg, #1f2a63, #4a3ee6);
-        color: #eef1ff;
-        display: grid;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .footer {
-        padding: 26px 0 36px;
-        color: #66719a;
-        font-size: 0.9rem;
-      }
-
-      .footer-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      @media (max-width: 980px) {
-        .hero-grid,
-        .offer-wrap {
-          grid-template-columns: 1fr;
-        }
-
-        .benefits-grid,
-        .proof-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .modpath__progress {
-          position: static;
-        }
-
-        .modpath-step__body {
-          grid-template-columns: 1fr;
-        }
+        font-size: 12px;
+        line-height: 1;
       }
 
       @media (max-width: 640px) {
-        .topbar nav {
-          display: none;
+        .modpath {
+          padding: 48px 14px 56px;
         }
 
-        .benefits-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
+        .modpath__progress {
+          top: 8px;
         }
 
-        .hero {
-          padding-top: 64px;
+        .step {
+          grid-template-columns: 24px 1fr;
+          gap: 12px;
         }
 
-        .kpis {
-          grid-template-columns: 1fr;
+        .step__dot {
+          width: 14px;
+          height: 14px;
+          margin-top: 10px;
         }
 
-        .modpath__ticks {
-          gap: 4px;
+        .step__card {
+          border-radius: 22px;
+          padding: 16px 14px 12px;
         }
 
-        .modpath__ticks li {
-          font-size: 0.64rem;
+        .step__title {
+          font-size: 16.8px;
         }
 
-        .modpath-step {
-          padding-left: 40px;
+        .step__videos {
+          font-size: 14.3px;
         }
 
-        .modpath-step::before {
-          left: 15px;
-          top: 32px;
-        }
-
-        .modpath-step::after {
-          width: 32px;
-          height: 32px;
-          font-size: 0.68rem;
-        }
-
-        .modpath-step__card {
-          padding: 14px;
-        }
-
-        .modpath-step h3 {
-          font-size: 1.05rem;
+        .step__cta {
+          width: 100%;
+          justify-content: center;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .modpath-step,
-        .modpath-step__card,
-        .modpath__meter-fill,
-        .modpath-step__chev,
-        .modpath-step::after {
+        .step,
+        .step__card,
+        .step__dot,
+        .step__line,
+        .step__chev,
+        .modpath__meter-fill {
           transition: none;
           animation: none;
         }
 
-        .modpath-step {
+        .step {
           opacity: 1;
           transform: none;
         }
@@ -876,563 +369,205 @@
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <div class="container topbar-wrap">
-        <a href="#" class="logo">Video<span>Impact</span></a>
-        <nav>
-          <a href="#programme">Programme</a>
-          <a href="#resultats">Resultats</a>
-          <a href="#offre">Offre</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <a href="#offre" class="btn btn-primary">Je veux rejoindre</a>
-      </div>
-    </header>
-
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="pill">Ouverture des inscriptions 2026</span>
-          <h1>Transforme ton expertise en programme video qui se vend</h1>
-          <p class="subtitle">
-            Une methode concrete en 8 semaines pour creer, structurer et vendre ton programme video premium
-            sans audience massive ni tunnel complexe. Tu avances avec un plan clair, des scripts prets a
-            l emploi et un systeme de vente simple.
-          </p>
-          <div class="hero-cta">
-            <a href="#offre" class="btn btn-primary">Acceder a l offre maintenant</a>
-            <a href="#programme" class="btn btn-outline">Voir le contenu du programme</a>
-          </div>
-          <div class="kpis">
-            <div class="kpi">
-              <b>+2 400</b>
-              participants formes
-            </div>
-            <div class="kpi">
-              <b>4.9 / 5</b>
-              note moyenne des eleves
-            </div>
-            <div class="kpi">
-              <b>30 jours</b>
-              garantie satisfait ou rembourse
-            </div>
-          </div>
-        </div>
-        <aside class="preview-card" aria-label="Presentation video du programme">
-          <div class="preview-media">
-            <button class="play-btn" aria-label="Lancer la video">Play</button>
-          </div>
-          <div class="preview-content">
-            <h3>Masterclass offerte: 3 leviers pour vendre vite</h3>
-            <p>
-              Decouvre en 18 minutes comment valider ton offre, construire ton plan de contenu et obtenir tes
-              premiers clients en ligne.
-            </p>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="strip">
-      <div class="container logos">
-        <span>Vu dans</span>
-        <span>Growth Daily</span>
-        <span>Creator Mag</span>
-        <span>Business Sprint</span>
-        <span>Studio Academy</span>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <span class="pill">Pourquoi ce programme</span>
-        <h2>Tu n as pas besoin de plus d idees, tu as besoin d un systeme</h2>
-        <p class="lead">
-          Ce programme video t aide a passer de contenu disperse a une offre claire qui attire les bons clients
-          et convertit regulierement.
-        </p>
-
-        <div class="benefits-grid">
-          <article class="card">
-            <span class="icon">1</span>
-            <h3>Positionnement clair</h3>
-            <p>Tu definis une promesse forte qui te differencie et donne envie d acheter rapidement.</p>
-          </article>
-          <article class="card">
-            <span class="icon">2</span>
-            <h3>Production simplifiee</h3>
-            <p>Tu tournes des videos impactantes avec un setup leger et un script orientee conversion.</p>
-          </article>
-          <article class="card">
-            <span class="icon">3</span>
-            <h3>Vente repetitive</h3>
-            <p>Tu mets en place un tunnel minimal qui transforme tes prospects sans pression commerciale.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section program modpath" id="programme" aria-label="Modules du programme">
-      <div class="container">
+    <section class="modpath" aria-label="Modules du programme">
+      <div class="modpath__inner">
         <header class="modpath__head">
-          <span class="pill">Parcours progressif</span>
-          <h2>5 modules pour avancer etape par etape</h2>
-          <p class="lead">
-            Le programme est pense comme une progression claire: tu termines un module, puis tu passes au suivant.
-            Chaque etape inclut ses videos pour appliquer immediatement.
+          <p class="modpath__kicker">LE PROGRAMME</p>
+          <h2 class="modpath__title">Une progression en 5 étapes</h2>
+          <p class="modpath__sub">
+            Avancez module après module, avec le détail des vidéos disponible à la demande.
           </p>
         </header>
 
-        <div class="modpath__progress" role="status" aria-live="polite">
-          <div class="modpath__status">
-            <span data-progress-step>Module 1 / 5</span>
-            <span data-progress-info>7 videos dans ce module</span>
-          </div>
-          <div class="modpath__meter" aria-hidden="true">
-            <span class="modpath__meter-fill"></span>
-          </div>
-          <ol class="modpath__ticks" aria-hidden="true">
-            <li class="is-reached is-current">M1</li>
-            <li>M2</li>
-            <li>M3</li>
-            <li>M4</li>
-            <li>M5</li>
+        <div class="modpath__progress" aria-hidden="true">
+          <div class="modpath__meter"><span class="modpath__meter-fill"></span></div>
+          <ol class="modpath__ticks">
+            <li class="is-reached is-current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
           </ol>
         </div>
 
         <ol class="modpath__list">
-          <li class="modpath-step is-active" data-step="1" data-videos="7">
-            <article class="modpath-step__card">
-              <div class="modpath-step__head">
-                <span class="modpath-step__badge">Module 1 - Fondations</span>
-                <span class="modpath-step__meta">7 videos</span>
+          <li class="step is-active" data-step="1">
+            <div class="step__rail" aria-hidden="true">
+              <span class="step__dot"></span>
+              <span class="step__line"></span>
+            </div>
+            <article class="step__card">
+              <div class="step__top">
+                <div class="step__badge">1</div>
+                <h3 class="step__title">La vérité sur les ondes</h3>
               </div>
-              <h3>La verite sur les ondes</h3>
-              <p class="modpath-step__lead">
-                Tu poses la base de comprehension pour savoir pourquoi les symptomes apparaissent et comment les
-                interpreter.
-              </p>
-              <div class="modpath-step__body">
-                <figure class="modpath-step__media">
-                  <img
-                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
-                    alt="Illustration du module 1"
-                    loading="lazy"
-                  />
-                </figure>
-                <div class="modpath-step__details">
-                  <details open>
-                    <summary class="modpath-step__toggle">
-                      <span>Voir les 7 videos du module</span>
-                      <span class="modpath-step__chev" aria-hidden="true">v</span>
-                    </summary>
-                    <ul class="modpath-step__videos">
-                      <li>Introduction: qui suis-je ?</li>
-                      <li>Tous electrosensibles ?</li>
-                      <li>La chimico-sensibilite, un mal silencieux</li>
-                      <li>Le systeme vibratoire humain</li>
-                      <li>Toute matiere emet un signal electromagnetique</li>
-                      <li>Quand la medecine ferme les yeux sur vos douleurs</li>
-                      <li>De la dentisterie a la posturologie</li>
-                    </ul>
-                  </details>
-                </div>
-              </div>
+              <details class="step__details" open>
+                <summary class="step__cta">
+                  <span>Voir le détail des vidéos</span>
+                  <span class="step__chev" aria-hidden="true">⌄</span>
+                </summary>
+                <ul class="step__videos">
+                  <li>Introduction : qui suis-je ?</li>
+                  <li>Tous électrosensibles ?</li>
+                  <li>La chimico-sensibilité, un mal silencieux</li>
+                  <li>Le système vibratoire humain</li>
+                  <li>Toute matière émet un signal électromagnétique</li>
+                  <li>Quand la médecine ferme les yeux sur vos douleurs</li>
+                  <li>De la dentisterie à la posturologie</li>
+                </ul>
+              </details>
             </article>
           </li>
 
-          <li class="modpath-step" data-step="2" data-videos="8">
-            <article class="modpath-step__card">
-              <div class="modpath-step__head">
-                <span class="modpath-step__badge">Module 2 - Auto-test</span>
-                <span class="modpath-step__meta">8 videos</span>
+          <li class="step" data-step="2">
+            <div class="step__rail" aria-hidden="true">
+              <span class="step__dot"></span>
+              <span class="step__line"></span>
+            </div>
+            <article class="step__card">
+              <div class="step__top">
+                <div class="step__badge">2</div>
+                <h3 class="step__title">Testez-vous pour trouver l'origine de vos douleurs !</h3>
               </div>
-              <h3>Testez-vous pour trouver l origine de vos douleurs</h3>
-              <p class="modpath-step__lead">
-                Tu passes a la pratique avec des protocoles simples pour identifier ce qui perturbe reellement ton
-                corps.
-              </p>
-              <div class="modpath-step__body">
-                <figure class="modpath-step__media">
-                  <img
-                    src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
-                    alt="Illustration du module 2"
-                    loading="lazy"
-                  />
-                </figure>
-                <div class="modpath-step__details">
-                  <details>
-                    <summary class="modpath-step__toggle">
-                      <span>Voir les 8 videos du module</span>
-                      <span class="modpath-step__chev" aria-hidden="true">v</span>
-                    </summary>
-                    <ul class="modpath-step__videos">
-                      <li>Un testeur sachant tester est un bon testeur</li>
-                      <li>Le test des bras</li>
-                      <li>Le test des doigts (O-ring)</li>
-                      <li>Testez vos lunettes</li>
-                      <li>Testez vos resines dentaires</li>
-                      <li>Testez vos bijoux</li>
-                      <li>Testez vos dents</li>
-                      <li>Testez votre parfum</li>
-                    </ul>
-                  </details>
-                </div>
-              </div>
+              <details class="step__details">
+                <summary class="step__cta">
+                  <span>Voir le détail des vidéos</span>
+                  <span class="step__chev" aria-hidden="true">⌄</span>
+                </summary>
+                <ul class="step__videos">
+                  <li>Un testeur sachant tester est un bon testeur</li>
+                  <li>Le test des bras</li>
+                  <li>Le test des doigts (O-ring)</li>
+                  <li>Testez vos lunettes</li>
+                  <li>Testez vos résines dentaires</li>
+                  <li>Testez vos bijoux</li>
+                  <li>Testez vos dents</li>
+                  <li>Testez votre parfum</li>
+                </ul>
+              </details>
             </article>
           </li>
 
-          <li class="modpath-step" data-step="3" data-videos="7">
-            <article class="modpath-step__card">
-              <div class="modpath-step__head">
-                <span class="modpath-step__badge">Module 3 - Environnement</span>
-                <span class="modpath-step__meta">7 videos</span>
+          <li class="step" data-step="3">
+            <div class="step__rail" aria-hidden="true">
+              <span class="step__dot"></span>
+              <span class="step__line"></span>
+            </div>
+            <article class="step__card">
+              <div class="step__top">
+                <div class="step__badge">3</div>
+                <h3 class="step__title">L'origine de vos douleurs : votre environnement</h3>
               </div>
-              <h3>L origine de vos douleurs: votre environnement</h3>
-              <p class="modpath-step__lead">
-                Tu apprends a scanner ton cadre de vie pour retirer les facteurs invisibles qui entretiennent tes
-                douleurs.
-              </p>
-              <div class="modpath-step__body">
-                <figure class="modpath-step__media">
-                  <img
-                    src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
-                    alt="Illustration du module 3"
-                    loading="lazy"
-                  />
-                </figure>
-                <div class="modpath-step__details">
-                  <details>
-                    <summary class="modpath-step__toggle">
-                      <span>Voir les 7 videos du module</span>
-                      <span class="modpath-step__chev" aria-hidden="true">v</span>
-                    </summary>
-                    <ul class="modpath-step__videos">
-                      <li>Qu est-ce que le SICEM ?</li>
-                      <li>Sur vous: bijoux, cremes, shampoings...</li>
-                      <li>Autour de vous: murs, telephones, objets connectes...</li>
-                      <li>Telephones portables, 4G et 5G</li>
-                      <li>Votre alimentation est-elle mauvaise ?</li>
-                      <li>L effet des ondes dans le sport</li>
-                      <li>Les ondes dans le milieu medical</li>
-                    </ul>
-                  </details>
-                </div>
-              </div>
+              <details class="step__details">
+                <summary class="step__cta">
+                  <span>Voir le détail des vidéos</span>
+                  <span class="step__chev" aria-hidden="true">⌄</span>
+                </summary>
+                <ul class="step__videos">
+                  <li>Qu'est-ce que le SICEM ?</li>
+                  <li>Sur vous : bijoux, crèmes, shampoings...</li>
+                  <li>Autour de vous : murs, téléphones, objets connectés...</li>
+                  <li>Téléphones portables, 4G et 5G</li>
+                  <li>Votre alimentation est-elle mauvaise ?</li>
+                  <li>L'effet des ondes dans le sport</li>
+                  <li>Les ondes dans le milieu médical</li>
+                </ul>
+              </details>
             </article>
           </li>
 
-          <li class="modpath-step" data-step="4" data-videos="3">
-            <article class="modpath-step__card">
-              <div class="modpath-step__head">
-                <span class="modpath-step__badge">Module 4 - Corps</span>
-                <span class="modpath-step__meta">3 videos</span>
+          <li class="step" data-step="4">
+            <div class="step__rail" aria-hidden="true">
+              <span class="step__dot"></span>
+              <span class="step__line"></span>
+            </div>
+            <article class="step__card">
+              <div class="step__top">
+                <div class="step__badge">4</div>
+                <h3 class="step__title">L'origine de vos douleurs : vos muscles et articulations</h3>
               </div>
-              <h3>L origine de vos douleurs: vos muscles et articulations</h3>
-              <p class="modpath-step__lead">
-                Tu relies les signaux identifies aux tensions corporelles pour agir a la source sur les mecanismes
-                musculo-squelettiques.
-              </p>
-              <div class="modpath-step__body">
-                <figure class="modpath-step__media">
-                  <img
-                    src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
-                    alt="Illustration du module 4"
-                    loading="lazy"
-                  />
-                </figure>
-                <div class="modpath-step__details">
-                  <details>
-                    <summary class="modpath-step__toggle">
-                      <span>Voir les 3 videos du module</span>
-                      <span class="modpath-step__chev" aria-hidden="true">v</span>
-                    </summary>
-                    <ul class="modpath-step__videos">
-                      <li>Dr Jean-Pierre Maschi, le premier a parler d electrosensibilite</li>
-                      <li>Les troubles musculo-squelettiques</li>
-                      <li>Votre equilibre acido-basique</li>
-                    </ul>
-                  </details>
-                </div>
-              </div>
+              <details class="step__details">
+                <summary class="step__cta">
+                  <span>Voir le détail des vidéos</span>
+                  <span class="step__chev" aria-hidden="true">⌄</span>
+                </summary>
+                <ul class="step__videos">
+                  <li>Dr Jean-Pierre Maschi, le premier à parler d'électrosensibilité</li>
+                  <li>Les troubles musculo-squelettiques</li>
+                  <li>Votre équilibre acido-basique</li>
+                </ul>
+              </details>
             </article>
           </li>
 
-          <li class="modpath-step" data-step="5" data-videos="5">
-            <article class="modpath-step__card">
-              <div class="modpath-step__head">
-                <span class="modpath-step__badge">Module 5 - Integration</span>
-                <span class="modpath-step__meta">5 videos</span>
+          <li class="step step--last" data-step="5">
+            <div class="step__rail" aria-hidden="true">
+              <span class="step__dot"></span>
+              <span class="step__line"></span>
+            </div>
+            <article class="step__card">
+              <div class="step__top">
+                <div class="step__badge">5</div>
+                <h3 class="step__title">😬 L'origine de vos douleurs : votre bouche</h3>
               </div>
-              <h3>L origine de vos douleurs: votre bouche</h3>
-              <p class="modpath-step__lead">
-                Derniere etape: tu comprends le role cle de la bouche pour consolider tous les apprentissages des
-                modules precedents.
-              </p>
-              <div class="modpath-step__body">
-                <figure class="modpath-step__media">
-                  <img
-                    src="https://images.unsplash.com/photo-1588776814546-ec7e5fbbd7f0?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
-                    alt="Illustration du module 5"
-                    loading="lazy"
-                  />
-                </figure>
-                <div class="modpath-step__details">
-                  <details>
-                    <summary class="modpath-step__toggle">
-                      <span>Voir les 5 videos du module</span>
-                      <span class="modpath-step__chev" aria-hidden="true">v</span>
-                    </summary>
-                    <ul class="modpath-step__videos">
-                      <li>Tout vient de votre bouche !</li>
-                      <li>La fibromyalgie, une maladie bien reelle</li>
-                      <li>La fatigue chronique</li>
-                      <li>Le mercure, l amalgame et leur signal electromagnetique</li>
-                      <li>Les acouphenes et les vertiges</li>
-                    </ul>
-                  </details>
-                </div>
-              </div>
+              <details class="step__details">
+                <summary class="step__cta">
+                  <span>Voir le détail des vidéos</span>
+                  <span class="step__chev" aria-hidden="true">⌄</span>
+                </summary>
+                <ul class="step__videos">
+                  <li>Tout vient de votre bouche !</li>
+                  <li>La fibromyalgie, une maladie bien réelle</li>
+                  <li>La fatigue chronique</li>
+                  <li>Le mercure, l'amalgame et leur signal électromagnétique</li>
+                  <li>Les acouphènes et les vertiges</li>
+                </ul>
+              </details>
             </article>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="section" id="resultats">
-      <div class="container">
-        <span class="pill">Temoignages</span>
-        <h2>Des createurs et experts qui ont lance rapidement</h2>
-        <p class="lead">
-          Pas de theorie vague: voici ce que nos eleves obtiennent en appliquant la methode.
-        </p>
-
-        <div class="proof-grid">
-          <article class="quote">
-            <p>
-              "J ai signe 11 ventes a 690 EUR en 3 semaines. La structure de page et les scripts ont tout
-              change."
-            </p>
-            <b>Sarah M. - Coach business</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Je repoussais mon programme depuis 1 an. En 6 semaines j avais mes modules prets et un funnel
-              rentable."
-            </p>
-            <b>Yanis D. - Formateur freelance</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Le plus fort: la clarte. Je sais enfin quoi dire, quoi vendre et comment convertir sans forcer."
-            </p>
-            <b>Lucie R. - Consultante marketing</b>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="offre">
-      <div class="container">
-        <span class="pill">Offre de lancement</span>
-        <h2>Rejoins VideoImpact et lance ton programme video des maintenant</h2>
-        <p class="lead">
-          Inscription unique avec acces a vie, mises a jour futures incluses et communaute privee.
-        </p>
-
-        <div class="offer-wrap">
-          <article class="offer-main">
-            <h3>Pack complet VideoImpact</h3>
-            <div class="price">
-              <span class="old">997 EUR</span>
-              <span class="new">497 EUR</span>
-            </div>
-            <p>
-              Paiement en 1 fois ou 3 mensualites de 179 EUR. Offre reservee aux 50 premieres places.
-            </p>
-            <ul class="offer-list">
-              <li><span class="bullet-ok">v</span>Programme video complet (8 semaines)</li>
-              <li><span class="bullet-ok">v</span>Templates scripts, mails et page de vente</li>
-              <li><span class="bullet-ok">v</span>2 sessions Q&amp;A live chaque mois</li>
-              <li><span class="bullet-ok">v</span>Communaute privee d entrepreneurs video</li>
-              <li><span class="bullet-ok">v</span>Acces a vie + futures mises a jour</li>
-            </ul>
-            <p style="margin-top: 20px">
-              <a class="btn btn-primary" href="https://checkout.example.com" target="_blank" rel="noreferrer">
-                Je reserve ma place maintenant
-              </a>
-            </p>
-            <div class="guarantee">
-              Garantie 30 jours: tu testes le programme, tu appliques, et si ce n est pas pour toi, tu es
-              rembourse sans discussion.
-            </div>
-          </article>
-
-          <aside class="card">
-            <div class="urgency">
-              <b>Cloture des inscriptions dans <span id="countdown">--:--:--</span></b>
-              <p style="margin: 8px 0 0">
-                Les bonus disparaissent a la fin du countdown. Prochaine ouverture dans plusieurs mois.
-              </p>
-            </div>
-
-            <h3 style="margin-top: 20px">Bonus inclus cette semaine</h3>
-            <ul class="checklist">
-              <li><span class="bullet-ok">v</span>Bonus 1: Kit "Page de vente express"</li>
-              <li><span class="bullet-ok">v</span>Bonus 2: 20 hooks video a fort taux de clic</li>
-              <li><span class="bullet-ok">v</span>Bonus 3: Script webinar 45 minutes pret a adapter</li>
-              <li><span class="bullet-ok">v</span>Bonus 4: Audit de ton offre par notre equipe</li>
-            </ul>
-          </aside>
-        </div>
-
-        <div class="final-cta">
-          <h3 style="margin: 0">Tu peux lancer ton programme video en 60 jours.</h3>
-          <p style="margin: 0">
-            Si tu veux un cadre clair, un plan concret et un accompagnement solide, cette offre est pour toi.
-          </p>
-          <p style="margin: 8px 0 0">
-            <a class="btn btn-primary" href="https://checkout.example.com" target="_blank" rel="noreferrer">
-              Oui, je rejoins VideoImpact
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <span class="pill">Questions frequentes</span>
-        <h2>FAQ</h2>
-        <div class="faq">
-          <details>
-            <summary>Est-ce adapte si je pars de zero ?</summary>
-            <p>
-              Oui. Le programme commence par le positionnement et t accompagne pas a pas jusqu au lancement.
-            </p>
-          </details>
-          <details>
-            <summary>Combien de temps dois-je prevoir chaque semaine ?</summary>
-            <p>Entre 4 et 6 heures suffisent pour suivre les modules et executer les exercices.</p>
-          </details>
-          <details>
-            <summary>Et si je n ai pas encore de communaute ?</summary>
-            <p>
-              Tu apprendras a lancer avec une audience reduite grace a une strategie de contenu et relance
-              simple.
-            </p>
-          </details>
-          <details>
-            <summary>Le programme est-il accessible a vie ?</summary>
-            <p>Oui, tu gardes un acces a vie a tous les contenus et aux mises a jour futures.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer-wrap">
-        <span>(c) <span id="year"></span> VideoImpact. Tous droits reserves.</span>
-        <span>
-          <a href="#">Mentions legales</a> | <a href="#">Confidentialite</a> | <a href="#">Support</a>
-        </span>
-      </div>
-    </footer>
-
     <script>
       (function () {
-        var yearEl = document.getElementById("year");
-        if (yearEl) {
-          yearEl.textContent = String(new Date().getFullYear());
-        }
+        var steps = Array.prototype.slice.call(document.querySelectorAll(".step"));
+        var fill = document.querySelector(".modpath__meter-fill");
+        var ticks = Array.prototype.slice.call(document.querySelectorAll(".modpath__ticks li"));
 
-        var countdownEl = document.getElementById("countdown");
-        if (countdownEl) {
-          var end = Date.now() + 1000 * 60 * 60 * 23 + 1000 * 60 * 39 + 1000 * 42;
-          function pad(value) {
-            return String(value).padStart(2, "0");
-          }
-
-          function renderCountdown() {
-            var left = Math.max(0, end - Date.now());
-            var hours = Math.floor(left / (1000 * 60 * 60));
-            var minutes = Math.floor((left % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((left % (1000 * 60)) / 1000);
-            countdownEl.textContent = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
-          }
-
-          renderCountdown();
-          setInterval(renderCountdown, 1000);
-        }
-
-        var modpath = document.querySelector(".modpath");
-        if (!modpath) {
-          return;
-        }
-
-        var steps = Array.prototype.slice.call(modpath.querySelectorAll(".modpath-step"));
-        var ticks = Array.prototype.slice.call(modpath.querySelectorAll(".modpath__ticks li"));
-        var meterFill = modpath.querySelector(".modpath__meter-fill");
-        var progressStep = modpath.querySelector("[data-progress-step]");
-        var progressInfo = modpath.querySelector("[data-progress-info]");
-
-        function setActiveStep(index) {
-          if (!steps.length) {
-            return;
-          }
-
-          var safeIndex = Math.max(0, Math.min(index, steps.length - 1));
+        function updateProgress(activeIndex) {
           for (var i = 0; i < steps.length; i += 1) {
-            steps[i].classList.toggle("is-active", i === safeIndex);
-            steps[i].classList.toggle("is-complete", i < safeIndex);
+            steps[i].classList.toggle("is-active", i === activeIndex);
+            steps[i].classList.toggle("is-complete", i < activeIndex);
           }
-
           for (var j = 0; j < ticks.length; j += 1) {
-            ticks[j].classList.toggle("is-current", j === safeIndex);
-            ticks[j].classList.toggle("is-reached", j <= safeIndex);
+            ticks[j].classList.toggle("is-reached", j <= activeIndex);
+            ticks[j].classList.toggle("is-current", j === activeIndex);
           }
-
-          if (meterFill) {
-            var ratio = steps.length === 1 ? 1 : safeIndex / (steps.length - 1);
-            meterFill.style.width = String(Math.round(ratio * 100)) + "%";
-          }
-
-          if (progressStep) {
-            progressStep.textContent = "Module " + String(safeIndex + 1) + " / " + String(steps.length);
-          }
-
-          if (progressInfo) {
-            var videosCount = steps[safeIndex].getAttribute("data-videos") || "";
-            progressInfo.textContent = videosCount ? videosCount + " videos dans ce module" : "";
+          if (fill) {
+            fill.style.width = String(((activeIndex + 1) / steps.length) * 100) + "%";
           }
         }
 
         for (var k = 0; k < steps.length; k += 1) {
-          (function (stepIndex) {
-            var step = steps[stepIndex];
-            var detail = step.querySelector("details");
+          (function (index) {
+            var step = steps[index];
+            var details = step.querySelector("details");
             window.setTimeout(function () {
               step.classList.add("is-visible");
-            }, stepIndex * 90);
+            }, index * 90);
 
             step.addEventListener("mouseenter", function () {
-              setActiveStep(stepIndex);
+              updateProgress(index);
             });
             step.addEventListener("focusin", function () {
-              setActiveStep(stepIndex);
-            });
-            step.addEventListener("click", function (event) {
-              var clickTarget = event.target;
-              if (clickTarget && clickTarget.closest && clickTarget.closest("summary")) {
-                return;
-              }
-              setActiveStep(stepIndex);
+              updateProgress(index);
             });
 
-            if (detail) {
-              detail.addEventListener("toggle", function () {
-                if (detail.open) {
-                  setActiveStep(stepIndex);
+            if (details) {
+              details.addEventListener("toggle", function () {
+                if (details.open) {
+                  updateProgress(index);
                 }
               });
             }
@@ -1446,25 +581,24 @@
                 if (!entry.isIntersecting) {
                   return;
                 }
-                var visibleIndex = steps.indexOf(entry.target);
-                entry.target.classList.add("is-visible");
-                if (visibleIndex !== -1) {
-                  setActiveStep(visibleIndex);
+                var idx = steps.indexOf(entry.target);
+                if (idx >= 0) {
+                  entry.target.classList.add("is-visible");
+                  updateProgress(idx);
                 }
               });
             },
             {
               threshold: 0.55,
-              rootMargin: "-10% 0px -25% 0px",
+              rootMargin: "-8% 0px -30% 0px",
             }
           );
-
           steps.forEach(function (step) {
             observer.observe(step);
           });
         }
 
-        setActiveStep(0);
+        updateProgress(0);
       })();
     </script>
   </body>
