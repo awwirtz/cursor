@@ -3,808 +3,1524 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Programme Video - Passe au niveau superieur</title>
-    <meta
-      name="description"
-      content="Landing page de vente pour un programme video premium avec accompagnement, bonus et garantie."
-    />
+    <title>Canvas Survivor - Prototype</title>
     <style>
       :root {
         --bg: #0b1020;
-        --bg-soft: #121933;
-        --card: #ffffff;
-        --text: #0d1222;
-        --text-light: #f5f7ff;
-        --muted: #97a2c6;
-        --primary: #6959ff;
-        --primary-hover: #5747ee;
-        --accent: #1fd0a2;
-        --danger: #ff5f79;
-        --shadow: 0 18px 40px rgba(10, 18, 40, 0.18);
-        --radius: 18px;
+        --panel: #131a30;
+        --panel-soft: #1a2342;
+        --text: #f4f6ff;
+        --muted: #9fb1e6;
+        --accent: #5b7cff;
+        --danger: #ff5f7f;
+        --ok: #24d08f;
       }
 
       * {
         box-sizing: border-box;
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
         margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
         font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-        line-height: 1.55;
         color: var(--text);
-        background: linear-gradient(160deg, #f4f6ff 0%, #eef2ff 35%, #f8fbff 100%);
+        background: radial-gradient(circle at 20% 10%, #1a2550, var(--bg) 45%);
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
+      #app {
+        width: min(1100px, 96vw);
       }
 
-      .container {
-        width: min(1120px, 92vw);
-        margin-inline: auto;
+      .screen {
+        display: none;
       }
 
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(105, 89, 255, 0.12);
-        color: #3f35b7;
-        font-size: 0.84rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
+      .screen.active {
+        display: block;
       }
 
-      .section {
-        padding: 84px 0;
+      .card-panel {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.32);
       }
 
-      .section h2 {
-        font-size: clamp(1.7rem, 3vw, 2.6rem);
-        margin: 12px 0 14px;
+      #menuScreen {
+        padding: 24px;
       }
 
-      .section p.lead {
+      #menuScreen h1 {
+        margin: 0 0 10px;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+      }
+
+      #menuScreen p {
         margin: 0;
-        max-width: 780px;
-        color: #455076;
+        color: var(--muted);
       }
 
-      .btn {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border: none;
-        border-radius: 12px;
-        padding: 14px 22px;
-        font-size: 1rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn-primary {
-        background: var(--primary);
-        color: #fff;
-        box-shadow: 0 10px 24px rgba(105, 89, 255, 0.35);
-      }
-
-      .btn-primary:hover {
-        background: var(--primary-hover);
-      }
-
-      .btn-outline {
-        border: 2px solid rgba(105, 89, 255, 0.28);
-        color: #2f3a63;
-        background: #fff;
-      }
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.88);
-        border-bottom: 1px solid #e7ebff;
-        backdrop-filter: blur(8px);
-      }
-
-      .topbar-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 0;
-      }
-
-      .logo {
-        font-weight: 900;
-        font-size: 1.05rem;
-        letter-spacing: 0.02em;
-        color: #1f2951;
-      }
-
-      .logo span {
-        color: var(--primary);
-      }
-
-      .topbar nav {
-        display: flex;
-        gap: 18px;
-        font-size: 0.95rem;
-        color: #4f5a81;
-      }
-
-      .hero {
-        background: radial-gradient(circle at 20% 20%, #2a3370 0%, var(--bg) 42%, #070a15 100%);
-        color: var(--text-light);
-        padding: 88px 0 94px;
-        overflow: hidden;
-      }
-
-      .hero-grid {
+      .character-grid {
+        margin-top: 18px;
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 36px;
-        align-items: center;
-      }
-
-      .hero h1 {
-        font-size: clamp(2rem, 4.2vw, 3.5rem);
-        line-height: 1.1;
-        margin: 18px 0 16px;
-        max-width: 16ch;
-      }
-
-      .hero .subtitle {
-        margin: 0 0 28px;
-        max-width: 60ch;
-        color: #d4dbff;
-      }
-
-      .hero-cta {
-        display: flex;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
         gap: 12px;
-        margin-bottom: 26px;
       }
 
-      .kpis {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .kpi {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.14);
+      .character-card {
+        border: 2px solid transparent;
         border-radius: 14px;
         padding: 14px;
+        background: var(--panel);
+        color: var(--text);
+        text-align: left;
+        cursor: pointer;
+        transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
       }
 
-      .kpi b {
-        display: block;
-        font-size: 1.2rem;
+      .character-card:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.22);
+        background: var(--panel-soft);
       }
 
-      .preview-card {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 24px 52px rgba(7, 10, 21, 0.5);
+      .character-card.selected {
+        border-color: var(--accent);
+        box-shadow: 0 8px 22px rgba(91, 124, 255, 0.3);
       }
 
-      .preview-media {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        background: linear-gradient(45deg, #1a2455, #5c4dff);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .play-btn {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        border: 0;
-        background: #fff;
-        color: #2d3280;
-        font-size: 1.25rem;
-        font-weight: 800;
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
-      }
-
-      .preview-content {
-        padding: 20px;
-        color: #e6ebff;
-      }
-
-      .preview-content h3 {
-        margin: 0 0 6px;
-      }
-
-      .strip {
-        padding: 20px 0;
-        border-bottom: 1px solid #e8ecff;
-        border-top: 1px solid #e8ecff;
-        background: #fff;
-      }
-
-      .logos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px 34px;
-        color: #7f8aaf;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-        font-size: 0.86rem;
-      }
-
-      .benefits-grid {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .card {
-        background: var(--card);
-        border-radius: var(--radius);
-        padding: 24px;
-        box-shadow: var(--shadow);
-      }
-
-      .card .icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: rgba(105, 89, 255, 0.13);
-        color: #3d33b2;
-        font-weight: 800;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 12px;
-      }
-
-      .program {
-        background: linear-gradient(180deg, #f6f8ff 0%, #eef2ff 100%);
-      }
-
-      .modules {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .module {
-        background: #fff;
-        border: 1px solid #dfe6ff;
-        border-radius: 14px;
-        padding: 16px 18px;
-      }
-
-      .module h3 {
+      .character-card h3 {
         margin: 0 0 8px;
-        font-size: 1.03rem;
-      }
-
-      .proof-grid {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .quote {
-        padding: 22px;
-        border-radius: 16px;
-        background: #fff;
-        border: 1px solid #e6ebff;
-      }
-
-      .quote p {
-        margin: 0 0 10px;
-      }
-
-      .quote b {
-        color: #30406e;
-      }
-
-      .offer-wrap {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-
-      .offer-main {
-        background: #fff;
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-        padding: 28px;
-        border: 2px solid rgba(105, 89, 255, 0.16);
-      }
-
-      .price {
         display: flex;
-        align-items: baseline;
-        gap: 10px;
-        margin: 14px 0 18px;
+        align-items: center;
+        gap: 8px;
       }
 
-      .price .old {
-        color: #8a94b6;
-        text-decoration: line-through;
+      .chip {
+        font-size: 0.72rem;
+        background: rgba(255, 255, 255, 0.12);
+        color: #d9e0ff;
+        padding: 4px 6px;
+        border-radius: 999px;
       }
 
-      .price .new {
-        color: #111939;
-        font-size: 2.2rem;
-        font-weight: 900;
-      }
-
-      .offer-list,
-      .checklist {
-        margin: 16px 0 0;
+      .character-card ul {
+        margin: 10px 0 0;
         padding: 0;
         list-style: none;
         display: grid;
-        gap: 10px;
+        gap: 5px;
+        color: #d5ddff;
+        font-size: 0.87rem;
       }
 
-      .offer-list li,
-      .checklist li {
+      .menu-actions {
+        margin-top: 16px;
         display: flex;
+        flex-wrap: wrap;
         gap: 10px;
-      }
-
-      .bullet-ok {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: rgba(31, 208, 162, 0.18);
-        color: #067d60;
-        font-size: 0.8rem;
-        font-weight: 700;
-        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        margin-top: 2px;
       }
 
-      .urgency {
-        background: linear-gradient(140deg, #fff5f8 0%, #fff0f4 100%);
-        border: 1px solid #ffd9e2;
-        border-radius: 14px;
+      .btn {
+        border: none;
+        border-radius: 10px;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #ffffff;
+      }
+
+      .btn-primary:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.12);
+        color: #e4e8ff;
+      }
+
+      .helper {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      #gameScreen {
         padding: 16px;
       }
 
-      .urgency b {
-        color: #8e1634;
-      }
-
-      .guarantee {
-        margin-top: 18px;
-        padding: 14px 16px;
-        border-radius: 12px;
-        background: #f3fff9;
-        border: 1px solid #c9f5e5;
-      }
-
-      .faq {
-        margin-top: 28px;
+      .hud {
+        margin-bottom: 10px;
+        padding: 10px 12px;
         display: grid;
-        gap: 12px;
-      }
-
-      details {
-        background: #fff;
-        border: 1px solid #e4e9ff;
-        border-radius: 12px;
-        padding: 14px 16px;
-      }
-
-      summary {
-        cursor: pointer;
-        font-weight: 700;
-        color: #222f58;
-      }
-
-      details p {
-        margin: 10px 0 0;
-        color: #4c5781;
-      }
-
-      .final-cta {
-        margin-top: 40px;
-        padding: 30px;
-        border-radius: 18px;
-        background: linear-gradient(140deg, #1f2a63, #4a3ee6);
-        color: #eef1ff;
-        display: grid;
-        gap: 10px;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 8px;
         align-items: center;
       }
 
-      .footer {
-        padding: 26px 0 36px;
-        color: #66719a;
+      .hud-item {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 7px 9px;
+        font-size: 0.87rem;
+      }
+
+      .hud-item strong {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 0.8rem;
+        color: #c6d2ff;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      .status-text {
+        color: #fce8a7;
+      }
+
+      canvas {
+        display: block;
+        width: min(96vw, 960px);
+        height: auto;
+        border-radius: 14px;
+        background: #111827;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .in-game-help {
+        margin-top: 10px;
         font-size: 0.9rem;
+        color: var(--muted);
       }
 
-      .footer-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
+      #gameOverScreen {
+        padding: 28px;
       }
 
-      @media (max-width: 980px) {
-        .hero-grid,
-        .offer-wrap {
-          grid-template-columns: 1fr;
-        }
-
-        .benefits-grid,
-        .proof-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .modules {
-          grid-template-columns: 1fr;
-        }
+      #gameOverScreen h2 {
+        margin: 0;
       }
 
-      @media (max-width: 640px) {
-        .topbar nav {
-          display: none;
+      .score-box {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .score-item {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      .score-item strong {
+        display: block;
+        margin-bottom: 3px;
+        color: #ced7ff;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
+
+      .score-item span {
+        font-weight: 800;
+        font-size: 1.2rem;
+      }
+
+      @media (max-width: 860px) {
+        .hud {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .benefits-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero {
-          padding-top: 64px;
-        }
-
-        .kpis {
+        .score-box {
           grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <div class="container topbar-wrap">
-        <a href="#" class="logo">Video<span>Impact</span></a>
-        <nav>
-          <a href="#programme">Programme</a>
-          <a href="#resultats">Resultats</a>
-          <a href="#offre">Offre</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <a href="#offre" class="btn btn-primary">Je veux rejoindre</a>
-      </div>
-    </header>
+    <div id="app">
+      <section id="menuScreen" class="screen active card-panel">
+        <h1>Canvas Survivor</h1>
+        <p>Selectionne un personnage puis survive le plus longtemps possible.</p>
+        <div id="characterGrid" class="character-grid"></div>
+        <div class="menu-actions">
+          <button id="startButton" class="btn btn-primary" disabled>Lancer la partie</button>
+          <span id="selectedText" class="helper">Aucun personnage selectionne</span>
+        </div>
+        <p class="helper">
+          Controles : fleches ou ZQSD pour bouger. Le tir est automatique vers l ennemi le plus proche.
+        </p>
+      </section>
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="pill">Ouverture des inscriptions 2026</span>
-          <h1>Transforme ton expertise en programme video qui se vend</h1>
-          <p class="subtitle">
-            Une methode concrete en 8 semaines pour creer, structurer et vendre ton programme video premium
-            sans audience massive ni tunnel complexe. Tu avances avec un plan clair, des scripts prets a
-            l emploi et un systeme de vente simple.
-          </p>
-          <div class="hero-cta">
-            <a href="#offre" class="btn btn-primary">Acceder a l offre maintenant</a>
-            <a href="#programme" class="btn btn-outline">Voir le contenu du programme</a>
+      <section id="gameScreen" class="screen">
+        <div class="hud card-panel">
+          <div class="hud-item">
+            <strong>Personnage</strong>
+            <span id="hudCharacter">-</span>
           </div>
-          <div class="kpis">
-            <div class="kpi">
-              <b>+2 400</b>
-              participants formes
-            </div>
-            <div class="kpi">
-              <b>4.9 / 5</b>
-              note moyenne des eleves
-            </div>
-            <div class="kpi">
-              <b>30 jours</b>
-              garantie satisfait ou rembourse
-            </div>
+          <div class="hud-item">
+            <strong>PV</strong>
+            <span id="hudHp">-</span>
+          </div>
+          <div class="hud-item">
+            <strong>Temps de survie</strong>
+            <span id="hudTime">0.0 s</span>
+          </div>
+          <div class="hud-item">
+            <strong>Eliminations</strong>
+            <span id="hudKills">0</span>
+          </div>
+          <div class="hud-item">
+            <strong>Speciale</strong>
+            <span id="hudSpecial">-</span>
           </div>
         </div>
-        <aside class="preview-card" aria-label="Presentation video du programme">
-          <div class="preview-media">
-            <button class="play-btn" aria-label="Lancer la video">Play</button>
+        <canvas id="gameCanvas" width="960" height="540" aria-label="Zone de jeu"></canvas>
+        <p id="statusText" class="in-game-help status-text"></p>
+        <p class="in-game-help">
+          Images utilisees : <code>bg.png</code>, <code>player.png</code>, <code>enemy.png</code>. En cas d absence,
+          des formes colorees apparaissent automatiquement.
+        </p>
+      </section>
+
+      <section id="gameOverScreen" class="screen card-panel">
+        <h2>Game Over</h2>
+        <p class="helper">Les ennemis ont fini par te rattraper.</p>
+        <div class="score-box">
+          <div class="score-item">
+            <strong>Personnage</strong>
+            <span id="finalCharacter">-</span>
           </div>
-          <div class="preview-content">
-            <h3>Masterclass offerte: 3 leviers pour vendre vite</h3>
-            <p>
-              Decouvre en 18 minutes comment valider ton offre, construire ton plan de contenu et obtenir tes
-              premiers clients en ligne.
-            </p>
+          <div class="score-item">
+            <strong>Temps final</strong>
+            <span id="finalTime">0.0 s</span>
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="strip">
-      <div class="container logos">
-        <span>Vu dans</span>
-        <span>Growth Daily</span>
-        <span>Creator Mag</span>
-        <span>Business Sprint</span>
-        <span>Studio Academy</span>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <span class="pill">Pourquoi ce programme</span>
-        <h2>Tu n as pas besoin de plus d idees, tu as besoin d un systeme</h2>
-        <p class="lead">
-          Ce programme video t aide a passer de contenu disperse a une offre claire qui attire les bons clients
-          et convertit regulierement.
-        </p>
-
-        <div class="benefits-grid">
-          <article class="card">
-            <span class="icon">1</span>
-            <h3>Positionnement clair</h3>
-            <p>Tu definis une promesse forte qui te differencie et donne envie d acheter rapidement.</p>
-          </article>
-          <article class="card">
-            <span class="icon">2</span>
-            <h3>Production simplifiee</h3>
-            <p>Tu tournes des videos impactantes avec un setup leger et un script orientee conversion.</p>
-          </article>
-          <article class="card">
-            <span class="icon">3</span>
-            <h3>Vente repetitive</h3>
-            <p>Tu mets en place un tunnel minimal qui transforme tes prospects sans pression commerciale.</p>
-          </article>
+          <div class="score-item">
+            <strong>Eliminations</strong>
+            <span id="finalKills">0</span>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section program" id="programme">
-      <div class="container">
-        <span class="pill">Contenu detaille</span>
-        <h2>8 semaines pour construire et lancer ton programme video</h2>
-        <p class="lead">
-          Chaque module te fait passer a l action avec objectifs hebdomadaires, templates, checklists et retours
-          concrets.
-        </p>
-
-        <div class="modules">
-          <article class="module">
-            <h3>Semaine 1 - Offre et avatar premium</h3>
-            <p>Clarifie ton message, ton angle et la transformation achetee par ton client ideal.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 2 - Plan pedagogique magnetique</h3>
-            <p>Structure un parcours simple qui donne des resultats visibles rapidement.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 3 - Script et storytelling</h3>
-            <p>Creer des videos qui captent l attention et donnent envie de continuer jusqu au bout.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 4 - Tournage et montage efficace</h3>
-            <p>Workflow rapide pour produire avec qualite sans y passer tes week-ends.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 5 - Page de vente qui convertit</h3>
-            <p>Pose la structure complete d une page orientee resultat et preuve.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 6 - Offre et pricing premium</h3>
-            <p>Definis tes bonus, ton positionnement prix et la perception de valeur.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 7 - Acquisition et relance</h3>
-            <p>Lance ton trafic avec contenu organique + campagnes simples a faible risque.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 8 - Lancement pilote</h3>
-            <p>Execute ta premiere campagne de vente et optimise grace aux donnees collectees.</p>
-          </article>
+        <div class="menu-actions">
+          <button id="retryButton" class="btn btn-primary">Rejouer</button>
+          <button id="backToMenuButton" class="btn btn-secondary">Retour menu</button>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="resultats">
-      <div class="container">
-        <span class="pill">Temoignages</span>
-        <h2>Des createurs et experts qui ont lance rapidement</h2>
-        <p class="lead">
-          Pas de theorie vague: voici ce que nos eleves obtiennent en appliquant la methode.
-        </p>
-
-        <div class="proof-grid">
-          <article class="quote">
-            <p>
-              "J ai signe 11 ventes a 690 EUR en 3 semaines. La structure de page et les scripts ont tout
-              change."
-            </p>
-            <b>Sarah M. - Coach business</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Je repoussais mon programme depuis 1 an. En 6 semaines j avais mes modules prets et un funnel
-              rentable."
-            </p>
-            <b>Yanis D. - Formateur freelance</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Le plus fort: la clarte. Je sais enfin quoi dire, quoi vendre et comment convertir sans forcer."
-            </p>
-            <b>Lucie R. - Consultante marketing</b>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="offre">
-      <div class="container">
-        <span class="pill">Offre de lancement</span>
-        <h2>Rejoins VideoImpact et lance ton programme video des maintenant</h2>
-        <p class="lead">
-          Inscription unique avec acces a vie, mises a jour futures incluses et communaute privee.
-        </p>
-
-        <div class="offer-wrap">
-          <article class="offer-main">
-            <h3>Pack complet VideoImpact</h3>
-            <div class="price">
-              <span class="old">997 EUR</span>
-              <span class="new">497 EUR</span>
-            </div>
-            <p>
-              Paiement en 1 fois ou 3 mensualites de 179 EUR. Offre reservee aux 50 premieres places.
-            </p>
-            <ul class="offer-list">
-              <li><span class="bullet-ok">v</span>Programme video complet (8 semaines)</li>
-              <li><span class="bullet-ok">v</span>Templates scripts, mails et page de vente</li>
-              <li><span class="bullet-ok">v</span>2 sessions Q&amp;A live chaque mois</li>
-              <li><span class="bullet-ok">v</span>Communaute privee d entrepreneurs video</li>
-              <li><span class="bullet-ok">v</span>Acces a vie + futures mises a jour</li>
-            </ul>
-            <p style="margin-top: 20px">
-              <a class="btn btn-primary" href="https://checkout.example.com" target="_blank" rel="noreferrer">
-                Je reserve ma place maintenant
-              </a>
-            </p>
-            <div class="guarantee">
-              Garantie 30 jours: tu testes le programme, tu appliques, et si ce n est pas pour toi, tu es
-              rembourse sans discussion.
-            </div>
-          </article>
-
-          <aside class="card">
-            <div class="urgency">
-              <b>Cloture des inscriptions dans <span id="countdown">--:--:--</span></b>
-              <p style="margin: 8px 0 0">
-                Les bonus disparaissent a la fin du countdown. Prochaine ouverture dans plusieurs mois.
-              </p>
-            </div>
-
-            <h3 style="margin-top: 20px">Bonus inclus cette semaine</h3>
-            <ul class="checklist">
-              <li><span class="bullet-ok">v</span>Bonus 1: Kit "Page de vente express"</li>
-              <li><span class="bullet-ok">v</span>Bonus 2: 20 hooks video a fort taux de clic</li>
-              <li><span class="bullet-ok">v</span>Bonus 3: Script webinar 45 minutes pret a adapter</li>
-              <li><span class="bullet-ok">v</span>Bonus 4: Audit de ton offre par notre equipe</li>
-            </ul>
-          </aside>
-        </div>
-
-        <div class="final-cta">
-          <h3 style="margin: 0">Tu peux lancer ton programme video en 60 jours.</h3>
-          <p style="margin: 0">
-            Si tu veux un cadre clair, un plan concret et un accompagnement solide, cette offre est pour toi.
-          </p>
-          <p style="margin: 8px 0 0">
-            <a class="btn btn-primary" href="https://checkout.example.com" target="_blank" rel="noreferrer">
-              Oui, je rejoins VideoImpact
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <span class="pill">Questions frequentes</span>
-        <h2>FAQ</h2>
-        <div class="faq">
-          <details>
-            <summary>Est-ce adapte si je pars de zero ?</summary>
-            <p>
-              Oui. Le programme commence par le positionnement et t accompagne pas a pas jusqu au lancement.
-            </p>
-          </details>
-          <details>
-            <summary>Combien de temps dois-je prevoir chaque semaine ?</summary>
-            <p>Entre 4 et 6 heures suffisent pour suivre les modules et executer les exercices.</p>
-          </details>
-          <details>
-            <summary>Et si je n ai pas encore de communaute ?</summary>
-            <p>
-              Tu apprendras a lancer avec une audience reduite grace a une strategie de contenu et relance
-              simple.
-            </p>
-          </details>
-          <details>
-            <summary>Le programme est-il accessible a vie ?</summary>
-            <p>Oui, tu gardes un acces a vie a tous les contenus et aux mises a jour futures.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer-wrap">
-        <span>(c) <span id="year"></span> VideoImpact. Tous droits reserves.</span>
-        <span>
-          <a href="#">Mentions legales</a> | <a href="#">Confidentialite</a> | <a href="#">Support</a>
-        </span>
-      </div>
-    </footer>
+      </section>
+    </div>
 
     <script>
       (function () {
-        var yearEl = document.getElementById("year");
-        if (yearEl) {
-          yearEl.textContent = String(new Date().getFullYear());
-        }
+        "use strict";
 
-        var countdownEl = document.getElementById("countdown");
-        if (!countdownEl) {
+        // ------------------------------
+        // ELEMENTS DOM
+        // ------------------------------
+        const menuScreen = document.getElementById("menuScreen");
+        const gameScreen = document.getElementById("gameScreen");
+        const gameOverScreen = document.getElementById("gameOverScreen");
+        const characterGrid = document.getElementById("characterGrid");
+        const startButton = document.getElementById("startButton");
+        const retryButton = document.getElementById("retryButton");
+        const backToMenuButton = document.getElementById("backToMenuButton");
+        const selectedText = document.getElementById("selectedText");
+        const statusText = document.getElementById("statusText");
+
+        const hudCharacter = document.getElementById("hudCharacter");
+        const hudHp = document.getElementById("hudHp");
+        const hudTime = document.getElementById("hudTime");
+        const hudKills = document.getElementById("hudKills");
+        const hudSpecial = document.getElementById("hudSpecial");
+
+        const finalCharacter = document.getElementById("finalCharacter");
+        const finalTime = document.getElementById("finalTime");
+        const finalKills = document.getElementById("finalKills");
+
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        if (!ctx) {
+          alert("Votre navigateur ne supporte pas Canvas 2D.");
           return;
         }
 
-        var end = Date.now() + 1000 * 60 * 60 * 23 + 1000 * 60 * 39 + 1000 * 42;
-        function pad(value) {
-          return String(value).padStart(2, "0");
+        // ------------------------------
+        // CONSTANTES DE BASE
+        // ------------------------------
+        const WORLD_WIDTH = canvas.width;
+        const WORLD_HEIGHT = canvas.height;
+
+        // Toutes les valeurs ci-dessous sont faciles a modifier pour ajuster
+        // la sensation de jeu (degats, vitesse, pression des ennemis, etc.).
+        const GAME_TUNING = {
+          playerRadius: 18,
+          bulletRadius: 5,
+          enemyRadius: 16,
+          enemySpawnStart: 1.1, // Intervalle de spawn au debut (secondes)
+          enemySpawnMin: 0.2, // Limite minimale d intervalle de spawn
+          enemySpawnAcceleration: 0.012, // Plus grand = difficulte monte plus vite
+          enemyBaseHp: 32,
+          enemyHpScaling: 5,
+          enemyBaseSpeed: 58,
+          enemySpeedScaling: 8,
+          enemyTouchDamage: 12,
+          enemyDamageScaling: 0.45,
+          playerHitInvuln: 0.45, // Invulnerabilite courte apres un contact
+          maxDeltaTime: 0.05, // Protection anti gros freeze
+          offscreenMargin: 90,
+        };
+
+        // ------------------------------
+        // PERSONNAGES (ID + STATS + POUVOIRS)
+        // ------------------------------
+        // Le champ "id" sert d identifiant technique unique.
+        // Tu peux modifier les stats ici tres simplement.
+        const CHARACTERS = [
+          {
+            id: "loic",
+            name: "Loïc",
+            role: "Melee robuste",
+            specialType: "barbe",
+            specialName: "Barbe d'Acier",
+            specialDescription: "Coup circulaire a courte portee autour de lui.",
+            hp: 180,
+            speed: 210,
+            baseDamage: 18,
+            shotCooldown: 0.52,
+            projectileSpeed: 430,
+            specialCooldown: 5.5,
+            specialDamage: 56,
+            specialRadius: 96,
+            color: "#f59e0b",
+          },
+          {
+            id: "louis",
+            name: "Louis",
+            role: "Agression mobile",
+            specialType: "kickflip",
+            specialName: "Kickflip Dash",
+            specialDescription: "Lance un skateboard qui traverse les ennemis.",
+            hp: 150,
+            speed: 228,
+            baseDamage: 15,
+            shotCooldown: 0.39,
+            projectileSpeed: 510,
+            specialCooldown: 6.8,
+            specialDamage: 37,
+            specialSpeed: 570,
+            color: "#fb7185",
+          },
+          {
+            id: "dejan",
+            name: "Dejan",
+            role: "Controle de zone",
+            specialType: "aura",
+            specialName: "Drapeau Serbe",
+            specialDescription: "Aura qui ralentit et blesse les ennemis.",
+            hp: 190,
+            speed: 205,
+            baseDamage: 17,
+            shotCooldown: 0.5,
+            projectileSpeed: 435,
+            specialCooldown: 8.0,
+            specialDuration: 5.5,
+            specialRadius: 140,
+            auraSlowFactor: 0.45,
+            auraDamagePerSecond: 20,
+            color: "#60a5fa",
+          },
+          {
+            id: "david",
+            name: "David",
+            role: "Degats de zone",
+            specialType: "rain",
+            specialName: "Pluie de Savoir",
+            specialDescription: "Des livres tombent du haut de l ecran.",
+            hp: 162,
+            speed: 216,
+            baseDamage: 16,
+            shotCooldown: 0.45,
+            projectileSpeed: 460,
+            specialCooldown: 8.3,
+            specialDuration: 3.2,
+            specialDamage: 34,
+            rainSpawnInterval: 0.16,
+            rainFallSpeed: 350,
+            color: "#22d3ee",
+          },
+          {
+            id: "aurelien",
+            name: "Aurélien",
+            role: "Survie extreme",
+            specialType: "stealth",
+            specialName: "Furtivité",
+            specialDescription: "Transparent et invincible pendant 5 secondes.",
+            hp: 145,
+            speed: 240,
+            baseDamage: 14,
+            shotCooldown: 0.36,
+            projectileSpeed: 520,
+            specialCooldown: 12.0,
+            specialDuration: 5.0,
+            color: "#a78bfa",
+          },
+        ];
+
+        // ------------------------------
+        // SPRITES (avec fallback si fichier absent)
+        // ------------------------------
+        function loadSprite(path) {
+          const image = new Image();
+          const sprite = {
+            image,
+            loaded: false,
+          };
+          image.onload = function () {
+            sprite.loaded = true;
+          };
+          image.onerror = function () {
+            // On garde loaded=false, le moteur dessinera un fallback.
+            sprite.loaded = false;
+          };
+          image.src = path;
+          return sprite;
         }
 
-        function renderCountdown() {
-          var left = Math.max(0, end - Date.now());
-          var hours = Math.floor(left / (1000 * 60 * 60));
-          var minutes = Math.floor((left % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((left % (1000 * 60)) / 1000);
-          countdownEl.textContent = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+        const sprites = {
+          bg: loadSprite("bg.png"),
+          player: loadSprite("player.png"),
+          enemy: loadSprite("enemy.png"),
+        };
+
+        // ------------------------------
+        // ETAT GLOBAL DU JEU
+        // ------------------------------
+        const state = {
+          mode: "menu", // "menu" | "playing" | "gameover"
+          selectedCharacterId: null,
+          player: null,
+          enemies: [],
+          projectiles: [],
+          effects: [],
+          elapsed: 0,
+          difficulty: 1,
+          spawnTimer: 0,
+          kills: 0,
+          bgOffsetX: 0,
+          bgOffsetY: 0,
+          lastFrame: 0,
+          rafId: 0,
+          nextEnemyId: 1,
+          bgPattern: null,
+          keys: new Set(),
+          statusTimer: 0,
+        };
+
+        // ------------------------------
+        // INITIALISATION UI
+        // ------------------------------
+        function initCharacterMenu() {
+          characterGrid.innerHTML = "";
+
+          CHARACTERS.forEach(function (character) {
+            const card = document.createElement("button");
+            card.type = "button";
+            card.className = "character-card";
+            card.dataset.characterId = character.id;
+
+            // On affiche les stats principales directement dans la carte.
+            card.innerHTML =
+              "<h3>" +
+              escapeHtml(character.name) +
+              ' <span class="chip">' +
+              escapeHtml(character.role) +
+              "</span></h3>" +
+              "<p>" +
+              escapeHtml(character.specialName) +
+              "</p>" +
+              "<small>" +
+              escapeHtml(character.specialDescription) +
+              "</small>" +
+              "<ul>" +
+              "<li>PV: " +
+              character.hp +
+              "</li>" +
+              "<li>Vitesse: " +
+              character.speed +
+              "</li>" +
+              "<li>Degats tir auto: " +
+              character.baseDamage +
+              "</li>" +
+              "</ul>";
+
+            card.addEventListener("click", function () {
+              selectCharacter(character.id);
+            });
+
+            characterGrid.appendChild(card);
+          });
         }
 
-        renderCountdown();
-        setInterval(renderCountdown, 1000);
+        function selectCharacter(characterId) {
+          state.selectedCharacterId = characterId;
+          startButton.disabled = false;
+
+          const current = getSelectedCharacter();
+          selectedText.textContent = "Selection: " + current.name + " - " + current.specialName;
+
+          const cards = characterGrid.querySelectorAll(".character-card");
+          cards.forEach(function (card) {
+            card.classList.toggle("selected", card.dataset.characterId === characterId);
+          });
+        }
+
+        function showScreen(name) {
+          menuScreen.classList.toggle("active", name === "menu");
+          gameScreen.classList.toggle("active", name === "game");
+          gameOverScreen.classList.toggle("active", name === "gameover");
+        }
+
+        startButton.addEventListener("click", function () {
+          if (state.selectedCharacterId) {
+            startGame();
+          }
+        });
+
+        retryButton.addEventListener("click", function () {
+          if (state.selectedCharacterId) {
+            startGame();
+          } else {
+            backToMenu();
+          }
+        });
+
+        backToMenuButton.addEventListener("click", backToMenu);
+
+        // ------------------------------
+        // GESTION CLAVIER
+        // ------------------------------
+        const movementCodes = new Set([
+          "ArrowUp",
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowRight",
+          "KeyZ",
+          "KeyQ",
+          "KeyS",
+          "KeyD",
+          "KeyW",
+          "KeyA",
+        ]);
+
+        window.addEventListener("keydown", function (event) {
+          if (movementCodes.has(event.code)) {
+            event.preventDefault();
+            state.keys.add(event.code);
+          }
+
+          if (state.mode === "menu" && event.code === "Enter" && state.selectedCharacterId) {
+            startGame();
+          }
+
+          if (state.mode === "gameover" && event.code === "Enter") {
+            if (state.selectedCharacterId) {
+              startGame();
+            }
+          }
+        });
+
+        window.addEventListener("keyup", function (event) {
+          if (movementCodes.has(event.code)) {
+            event.preventDefault();
+            state.keys.delete(event.code);
+          }
+        });
+
+        // ------------------------------
+        // DEMARRAGE / RETOUR MENU
+        // ------------------------------
+        function getSelectedCharacter() {
+          return CHARACTERS.find(function (c) {
+            return c.id === state.selectedCharacterId;
+          });
+        }
+
+        function createPlayerFromCharacter(character) {
+          return {
+            id: character.id,
+            name: character.name,
+            specialType: character.specialType,
+            specialName: character.specialName,
+            color: character.color,
+            x: WORLD_WIDTH * 0.5,
+            y: WORLD_HEIGHT * 0.5,
+            radius: GAME_TUNING.playerRadius,
+            speed: character.speed,
+            maxHp: character.hp,
+            hp: character.hp,
+            baseDamage: character.baseDamage,
+            shotCooldown: character.shotCooldown,
+            shotTimer: character.shotCooldown * 0.35,
+            projectileSpeed: character.projectileSpeed,
+            specialCooldown: character.specialCooldown,
+            specialTimer: character.specialCooldown * 0.6,
+            specialDamage: character.specialDamage || 0,
+            specialRadius: character.specialRadius || 0,
+            specialDuration: character.specialDuration || 0,
+            specialSpeed: character.specialSpeed || 0,
+            auraSlowFactor: character.auraSlowFactor || 1,
+            auraDamagePerSecond: character.auraDamagePerSecond || 0,
+            rainSpawnInterval: character.rainSpawnInterval || 0.16,
+            rainFallSpeed: character.rainFallSpeed || 350,
+            auraTimer: 0,
+            rainTimer: 0,
+            rainSpawnTimer: 0,
+            stealthTimer: 0,
+            invulnTimer: 0,
+            contactTimer: 0,
+          };
+        }
+
+        function startGame() {
+          const character = getSelectedCharacter();
+          if (!character) return;
+
+          cancelAnimationFrame(state.rafId);
+
+          state.mode = "playing";
+          state.player = createPlayerFromCharacter(character);
+          state.enemies = [];
+          state.projectiles = [];
+          state.effects = [];
+          state.elapsed = 0;
+          state.difficulty = 1;
+          state.spawnTimer = 0.35;
+          state.kills = 0;
+          state.bgOffsetX = 0;
+          state.bgOffsetY = 0;
+          state.bgPattern = null;
+          state.nextEnemyId = 1;
+          state.statusTimer = 0;
+
+          statusText.textContent = "Debut de partie - bonne chance !";
+
+          showScreen("game");
+          updateHud();
+          render();
+
+          state.lastFrame = performance.now();
+          state.rafId = requestAnimationFrame(gameLoop);
+        }
+
+        function backToMenu() {
+          cancelAnimationFrame(state.rafId);
+          state.mode = "menu";
+          statusText.textContent = "";
+          showScreen("menu");
+        }
+
+        function triggerGameOver() {
+          if (state.mode !== "playing") return;
+
+          cancelAnimationFrame(state.rafId);
+          state.mode = "gameover";
+
+          finalCharacter.textContent = state.player ? state.player.name : "-";
+          finalTime.textContent = formatSeconds(state.elapsed);
+          finalKills.textContent = String(state.kills);
+
+          showScreen("gameover");
+        }
+
+        // ------------------------------
+        // BOUCLE DE JEU (requestAnimationFrame)
+        // ------------------------------
+        function gameLoop(timestamp) {
+          if (state.mode !== "playing") return;
+
+          const rawDt = (timestamp - state.lastFrame) / 1000;
+          const dt = Math.min(GAME_TUNING.maxDeltaTime, Math.max(0, rawDt || 0));
+          state.lastFrame = timestamp;
+
+          update(dt);
+          render();
+
+          if (state.mode === "playing") {
+            state.rafId = requestAnimationFrame(gameLoop);
+          }
+        }
+
+        // ------------------------------
+        // UPDATE GLOBAL
+        // ------------------------------
+        function update(dt) {
+          const player = state.player;
+          if (!player) return;
+
+          state.elapsed += dt;
+          state.difficulty = 1 + state.elapsed / 20;
+
+          // Message contextuel qui disparait seul
+          state.statusTimer = Math.max(0, state.statusTimer - dt);
+          if (state.statusTimer === 0 && state.mode === "playing") {
+            statusText.textContent = "";
+          }
+
+          updatePlayer(dt);
+          spawnEnemies(dt);
+          updateEnemies(dt);
+          updateProjectiles(dt);
+          updateEffects(dt);
+          cleanArrays();
+
+          if (player.hp <= 0) {
+            player.hp = 0;
+            triggerGameOver();
+          }
+
+          updateHud();
+        }
+
+        // ------------------------------
+        // UPDATE JOUEUR (mouvement + tir auto + speciales)
+        // ------------------------------
+        function updatePlayer(dt) {
+          const player = state.player;
+          if (!player) return;
+
+          // Timers de survie/invulnerabilite
+          player.invulnTimer = Math.max(0, player.invulnTimer - dt);
+          player.contactTimer = Math.max(0, player.contactTimer - dt);
+          player.stealthTimer = Math.max(0, player.stealthTimer - dt);
+          player.auraTimer = Math.max(0, player.auraTimer - dt);
+          player.rainTimer = Math.max(0, player.rainTimer - dt);
+
+          // ------------------------------
+          // Deplacement (fleches + ZQSD + support WASD)
+          // ------------------------------
+          let moveX = 0;
+          let moveY = 0;
+
+          if (isAnyKeyDown("ArrowLeft", "KeyQ", "KeyA")) moveX -= 1;
+          if (isAnyKeyDown("ArrowRight", "KeyD")) moveX += 1;
+          if (isAnyKeyDown("ArrowUp", "KeyZ", "KeyW")) moveY -= 1;
+          if (isAnyKeyDown("ArrowDown", "KeyS")) moveY += 1;
+
+          if (moveX !== 0 || moveY !== 0) {
+            const len = Math.hypot(moveX, moveY) || 1;
+            moveX /= len;
+            moveY /= len;
+
+            const step = player.speed * dt;
+            player.x += moveX * step;
+            player.y += moveY * step;
+
+            // Le fond tile suit un offset pour donner une impression de terrain
+            // "plus grand" meme si la map est un ecran fixe.
+            state.bgOffsetX += moveX * step;
+            state.bgOffsetY += moveY * step;
+          }
+
+          // Le joueur reste dans la zone de jeu.
+          player.x = clamp(player.x, player.radius, WORLD_WIDTH - player.radius);
+          player.y = clamp(player.y, player.radius, WORLD_HEIGHT - player.radius);
+
+          // ------------------------------
+          // Tir automatique sur ennemi le plus proche
+          // ------------------------------
+          player.shotTimer -= dt;
+          while (player.shotTimer <= 0) {
+            shootAutoProjectile(player);
+            player.shotTimer += player.shotCooldown;
+          }
+
+          // ------------------------------
+          // Lancement automatique de la speciale
+          // ------------------------------
+          player.specialTimer -= dt;
+          while (player.specialTimer <= 0) {
+            castSpecial(player);
+            player.specialTimer += player.specialCooldown;
+          }
+
+          // Gestion continue de la Pluie de Savoir (David)
+          if (player.rainTimer > 0) {
+            player.rainSpawnTimer -= dt;
+            while (player.rainSpawnTimer <= 0) {
+              spawnBookProjectile(player);
+              player.rainSpawnTimer += player.rainSpawnInterval;
+            }
+          }
+        }
+
+        function isAnyKeyDown() {
+          for (let i = 0; i < arguments.length; i += 1) {
+            if (state.keys.has(arguments[i])) return true;
+          }
+          return false;
+        }
+
+        function shootAutoProjectile(player) {
+          const target = getNearestEnemy(player.x, player.y);
+          if (!target) return;
+
+          const dir = normalizeVector(target.x - player.x, target.y - player.y);
+          state.projectiles.push({
+            type: "bullet",
+            x: player.x,
+            y: player.y,
+            vx: dir.x * player.projectileSpeed,
+            vy: dir.y * player.projectileSpeed,
+            radius: GAME_TUNING.bulletRadius,
+            damage: player.baseDamage,
+            life: 1.9,
+            pierce: false,
+            color: "#fde68a",
+            hitIds: new Set(),
+            angle: Math.atan2(dir.y, dir.x),
+            rotationSpeed: 0,
+          });
+        }
+
+        function castSpecial(player) {
+          switch (player.specialType) {
+            case "barbe":
+              castBarbeDAcier(player);
+              break;
+            case "kickflip":
+              castKickflipDash(player);
+              break;
+            case "aura":
+              castDrapeauSerbe(player);
+              break;
+            case "rain":
+              castPluieDeSavoir(player);
+              break;
+            case "stealth":
+              castFurtivite(player);
+              break;
+            default:
+              break;
+          }
+        }
+
+        // Loic: degat instantane en cercle proche.
+        function castBarbeDAcier(player) {
+          showStatus("Loic lance Barbe d Acier");
+          state.effects.push({
+            type: "ring",
+            x: player.x,
+            y: player.y,
+            age: 0,
+            duration: 0.28,
+            maxRadius: player.specialRadius,
+            color: "rgba(245, 158, 11, 0.92)",
+          });
+
+          for (let i = 0; i < state.enemies.length; i += 1) {
+            const enemy = state.enemies[i];
+            const dx = enemy.x - player.x;
+            const dy = enemy.y - player.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist <= player.specialRadius + enemy.radius) {
+              damageEnemy(enemy, player.specialDamage);
+
+              // Petit recul pour renforcer le ressenti du coup circulaire.
+              if (dist > 0) {
+                enemy.x += (dx / dist) * 24;
+                enemy.y += (dy / dist) * 24;
+              }
+            }
+          }
+        }
+
+        // Louis: projectile perceur (skateboard).
+        function castKickflipDash(player) {
+          showStatus("Louis lance Kickflip Dash");
+          const target = getNearestEnemy(player.x, player.y);
+          const dir = target
+            ? normalizeVector(target.x - player.x, target.y - player.y)
+            : { x: 1, y: 0 };
+
+          state.projectiles.push({
+            type: "skateboard",
+            x: player.x,
+            y: player.y,
+            vx: dir.x * player.specialSpeed,
+            vy: dir.y * player.specialSpeed,
+            radius: 14,
+            damage: player.specialDamage,
+            life: 2.5,
+            pierce: true,
+            color: "#fb7185",
+            hitIds: new Set(),
+            angle: Math.atan2(dir.y, dir.x),
+            rotationSpeed: 10,
+          });
+        }
+
+        // Dejan: aura temporaire qui ralentit et blesse en continu.
+        function castDrapeauSerbe(player) {
+          showStatus("Dejan active Drapeau Serbe");
+          player.auraTimer = player.specialDuration;
+          state.effects.push({
+            type: "pulse",
+            x: player.x,
+            y: player.y,
+            age: 0,
+            duration: 0.5,
+            maxRadius: player.specialRadius,
+            color: "rgba(59, 130, 246, 0.66)",
+          });
+        }
+
+        // David: pendant quelques secondes, des livres tombent du haut.
+        function castPluieDeSavoir(player) {
+          showStatus("David declenche Pluie de Savoir");
+          player.rainTimer = player.specialDuration;
+          player.rainSpawnTimer = 0;
+        }
+
+        function spawnBookProjectile(player) {
+          state.projectiles.push({
+            type: "book",
+            x: Math.random() * WORLD_WIDTH,
+            y: -18,
+            vx: (Math.random() - 0.5) * 18,
+            vy: player.rainFallSpeed,
+            radius: 11,
+            damage: player.specialDamage,
+            life: 3.2,
+            pierce: false,
+            color: "#67e8f9",
+            hitIds: new Set(),
+            angle: Math.random() * Math.PI * 2,
+            rotationSpeed: (Math.random() - 0.5) * 7,
+          });
+        }
+
+        // Aurelien: invincible + transparent 5 secondes.
+        function castFurtivite(player) {
+          showStatus("Aurelien active Furtivite");
+          player.stealthTimer = player.specialDuration;
+          player.invulnTimer = Math.max(player.invulnTimer, player.specialDuration);
+          state.effects.push({
+            type: "pulse",
+            x: player.x,
+            y: player.y,
+            age: 0,
+            duration: 0.45,
+            maxRadius: 90,
+            color: "rgba(167, 139, 250, 0.72)",
+          });
+        }
+
+        // ------------------------------
+        // ENNEMIS
+        // ------------------------------
+        function spawnEnemies(dt) {
+          state.spawnTimer -= dt;
+          const interval = Math.max(
+            GAME_TUNING.enemySpawnMin,
+            GAME_TUNING.enemySpawnStart - state.elapsed * GAME_TUNING.enemySpawnAcceleration
+          );
+
+          while (state.spawnTimer <= 0) {
+            spawnOneEnemy();
+
+            // Bonus de pression en fin de partie.
+            const extraSpawnChance = Math.min(0.55, state.elapsed / 90);
+            if (Math.random() < extraSpawnChance) {
+              spawnOneEnemy();
+            }
+
+            state.spawnTimer += interval;
+          }
+        }
+
+        function spawnOneEnemy() {
+          const margin = 26;
+          const side = Math.floor(Math.random() * 4);
+          let x = 0;
+          let y = 0;
+
+          if (side === 0) {
+            x = Math.random() * WORLD_WIDTH;
+            y = -margin;
+          } else if (side === 1) {
+            x = WORLD_WIDTH + margin;
+            y = Math.random() * WORLD_HEIGHT;
+          } else if (side === 2) {
+            x = Math.random() * WORLD_WIDTH;
+            y = WORLD_HEIGHT + margin;
+          } else {
+            x = -margin;
+            y = Math.random() * WORLD_HEIGHT;
+          }
+
+          const hp = GAME_TUNING.enemyBaseHp + state.difficulty * GAME_TUNING.enemyHpScaling + Math.random() * 10;
+
+          const speed =
+            GAME_TUNING.enemyBaseSpeed +
+            state.difficulty * GAME_TUNING.enemySpeedScaling +
+            Math.random() * 24;
+
+          const touchDamage =
+            GAME_TUNING.enemyTouchDamage + state.difficulty * GAME_TUNING.enemyDamageScaling;
+
+          state.enemies.push({
+            id: state.nextEnemyId,
+            x,
+            y,
+            radius: GAME_TUNING.enemyRadius,
+            hp,
+            maxHp: hp,
+            speed,
+            touchDamage,
+            isDead: false,
+          });
+
+          state.nextEnemyId += 1;
+        }
+
+        function updateEnemies(dt) {
+          const player = state.player;
+          if (!player) return;
+
+          for (let i = 0; i < state.enemies.length; i += 1) {
+            const enemy = state.enemies[i];
+            if (enemy.isDead) continue;
+
+            let slowFactor = 1;
+
+            // Aura Dejan: ralentit + degats continus.
+            if (player.auraTimer > 0 && player.specialType === "aura") {
+              const distToAuraCenter = distance(enemy.x, enemy.y, player.x, player.y);
+              if (distToAuraCenter <= player.specialRadius + enemy.radius) {
+                slowFactor = player.auraSlowFactor;
+                damageEnemy(enemy, player.auraDamagePerSecond * dt);
+                if (enemy.isDead) continue;
+              }
+            }
+
+            // Mouvement de poursuite vers le joueur
+            const dir = normalizeVector(player.x - enemy.x, player.y - enemy.y);
+            enemy.x += dir.x * enemy.speed * slowFactor * dt;
+            enemy.y += dir.y * enemy.speed * slowFactor * dt;
+
+            // Collision simple cercle-cercle ennemi <-> joueur
+            const touchingPlayer = circlesCollide(enemy.x, enemy.y, enemy.radius, player.x, player.y, player.radius);
+            if (touchingPlayer) {
+              if (player.contactTimer <= 0 && !isPlayerInvincible(player)) {
+                player.hp -= enemy.touchDamage;
+                player.contactTimer = GAME_TUNING.playerHitInvuln;
+                player.invulnTimer = Math.max(player.invulnTimer, GAME_TUNING.playerHitInvuln);
+                showStatus("Attention: contact ennemi !");
+              }
+
+              // Petit recul ennemi pour eviter de rester superpose parfait.
+              const separate = normalizeVector(enemy.x - player.x, enemy.y - player.y);
+              enemy.x += separate.x * 8;
+              enemy.y += separate.y * 8;
+            }
+          }
+        }
+
+        function isPlayerInvincible(player) {
+          return player.stealthTimer > 0.01 || player.invulnTimer > 0.01;
+        }
+
+        // ------------------------------
+        // PROJECTILES + COLLISIONS
+        // ------------------------------
+        function updateProjectiles(dt) {
+          const margin = GAME_TUNING.offscreenMargin;
+
+          for (let i = 0; i < state.projectiles.length; i += 1) {
+            const projectile = state.projectiles[i];
+            if (projectile.isDead) continue;
+
+            projectile.x += projectile.vx * dt;
+            projectile.y += projectile.vy * dt;
+            projectile.life -= dt;
+            projectile.angle += projectile.rotationSpeed * dt;
+
+            const isOutside =
+              projectile.x < -margin ||
+              projectile.x > WORLD_WIDTH + margin ||
+              projectile.y < -margin ||
+              projectile.y > WORLD_HEIGHT + margin;
+
+            if (projectile.life <= 0 || isOutside) {
+              projectile.isDead = true;
+              continue;
+            }
+
+            // Collision projectile <-> ennemi (cercle-cercle)
+            for (let j = 0; j < state.enemies.length; j += 1) {
+              const enemy = state.enemies[j];
+              if (enemy.isDead) continue;
+              if (projectile.hitIds.has(enemy.id)) continue;
+
+              const hit = circlesCollide(
+                projectile.x,
+                projectile.y,
+                projectile.radius,
+                enemy.x,
+                enemy.y,
+                enemy.radius
+              );
+
+              if (!hit) continue;
+
+              damageEnemy(enemy, projectile.damage);
+              projectile.hitIds.add(enemy.id);
+
+              if (!projectile.pierce) {
+                projectile.isDead = true;
+                break;
+              }
+            }
+          }
+        }
+
+        function damageEnemy(enemy, amount) {
+          if (enemy.isDead) return;
+          enemy.hp -= amount;
+          if (enemy.hp <= 0) {
+            enemy.hp = 0;
+            enemy.isDead = true;
+            state.kills += 1;
+          }
+        }
+
+        // ------------------------------
+        // EFFETS VISUELS TEMPORAIRES
+        // ------------------------------
+        function updateEffects(dt) {
+          for (let i = 0; i < state.effects.length; i += 1) {
+            state.effects[i].age += dt;
+          }
+        }
+
+        function cleanArrays() {
+          state.enemies = state.enemies.filter(function (enemy) {
+            return !enemy.isDead;
+          });
+
+          state.projectiles = state.projectiles.filter(function (projectile) {
+            return !projectile.isDead;
+          });
+
+          state.effects = state.effects.filter(function (effect) {
+            return effect.age <= effect.duration;
+          });
+        }
+
+        // ------------------------------
+        // RENDER
+        // ------------------------------
+        function render() {
+          drawBackground();
+          drawAuraIfNeeded();
+          drawEffects();
+          drawEnemies();
+          drawProjectiles();
+          drawPlayer();
+        }
+
+        function drawBackground() {
+          if (sprites.bg.loaded) {
+            if (!state.bgPattern) {
+              state.bgPattern = ctx.createPattern(sprites.bg.image, "repeat");
+            }
+
+            if (state.bgPattern) {
+              const tileWidth = Math.max(16, sprites.bg.image.width || 64);
+              const tileHeight = Math.max(16, sprites.bg.image.height || 64);
+              const offsetX = modulo(-state.bgOffsetX, tileWidth);
+              const offsetY = modulo(-state.bgOffsetY, tileHeight);
+
+              ctx.save();
+              ctx.translate(offsetX - tileWidth, offsetY - tileHeight);
+              ctx.fillStyle = state.bgPattern;
+              ctx.fillRect(0, 0, WORLD_WIDTH + tileWidth * 2, WORLD_HEIGHT + tileHeight * 2);
+              ctx.restore();
+              return;
+            }
+          }
+
+          // Fallback si bg.png absent: fond uni + grille.
+          ctx.fillStyle = "#1f2937";
+          ctx.fillRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+
+          const gridSize = 48;
+          const ox = modulo(-state.bgOffsetX, gridSize);
+          const oy = modulo(-state.bgOffsetY, gridSize);
+
+          ctx.strokeStyle = "rgba(255,255,255,0.07)";
+          ctx.lineWidth = 1;
+          for (let x = ox - gridSize; x <= WORLD_WIDTH + gridSize; x += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, WORLD_HEIGHT);
+            ctx.stroke();
+          }
+          for (let y = oy - gridSize; y <= WORLD_HEIGHT + gridSize; y += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(WORLD_WIDTH, y);
+            ctx.stroke();
+          }
+        }
+
+        function drawAuraIfNeeded() {
+          const player = state.player;
+          if (!player) return;
+
+          if (player.specialType === "aura" && player.auraTimer > 0) {
+            const pulse = 0.5 + Math.sin(performance.now() * 0.01) * 0.1;
+            const radius = player.specialRadius * pulse;
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(player.x, player.y, radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(59,130,246,0.14)";
+            ctx.fill();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "rgba(147,197,253,0.8)";
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+
+        function drawEffects() {
+          for (let i = 0; i < state.effects.length; i += 1) {
+            const effect = state.effects[i];
+            const t = clamp(effect.age / effect.duration, 0, 1);
+
+            if (effect.type === "ring") {
+              const radius = effect.maxRadius * t;
+              ctx.save();
+              ctx.beginPath();
+              ctx.arc(effect.x, effect.y, radius, 0, Math.PI * 2);
+              ctx.lineWidth = 4;
+              ctx.strokeStyle = effect.color;
+              ctx.globalAlpha = 1 - t;
+              ctx.stroke();
+              ctx.restore();
+            } else if (effect.type === "pulse") {
+              const radius = effect.maxRadius * t;
+              ctx.save();
+              ctx.beginPath();
+              ctx.arc(effect.x, effect.y, radius, 0, Math.PI * 2);
+              ctx.fillStyle = effect.color;
+              ctx.globalAlpha = (1 - t) * 0.8;
+              ctx.fill();
+              ctx.restore();
+            }
+          }
+        }
+
+        function drawEnemies() {
+          for (let i = 0; i < state.enemies.length; i += 1) {
+            const enemy = state.enemies[i];
+            const size = enemy.radius * 2;
+
+            if (sprites.enemy.loaded) {
+              ctx.drawImage(sprites.enemy.image, enemy.x - enemy.radius, enemy.y - enemy.radius, size, size);
+            } else {
+              // Fallback carre rouge si enemy.png absent.
+              ctx.fillStyle = "#ef4444";
+              ctx.fillRect(enemy.x - enemy.radius, enemy.y - enemy.radius, size, size);
+              ctx.strokeStyle = "rgba(0,0,0,0.35)";
+              ctx.strokeRect(enemy.x - enemy.radius, enemy.y - enemy.radius, size, size);
+            }
+
+            // Barre de vie de l ennemi
+            const barWidth = 24;
+            const ratio = clamp(enemy.hp / enemy.maxHp, 0, 1);
+            ctx.fillStyle = "rgba(15, 23, 42, 0.75)";
+            ctx.fillRect(enemy.x - barWidth / 2, enemy.y - enemy.radius - 11, barWidth, 4);
+            ctx.fillStyle = "#22d3ee";
+            ctx.fillRect(enemy.x - barWidth / 2, enemy.y - enemy.radius - 11, barWidth * ratio, 4);
+          }
+        }
+
+        function drawProjectiles() {
+          for (let i = 0; i < state.projectiles.length; i += 1) {
+            const p = state.projectiles[i];
+
+            if (p.type === "bullet") {
+              ctx.save();
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+              ctx.fillStyle = p.color;
+              ctx.fill();
+              ctx.restore();
+            } else if (p.type === "skateboard") {
+              ctx.save();
+              ctx.translate(p.x, p.y);
+              ctx.rotate(p.angle);
+              ctx.fillStyle = p.color;
+              ctx.fillRect(-18, -6, 36, 12);
+              ctx.fillStyle = "#111827";
+              ctx.beginPath();
+              ctx.arc(-11, 7, 3, 0, Math.PI * 2);
+              ctx.arc(11, 7, 3, 0, Math.PI * 2);
+              ctx.fill();
+              ctx.restore();
+            } else if (p.type === "book") {
+              ctx.save();
+              ctx.translate(p.x, p.y);
+              ctx.rotate(p.angle);
+              ctx.fillStyle = p.color;
+              ctx.fillRect(-9, -11, 18, 22);
+              ctx.fillStyle = "#f8fafc";
+              ctx.fillRect(-2, -11, 4, 22);
+              ctx.restore();
+            }
+          }
+        }
+
+        function drawPlayer() {
+          const player = state.player;
+          if (!player) return;
+
+          const shouldBlink =
+            player.invulnTimer > 0 && player.stealthTimer <= 0 && Math.floor(performance.now() / 70) % 2 === 0;
+
+          if (shouldBlink) return;
+
+          const size = player.radius * 2;
+          ctx.save();
+
+          if (player.stealthTimer > 0) {
+            // Transparence pour la furtivite.
+            ctx.globalAlpha = 0.35;
+          }
+
+          if (sprites.player.loaded) {
+            ctx.drawImage(sprites.player.image, player.x - player.radius, player.y - player.radius, size, size);
+          } else {
+            // Fallback cercle colore si player.png absent.
+            ctx.beginPath();
+            ctx.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+            ctx.fillStyle = player.color;
+            ctx.fill();
+            ctx.strokeStyle = "rgba(0,0,0,0.4)";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          }
+
+          ctx.restore();
+        }
+
+        // ------------------------------
+        // HUD + TEXTE
+        // ------------------------------
+        function updateHud() {
+          const player = state.player;
+          if (!player) return;
+
+          hudCharacter.textContent = player.name;
+          hudHp.textContent = Math.ceil(player.hp) + " / " + player.maxHp;
+          hudTime.textContent = formatSeconds(state.elapsed);
+          hudKills.textContent = String(state.kills);
+
+          const specialRemaining = Math.max(0, player.specialTimer);
+          let specialText = player.specialName + " - " + specialRemaining.toFixed(1) + " s";
+
+          if (player.specialType === "stealth" && player.stealthTimer > 0) {
+            specialText = "Furtivite active (" + player.stealthTimer.toFixed(1) + " s)";
+          } else if (player.specialType === "aura" && player.auraTimer > 0) {
+            specialText = "Aura active (" + player.auraTimer.toFixed(1) + " s)";
+          } else if (player.specialType === "rain" && player.rainTimer > 0) {
+            specialText = "Pluie active (" + player.rainTimer.toFixed(1) + " s)";
+          }
+
+          hudSpecial.textContent = specialText;
+        }
+
+        function showStatus(text) {
+          statusText.textContent = text;
+          state.statusTimer = 2.1;
+        }
+
+        // ------------------------------
+        // UTILS
+        // ------------------------------
+        function clamp(value, min, max) {
+          return Math.max(min, Math.min(max, value));
+        }
+
+        function distance(x1, y1, x2, y2) {
+          return Math.hypot(x2 - x1, y2 - y1);
+        }
+
+        function normalizeVector(x, y) {
+          const len = Math.hypot(x, y);
+          if (!len) return { x: 0, y: 0 };
+          return { x: x / len, y: y / len };
+        }
+
+        function circlesCollide(x1, y1, r1, x2, y2, r2) {
+          const dx = x2 - x1;
+          const dy = y2 - y1;
+          const rr = r1 + r2;
+          return dx * dx + dy * dy <= rr * rr;
+        }
+
+        function getNearestEnemy(x, y) {
+          let nearest = null;
+          let minDistSq = Infinity;
+
+          for (let i = 0; i < state.enemies.length; i += 1) {
+            const enemy = state.enemies[i];
+            const dx = enemy.x - x;
+            const dy = enemy.y - y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < minDistSq) {
+              minDistSq = d2;
+              nearest = enemy;
+            }
+          }
+
+          return nearest;
+        }
+
+        function modulo(value, size) {
+          return ((value % size) + size) % size;
+        }
+
+        function formatSeconds(value) {
+          return value.toFixed(1) + " s";
+        }
+
+        function escapeHtml(input) {
+          return String(input)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+        }
+
+        // ------------------------------
+        // LANCEMENT MENU
+        // ------------------------------
+        initCharacterMenu();
+        showScreen("menu");
       })();
     </script>
   </body>
