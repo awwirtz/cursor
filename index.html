@@ -25,6 +25,7 @@
         --c-dark: #0a192f;
         --c-light: #ffffff;
         --c-accent: #d4af37;
+        --c-cta-red: #d94747;
         --radius-sm: 12px;
         --radius-md: 18px;
         --radius-lg: 26px;
@@ -137,6 +138,17 @@
       .btn-outline:hover {
         transform: translateY(-2px) scale(1.02);
         box-shadow: inset 0 0 0 1px rgba(10, 25, 47, 0.22), 0 8px 20px rgba(10, 25, 47, 0.12);
+      }
+
+      .btn-red {
+        background: var(--c-cta-red);
+        color: var(--c-light);
+        box-shadow: 0 10px 24px rgba(217, 71, 71, 0.32);
+      }
+
+      .btn-red:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 0 0 2px rgba(217, 71, 71, 0.35), 0 0 18px rgba(217, 71, 71, 0.45);
       }
 
       .hero {
@@ -258,6 +270,10 @@
           linear-gradient(145deg, rgba(10, 25, 47, 0.08), rgba(10, 25, 47, 0.02));
       }
 
+      .testimonials-subtitle {
+        margin-inline: auto;
+      }
+
       .carousel {
         margin-top: var(--space-lg);
         background: var(--c-light);
@@ -267,24 +283,52 @@
         overflow: hidden;
       }
 
-      .carousel-track {
+      .carousel--multi {
+        padding: var(--space-sm);
+      }
+
+      .carousel-viewport {
+        overflow: hidden;
+      }
+
+      .carousel--multi .carousel-track {
         display: flex;
-        width: 100%;
+        gap: var(--space-md);
+        align-items: stretch;
         transition: transform 0.5s ease;
+        will-change: transform;
       }
 
-      .testimonial-slide {
-        min-width: 100%;
-        padding: var(--space-xl) var(--space-lg);
+      .carousel--multi .testimonial-slide {
+        min-width: calc((100% - var(--space-md)) / 2);
+        padding: var(--space-lg) var(--space-md);
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(10, 25, 47, 0.12);
+        box-shadow: var(--shadow-soft);
+        background: var(--c-light);
+        position: relative;
       }
 
-      .testimonial-slide p {
+      .carousel--multi .testimonial-slide::before {
+        content: "\f10d";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        font-size: 1rem;
+        color: rgba(10, 25, 47, 0.28);
+      }
+
+      .carousel--multi .testimonial-slide p {
         margin: 0 0 var(--space-sm);
+        padding-left: 1.95rem;
       }
 
-      .testimonial-slide cite {
+      .carousel--multi .testimonial-slide cite {
         font-style: normal;
         font-weight: 700;
+        padding-left: 1.95rem;
       }
 
       .carousel-controls {
@@ -327,6 +371,11 @@
 
       .carousel-dot.active {
         background: var(--c-accent);
+      }
+
+      .testimonials-cta {
+        margin-top: var(--space-md);
+        text-align: center;
       }
 
       .quote-box {
@@ -627,8 +676,14 @@
           grid-template-columns: 1fr;
         }
 
-        .testimonial-slide {
-          padding: var(--space-lg) var(--space-md);
+        .carousel--multi .testimonial-slide {
+          min-width: 100%;
+          padding: var(--space-lg) var(--space-sm);
+        }
+
+        .carousel--multi .testimonial-slide p,
+        .carousel--multi .testimonial-slide cite {
+          padding-left: 1.8rem;
         }
 
         .pricing-card {
@@ -682,45 +737,62 @@
     <section class="section section-dark" id="temoignages">
       <div class="container">
         <h2 class="section-title center" data-reveal>Témoignages</h2>
-        <p class="section-subtitle center" data-reveal>
-          Des retours concrets de personnes qui utilisent Michel Odoul AI pour avancer avec plus de clarté.
+        <p class="section-subtitle center testimonials-subtitle" data-reveal>
+          Des retours concrets de personnes qui utilisent Odoul Coaching au quotidien, pour mieux comprendre ce
+          qu'elles traversent
         </p>
+        <br />
 
-        <div class="carousel" data-carousel data-reveal>
-          <div class="carousel-track">
-            <article class="testimonial-slide">
-              <p>
-                "C’est la meilleure application de décodage que j’ai testée. Je pose des questions sur mes tensions
-                physiques que je n'oserais dire à personne, et les réponses tombent juste. C'est concret, ancré et
-                profond. C'est comme avoir Michel à mes côtés pour m'aider à comprendre le sens de ce que je vis."
-              </p>
-              <cite>— Marc A.</cite>
-            </article>
-            <article class="testimonial-slide">
-              <p>
-                "Incroyable. On peut tout lui demander, et on a l'impression qu'il nous répond directement avec sa
-                douceur habituelle. Cela m'a aidé à trouver la cause de mes maux de dos en quelques minutes. Un vrai
-                retour à l'équilibre."
-              </p>
-              <cite>— Hélène R.</cite>
-            </article>
-            <article class="testimonial-slide">
-              <p>
-                "Je m'en sers chaque semaine. Je gagne du temps, je comprends mieux ce que je traverse, et je repars
-                systématiquement avec une action simple à mettre en place."
-              </p>
-              <cite>— Claire D.</cite>
-            </article>
+        <div class="carousel carousel--multi" data-carousel data-reveal>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <article class="testimonial-slide">
+                <p>C’est la meilleure application de décodage que j’ai testée. C'est concret, ancré et profond.</p>
+                <cite>Marc A.</cite>
+              </article>
+              <article class="testimonial-slide">
+                <p>
+                  "Incroyable. On peut tout lui demander, et on a l'impression qu'il nous répond directement avec sa
+                  douceur habituelle."
+                </p>
+                <cite>Hélène R.</cite>
+              </article>
+              <article class="testimonial-slide">
+                <p>
+                  "Je m'en sers chaque semaine. Je comprends mieux ce que je traverse, et je repars avec une action
+                  simple."
+                </p>
+                <cite>Claire D.</cite>
+              </article>
+              <article class="testimonial-slide">
+                <p>
+                  "Très apaisant. Les réponses sont structurées et m’aident à relier émotion, corps et décisions."
+                </p>
+                <cite>Sofiane L.</cite>
+              </article>
+              <article class="testimonial-slide">
+                <p>
+                  "J’ai retrouvé de la clarté en quelques échanges. C’est comme un petit rendez-vous avec soi."
+                </p>
+                <cite>Julie M.</cite>
+              </article>
+            </div>
           </div>
           <div class="carousel-controls">
             <button class="carousel-btn" type="button" data-prev aria-label="Témoignage précédent">
               <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <div class="carousel-dots" data-dots></div>
+            <div class="carousel-dots" data-dots aria-label="Pagination témoignages"></div>
             <button class="carousel-btn" type="button" data-next aria-label="Témoignage suivant">
               <i class="fa-solid fa-chevron-right"></i>
             </button>
           </div>
+        </div>
+        <div class="testimonials-cta" data-reveal>
+          <a class="btn btn-red" href="#pricing">
+            <i class="fa-solid fa-arrow-down"></i>
+            Voir l'offre mensuelle
+          </a>
         </div>
       </div>
     </section>
@@ -992,71 +1064,169 @@
         }
 
         var carousel = document.querySelector("[data-carousel]");
-        if (carousel) {
-          var track = carousel.querySelector(".carousel-track");
-          var slides = Array.prototype.slice.call(carousel.querySelectorAll(".testimonial-slide"));
-          var dotsWrap = carousel.querySelector("[data-dots]");
-          var prevBtn = carousel.querySelector("[data-prev]");
-          var nextBtn = carousel.querySelector("[data-next]");
-          var index = 0;
-          var timer = null;
-
-          if (!track || !slides.length || !dotsWrap || !prevBtn || !nextBtn) {
-            return;
-          }
-
-          slides.forEach(function (_, dotIndex) {
-            var dot = document.createElement("button");
-            dot.className = "carousel-dot";
-            dot.type = "button";
-            dot.setAttribute("aria-label", "Aller au témoignage " + (dotIndex + 1));
-            dot.addEventListener("click", function () {
-              index = dotIndex;
-              updateCarousel();
-              restartTimer();
-            });
-            dotsWrap.appendChild(dot);
-          });
-
-          var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".carousel-dot"));
-
-          function updateCarousel() {
-            track.style.transform = "translateX(-" + index * 100 + "%)";
-            dots.forEach(function (dot, dotIndex) {
-              dot.classList.toggle("active", dotIndex === index);
-            });
-          }
-
-          function goNext() {
-            index = (index + 1) % slides.length;
-            updateCarousel();
-          }
-
-          function goPrev() {
-            index = (index - 1 + slides.length) % slides.length;
-            updateCarousel();
-          }
-
-          function restartTimer() {
-            if (timer) {
-              clearInterval(timer);
-            }
-            timer = setInterval(goNext, 5000);
-          }
-
-          prevBtn.addEventListener("click", function () {
-            goPrev();
-            restartTimer();
-          });
-
-          nextBtn.addEventListener("click", function () {
-            goNext();
-            restartTimer();
-          });
-
-          updateCarousel();
-          restartTimer();
+        if (!carousel) {
+          return;
         }
+
+        var track = carousel.querySelector(".carousel-track");
+        var viewport = carousel.querySelector(".carousel-viewport");
+        var dotsWrap = carousel.querySelector("[data-dots]");
+        var prevBtn = carousel.querySelector("[data-prev]");
+        var nextBtn = carousel.querySelector("[data-next]");
+        if (!track || !viewport || !dotsWrap || !prevBtn || !nextBtn) {
+          return;
+        }
+
+        var realSlides = Array.prototype.slice.call(track.querySelectorAll(".testimonial-slide"));
+        if (realSlides.length < 2) {
+          return;
+        }
+
+        var index = 0;
+        var offsetIndex = 0;
+        var perView = getPerView();
+        var gapPx = 0;
+        var timer = null;
+
+        dotsWrap.innerHTML = "";
+        realSlides.forEach(function (_, i) {
+          var dot = document.createElement("button");
+          dot.className = "carousel-dot";
+          dot.type = "button";
+          dot.setAttribute("aria-label", "Aller au témoignage " + (i + 1));
+          dot.addEventListener("click", function () {
+            index = i;
+            goToIndex(index);
+            restartTimer();
+          });
+          dotsWrap.appendChild(dot);
+        });
+
+        var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".carousel-dot"));
+
+        function getPerView() {
+          return window.matchMedia("(max-width: 720px)").matches ? 1 : 2;
+        }
+
+        function measureGap() {
+          var styles = window.getComputedStyle(track);
+          gapPx = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+        }
+
+        function slideWidth() {
+          var first = track.querySelector(".testimonial-slide");
+          if (!first) {
+            return 0;
+          }
+          return first.getBoundingClientRect().width;
+        }
+
+        function applyTransform(skipAnim) {
+          track.style.transition = skipAnim ? "none" : "transform .5s ease";
+          var width = slideWidth();
+          var x = (width + gapPx) * offsetIndex;
+          track.style.transform = "translateX(-" + x + "px)";
+        }
+
+        function updateDots() {
+          var normalized = ((index % realSlides.length) + realSlides.length) % realSlides.length;
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle("active", i === normalized);
+          });
+        }
+
+        function setupClones() {
+          track.querySelectorAll("[data-clone]").forEach(function (cloneNode) {
+            cloneNode.remove();
+          });
+
+          perView = getPerView();
+
+          for (var i = realSlides.length - perView; i < realSlides.length; i++) {
+            var cloneBefore = realSlides[i].cloneNode(true);
+            cloneBefore.setAttribute("data-clone", "true");
+            track.insertBefore(cloneBefore, track.firstChild);
+          }
+
+          for (var j = 0; j < perView; j++) {
+            var cloneAfter = realSlides[j].cloneNode(true);
+            cloneAfter.setAttribute("data-clone", "true");
+            track.appendChild(cloneAfter);
+          }
+
+          offsetIndex = index + perView;
+          measureGap();
+          applyTransform(true);
+          updateDots();
+        }
+
+        function goToIndex(i) {
+          index = i;
+          offsetIndex = index + perView;
+          measureGap();
+          applyTransform(false);
+          updateDots();
+        }
+
+        function goNext() {
+          index += 1;
+          offsetIndex += 1;
+          applyTransform(false);
+          updateDots();
+        }
+
+        function goPrev() {
+          index -= 1;
+          offsetIndex -= 1;
+          applyTransform(false);
+          updateDots();
+        }
+
+        function restartTimer() {
+          if (timer) {
+            clearInterval(timer);
+          }
+          timer = setInterval(goNext, 5200);
+        }
+
+        track.addEventListener("transitionend", function () {
+          if (index >= realSlides.length) {
+            index = 0;
+            offsetIndex = index + perView;
+            applyTransform(true);
+            updateDots();
+          }
+
+          if (index < 0) {
+            index = realSlides.length - 1;
+            offsetIndex = index + perView;
+            applyTransform(true);
+            updateDots();
+          }
+        });
+
+        prevBtn.addEventListener("click", function () {
+          goPrev();
+          restartTimer();
+        });
+
+        nextBtn.addEventListener("click", function () {
+          goNext();
+          restartTimer();
+        });
+
+        window.addEventListener("resize", function () {
+          var newPerView = getPerView();
+          if (newPerView !== perView) {
+            setupClones();
+          } else {
+            measureGap();
+            applyTransform(true);
+          }
+        });
+
+        setupClones();
+        restartTimer();
       })();
     </script>
   </body>
