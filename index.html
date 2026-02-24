@@ -306,180 +306,247 @@
         font-size: 1.03rem;
       }
 
-      .proof-layout {
-        margin-top: 32px;
-        display: grid;
-        gap: 22px;
+      .tgrid {
+        background: #fff;
+        padding: 56px 16px 62px;
+        color: #0a0f39;
       }
 
-      .proof-block {
-        background: rgba(255, 255, 255, 0.7);
-        border: 1px solid #e5eaff;
-        border-radius: 20px;
-        padding: 22px;
+      .tgrid__inner {
+        max-width: 1180px;
+        margin: 0 auto;
       }
 
-      .proof-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 14px;
+      .tgrid__head {
+        text-align: center;
+        margin-bottom: 22px;
       }
 
-      .proof-head h3 {
-        margin: 0;
-        font-size: 1.08rem;
-        color: #1f2d56;
+      .tgrid__title {
+        margin: 12px 0 10px;
+        font-size: clamp(1.7rem, 3vw, 2.6rem);
+        line-height: 1.06;
+        letter-spacing: -0.02em;
+        color: #0a0f39;
       }
 
-      .proof-count {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 6px 10px;
-        border-radius: 999px;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-        color: #38467a;
-        background: #edf1ff;
+      .tgrid__lead {
+        margin: 0 auto;
+        max-width: 760px;
+        color: #455076;
       }
 
-      .proof-grid {
+      .tgrid__sub {
+        margin: 26px 0 14px;
+        font-size: 1.1rem;
+        font-weight: 900;
+        color: #0a0f39;
+      }
+
+      .tgrid__row3,
+      .tgrid__more {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
+        align-items: stretch;
       }
 
-      .quote {
-        padding: 22px;
-        border-radius: 16px;
-        background: #fff;
-        border: 1px solid #e6ebff;
-      }
-
-      .quote p {
-        margin: 0 0 10px;
-      }
-
-      .quote b {
-        color: #30406e;
-      }
-
-      .proof-drawer {
-        margin-top: 16px;
-      }
-
-      .proof-drawer > summary {
-        list-style: none;
-        cursor: pointer;
-        width: fit-content;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: 1px solid #d9e1ff;
-        background: #fff;
-        color: #263568;
-        font-weight: 700;
-      }
-
-      .proof-drawer > summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .proof-drawer[open] > summary {
-        background: #f4f7ff;
-      }
-
-      .proof-drawer__more {
-        margin-top: 14px;
-      }
-
-      .video-grid {
+      .tgrid__video-row,
+      .tgrid__video-more {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
       }
 
-      .video-quote {
-        background: #fff;
-        border: 1px solid #e6ebff;
-        border-radius: 16px;
-        padding: 14px;
+      .tgrid__drawer {
+        margin-top: 18px;
+        border: 0;
+        background: transparent;
+        padding: 0;
       }
 
-      .video-quote__media {
+      .tgrid__btn {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        width: fit-content;
+        margin: 0 auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: #fff;
+        color: rgba(10, 15, 57, 0.92);
+        border: 1px solid rgba(10, 15, 57, 0.14);
+        box-shadow: 0 12px 28px rgba(10, 16, 40, 0.1);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .tgrid__btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 38px rgba(10, 16, 40, 0.12);
+      }
+
+      .tgrid__btn::-webkit-details-marker {
+        display: none;
+      }
+
+      .tgrid__chev {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        background: rgba(47, 107, 255, 0.1);
+        border: 1px solid rgba(47, 107, 255, 0.18);
+        color: rgba(10, 15, 57, 0.92);
+        transition: transform 0.2s ease;
+      }
+
+      .tgrid__drawer[open] .tgrid__chev {
+        transform: rotate(180deg);
+      }
+
+      .tcard {
+        border-radius: 26px;
+        padding: 20px 20px 16px;
+        background:
+          radial-gradient(700px 180px at 12% 0%, rgba(47, 107, 255, 0.1), transparent 58%),
+          radial-gradient(700px 180px at 90% 100%, rgba(255, 211, 106, 0.12), transparent 58%),
+          linear-gradient(180deg, #ffffff, #f7f9ff);
+        border: 1px solid rgba(10, 15, 57, 0.1);
+        box-shadow: 0 18px 45px rgba(10, 16, 40, 0.1);
+        height: 100%;
+      }
+
+      .tcard__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .tcard__stars {
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 1;
+        color: #ffd36a;
+        text-shadow: 0 10px 22px rgba(255, 211, 106, 0.18);
+        user-select: none;
+        white-space: nowrap;
+      }
+
+      .tcard__badge {
+        width: 38px;
+        height: 38px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        color: rgba(10, 15, 57, 0.9);
+        background: rgba(255, 211, 106, 0.18);
+        border: 1px solid rgba(255, 211, 106, 0.38);
+        box-shadow: 0 10px 22px rgba(10, 16, 40, 0.08);
+        flex: 0 0 auto;
+      }
+
+      .tcard__title {
         margin: 0 0 12px;
-        border-radius: 12px;
+        font-size: 18px;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        font-weight: 950;
+        color: #0a0f39;
+      }
+
+      .tcard__text {
+        margin: 0 0 14px;
+        font-size: 14.8px;
+        line-height: 1.55;
+        color: rgba(10, 15, 57, 0.78);
+      }
+
+      .tcard__author {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 950;
+        color: rgba(10, 15, 57, 0.78);
+      }
+
+      .tvideo {
+        border-radius: 26px;
+        padding: 14px;
+        background:
+          radial-gradient(700px 180px at 12% 0%, rgba(47, 107, 255, 0.1), transparent 58%),
+          radial-gradient(700px 180px at 90% 100%, rgba(255, 211, 106, 0.12), transparent 58%),
+          linear-gradient(180deg, #ffffff, #f7f9ff);
+        border: 1px solid rgba(10, 15, 57, 0.1);
+        box-shadow: 0 18px 45px rgba(10, 16, 40, 0.1);
+      }
+
+      .tvideo__media {
+        position: relative;
         width: 100%;
         aspect-ratio: 16 / 9;
-        background: linear-gradient(140deg, #252f65, #5c4dff);
-        position: relative;
+        border-radius: 16px;
+        background: linear-gradient(140deg, #1e285b, #5a4cff);
         display: grid;
         place-items: center;
         overflow: hidden;
       }
 
-      .video-quote__media::after {
+      .tvideo__media::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 50%);
+        background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.24), transparent 50%);
         pointer-events: none;
       }
 
-      .video-quote__play {
+      .tvideo__play {
         position: relative;
         z-index: 1;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
         width: 56px;
         height: 56px;
-        border-radius: 50%;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
         background: #fff;
-        color: #2f3b78;
-        font-size: 0.96rem;
+        color: #293568;
+        font-size: 0.9rem;
         font-weight: 800;
-        letter-spacing: 0.02em;
       }
 
-      .video-quote__duration {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        z-index: 1;
-        border-radius: 8px;
-        padding: 4px 8px;
-        font-size: 0.76rem;
-        font-weight: 700;
-        color: #fff;
-        background: rgba(15, 19, 40, 0.65);
+      .tvideo__body {
+        padding: 12px 4px 4px;
       }
 
-      .video-quote h4 {
+      .tvideo__title {
         margin: 0 0 6px;
         font-size: 1rem;
+        color: #0a0f39;
       }
 
-      .video-quote p {
-        margin: 0;
-        color: #455076;
+      .tvideo__meta {
+        margin: 0 0 10px;
+        font-size: 0.9rem;
+        color: rgba(10, 15, 57, 0.7);
       }
 
-      .video-quote__link {
-        margin-top: 10px;
+      .tvideo__link {
         display: inline-flex;
+        align-items: center;
+        gap: 8px;
         font-size: 0.88rem;
-        font-weight: 700;
-        color: #3f35b7;
+        font-weight: 800;
+        color: #33409a;
+        word-break: break-all;
       }
 
-      .video-quote__link:hover {
+      .tvideo__link:hover {
         text-decoration: underline;
       }
 
@@ -620,12 +687,14 @@
           grid-template-columns: 1fr;
         }
 
-        .benefits-grid,
-        .proof-grid {
+        .benefits-grid {
           grid-template-columns: 1fr 1fr;
         }
 
-        .video-grid {
+        .tgrid__row3,
+        .tgrid__more,
+        .tgrid__video-row,
+        .tgrid__video-more {
           grid-template-columns: 1fr;
         }
 
@@ -639,23 +708,22 @@
           display: none;
         }
 
-        .benefits-grid,
-        .proof-grid {
+        .benefits-grid {
           grid-template-columns: 1fr;
         }
 
-        .proof-block {
-          padding: 18px;
+        .tgrid {
+          padding: 46px 14px 54px;
         }
 
-        .proof-head {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .proof-drawer > summary {
+        .tgrid__btn {
           width: 100%;
           justify-content: center;
+        }
+
+        .tcard,
+        .tvideo {
+          border-radius: 22px;
         }
 
         .hero {
@@ -811,125 +879,268 @@
       </div>
     </section>
 
-    <section class="section" id="resultats">
-      <div class="container">
-        <span class="pill">Temoignages</span>
-        <h2>Des resultats prouves en video et a l ecrit</h2>
-        <p class="lead">
-          Tu montres des preuves visibles des le premier ecran: 4 temoignages video et 6 temoignages ecrits.
-        </p>
+    <section class="tgrid" id="resultats" aria-label="Temoignages">
+      <div class="tgrid__inner">
+        <div class="tgrid__head">
+          <span class="pill">Temoignages</span>
+          <h2 class="tgrid__title">Des temoignages ecrits et videos</h2>
+          <p class="tgrid__lead">
+            Tu gardes une preuve sociale complete: 6 temoignages ecrits + 4 temoignages video.
+          </p>
+        </div>
 
-        <div class="proof-layout">
-          <article class="proof-block">
-            <div class="proof-head">
-              <h3>Temoignages video</h3>
-              <span class="proof-count">4 videos</span>
-            </div>
-
-            <div class="video-grid">
-              <article class="video-quote">
-                <div class="video-quote__media" role="img" aria-label="Apercu du temoignage video de Sarah M.">
-                  <span class="video-quote__play">Play</span>
-                  <span class="video-quote__duration">03:12</span>
-                </div>
-                <h4>Sarah M. - Coach business</h4>
-                <p>"J ai signe 11 ventes a 690 EUR en 3 semaines. Les scripts m ont fait gagner un temps fou."</p>
-                <a class="video-quote__link" href="#">Voir la video complete</a>
-              </article>
-
-              <article class="video-quote">
-                <div class="video-quote__media" role="img" aria-label="Apercu du temoignage video de Yanis D.">
-                  <span class="video-quote__play">Play</span>
-                  <span class="video-quote__duration">02:47</span>
-                </div>
-                <h4>Yanis D. - Formateur freelance</h4>
-                <p>"J ai lance mon beta a 890 EUR avec 17 participants. La methode est ultra concrete."</p>
-                <a class="video-quote__link" href="#">Voir la video complete</a>
-              </article>
-            </div>
-
-            <details class="proof-drawer">
-              <summary>Voir 2 videos supplementaires</summary>
-              <div class="video-grid proof-drawer__more">
-                <article class="video-quote">
-                  <div class="video-quote__media" role="img" aria-label="Apercu du temoignage video de Lucie R.">
-                    <span class="video-quote__play">Play</span>
-                    <span class="video-quote__duration">04:02</span>
-                  </div>
-                  <h4>Lucie R. - Consultante marketing</h4>
-                  <p>"Mon tunnel est enfin clair et je double mes appels qualifies sans depenser plus."</p>
-                  <a class="video-quote__link" href="#">Voir la video complete</a>
-                </article>
-
-                <article class="video-quote">
-                  <div class="video-quote__media" role="img" aria-label="Apercu du temoignage video de Karim B.">
-                    <span class="video-quote__play">Play</span>
-                    <span class="video-quote__duration">03:35</span>
-                  </div>
-                  <h4>Karim B. - Expert productivite</h4>
-                  <p>"Je suis passe du contenu gratuit a une offre premium a 497 EUR en moins de 2 mois."</p>
-                  <a class="video-quote__link" href="#">Voir la video complete</a>
-                </article>
+        <h3 class="tgrid__sub">Temoignages ecrits</h3>
+        <div class="tgrid__row3">
+          <article class="tcard">
+            <div class="tcard__top">
+              <div class="tcard__stars" aria-label="5 etoiles">★★★★★</div>
+              <div class="tcard__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                  <path
+                    d="M12 2l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 7.3l5-.7L12 2z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
               </div>
-            </details>
+            </div>
+            <h3 class="tcard__title">"J avais l impression de mourir a petit feu"</h3>
+            <p class="tcard__text">
+              "Le Dr Dieuzaide gagne a etre connu ! Je remercie le ciel de l avoir mis sur mon chemin parce que
+              j avais l impression de mourir a petit feu, atteinte d une grave maladie. Un grand MERCI Dr
+              Dieuzaide !"
+            </p>
+            <p class="tcard__author">Cyrine</p>
           </article>
 
-          <article class="proof-block">
-            <div class="proof-head">
-              <h3>Temoignages ecrits</h3>
-              <span class="proof-count">6 avis clients</span>
-            </div>
-
-            <div class="proof-grid">
-              <article class="quote">
-                <p>
-                  "J ai signe 11 ventes a 690 EUR en 3 semaines. La structure de page et les scripts ont tout
-                  change."
-                </p>
-                <b>Sarah M. - Coach business</b>
-              </article>
-              <article class="quote">
-                <p>
-                  "Je repoussais mon programme depuis 1 an. En 6 semaines j avais mes modules prets et un funnel
-                  rentable."
-                </p>
-                <b>Yanis D. - Formateur freelance</b>
-              </article>
-              <article class="quote">
-                <p>
-                  "Le plus fort: la clarte. Je sais enfin quoi dire, quoi vendre et comment convertir sans forcer."
-                </p>
-                <b>Lucie R. - Consultante marketing</b>
-              </article>
-            </div>
-
-            <details class="proof-drawer">
-              <summary>Voir 3 temoignages ecrits supplementaires</summary>
-              <div class="proof-grid proof-drawer__more">
-                <article class="quote">
-                  <p>
-                    "J ai finalise mes 8 modules sans m eparpiller, puis j ai signe 5 clients premium en lancement
-                    pilote."
-                  </p>
-                  <b>Camille T. - Coach nutrition</b>
-                </article>
-                <article class="quote">
-                  <p>
-                    "Le script webinar a fait la difference: 19% de conversion sur ma premiere session live."
-                  </p>
-                  <b>Mehdi L. - Expert B2B</b>
-                </article>
-                <article class="quote">
-                  <p>
-                    "Les templates m ont fait gagner des semaines. J ai lance plus vite avec une offre bien
-                    positionnee."
-                  </p>
-                  <b>Nora V. - Consultante RH</b>
-                </article>
+          <article class="tcard">
+            <div class="tcard__top">
+              <div class="tcard__stars" aria-label="5 etoiles">★★★★★</div>
+              <div class="tcard__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                  <path
+                    d="M12 2l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 7.3l5-.7L12 2z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
               </div>
-            </details>
+            </div>
+            <h3 class="tcard__title">"Il a enleve ma camisole de souffrance"</h3>
+            <p class="tcard__text">
+              "Un grand merci au Dr Dieuzaide pour sa gentillesse et son professionnalisme. Il a enleve la camisole
+              de souffrance que j avais depuis plus de trente ans ! Ce sont reellement des annees de vie gachees."
+            </p>
+            <p class="tcard__author">Jeanine</p>
+          </article>
+
+          <article class="tcard">
+            <div class="tcard__top">
+              <div class="tcard__stars" aria-label="5 etoiles">★★★★★</div>
+              <div class="tcard__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                  <path
+                    d="M12 2l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 7.3l5-.7L12 2z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="tcard__title">"J oublie meme que j ai tant souffert !"</h3>
+            <p class="tcard__text">
+              "J ai commence a modifier mon mode de vie et a limiter mon exposition a l environnement toxique. Je
+              me sens beaucoup mieux aujourd hui et j ai pu reprendre une activite sportive : yoga et danse. J oublie
+              meme que j ai tant souffert !"
+            </p>
+            <p class="tcard__author">Monique</p>
           </article>
         </div>
+
+        <details class="tgrid__drawer" id="moreTestimonialsText">
+          <summary class="tgrid__btn">
+            <span>Decouvrir plus de temoignages ecrits</span>
+            <span class="tgrid__chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                <path
+                  d="M6 9l6 6 6-6"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </span>
+          </summary>
+          <div class="tgrid__more">
+            <article class="tcard">
+              <div class="tcard__top">
+                <div class="tcard__stars" aria-label="5 etoiles">★★★★★</div>
+                <div class="tcard__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path
+                      d="M12 2l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 7.3l5-.7L12 2z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="tcard__title">"Je ne trouve pas les mots pour le remercier"</h3>
+              <p class="tcard__text">
+                "Je ne trouve pas les mots pour remercier le docteur Dieuzaide. C est un grand privilege que d avoir
+                ete soignee par le docteur Dieuzaide, nous ne pouvons qu avoir de l admiration et un grand respect
+                devant sa gentillesse, son altruisme, son professionnalisme, son courage. Mais aussi son savoir, qu il
+                transmet pour delivrer un maximum de patients de leur souffrance."
+              </p>
+              <p class="tcard__author">Fran&ccedil;oise</p>
+            </article>
+
+            <article class="tcard">
+              <div class="tcard__top">
+                <div class="tcard__stars" aria-label="5 etoiles">★★★★★</div>
+                <div class="tcard__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path
+                      d="M12 2l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 7.3l5-.7L12 2z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="tcard__title">"On m a enleve une armure de plusieurs kilos"</h3>
+              <p class="tcard__text">
+                "J ai l impression que l on m a enleve une armure de plusieurs kilos ! J ai retrouve ma souplesse au
+                niveau du cou et des epaules. J ai nettement plus de force. Je dors beaucoup mieux. Je suis en
+                meilleure forme. Et je n ai plus la tete qui gresille ! Plus de vertiges, de tremblements et de pertes
+                de memoires immediates."
+              </p>
+              <p class="tcard__author">Ga&euml;lle</p>
+            </article>
+
+            <article class="tcard">
+              <div class="tcard__top">
+                <div class="tcard__stars" aria-label="5 etoiles">★★★★★</div>
+                <div class="tcard__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path
+                      d="M12 2l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 7.3l5-.7L12 2z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="tcard__title">"Mes douleurs venaient d une hypersensibilite aux ondes"</h3>
+              <p class="tcard__text">
+                "Apres la serie de tests, les echanges avec le DR DIEUZAIDE, j ai ressenti a la fois du soulagement
+                de comprendre que mes douleurs handicapantes resultaient d une hypersensibilite aux ondes
+                electromagnetiques et aux produits chimiques."
+              </p>
+              <p class="tcard__author">Christiane</p>
+            </article>
+          </div>
+        </details>
+
+        <h3 class="tgrid__sub">Temoignages video</h3>
+        <div class="tgrid__video-row">
+          <article class="tvideo">
+            <div class="tvideo__media">
+              <span class="tvideo__play">Play</span>
+            </div>
+            <div class="tvideo__body">
+              <h4 class="tvideo__title">Temoignage video 1</h4>
+              <p class="tvideo__meta">Remplacer le lien ci-dessous avec ta vraie URL.</p>
+              <a
+                class="tvideo__link"
+                href="https://URL_VIDEO_1_A_REMPLACER"
+                target="_blank"
+                rel="noreferrer"
+              >
+                https://URL_VIDEO_1_A_REMPLACER
+              </a>
+            </div>
+          </article>
+
+          <article class="tvideo">
+            <div class="tvideo__media">
+              <span class="tvideo__play">Play</span>
+            </div>
+            <div class="tvideo__body">
+              <h4 class="tvideo__title">Temoignage video 2</h4>
+              <p class="tvideo__meta">Remplacer le lien ci-dessous avec ta vraie URL.</p>
+              <a
+                class="tvideo__link"
+                href="https://URL_VIDEO_2_A_REMPLACER"
+                target="_blank"
+                rel="noreferrer"
+              >
+                https://URL_VIDEO_2_A_REMPLACER
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <details class="tgrid__drawer" id="moreTestimonialsVideo">
+          <summary class="tgrid__btn">
+            <span>Decouvrir plus de temoignages video</span>
+            <span class="tgrid__chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                <path
+                  d="M6 9l6 6 6-6"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </span>
+          </summary>
+          <div class="tgrid__video-more">
+            <article class="tvideo">
+              <div class="tvideo__media">
+                <span class="tvideo__play">Play</span>
+              </div>
+              <div class="tvideo__body">
+                <h4 class="tvideo__title">Temoignage video 3</h4>
+                <p class="tvideo__meta">Remplacer le lien ci-dessous avec ta vraie URL.</p>
+                <a
+                  class="tvideo__link"
+                  href="https://URL_VIDEO_3_A_REMPLACER"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  https://URL_VIDEO_3_A_REMPLACER
+                </a>
+              </div>
+            </article>
+
+            <article class="tvideo">
+              <div class="tvideo__media">
+                <span class="tvideo__play">Play</span>
+              </div>
+              <div class="tvideo__body">
+                <h4 class="tvideo__title">Temoignage video 4</h4>
+                <p class="tvideo__meta">Remplacer le lien ci-dessous avec ta vraie URL.</p>
+                <a
+                  class="tvideo__link"
+                  href="https://URL_VIDEO_4_A_REMPLACER"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  https://URL_VIDEO_4_A_REMPLACER
+                </a>
+              </div>
+            </article>
+          </div>
+        </details>
       </div>
     </section>
 
