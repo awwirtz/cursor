@@ -306,8 +306,48 @@
         font-size: 1.03rem;
       }
 
-      .proof-grid {
+      .proof-layout {
         margin-top: 32px;
+        display: grid;
+        gap: 22px;
+      }
+
+      .proof-block {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid #e5eaff;
+        border-radius: 20px;
+        padding: 22px;
+      }
+
+      .proof-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .proof-head h3 {
+        margin: 0;
+        font-size: 1.08rem;
+        color: #1f2d56;
+      }
+
+      .proof-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: #38467a;
+        background: #edf1ff;
+      }
+
+      .proof-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
@@ -326,6 +366,121 @@
 
       .quote b {
         color: #30406e;
+      }
+
+      .proof-drawer {
+        margin-top: 16px;
+      }
+
+      .proof-drawer > summary {
+        list-style: none;
+        cursor: pointer;
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid #d9e1ff;
+        background: #fff;
+        color: #263568;
+        font-weight: 700;
+      }
+
+      .proof-drawer > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .proof-drawer[open] > summary {
+        background: #f4f7ff;
+      }
+
+      .proof-drawer__more {
+        margin-top: 14px;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .video-quote {
+        background: #fff;
+        border: 1px solid #e6ebff;
+        border-radius: 16px;
+        padding: 14px;
+      }
+
+      .video-quote__media {
+        margin: 0 0 12px;
+        border-radius: 12px;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: linear-gradient(140deg, #252f65, #5c4dff);
+        position: relative;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      .video-quote__media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 50%);
+        pointer-events: none;
+      }
+
+      .video-quote__play {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #fff;
+        color: #2f3b78;
+        font-size: 0.96rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .video-quote__duration {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        z-index: 1;
+        border-radius: 8px;
+        padding: 4px 8px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: #fff;
+        background: rgba(15, 19, 40, 0.65);
+      }
+
+      .video-quote h4 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+      }
+
+      .video-quote p {
+        margin: 0;
+        color: #455076;
+      }
+
+      .video-quote__link {
+        margin-top: 10px;
+        display: inline-flex;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #3f35b7;
+      }
+
+      .video-quote__link:hover {
+        text-decoration: underline;
       }
 
       .offer-wrap {
@@ -470,6 +625,10 @@
           grid-template-columns: 1fr 1fr;
         }
 
+        .video-grid {
+          grid-template-columns: 1fr;
+        }
+
         .modules {
           grid-template-columns: 1fr;
         }
@@ -483,6 +642,20 @@
         .benefits-grid,
         .proof-grid {
           grid-template-columns: 1fr;
+        }
+
+        .proof-block {
+          padding: 18px;
+        }
+
+        .proof-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .proof-drawer > summary {
+          width: 100%;
+          justify-content: center;
         }
 
         .hero {
@@ -641,31 +814,120 @@
     <section class="section" id="resultats">
       <div class="container">
         <span class="pill">Temoignages</span>
-        <h2>Des createurs et experts qui ont lance rapidement</h2>
+        <h2>Des resultats prouves en video et a l ecrit</h2>
         <p class="lead">
-          Pas de theorie vague: voici ce que nos eleves obtiennent en appliquant la methode.
+          Tu montres des preuves visibles des le premier ecran: 4 temoignages video et 6 temoignages ecrits.
         </p>
 
-        <div class="proof-grid">
-          <article class="quote">
-            <p>
-              "J ai signe 11 ventes a 690 EUR en 3 semaines. La structure de page et les scripts ont tout
-              change."
-            </p>
-            <b>Sarah M. - Coach business</b>
+        <div class="proof-layout">
+          <article class="proof-block">
+            <div class="proof-head">
+              <h3>Temoignages video</h3>
+              <span class="proof-count">4 videos</span>
+            </div>
+
+            <div class="video-grid">
+              <article class="video-quote">
+                <div class="video-quote__media" role="img" aria-label="Apercu du temoignage video de Sarah M.">
+                  <span class="video-quote__play">Play</span>
+                  <span class="video-quote__duration">03:12</span>
+                </div>
+                <h4>Sarah M. - Coach business</h4>
+                <p>"J ai signe 11 ventes a 690 EUR en 3 semaines. Les scripts m ont fait gagner un temps fou."</p>
+                <a class="video-quote__link" href="#">Voir la video complete</a>
+              </article>
+
+              <article class="video-quote">
+                <div class="video-quote__media" role="img" aria-label="Apercu du temoignage video de Yanis D.">
+                  <span class="video-quote__play">Play</span>
+                  <span class="video-quote__duration">02:47</span>
+                </div>
+                <h4>Yanis D. - Formateur freelance</h4>
+                <p>"J ai lance mon beta a 890 EUR avec 17 participants. La methode est ultra concrete."</p>
+                <a class="video-quote__link" href="#">Voir la video complete</a>
+              </article>
+            </div>
+
+            <details class="proof-drawer">
+              <summary>Voir 2 videos supplementaires</summary>
+              <div class="video-grid proof-drawer__more">
+                <article class="video-quote">
+                  <div class="video-quote__media" role="img" aria-label="Apercu du temoignage video de Lucie R.">
+                    <span class="video-quote__play">Play</span>
+                    <span class="video-quote__duration">04:02</span>
+                  </div>
+                  <h4>Lucie R. - Consultante marketing</h4>
+                  <p>"Mon tunnel est enfin clair et je double mes appels qualifies sans depenser plus."</p>
+                  <a class="video-quote__link" href="#">Voir la video complete</a>
+                </article>
+
+                <article class="video-quote">
+                  <div class="video-quote__media" role="img" aria-label="Apercu du temoignage video de Karim B.">
+                    <span class="video-quote__play">Play</span>
+                    <span class="video-quote__duration">03:35</span>
+                  </div>
+                  <h4>Karim B. - Expert productivite</h4>
+                  <p>"Je suis passe du contenu gratuit a une offre premium a 497 EUR en moins de 2 mois."</p>
+                  <a class="video-quote__link" href="#">Voir la video complete</a>
+                </article>
+              </div>
+            </details>
           </article>
-          <article class="quote">
-            <p>
-              "Je repoussais mon programme depuis 1 an. En 6 semaines j avais mes modules prets et un funnel
-              rentable."
-            </p>
-            <b>Yanis D. - Formateur freelance</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Le plus fort: la clarte. Je sais enfin quoi dire, quoi vendre et comment convertir sans forcer."
-            </p>
-            <b>Lucie R. - Consultante marketing</b>
+
+          <article class="proof-block">
+            <div class="proof-head">
+              <h3>Temoignages ecrits</h3>
+              <span class="proof-count">6 avis clients</span>
+            </div>
+
+            <div class="proof-grid">
+              <article class="quote">
+                <p>
+                  "J ai signe 11 ventes a 690 EUR en 3 semaines. La structure de page et les scripts ont tout
+                  change."
+                </p>
+                <b>Sarah M. - Coach business</b>
+              </article>
+              <article class="quote">
+                <p>
+                  "Je repoussais mon programme depuis 1 an. En 6 semaines j avais mes modules prets et un funnel
+                  rentable."
+                </p>
+                <b>Yanis D. - Formateur freelance</b>
+              </article>
+              <article class="quote">
+                <p>
+                  "Le plus fort: la clarte. Je sais enfin quoi dire, quoi vendre et comment convertir sans forcer."
+                </p>
+                <b>Lucie R. - Consultante marketing</b>
+              </article>
+            </div>
+
+            <details class="proof-drawer">
+              <summary>Voir 3 temoignages ecrits supplementaires</summary>
+              <div class="proof-grid proof-drawer__more">
+                <article class="quote">
+                  <p>
+                    "J ai finalise mes 8 modules sans m eparpiller, puis j ai signe 5 clients premium en lancement
+                    pilote."
+                  </p>
+                  <b>Camille T. - Coach nutrition</b>
+                </article>
+                <article class="quote">
+                  <p>
+                    "Le script webinar a fait la difference: 19% de conversion sur ma premiere session live."
+                  </p>
+                  <b>Mehdi L. - Expert B2B</b>
+                </article>
+                <article class="quote">
+                  <p>
+                    "Les templates m ont fait gagner des semaines. J ai lance plus vite avec une offre bien
+                    positionnee."
+                  </p>
+                  <b>Nora V. - Consultante RH</b>
+                </article>
+              </div>
+            </details>
           </article>
         </div>
       </div>
