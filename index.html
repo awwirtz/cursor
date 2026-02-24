@@ -351,9 +351,17 @@
         align-items: stretch;
       }
 
-      .tgrid__video-row,
+      .tgrid__video3,
       .tgrid__video-more {
         display: grid;
+        gap: 16px;
+      }
+
+      .tgrid__video3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .tgrid__video-more {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
       }
@@ -487,37 +495,19 @@
         box-shadow: 0 18px 45px rgba(10, 16, 40, 0.1);
       }
 
-      .tvideo__media {
-        position: relative;
+      .tvideo__player {
         width: 100%;
-        aspect-ratio: 16 / 9;
         border-radius: 16px;
-        background: linear-gradient(140deg, #1e285b, #5a4cff);
-        display: grid;
-        place-items: center;
         overflow: hidden;
+        background: linear-gradient(140deg, #e9edff, #f7f9ff);
+        min-height: 210px;
       }
 
-      .tvideo__media::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.24), transparent 50%);
-        pointer-events: none;
-      }
-
-      .tvideo__play {
-        position: relative;
-        z-index: 1;
-        width: 56px;
-        height: 56px;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        background: #fff;
-        color: #293568;
-        font-size: 0.9rem;
-        font-weight: 800;
+      .tvideo__player .vidyard-player-embed {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
       }
 
       .tvideo__body {
@@ -536,18 +526,12 @@
         color: rgba(10, 15, 57, 0.7);
       }
 
-      .tvideo__link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.88rem;
+      .tvideo__id {
+        margin: 0;
+        font-size: 0.82rem;
         font-weight: 800;
         color: #33409a;
         word-break: break-all;
-      }
-
-      .tvideo__link:hover {
-        text-decoration: underline;
       }
 
       .offer-wrap {
@@ -693,7 +677,7 @@
 
         .tgrid__row3,
         .tgrid__more,
-        .tgrid__video-row,
+        .tgrid__video3,
         .tgrid__video-more {
           grid-template-columns: 1fr;
         }
@@ -885,9 +869,75 @@
           <span class="pill">Temoignages</span>
           <h2 class="tgrid__title">Des temoignages ecrits et videos</h2>
           <p class="tgrid__lead">
-            Tu gardes une preuve sociale complete: 6 temoignages ecrits + 4 temoignages video.
+            Tu gardes une preuve sociale complete: 5 temoignages video + 6 temoignages ecrits.
           </p>
         </div>
+
+        <h3 class="tgrid__sub">Temoignages video</h3>
+        <div class="tgrid__video3">
+          <article class="tvideo">
+            <div class="tvideo__player" data-vidyard-id="ejRwBj7A82Yr53WQuUCPo7"></div>
+            <div class="tvideo__body">
+              <h4 class="tvideo__title">Temoignage video 1</h4>
+              <p class="tvideo__meta">Remplace uniquement la valeur de data-vidyard-id.</p>
+              <p class="tvideo__id"></p>
+            </div>
+          </article>
+
+          <article class="tvideo">
+            <div class="tvideo__player" data-vidyard-id="ID_VIDEO_2_A_REMPLACER"></div>
+            <div class="tvideo__body">
+              <h4 class="tvideo__title">Temoignage video 2</h4>
+              <p class="tvideo__meta">Remplace uniquement la valeur de data-vidyard-id.</p>
+              <p class="tvideo__id"></p>
+            </div>
+          </article>
+
+          <article class="tvideo">
+            <div class="tvideo__player" data-vidyard-id="ID_VIDEO_3_A_REMPLACER"></div>
+            <div class="tvideo__body">
+              <h4 class="tvideo__title">Temoignage video 3</h4>
+              <p class="tvideo__meta">Remplace uniquement la valeur de data-vidyard-id.</p>
+              <p class="tvideo__id"></p>
+            </div>
+          </article>
+        </div>
+
+        <details class="tgrid__drawer" id="moreTestimonialsVideo">
+          <summary class="tgrid__btn">
+            <span>Decouvrir plus de temoignages videos</span>
+            <span class="tgrid__chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                <path
+                  d="M6 9l6 6 6-6"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </span>
+          </summary>
+          <div class="tgrid__video-more">
+            <article class="tvideo">
+              <div class="tvideo__player" data-vidyard-id="ID_VIDEO_4_A_REMPLACER"></div>
+              <div class="tvideo__body">
+                <h4 class="tvideo__title">Temoignage video 4</h4>
+                <p class="tvideo__meta">Remplace uniquement la valeur de data-vidyard-id.</p>
+                <p class="tvideo__id"></p>
+              </div>
+            </article>
+
+            <article class="tvideo">
+              <div class="tvideo__player" data-vidyard-id="ID_VIDEO_5_A_REMPLACER"></div>
+              <div class="tvideo__body">
+                <h4 class="tvideo__title">Temoignage video 5</h4>
+                <p class="tvideo__meta">Remplace uniquement la valeur de data-vidyard-id.</p>
+                <p class="tvideo__id"></p>
+              </div>
+            </article>
+          </div>
+        </details>
 
         <h3 class="tgrid__sub">Temoignages ecrits</h3>
         <div class="tgrid__row3">
@@ -1048,99 +1098,6 @@
             </article>
           </div>
         </details>
-
-        <h3 class="tgrid__sub">Temoignages video</h3>
-        <div class="tgrid__video-row">
-          <article class="tvideo">
-            <div class="tvideo__media">
-              <span class="tvideo__play">Play</span>
-            </div>
-            <div class="tvideo__body">
-              <h4 class="tvideo__title">Temoignage video 1</h4>
-              <p class="tvideo__meta">Remplacer le lien ci-dessous avec ta vraie URL.</p>
-              <a
-                class="tvideo__link"
-                href="https://URL_VIDEO_1_A_REMPLACER"
-                target="_blank"
-                rel="noreferrer"
-              >
-                https://URL_VIDEO_1_A_REMPLACER
-              </a>
-            </div>
-          </article>
-
-          <article class="tvideo">
-            <div class="tvideo__media">
-              <span class="tvideo__play">Play</span>
-            </div>
-            <div class="tvideo__body">
-              <h4 class="tvideo__title">Temoignage video 2</h4>
-              <p class="tvideo__meta">Remplacer le lien ci-dessous avec ta vraie URL.</p>
-              <a
-                class="tvideo__link"
-                href="https://URL_VIDEO_2_A_REMPLACER"
-                target="_blank"
-                rel="noreferrer"
-              >
-                https://URL_VIDEO_2_A_REMPLACER
-              </a>
-            </div>
-          </article>
-        </div>
-
-        <details class="tgrid__drawer" id="moreTestimonialsVideo">
-          <summary class="tgrid__btn">
-            <span>Decouvrir plus de temoignages video</span>
-            <span class="tgrid__chev" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-                <path
-                  d="M6 9l6 6 6-6"
-                  stroke="currentColor"
-                  stroke-width="2.4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </span>
-          </summary>
-          <div class="tgrid__video-more">
-            <article class="tvideo">
-              <div class="tvideo__media">
-                <span class="tvideo__play">Play</span>
-              </div>
-              <div class="tvideo__body">
-                <h4 class="tvideo__title">Temoignage video 3</h4>
-                <p class="tvideo__meta">Remplacer le lien ci-dessous avec ta vraie URL.</p>
-                <a
-                  class="tvideo__link"
-                  href="https://URL_VIDEO_3_A_REMPLACER"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  https://URL_VIDEO_3_A_REMPLACER
-                </a>
-              </div>
-            </article>
-
-            <article class="tvideo">
-              <div class="tvideo__media">
-                <span class="tvideo__play">Play</span>
-              </div>
-              <div class="tvideo__body">
-                <h4 class="tvideo__title">Temoignage video 4</h4>
-                <p class="tvideo__meta">Remplacer le lien ci-dessous avec ta vraie URL.</p>
-                <a
-                  class="tvideo__link"
-                  href="https://URL_VIDEO_4_A_REMPLACER"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  https://URL_VIDEO_4_A_REMPLACER
-                </a>
-              </div>
-            </article>
-          </div>
-        </details>
       </div>
     </section>
 
@@ -1250,6 +1207,31 @@
         </span>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        var vidyardSlots = document.querySelectorAll(".tvideo__player[data-vidyard-id]");
+        for (var i = 0; i < vidyardSlots.length; i += 1) {
+          var slot = vidyardSlots[i];
+          var videoId = (slot.getAttribute("data-vidyard-id") || "").trim();
+          if (!videoId) {
+            continue;
+          }
+          slot.innerHTML =
+            '<img class="vidyard-player-embed" src="https://play.vidyard.com/' +
+            videoId +
+            '.jpg" data-uuid="' +
+            videoId +
+            '" data-v="4" data-type="inline" />';
+
+          var info = slot.parentElement.querySelector(".tvideo__id");
+          if (info) {
+            info.textContent = "ID Vidyard: " + videoId;
+          }
+        }
+      })();
+    </script>
+    <script src="https://play.vidyard.com/embed/v4.js" type="text/javascript" async></script>
 
     <script>
       (function () {
