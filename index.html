@@ -23,6 +23,7 @@
     <style>
       :root {
         --c-dark: #0a192f;
+        --c-ink: #0b1317;
         --c-light: #ffffff;
         --c-accent: #d4af37;
         --c-cta-red: #d94747;
@@ -79,7 +80,75 @@
 
       .section-light {
         background: var(--c-light);
-        color: var(--c-dark);
+        color: var(--c-ink);
+      }
+
+      /* Readability guard: black text on white surfaces */
+      .section-light :is(
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6,
+          p,
+          li,
+          span,
+          small,
+          label,
+          legend,
+          strong,
+          em,
+          cite,
+          blockquote,
+          figcaption,
+          a:not(.btn)
+        ) {
+        color: var(--c-ink);
+      }
+
+      .section-light :is(input, textarea, select, option) {
+        color: var(--c-ink);
+      }
+
+      .section-light ::placeholder {
+        color: rgba(11, 19, 23, 0.58);
+      }
+
+      /* External white checkout blocks (if injected in page) */
+      .main {
+        color: var(--c-ink);
+      }
+
+      .main :is(
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6,
+          p,
+          li,
+          span,
+          small,
+          label,
+          legend,
+          strong,
+          em,
+          cite,
+          blockquote,
+          figcaption,
+          a:not(.btn)
+        ) {
+        color: var(--c-ink);
+      }
+
+      .main :is(input, textarea, select, option) {
+        color: var(--c-ink);
+      }
+
+      .main ::placeholder {
+        color: rgba(11, 19, 23, 0.58);
       }
 
       .section-title {
