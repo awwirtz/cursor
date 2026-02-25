@@ -272,110 +272,129 @@
 
       .testimonials-subtitle {
         margin-inline: auto;
+        max-width: 660px;
       }
 
       .carousel {
+        position: relative;
         margin-top: var(--space-lg);
-        background: var(--c-light);
-        color: var(--c-dark);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-strong);
-        overflow: hidden;
       }
 
-      .carousel--multi {
-        padding: var(--space-sm);
+      .carousel.carousel--multi {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        overflow: visible;
       }
 
-      .carousel-viewport {
+      .carousel--multi .carousel-viewport {
         overflow: hidden;
+        border-radius: 24px;
+        padding: 0.35rem;
+        touch-action: pan-y;
+        user-select: none;
       }
 
       .carousel--multi .carousel-track {
         display: flex;
-        gap: var(--space-md);
+        gap: 1.15rem;
         align-items: stretch;
         transition: transform 0.5s ease;
         will-change: transform;
       }
 
       .carousel--multi .testimonial-slide {
-        min-width: calc((100% - var(--space-md)) / 2);
-        padding: var(--space-lg) var(--space-md);
-        border-radius: var(--radius-md);
-        border: 1px solid rgba(10, 25, 47, 0.12);
-        box-shadow: var(--shadow-soft);
-        background: var(--c-light);
+        min-width: calc((100% - 1.15rem) / 2);
+        padding: 2rem 1.8rem 1.5rem;
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.94));
+        border: 1px solid rgba(10, 25, 47, 0.14);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
         position: relative;
       }
 
       .carousel--multi .testimonial-slide::before {
-        content: "\f10d";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
+        content: "\201C";
         position: absolute;
-        left: 1rem;
-        top: 1rem;
-        font-size: 1rem;
-        color: rgba(10, 25, 47, 0.28);
+        top: 0.65rem;
+        left: 0.95rem;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 3.1rem;
+        line-height: 1;
+        color: rgba(10, 25, 47, 0.22);
       }
 
       .carousel--multi .testimonial-slide p {
-        margin: 0 0 var(--space-sm);
-        padding-left: 1.95rem;
+        margin: 0 0 1.05rem;
+        padding-left: 1.8rem;
+        color: rgba(10, 25, 47, 0.9);
+        font-size: 1.02rem;
+        line-height: 1.72;
+        white-space: normal;
+        overflow-wrap: anywhere;
       }
 
       .carousel--multi .testimonial-slide cite {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
         font-style: normal;
-        font-weight: 700;
-        padding-left: 1.95rem;
+        font-weight: 800;
+        color: rgba(10, 25, 47, 0.88);
+        padding-left: 1.8rem;
       }
 
-      .carousel-controls {
+      .carousel--multi .testimonial-slide cite::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        border-radius: 999px;
+        background: rgba(212, 175, 55, 0.75);
+      }
+
+      .carousel--multi .carousel-controls {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 0 var(--space-md) var(--space-md);
+        justify-content: center;
+        gap: 0.9rem;
+        padding-top: 0.9rem;
       }
 
-      .carousel-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 1px solid rgba(10, 25, 47, 0.22);
-        color: var(--c-dark);
-        background: var(--c-light);
+      .carousel--multi .carousel-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--c-light);
         cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
       }
 
-      .carousel-btn:hover {
+      .carousel--multi .carousel-btn:hover {
         transform: translateY(-1px);
-        box-shadow: 0 6px 14px rgba(10, 25, 47, 0.16);
+        box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2), 0 10px 24px rgba(0, 0, 0, 0.24);
       }
 
-      .carousel-dots {
+      .carousel--multi .carousel-dots {
         display: flex;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.45rem;
       }
 
-      .carousel-dot {
+      .carousel--multi .carousel-dot {
         width: 9px;
         height: 9px;
-        border-radius: 50%;
+        border-radius: 999px;
         border: 0;
-        background: rgba(10, 25, 47, 0.25);
+        background: rgba(255, 255, 255, 0.3);
         cursor: pointer;
+        transition: width 0.18s ease, background 0.18s ease;
       }
 
-      .carousel-dot.active {
-        background: var(--c-accent);
-      }
-
-      .testimonials-cta {
-        margin-top: var(--space-md);
-        text-align: center;
+      .carousel--multi .carousel-dot.active {
+        width: 22px;
+        background: rgba(212, 175, 55, 0.95);
       }
 
       .quote-box {
@@ -648,6 +667,14 @@
         .benefits-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+
+        .carousel--multi .testimonial-slide {
+          padding: 1.7rem 1.45rem 1.3rem;
+        }
+
+        .carousel--multi .testimonial-slide p {
+          font-size: 0.99rem;
+        }
       }
 
       @media (max-width: 720px) {
@@ -676,18 +703,68 @@
           grid-template-columns: 1fr;
         }
 
+        .carousel--multi .carousel-viewport {
+          padding: 0;
+          border-radius: 20px;
+        }
+
+        .carousel--multi .carousel-track {
+          gap: 0.9rem;
+        }
+
         .carousel--multi .testimonial-slide {
           min-width: 100%;
-          padding: var(--space-lg) var(--space-sm);
+          border-radius: 20px;
+          padding: 1.45rem 1.2rem 1.15rem;
+        }
+
+        .carousel--multi .testimonial-slide::before {
+          font-size: 2.8rem;
+          top: 0.45rem;
+          left: 0.75rem;
         }
 
         .carousel--multi .testimonial-slide p,
         .carousel--multi .testimonial-slide cite {
-          padding-left: 1.8rem;
+          padding-left: 1.45rem;
+        }
+
+        .carousel--multi .testimonial-slide p {
+          font-size: 0.96rem;
+          line-height: 1.65;
+        }
+
+        .carousel--multi .carousel-btn {
+          width: 38px;
+          height: 38px;
+          opacity: 0.92;
+        }
+
+        .carousel--multi .carousel-dot {
+          width: 10px;
+          height: 10px;
+        }
+
+        .carousel--multi .carousel-dot.active {
+          width: 24px;
         }
 
         .pricing-card {
           padding: var(--space-lg);
+        }
+      }
+
+      @media (max-width: 420px) {
+        .carousel--multi .carousel-btn {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .carousel--multi .carousel-track,
+        .carousel--multi .carousel-btn,
+        .carousel--multi .carousel-dot {
+          transition: none !important;
         }
       }
     </style>
@@ -738,8 +815,7 @@
       <div class="container">
         <h2 class="section-title center" data-reveal>Témoignages</h2>
         <p class="section-subtitle center testimonials-subtitle" data-reveal>
-          Des retours concrets de personnes qui utilisent Odoul Coaching au quotidien, pour mieux comprendre ce
-          qu'elles traversent
+          Des retours concrets de personnes qui suivent
         </p>
         <br />
 
@@ -747,34 +823,56 @@
           <div class="carousel-viewport">
             <div class="carousel-track">
               <article class="testimonial-slide">
-                <p>C’est la meilleure application de décodage que j’ai testée. C'est concret, ancré et profond.</p>
-                <cite>Marc A.</cite>
+                <p>
+                  "Merci Monsieur Odoul pour cet éveil de conscience. Vous mettez des mots à mon ressenti. Vous
+                  m’aidez dans mon chemin de vie depuis la sortie de votre premier livre, je n’ose même plus compter
+                  les années. J’avance dans mon chemin de vie grâce à vous, j' apaise les 5 raisons de l’être par
+                  toute cette compréhension de la médecine chinoise qui m' aide à me sentir mieux et à évoluer."
+                </p>
+                <cite>Laurence</cite>
               </article>
               <article class="testimonial-slide">
                 <p>
-                  "Incroyable. On peut tout lui demander, et on a l'impression qu'il nous répond directement avec sa
-                  douceur habituelle."
+                  "Ce programme m’aide à comprendre et à vivre une vie plus douce. Diagnostiquée depuis 3 ans de la
+                  sclérodermie, je suis très touchée par l’analyse des symptômes physiques et de l'apparition des
+                  maladies."
                 </p>
-                <cite>Hélène R.</cite>
+                <cite>Monique</cite>
+              </article>
+              <article class="testimonial-slide">
+                <p>"Merci Michel de m’avoir permis de mettre en lumière le point de départ de la sclérose en plaques !"</p>
+                <cite>Sandy</cite>
               </article>
               <article class="testimonial-slide">
                 <p>
-                  "Je m'en sers chaque semaine. Je comprends mieux ce que je traverse, et je repars avec une action
-                  simple."
+                  "De patient nous devenons thérapeute de nous-même et c’est là que s’accomplit notre renaissance. Vos
+                  connaissances si particulières, car d’origines diverses, ne cessent de m’émerveiller. Merci pour ce
+                  beau programme."
                 </p>
-                <cite>Claire D.</cite>
+                <cite>Antoine</cite>
               </article>
               <article class="testimonial-slide">
                 <p>
-                  "Très apaisant. Les réponses sont structurées et m’aident à relier émotion, corps et décisions."
+                  "Merci Michel Odoul de vos vidéos très riches en connaissances du corps et de l’esprit. Beaucoup de
+                  matière à réflexion."
                 </p>
-                <cite>Sofiane L.</cite>
+                <cite>Bernard</cite>
               </article>
               <article class="testimonial-slide">
                 <p>
-                  "J’ai retrouvé de la clarté en quelques échanges. C’est comme un petit rendez-vous avec soi."
+                  "Simplement merci du plus intime du cœur ! Je viens, en vous écoutant, d’ouvrir une porte. Quelle
+                  merveille."
                 </p>
-                <cite>Julie M.</cite>
+                <cite>Chantal</cite>
+              </article>
+              <article class="testimonial-slide">
+                <p>
+                  "Merci de tout coeur Monsieur Odoul. C’était passionnant comme toujours. Vous accompagnez mon
+                  parcours depuis de nombreuses années et cette fois, je voulais vous souhaiter de continuer longtemps
+                  à transmettre votre savoir qui illumine nos parcours. Quel merveilleux chemin de vie qui est le
+                  vôtre et quelle inspiration vous nous donnez ! Avec gratitude."
+                </p>
+                <cite>Catherine</cite>
               </article>
             </div>
           </div>
@@ -787,12 +885,6 @@
               <i class="fa-solid fa-chevron-right"></i>
             </button>
           </div>
-        </div>
-        <div class="testimonials-cta" data-reveal>
-          <a class="btn btn-red" href="#pricing">
-            <i class="fa-solid fa-arrow-down"></i>
-            Voir l'offre mensuelle
-          </a>
         </div>
       </div>
     </section>
@@ -1186,8 +1278,64 @@
           if (timer) {
             clearInterval(timer);
           }
+          if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+          }
           timer = setInterval(goNext, 5200);
         }
+
+        var startX = 0;
+        var dx = 0;
+        var dragging = false;
+
+        viewport.addEventListener("pointerdown", function (event) {
+          if (event.pointerType === "mouse" && event.button !== 0) {
+            return;
+          }
+          dragging = true;
+          startX = event.clientX;
+          dx = 0;
+          if (viewport.setPointerCapture) {
+            try {
+              viewport.setPointerCapture(event.pointerId);
+            } catch (err) {
+              /* no-op */
+            }
+          }
+          track.style.transition = "none";
+        });
+
+        viewport.addEventListener("pointermove", function (event) {
+          if (!dragging) {
+            return;
+          }
+          dx = event.clientX - startX;
+          var width = slideWidth();
+          var x = (width + gapPx) * offsetIndex - dx;
+          track.style.transform = "translateX(-" + x + "px)";
+        });
+
+        function releaseDrag() {
+          if (!dragging) {
+            return;
+          }
+          dragging = false;
+          var threshold = Math.max(60, slideWidth() * 0.12);
+          if (dx < -threshold) {
+            goNext();
+          } else if (dx > threshold) {
+            goPrev();
+          } else {
+            applyTransform(false);
+          }
+          restartTimer();
+        }
+
+        viewport.addEventListener("pointerup", releaseDrag);
+        viewport.addEventListener("pointercancel", function () {
+          dragging = false;
+          applyTransform(false);
+        });
 
         track.addEventListener("transitionend", function () {
           if (index >= realSlides.length) {
@@ -1222,6 +1370,16 @@
           } else {
             measureGap();
             applyTransform(true);
+          }
+        });
+
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) {
+            if (timer) {
+              clearInterval(timer);
+            }
+          } else {
+            restartTimer();
           }
         });
 
