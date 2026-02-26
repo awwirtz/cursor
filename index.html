@@ -40,19 +40,35 @@
           linear-gradient(135deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
         display: grid;
         place-items: center;
-        padding: 16px;
+        padding: clamp(4px, 1.1vh, 16px);
+        overflow: hidden;
       }
 
       #app {
         width: min(1400px, 98vw);
+        height: calc(100vh - 8px);
+        max-height: calc(100vh - 8px);
       }
 
       .screen {
         display: none;
+        height: 100%;
       }
 
       .screen.active {
         display: block;
+      }
+
+      #menuScreen,
+      #gameOverScreen {
+        overflow: auto;
+      }
+
+      #gameScreen.active {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
       }
 
       .glass-panel {
@@ -85,9 +101,7 @@
 
       .menu-grid {
         margin-top: 18px;
-        display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        gap: 16px;
+        display: block;
       }
 
       .block-title {
@@ -334,7 +348,7 @@
       }
 
       #gameScreen {
-        padding: 14px;
+        padding: 10px;
       }
 
       .hud {
@@ -374,9 +388,14 @@
       }
 
       #gameCanvas {
-        width: min(97vw, 1120px);
+        width: 100%;
+        max-width: 1120px;
         height: auto;
+        max-height: 100%;
         display: block;
+        margin-inline: auto;
+        flex: 1 1 auto;
+        aspect-ratio: 1120 / 630;
         border-radius: 14px;
         border: 1px solid rgba(198, 212, 255, 0.28);
         box-shadow:
@@ -445,12 +464,6 @@
         font-family: Consolas, "Liberation Mono", Menlo, monospace;
       }
 
-      @media (max-width: 1180px) {
-        .menu-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
       @media (max-width: 940px) {
         .hud {
           grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -463,12 +476,12 @@
 
       @media (max-width: 620px) {
         body {
-          padding: 8px;
+          padding: 4px;
         }
 
         .menu-shell,
         #gameOverScreen {
-          padding: 14px;
+          padding: 10px;
         }
 
         .character-grid {
@@ -491,30 +504,15 @@
         </p>
 
         <div class="menu-grid">
-          <div>
-            <h2 class="block-title">Selection du personnage</h2>
-            <div id="characterGrid" class="character-grid"></div>
-            <div class="menu-actions">
-              <button id="startButton" class="btn btn-primary" disabled>Lancer la partie</button>
-              <span id="selectedText" class="selected-text">Aucun personnage selectionne</span>
-            </div>
-            <p class="tip">
-              Deplacement: fleches ou ZQSD. Le tir vise l ennemi le plus proche automatiquement.
-            </p>
+          <h2 class="block-title">Selection du personnage</h2>
+          <div id="characterGrid" class="character-grid"></div>
+          <div class="menu-actions">
+            <button id="startButton" class="btn btn-primary" disabled>Lancer la partie</button>
+            <span id="selectedText" class="selected-text">Aucun personnage selectionne</span>
           </div>
-
-          <aside class="asset-panel">
-            <h2 class="block-title">Champs d images a remplir</h2>
-            <p class="tip" style="margin-top: 0">
-              Tu peux coller des chemins d images (ex: assets/heads/loic.png), puis cliquer sur Charger assets.
-            </p>
-            <div id="assetFields" class="asset-list"></div>
-            <div class="asset-actions">
-              <button id="reloadAssetsButton" class="btn btn-alt">Charger assets</button>
-              <button id="resetAssetsButton" class="btn btn-soft">Reset valeurs par defaut</button>
-            </div>
-            <p id="assetStatus" class="asset-status">Aucun chargement effectue.</p>
-          </aside>
+          <p class="tip">
+            Deplacement: fleches ou ZQSD. Le tir vise l ennemi le plus proche automatiquement.
+          </p>
         </div>
       </section>
 
@@ -586,14 +584,12 @@
         const menuScreen = document.getElementById("menuScreen");
         const gameScreen = document.getElementById("gameScreen");
         const gameOverScreen = document.getElementById("gameOverScreen");
+        const hudPanel = gameScreen.querySelector(".hud");
+        const legendText = gameScreen.querySelector(".legend");
 
         const characterGrid = document.getElementById("characterGrid");
         const selectedText = document.getElementById("selectedText");
         const startButton = document.getElementById("startButton");
-        const reloadAssetsButton = document.getElementById("reloadAssetsButton");
-        const resetAssetsButton = document.getElementById("resetAssetsButton");
-        const assetFields = document.getElementById("assetFields");
-        const assetStatus = document.getElementById("assetStatus");
 
         const retryButton = document.getElementById("retryButton");
         const backToMenuButton = document.getElementById("backToMenuButton");
@@ -773,40 +769,24 @@
         ];
 
         // ---------------------------------------------------
-        // CHAMPS D IMAGES A RENSEIGNER
+        // ASSETS FOURNIS PAR LE BACKEND
         // ---------------------------------------------------
-        // L utilisateur peut remplir ces chemins depuis le menu.
-        const ASSET_FIELDS = [
-          { key: "background", label: "Background sol (tile)", placeholder: "assets/bg.png" },
-          { key: "enemyHead", label: "Tete ennemi", placeholder: "assets/heads/enemy.png" },
-          { key: "head_loic", label: "Tete Loic", placeholder: "assets/heads/loic.png" },
-          { key: "head_louis", label: "Tete Louis", placeholder: "assets/heads/louis.png" },
-          { key: "head_dejan", label: "Tete Dejan", placeholder: "assets/heads/dejan.png" },
-          { key: "head_david", label: "Tete David", placeholder: "assets/heads/david.png" },
-          { key: "head_aurelien", label: "Tete Aurelien", placeholder: "assets/heads/aurelien.png" },
-          { key: "specialSkate", label: "Speciale Louis: skate", placeholder: "assets/fx/skate.png" },
-          { key: "specialBook", label: "Speciale David: livre", placeholder: "assets/fx/book.png" },
-          { key: "specialBarbeSlash", label: "Speciale Loic: lame/barbe", placeholder: "assets/fx/barbe_slash.png" },
-          { key: "specialFlag", label: "Speciale Dejan: drapeau", placeholder: "assets/fx/flag_serbia.png" },
-          { key: "specialSmoke", label: "Speciale Aurelien: fumee", placeholder: "assets/fx/stealth_smoke.png" },
-        ];
-
-        const DEFAULT_ASSET_PATHS = {
+        // Pas d interface de saisie: toutes les URLs sont injectees ici.
+        // Tu peux remplacer ces chemins directement cote backend.
+        const BACKEND_ASSET_PATHS = {
           background: "bg.png",
-          enemyHead: "enemy.png",
-          head_loic: "heads/loic.png",
-          head_louis: "heads/louis.png",
-          head_dejan: "heads/dejan.png",
-          head_david: "heads/david.png",
-          head_aurelien: "heads/aurelien.png",
-          specialSkate: "fx/skate.png",
-          specialBook: "fx/book.png",
-          specialBarbeSlash: "fx/barbe_slash.png",
-          specialFlag: "fx/flag_serbia.png",
-          specialSmoke: "fx/stealth_smoke.png",
+          enemyHead: "",
+          head_loic: "https://github.com/awwirtz/cursor/blob/main/loi.png?raw=true",
+          head_louis: "https://github.com/awwirtz/cursor/blob/main/louis.png?raw=true",
+          head_dejan: "https://github.com/awwirtz/cursor/blob/main/dejan.png?raw=true",
+          head_david: "https://github.com/awwirtz/cursor/blob/main/david.png?raw=true",
+          head_aurelien: "https://github.com/awwirtz/cursor/blob/main/aurel.png?raw=true",
+          specialSkate: "https://github.com/awwirtz/cursor/blob/main/skate.png?raw=true",
+          specialBook: "https://github.com/awwirtz/cursor/blob/main/book.png?raw=true",
+          specialFlag: "https://github.com/awwirtz/cursor/blob/main/serbie.png?raw=true",
+          specialBarbeSlash: "",
+          specialSmoke: "",
         };
-
-        const STORAGE_KEY = "neon_survivor_asset_paths_v1";
 
         // imageAssets: key -> { path, image, loaded, missing, pattern }
         const imageAssets = new Map();
@@ -835,7 +815,6 @@
           keys: new Set(),
           lastFrame: 0,
           rafId: 0,
-          assetPaths: Object.assign({}, DEFAULT_ASSET_PATHS),
         };
 
         // ---------------------------------------------------
@@ -944,136 +923,16 @@
         }
 
         // ---------------------------------------------------
-        // MENU: CHAMPS D ASSETS
+        // CHARGEMENT ASSETS BACKEND
         // ---------------------------------------------------
-        function createAssetFields() {
-          assetFields.innerHTML = "";
-
-          ASSET_FIELDS.forEach(function (field) {
-            const row = document.createElement("label");
-            row.className = "asset-row";
-            row.htmlFor = "asset-input-" + field.key;
-
-            const header = document.createElement("div");
-            header.className = "asset-row-header";
-
-            const label = document.createElement("span");
-            label.className = "asset-row-label";
-            label.textContent = field.label;
-
-            const badge = document.createElement("span");
-            badge.className = "asset-badge empty";
-            badge.id = "asset-badge-" + field.key;
-            badge.textContent = "vide";
-
-            header.appendChild(label);
-            header.appendChild(badge);
-
-            const input = document.createElement("input");
-            input.id = "asset-input-" + field.key;
-            input.className = "asset-input mono";
-            input.type = "text";
-            input.placeholder = field.placeholder;
-            input.value = state.assetPaths[field.key] || "";
-            input.dataset.assetKey = field.key;
-
-            row.appendChild(header);
-            row.appendChild(input);
-            assetFields.appendChild(row);
-          });
-        }
-
-        function readAssetInputs() {
-          const inputs = assetFields.querySelectorAll(".asset-input");
-          inputs.forEach(function (input) {
-            const key = input.dataset.assetKey;
-            state.assetPaths[key] = input.value.trim();
-          });
-        }
-
-        function fillAssetInputs(paths) {
-          const inputs = assetFields.querySelectorAll(".asset-input");
-          inputs.forEach(function (input) {
-            const key = input.dataset.assetKey;
-            input.value = paths[key] || "";
-          });
-        }
-
-        function updateAssetBadge(key, status) {
-          const badge = document.getElementById("asset-badge-" + key);
-          if (!badge) return;
-          badge.classList.remove("ok", "missing", "empty");
-
-          if (status === "ok") {
-            badge.classList.add("ok");
-            badge.textContent = "ok";
-          } else if (status === "missing") {
-            badge.classList.add("missing");
-            badge.textContent = "manquant";
-          } else {
-            badge.classList.add("empty");
-            badge.textContent = "vide";
-          }
-        }
-
-        async function reloadAssets() {
-          readAssetInputs();
-          saveAssetPaths();
-
-          assetStatus.textContent = "Chargement des images...";
-
-          const results = await Promise.all(
-            ASSET_FIELDS.map(function (field) {
-              return loadImageAsset(field.key, state.assetPaths[field.key]);
+        async function loadBackendAssets() {
+          const entries = Object.entries(BACKEND_ASSET_PATHS);
+          await Promise.all(
+            entries.map(function (entry) {
+              return loadImageAsset(entry[0], entry[1]);
             })
           );
-
-          let ok = 0;
-          let missing = 0;
-          let empty = 0;
-
-          results.forEach(function (result) {
-            updateAssetBadge(result.key, result.status);
-            if (result.status === "ok") ok += 1;
-            else if (result.status === "missing") missing += 1;
-            else empty += 1;
-          });
-
           refreshCharacterHeadPreviews();
-          assetStatus.textContent =
-            ok +
-            " image(s) chargee(s), " +
-            missing +
-            " manquante(s), " +
-            empty +
-            " vide(s). Les fallbacks sont actifs si besoin.";
-        }
-
-        function saveAssetPaths() {
-          try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(state.assetPaths));
-          } catch (error) {
-            // Silencieux volontairement: le jeu reste jouable sans localStorage.
-          }
-        }
-
-        function restoreAssetPaths() {
-          try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return;
-            const parsed = JSON.parse(raw);
-            if (parsed && typeof parsed === "object") {
-              state.assetPaths = Object.assign({}, DEFAULT_ASSET_PATHS, parsed);
-            }
-          } catch (error) {
-            // Si parsing impossible, on garde les defaults.
-          }
-        }
-
-        function resetAssetPaths() {
-          state.assetPaths = Object.assign({}, DEFAULT_ASSET_PATHS);
-          fillAssetInputs(state.assetPaths);
-          reloadAssets();
         }
 
         function loadImageAsset(key, path) {
@@ -1088,7 +947,7 @@
               missing: false,
               pattern: null,
             });
-            return Promise.resolve({ key, status: "empty" });
+            return Promise.resolve();
           }
 
           return new Promise(function (resolve) {
@@ -1106,14 +965,14 @@
               sprite.loaded = true;
               sprite.missing = false;
               imageAssets.set(key, sprite);
-              resolve({ key, status: "ok" });
+              resolve();
             };
 
             image.onerror = function () {
               sprite.loaded = false;
               sprite.missing = true;
               imageAssets.set(key, sprite);
-              resolve({ key, status: "missing" });
+              resolve();
             };
 
             image.src = trimmed;
@@ -1181,12 +1040,8 @@
           showScreen("menu");
         });
 
-        reloadAssetsButton.addEventListener("click", function () {
-          reloadAssets();
-        });
-
-        resetAssetsButton.addEventListener("click", function () {
-          resetAssetPaths();
+        window.addEventListener("resize", function () {
+          fitGameCanvasToViewport();
         });
 
         // ---------------------------------------------------
@@ -1196,6 +1051,31 @@
           menuScreen.classList.toggle("active", name === "menu");
           gameScreen.classList.toggle("active", name === "game");
           gameOverScreen.classList.toggle("active", name === "gameover");
+          requestAnimationFrame(fitGameCanvasToViewport);
+        }
+
+        function fitGameCanvasToViewport() {
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          const horizontalPadding = 20;
+
+          const maxWidth = Math.min(WORLD_WIDTH, viewportWidth - horizontalPadding);
+          const hudHeight = gameScreen.classList.contains("active") && hudPanel ? hudPanel.offsetHeight : 0;
+          const statusHeight = gameScreen.classList.contains("active") ? statusText.offsetHeight : 0;
+          const legendHeight = gameScreen.classList.contains("active") && legendText ? legendText.offsetHeight : 0;
+          const verticalReserved = hudHeight + statusHeight + legendHeight + 52;
+          const maxHeight = Math.max(170, viewportHeight - verticalReserved);
+
+          let displayWidth = maxWidth;
+          let displayHeight = (displayWidth * WORLD_HEIGHT) / WORLD_WIDTH;
+
+          if (displayHeight > maxHeight) {
+            displayHeight = maxHeight;
+            displayWidth = (displayHeight * WORLD_WIDTH) / WORLD_HEIGHT;
+          }
+
+          canvas.style.width = Math.floor(displayWidth) + "px";
+          canvas.style.height = Math.floor(displayHeight) + "px";
         }
 
         function getSelectedCharacter() {
@@ -1217,7 +1097,7 @@
             y: WORLD_HEIGHT * 0.5,
             vx: 0,
             vy: 0,
-            lookAngle: 0,
+            aimAngle: 0,
             runPhase: Math.random() * Math.PI * 2,
             runAmount: 0,
             radius: GAME_TUNING.playerRadius,
@@ -1386,10 +1266,10 @@
           player.runPhase += dt * (4 + moveLen * 10);
 
           const nearest = getNearestEnemy(player.x, player.y);
-          if (moveLen > 0.05) {
-            player.lookAngle = Math.atan2(moveY, moveX);
-          } else if (nearest) {
-            player.lookAngle = Math.atan2(nearest.y - player.y, nearest.x - player.x);
+          if (nearest) {
+            player.aimAngle = Math.atan2(nearest.y - player.y, nearest.x - player.x);
+          } else if (moveLen > 0.05) {
+            player.aimAngle = Math.atan2(moveY, moveX);
           }
 
           // Tir auto vers ennemi le plus proche
@@ -1429,18 +1309,20 @@
 
           const dir = normalize(target.x - player.x, target.y - player.y);
           const angle = Math.atan2(dir.y, dir.x);
+          const muzzle = getPlayerPistolMuzzle(player, angle);
+          player.aimAngle = angle;
 
           state.projectiles.push({
             type: "bullet",
-            x: player.x + Math.cos(angle) * 14,
-            y: player.y + Math.sin(angle) * 14,
+            x: muzzle.x,
+            y: muzzle.y,
             vx: dir.x * player.projectileSpeed,
             vy: dir.y * player.projectileSpeed,
             radius: GAME_TUNING.bulletRadius,
             damage: player.baseDamage,
             life: 1.8,
             pierce: false,
-            color: "#ffef8f",
+            color: "#ff5ac8",
             hitIds: new Set(),
             angle: angle,
             rotationSpeed: 0,
@@ -1500,7 +1382,7 @@
           const target = getNearestEnemy(player.x, player.y);
           const dir = target
             ? normalize(target.x - player.x, target.y - player.y)
-            : { x: Math.cos(player.lookAngle), y: Math.sin(player.lookAngle) };
+            : { x: Math.cos(player.aimAngle), y: Math.sin(player.aimAngle) };
 
           const angle = Math.atan2(dir.y, dir.x);
 
@@ -2231,6 +2113,8 @@
               enemyFlash: enemy.hitFlash,
               alpha: 1,
               isEnemy: true,
+              outfitId: "enemy",
+              rotateBody: false,
             });
 
             drawEnemyHpBar(enemy);
@@ -2263,7 +2147,11 @@
             enemyFlash: 0,
             alpha: player.stealthTimer > 0 ? 0.34 : 1,
             isEnemy: false,
+            outfitId: player.id,
+            rotateBody: false,
           });
+
+          drawWaterPistol(player);
 
           // Petit halo sous le joueur
           if (player.stealthTimer > 0) {
@@ -2286,7 +2174,9 @@
 
           ctx.save();
           ctx.translate(entity.x, entity.y + bounce);
-          ctx.rotate(entity.lookAngle || 0);
+          if (options.rotateBody) {
+            ctx.rotate(entity.lookAngle || 0);
+          }
           ctx.globalAlpha = options.alpha == null ? 1 : options.alpha;
 
           // Ombre au sol
@@ -2333,6 +2223,7 @@
 
           // Torse
           drawRoundedRect(-10 * scale, -8 * scale, 20 * scale, 22 * scale, 6 * scale, palette.shirt);
+          drawOutfitAccent(options.outfitId, scale);
 
           // Bras arriere
           drawLimb(
@@ -2374,6 +2265,87 @@
             ctx.fill();
           }
 
+          ctx.restore();
+        }
+
+        function drawOutfitAccent(outfitId, scale) {
+          if (!outfitId) return;
+
+          if (outfitId === "loic") {
+            ctx.fillStyle = "#111827";
+            ctx.fillRect(-3 * scale, -7 * scale, 6 * scale, 19 * scale);
+          } else if (outfitId === "louis") {
+            ctx.fillStyle = "#fdf2f8";
+            ctx.fillRect(-10 * scale, 2 * scale, 20 * scale, 3 * scale);
+            ctx.fillStyle = "#be185d";
+            ctx.fillRect(-10 * scale, 5 * scale, 20 * scale, 3 * scale);
+          } else if (outfitId === "dejan") {
+            ctx.fillStyle = "#dc2626";
+            ctx.fillRect(-10 * scale, -2 * scale, 20 * scale, 3 * scale);
+            ctx.fillStyle = "#2563eb";
+            ctx.fillRect(-10 * scale, 1 * scale, 20 * scale, 3 * scale);
+            ctx.fillStyle = "#f8fafc";
+            ctx.fillRect(-10 * scale, 4 * scale, 20 * scale, 3 * scale);
+          } else if (outfitId === "david") {
+            ctx.fillStyle = "#0f172a";
+            ctx.beginPath();
+            ctx.moveTo(0, -8 * scale);
+            ctx.lineTo(4 * scale, 5 * scale);
+            ctx.lineTo(-4 * scale, 5 * scale);
+            ctx.closePath();
+            ctx.fill();
+          } else if (outfitId === "aurelien") {
+            ctx.strokeStyle = "#ddd6fe";
+            ctx.lineWidth = 2 * scale;
+            ctx.beginPath();
+            ctx.arc(0, -7 * scale, 8 * scale, Math.PI, 0);
+            ctx.stroke();
+          }
+        }
+
+        function getPlayerPistolAnchor(player) {
+          return {
+            x: player.x + 12,
+            y: player.y - 2,
+          };
+        }
+
+        function getPlayerPistolMuzzle(player, angle) {
+          const anchor = getPlayerPistolAnchor(player);
+          return {
+            x: anchor.x + Math.cos(angle) * 18,
+            y: anchor.y + Math.sin(angle) * 18,
+          };
+        }
+
+        function drawWaterPistol(player) {
+          const angle = player.aimAngle || 0;
+          const anchor = getPlayerPistolAnchor(player);
+
+          ctx.save();
+          ctx.translate(anchor.x, anchor.y);
+          ctx.rotate(angle);
+          ctx.globalAlpha = player.stealthTimer > 0 ? 0.45 : 1;
+
+          // Corps du pistolet a eau rose
+          ctx.fillStyle = "#ff4fd8";
+          ctx.fillRect(-2, -4, 18, 8);
+          ctx.fillRect(2, 2, 7, 8);
+
+          // Reservoir cyan pour accent "eau"
+          ctx.fillStyle = "#7dd3fc";
+          ctx.fillRect(0, -10, 10, 6);
+          ctx.strokeStyle = "rgba(255,255,255,0.55)";
+          ctx.lineWidth = 1.2;
+          ctx.strokeRect(0, -10, 10, 6);
+
+          // Buse et goutte au bout
+          ctx.fillStyle = "#ec4899";
+          ctx.fillRect(15, -2, 5, 4);
+          ctx.beginPath();
+          ctx.arc(20, 0, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = "#8af8ff";
+          ctx.fill();
           ctx.restore();
         }
 
@@ -2425,6 +2397,10 @@
               ctx.shadowBlur = 16;
               ctx.shadowColor = p.color;
               ctx.fill();
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.radius * 0.45, 0, Math.PI * 2);
+              ctx.fillStyle = "#8af8ff";
+              ctx.fill();
               ctx.restore();
             } else if (p.type === "skate") {
               drawSkateProjectile(p);
@@ -2447,7 +2423,7 @@
             let color = "rgba(255,255,255,0.2)";
             if (projectile.type === "skate") color = "rgba(251, 113, 133, 0.24)";
             else if (projectile.type === "book") color = "rgba(103, 232, 249, 0.24)";
-            else color = "rgba(255, 239, 143, 0.24)";
+            else color = "rgba(255, 79, 216, 0.27)";
 
             ctx.beginPath();
             ctx.arc(point.x, point.y, r, 0, Math.PI * 2);
@@ -2699,12 +2675,10 @@
         // INITIALISATION
         // ---------------------------------------------------
         function init() {
-          restoreAssetPaths();
           createCharacterCards();
-          createAssetFields();
-          fillAssetInputs(state.assetPaths);
           showScreen("menu");
-          reloadAssets();
+          fitGameCanvasToViewport();
+          loadBackendAssets();
         }
 
         init();
