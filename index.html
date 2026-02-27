@@ -280,7 +280,7 @@
 
       .hero-grid {
         display: grid;
-        grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+        grid-template-columns: minmax(0, 1fr);
         gap: 1.4rem;
         align-items: center;
       }
@@ -309,7 +309,7 @@
         line-height: 0.9;
         letter-spacing: -0.04em;
         margin-bottom: 1.05rem;
-        max-width: 11.4ch;
+        max-width: 8.8ch;
       }
 
       .hero-title-line {
@@ -348,7 +348,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 0.62rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
       }
 
       .btn {
@@ -737,30 +737,63 @@
       }
 
       .workflow-controls {
-        margin-top: 0.95rem;
+        margin-top: 1rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 0.7rem 0.85rem;
         display: flex;
-        justify-content: flex-end;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+      }
+
+      .workflow-hint {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.84);
+        font-weight: 700;
+      }
+
+      .workflow-controls-actions {
+        display: flex;
+        align-items: center;
         gap: 0.55rem;
       }
 
       .circle-btn {
-        width: 46px;
-        height: 46px;
+        width: 54px;
+        height: 54px;
         border-radius: 999px;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        background: rgba(255, 255, 255, 0.15);
         color: var(--text);
+        font-size: 1rem;
+        font-weight: 800;
         display: grid;
         place-items: center;
         cursor: pointer;
-        transition: background var(--ease), border-color var(--ease), transform var(--ease);
+        transition: background var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
+        animation: click-hint-pulse 2.2s ease-in-out infinite;
       }
 
       .circle-btn:hover,
       .circle-btn:focus-visible {
         transform: translateY(-1px);
-        background: rgba(255, 255, 255, 0.13);
-        border-color: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.28);
+        border-color: rgba(255, 255, 255, 0.58);
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+      }
+
+      @keyframes click-hint-pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.08);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(255, 255, 255, 0);
+        }
       }
 
       .principles-headline {
@@ -889,6 +922,13 @@
         padding: clamp(1rem, 2.5vw, 1.5rem);
       }
 
+      .pricing-lead {
+        max-width: 60ch;
+        font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+        line-height: 1.34;
+        margin-bottom: 1rem;
+      }
+
       .pricing-cases {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -900,6 +940,7 @@
         border-radius: var(--radius-md);
         background: rgba(255, 255, 255, 0.03);
         padding: 0.76rem;
+        font-size: 0.92rem;
       }
 
       .pricing-copy {
@@ -909,6 +950,10 @@
 
       .pricing-actions {
         margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
       }
 
       .contact-wrap {
@@ -1044,10 +1089,6 @@
       }
 
       @media (max-width: 1120px) {
-        .hero-grid {
-          grid-template-columns: 1fr;
-        }
-
         .hero {
           min-height: auto;
           padding-block: 2.5rem 1.2rem;
@@ -1108,22 +1149,6 @@
           font-size: clamp(2.15rem, 11vw, 3.4rem);
         }
 
-        .hero-deck {
-          min-height: auto;
-          display: grid;
-          gap: 0.65rem;
-        }
-
-        .deck-card {
-          position: relative !important;
-          left: auto !important;
-          top: auto !important;
-          width: 100%;
-          transform: none !important;
-          opacity: 1 !important;
-          z-index: auto !important;
-        }
-
         .solution-card:nth-child(even) {
           transform: none;
         }
@@ -1136,6 +1161,11 @@
         }
 
         .contact-foot {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .workflow-controls {
           align-items: flex-start;
           flex-direction: column;
         }
@@ -1175,7 +1205,7 @@
         </nav>
 
         <div class="header-right">
-          <p class="header-note" data-i18n="header.note">Digital Growth Studio</p>
+          <p class="header-note" data-i18n="header.note">Studio de croissance digitale</p>
           <div class="lang-switch" data-i18n-aria="header.languageAria">
             <button class="lang-btn is-active" type="button" data-lang="fr" aria-pressed="true">FR</button>
             <span aria-hidden="true">|</span>
@@ -1189,34 +1219,21 @@
       <section class="hero">
         <div class="container hero-grid">
           <div>
-            <p class="eyebrow reveal" data-i18n="hero.eyebrow">Digital Strategy / Data / AI</p>
+            <p class="eyebrow reveal" data-i18n="hero.eyebrow">Stratégie digitale / Data / IA</p>
 
             <h1 class="hero-title reveal">
-              <span class="hero-title-line" data-i18n="hero.titleLine1">Des idées ambitieuses.</span>
+              <span class="hero-title-line" data-i18n="hero.titleLine1">Croissance digitale.</span>
               <span class="hero-title-line">
-                <span data-i18n="hero.titleLine2Prefix">Des</span>
-                <span class="hero-word" id="hero-word">expériences</span>
+                <span data-i18n="hero.titleLine2Prefix">Pensée pour</span>
+                <span class="hero-word" id="hero-word">convertir</span>
               </span>
-              <span class="hero-title-line" data-i18n="hero.titleLine3">qui transforment vos résultats.</span>
             </h1>
-
-            <p class="hero-subtitle reveal" data-i18n="hero.subtitle">
-              J'accompagne les entreprises qui veulent une présence digitale plus claire, plus performante et prête
-              à scaler.
-            </p>
 
             <div class="hero-actions reveal">
               <a class="btn btn-primary" href="#contact" data-i18n="hero.ctaPrimary">Démarrer un projet</a>
-              <a class="btn btn-secondary" href="#services" data-i18n="hero.ctaSecondary">Voir les services</a>
+              <a class="btn btn-secondary" href="#contact" data-i18n="hero.ctaSecondary">Me contacter</a>
             </div>
-
-            <ul class="trust-list" id="trust-list"></ul>
           </div>
-
-          <aside class="hero-deck-shell reveal">
-            <p class="deck-tip" data-i18n="hero.deckTip">Cliquez sur les cartes</p>
-            <div class="hero-deck" id="hero-deck"></div>
-          </aside>
         </div>
       </section>
 
@@ -1226,7 +1243,7 @@
 
       <section class="section section-soft" id="services">
         <div class="container">
-          <h2 class="section-title reveal" data-i18n="services.title">Our Solutions</h2>
+          <h2 class="section-title reveal" data-i18n="services.title">Nos solutions</h2>
           <p class="section-intro reveal" data-i18n="services.intro">
             Cinq expertises pensées pour connecter stratégie, exécution et résultats business.
           </p>
@@ -1245,7 +1262,7 @@
         <div class="container workflow-wrap">
           <div class="workflow-top reveal">
             <div>
-              <h2 class="section-title" data-i18n="method.title">How we work</h2>
+              <h2 class="section-title" data-i18n="method.title">Comment je travaille</h2>
               <p class="section-intro" data-i18n="method.intro">
                 Un process clair, rapide et collaboratif pour transformer une vision en système digital.
               </p>
@@ -1263,18 +1280,28 @@
           </article>
 
           <div class="workflow-controls reveal">
-            <button class="circle-btn" id="workflow-prev" type="button" aria-label="Previous step">◀</button>
-            <button class="circle-btn" id="workflow-next" type="button" aria-label="Next step">▶</button>
+            <p class="workflow-hint" data-i18n="method.controlsHint">Cliquez sur les flèches pour naviguer</p>
+            <div class="workflow-controls-actions">
+              <button
+                class="circle-btn"
+                id="workflow-prev"
+                type="button"
+                data-i18n-aria="method.prevAria"
+                aria-label="Étape précédente"
+              >
+                ◀
+              </button>
+              <button
+                class="circle-btn"
+                id="workflow-next"
+                type="button"
+                data-i18n-aria="method.nextAria"
+                aria-label="Étape suivante"
+              >
+                ▶
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <h2 class="principles-headline reveal" data-i18n="principles.headline">
-            Créer des expériences digitales qui marquent.
-          </h2>
-          <div class="principles-grid" id="principles-grid"></div>
         </div>
       </section>
 
@@ -1288,26 +1315,31 @@
         </div>
       </section>
 
-      <section class="testimonial-band">
-        <div class="container testimonial-inner reveal">
-          <p class="testimonial-text" id="testimonial-text"></p>
-          <p class="testimonial-author" id="testimonial-author"></p>
-        </div>
-      </section>
-
       <section class="section section-soft" id="pricing">
         <div class="container">
-          <h2 class="section-title reveal" data-i18n="pricing.title">Vous avez ce type de sujet ?</h2>
+          <h2 class="section-title reveal" data-i18n="pricing.title">Vos priorités du moment</h2>
           <p class="section-intro reveal" data-i18n="pricing.intro">
-            Lancement, refonte, tracking, automation... je vous accompagne de façon concrète.
+            Que vous soyez en phase de lancement, de structuration ou d'optimisation, je vous accompagne avec une
+            approche claire et orientée résultat.
           </p>
           <div class="pricing-card reveal">
+            <p class="pricing-lead" data-i18n="pricing.lead">
+              Vous devez lancer une offre, fiabiliser vos données, ou intégrer l'IA sans complexifier vos équipes ?
+            </p>
             <div class="pricing-cases" id="pricing-cases"></div>
             <p class="pricing-copy" data-i18n="pricing.copy">
-              Si l'un de ces enjeux est prioritaire pour vous, contactez-moi.
+              On priorise ensemble les actions à plus fort impact, puis on passe à l'exécution.
             </p>
             <div class="pricing-actions">
-              <a class="btn btn-primary" href="#contact" data-i18n="pricing.cta">Parler de votre projet</a>
+              <a class="btn btn-primary" href="#contact" data-i18n="pricing.ctaPrimary">Planifier un échange</a>
+              <a
+                class="btn btn-secondary"
+                id="pricing-mail"
+                href="mailto:aurelienwirtz67@gmail.com"
+                data-i18n="pricing.ctaSecondary"
+              >
+                Envoyer un email
+              </a>
             </div>
           </div>
         </div>
@@ -1315,7 +1347,7 @@
 
       <section class="section" id="contact">
         <div class="container">
-          <h2 class="section-title reveal" data-i18n="contact.title">Ready to get started</h2>
+          <h2 class="section-title reveal" data-i18n="contact.title">Prêt à lancer votre projet ?</h2>
           <p class="section-intro reveal" data-i18n="contact.intro">
             Décrivez votre projet et vos priorités. Je vous réponds avec une proposition claire.
           </p>
@@ -1405,6 +1437,7 @@
         var heroDeckTimer = null;
         var workflowIndex = 0;
         var workflowSwitchTimer = null;
+        var statCounterObserver = null;
 
         var content = {
           fr: {
@@ -1421,7 +1454,7 @@
             header: {
               navAria: "Navigation principale",
               languageAria: "Changer de langue",
-              note: "Digital Growth Studio"
+              note: "Studio de croissance digitale"
             },
             nav: {
               services: "Services",
@@ -1429,56 +1462,31 @@
               contact: "Contact"
             },
             hero: {
-              eyebrow: "Digital Strategy / Data / AI",
-              titleLine1: "Des idées ambitieuses.",
-              titleLine2Prefix: "Des",
-              titleLine3: "qui transforment vos résultats.",
-              words: ["expériences", "funnels", "systèmes"],
-              subtitle:
-                "J'accompagne les entreprises qui veulent une présence digitale plus claire, plus performante et prête à scaler.",
+              eyebrow: "Stratégie digitale / Data / IA",
+              titleLine1: "Croissance digitale.",
+              titleLine2Prefix: "Pensée pour",
+              words: ["convertir", "performer", "grandir"],
               ctaPrimary: "Démarrer un projet",
-              ctaSecondary: "Voir les services",
-              deckTip: "Cliquez sur les cartes",
-              trust: ["Direction stratégique", "Data orientée décision", "Exécution premium"],
-              cards: [
-                {
-                  tag: "Audit",
-                  title: "Vision claire en quelques jours",
-                  copy: "On identifie précisément ce qui bloque la croissance et ce qui doit être activé en priorité.",
-                  kpi: "Roadmap actionnable"
-                },
-                {
-                  tag: "Architecture",
-                  title: "Système digital cohérent",
-                  copy: "Acquisition, contenu, tracking et automatisation fonctionnent comme un ensemble unifié.",
-                  kpi: "Stack alignée business"
-                },
-                {
-                  tag: "Performance",
-                  title: "Plus de vitesse, plus d'impact",
-                  copy: "Vos équipes gagnent du temps pendant que les KPIs clés progressent de façon mesurable.",
-                  kpi: "Croissance pilotée"
-                }
-              ],
+              ctaSecondary: "Me contacter",
               clients: [
-                "Scaleup B2B",
+                "Scale-up B2B",
                 "SaaS Europe",
                 "Cabinet Conseil",
                 "E-commerce",
                 "PME Suisse",
                 "Studio Produit",
-                "Founder-led Company"
+                "Entreprise dirigée par fondateur"
               ]
             },
             services: {
-              title: "Our Solutions",
+              title: "Nos solutions",
               intro:
                 "Cinq expertises pensées pour connecter stratégie, exécution et résultats business.",
               items: [
                 {
                   title: "Gestion de projet digital",
                   copy: "Cadrage stratégique, gouvernance agile et roadmap claire pour garder vos priorités business au centre.",
-                  tags: ["Strategy", "Agile", "Roadmap"],
+                  tags: ["Stratégie", "Agile", "Feuille de route"],
                   icon: "◐",
                   tone: "#2a2340",
                   blob: "rgba(198,166,255,0.35)"
@@ -1486,7 +1494,7 @@
                 {
                   title: "Data Analysis & BI",
                   copy: "Collecte, structuration et visualisation des données pour transformer les signaux en décisions concrètes.",
-                  tags: ["Collection", "Dashboards", "Insights"],
+                  tags: ["Collecte", "Tableaux de bord", "Insights"],
                   icon: "◎",
                   tone: "#1f3147",
                   blob: "rgba(152,201,255,0.35)"
@@ -1494,7 +1502,7 @@
                 {
                   title: "Funnel de vente",
                   copy: "Conception de parcours de conversion fluides, du premier point de contact jusqu'à l'achat.",
-                  tags: ["Conversion", "Marketing Automation", "Nurturing"],
+                  tags: ["Conversion", "Automatisation marketing", "Nurturing"],
                   icon: "◍",
                   tone: "#2e2b3e",
                   blob: "rgba(220,190,255,0.3)"
@@ -1502,7 +1510,7 @@
                 {
                   title: "Infrastructure IA",
                   copy: "Intégration d'outils IA pragmatiques pour améliorer productivité, qualité et temps de réponse.",
-                  tags: ["LLM Integration", "Automation", "AI Ops"],
+                  tags: ["Intégration LLM", "Automatisation", "AI Ops"],
                   icon: "✦",
                   tone: "#23313b",
                   blob: "rgba(161,221,210,0.35)"
@@ -1510,7 +1518,7 @@
                 {
                   title: "Digitalisation",
                   copy: "Optimisation des workflows et des process internes pour créer une machine opérationnelle plus robuste.",
-                  tags: ["Process Audit", "Workflow", "Scale"],
+                  tags: ["Audit process", "Workflow", "Mise à l'échelle"],
                   icon: "◌",
                   tone: "#352f27",
                   blob: "rgba(224,201,160,0.34)"
@@ -1527,32 +1535,35 @@
               ]
             },
             method: {
-              title: "How we work",
+              title: "Comment je travaille",
               intro:
                 "Un process clair, rapide et collaboratif pour transformer une vision en système digital.",
               stepPrefix: "Étape",
+              controlsHint: "Cliquez sur les flèches pour voir les étapes",
+              prevAria: "Étape précédente",
+              nextAria: "Étape suivante",
               steps: [
                 {
                   icon: "discover",
-                  title: "Discovery & Understanding",
+                  title: "Découverte & cadrage",
                   copy: "On clarifie vos objectifs, votre contexte et vos contraintes pour poser un cadre stratégique solide.",
                   duration: "1 - 2 jours"
                 },
                 {
                   icon: "design",
-                  title: "Strategic Design",
+                  title: "Design stratégique",
                   copy: "On construit l'architecture de parcours, les messages clés et les priorités de déploiement.",
                   duration: "3 - 5 jours"
                 },
                 {
                   icon: "build",
-                  title: "Build & Integration",
+                  title: "Déploiement & intégration",
                   copy: "Mise en production des dispositifs, tracking, automations et assets nécessaires à l'exécution.",
                   duration: "1 - 3 semaines"
                 },
                 {
                   icon: "iterate",
-                  title: "Optimization Loop",
+                  title: "Boucle d'optimisation",
                   copy: "Analyse des performances, itérations ciblées et optimisation continue orientée résultats.",
                   duration: "Continu"
                 }
@@ -1599,24 +1610,23 @@
                 { name: "GA4", icon: "https://cdn.simpleicons.org/googleanalytics/e9eef8" }
               ]
             },
-            testimonial: {
-              quote:
-                "\"En quelques semaines, nous avons gagné en clarté stratégique et en vitesse d'exécution. Le système digital est enfin aligné avec nos objectifs business.\"",
-              author: "Founder · B2B company, Switzerland"
-            },
             pricing: {
-              title: "Vous avez ce type de sujet ?",
-              intro: "Lancement, refonte, tracking, automation... je vous accompagne de façon concrète.",
+              title: "Vos priorités du moment",
+              intro:
+                "Que vous soyez en phase de lancement, de structuration ou d'optimisation, je vous accompagne avec une approche claire et orientée résultat.",
+              lead:
+                "Vous devez lancer une offre, fiabiliser vos données, ou intégrer l'IA sans complexifier vos équipes ?",
               cases: [
-                "Lancer une nouvelle offre digitale",
-                "Structurer vos données marketing et ventes",
-                "Déployer l'IA sans complexifier l'organisation"
+                "Concevoir un site premium qui soutient vraiment vos objectifs business",
+                "Construire un système de conversion lisible, mesurable et évolutif",
+                "Automatiser vos opérations clés avec une architecture IA pragmatique"
               ],
-              copy: "Si l'un de ces enjeux est prioritaire pour vous, contactez-moi.",
-              cta: "Parler de votre projet"
+              copy: "On priorise ensemble les actions à plus fort impact, puis on passe à l'exécution.",
+              ctaPrimary: "Planifier un échange",
+              ctaSecondary: "Envoyer un email"
             },
             contact: {
-              title: "Ready to get started",
+              title: "Prêt à lancer votre projet ?",
               intro: "Décrivez votre projet et vos priorités. Je vous réponds avec une proposition claire.",
               directLabel: "Ou directement :",
               mailSubjectDirect: "Prise de contact - Aurelien Wirtz",
@@ -1664,34 +1674,9 @@
               eyebrow: "Digital Strategy / Data / AI",
               titleLine1: "Ambitious ideas.",
               titleLine2Prefix: "Digital",
-              titleLine3: "that move your metrics.",
               words: ["experiences", "funnels", "systems"],
-              subtitle:
-                "I work with teams that want a clearer digital presence, stronger performance and scalable execution.",
               ctaPrimary: "Start a project",
-              ctaSecondary: "View services",
-              deckTip: "Click the cards",
-              trust: ["Strategic direction", "Decision-ready data", "Premium execution"],
-              cards: [
-                {
-                  tag: "Audit",
-                  title: "Clear direction in days",
-                  copy: "We identify what blocks growth and what should be activated first with confidence.",
-                  kpi: "Actionable roadmap"
-                },
-                {
-                  tag: "Architecture",
-                  title: "A coherent digital system",
-                  copy: "Acquisition, content, tracking and automation are aligned into one operating model.",
-                  kpi: "Business-aligned stack"
-                },
-                {
-                  tag: "Performance",
-                  title: "More speed, more impact",
-                  copy: "Your team gains execution velocity while key business KPIs improve in a measurable way.",
-                  kpi: "Growth under control"
-                }
-              ],
+              ctaSecondary: "Contact me",
               clients: [
                 "B2B Scaleup",
                 "SaaS Europe",
@@ -1761,6 +1746,9 @@
               title: "How we work",
               intro: "A clear, fast and collaborative process to turn your vision into a digital system.",
               stepPrefix: "Step",
+              controlsHint: "Use the arrows to navigate the steps",
+              prevAria: "Previous step",
+              nextAria: "Next step",
               steps: [
                 {
                   icon: "discover",
@@ -1829,21 +1817,20 @@
                 { name: "GA4", icon: "https://cdn.simpleicons.org/googleanalytics/e9eef8" }
               ]
             },
-            testimonial: {
-              quote:
-                "\"Within weeks we gained strategic clarity and execution speed. The digital system is finally aligned with our business goals.\"",
-              author: "Founder · B2B company, Switzerland"
-            },
             pricing: {
-              title: "Do you have this type of priority?",
-              intro: "Launch, redesign, tracking, automation... I support your team with concrete delivery.",
+              title: "Your current priorities",
+              intro:
+                "Whether you are launching, restructuring or optimizing, I support you with a clear and outcome-driven approach.",
+              lead:
+                "Need to launch an offer, make your data reliable, or integrate AI without adding complexity?",
               cases: [
-                "Launch a new digital offer",
-                "Structure marketing and sales data",
-                "Deploy AI without adding complexity"
+                "Design a premium website aligned with your business goals",
+                "Build a measurable and scalable conversion system",
+                "Automate key operations with pragmatic AI architecture"
               ],
-              copy: "If one of these priorities matters now, let's talk.",
-              cta: "Discuss your project"
+              copy: "We prioritize the highest-impact actions together, then execute fast.",
+              ctaPrimary: "Book a strategic call",
+              ctaSecondary: "Send an email"
             },
             contact: {
               title: "Ready to get started",
@@ -2153,6 +2140,7 @@
             return;
           }
           container.innerHTML = "";
+          var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
           items.forEach(function (item) {
             var card = document.createElement("article");
@@ -2160,7 +2148,8 @@
 
             var value = document.createElement("p");
             value.className = "stat-value";
-            value.textContent = item.value;
+            value.dataset.target = item.value;
+            value.textContent = reduceMotion ? item.value : "0";
 
             var label = document.createElement("p");
             label.className = "stat-label";
@@ -2169,6 +2158,83 @@
             card.appendChild(value);
             card.appendChild(label);
             container.appendChild(card);
+          });
+        }
+
+        function parseStatTarget(target) {
+          var clean = String(target || "");
+          var suffix = clean.replace(/[0-9.,\s]/g, "");
+          var number = Number(clean.replace(/[^0-9.]/g, ""));
+          if (!Number.isFinite(number)) {
+            number = 0;
+          }
+          return {
+            number: number,
+            suffix: suffix
+          };
+        }
+
+        function animateStatValue(node) {
+          if (!node || node.dataset.animated === "true") {
+            return;
+          }
+
+          var parsed = parseStatTarget(node.dataset.target);
+          var start = performance.now();
+          var duration = 1400;
+
+          function frame(now) {
+            var progress = Math.min((now - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.round(parsed.number * eased);
+            node.textContent = String(current) + parsed.suffix;
+
+            if (progress < 1) {
+              window.requestAnimationFrame(frame);
+            } else {
+              node.textContent = String(node.dataset.target || "");
+              node.dataset.animated = "true";
+            }
+          }
+
+          window.requestAnimationFrame(frame);
+        }
+
+        function observeStatCounters() {
+          var nodes = document.querySelectorAll(".stat-value[data-target]");
+          if (!nodes.length) {
+            return;
+          }
+
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            nodes.forEach(function (node) {
+              node.textContent = String(node.dataset.target || "");
+              node.dataset.animated = "true";
+            });
+            return;
+          }
+
+          if (statCounterObserver) {
+            statCounterObserver.disconnect();
+          }
+
+          statCounterObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  animateStatValue(entry.target);
+                  if (statCounterObserver) {
+                    statCounterObserver.unobserve(entry.target);
+                  }
+                }
+              });
+            },
+            { threshold: 0.35 }
+          );
+
+          nodes.forEach(function (node) {
+            node.dataset.animated = "false";
+            statCounterObserver.observe(node);
           });
         }
 
@@ -2423,12 +2489,10 @@
           setMeta("meta-twitter-description", dict.meta.twitterDescription);
 
           applyI18n(dict);
-          renderTrust(dict.hero.trust);
-          renderHeroDeck(dict.hero.cards);
           renderClients(dict.hero.clients);
           renderServices(dict.services.items);
           renderStats(dict.stats.items);
-          renderPrinciples(dict.principles.items);
+          observeStatCounters();
           renderTech(dict.stack.items);
           renderPricingCases(dict.pricing.cases);
           startHeroWordCycle(dict.hero.words);
@@ -2437,19 +2501,16 @@
           updateWorkflow(dict, workflowIndex);
           bindWorkflowControls(dict);
 
-          var quote = document.getElementById("testimonial-text");
-          var author = document.getElementById("testimonial-author");
-          if (quote) {
-            quote.textContent = dict.testimonial.quote;
-          }
-          if (author) {
-            author.textContent = dict.testimonial.author;
-          }
-
           var contactMail = document.getElementById("contact-mailto");
           if (contactMail) {
             contactMail.textContent = CONTACT_EMAIL;
             contactMail.href =
+              "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(dict.contact.mailSubjectDirect);
+          }
+
+          var pricingMail = document.getElementById("pricing-mail");
+          if (pricingMail) {
+            pricingMail.href =
               "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(dict.contact.mailSubjectDirect);
           }
 
