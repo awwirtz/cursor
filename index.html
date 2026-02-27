@@ -7,16 +7,15 @@
     <meta
       id="meta-description"
       name="description"
-      content="Conseil stratégique, Data Science et Infrastructure IA. Aurelien Wirtz conçoit des systèmes digitaux premium, performants et évolutifs."
+      content="Conseil stratégique, Data Science et Infrastructure IA. Aurelien Wirtz construit des expériences digitales premium qui convertissent, automatisent et accélèrent la croissance."
     />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="author" content="Aurelien Wirtz" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="keywords"
-      content="Aurelien Wirtz, conseil stratégique, data science, infrastructure IA, digitalisation, growth architecture, Switzerland"
+      content="Aurelien Wirtz, digital strategy, data science, AI infrastructure, swiss digital consulting, conversion architecture"
     />
-
     <link rel="canonical" href="https://aurelienwirtz.com/" />
 
     <meta property="og:type" content="website" />
@@ -30,27 +29,34 @@
     <meta
       id="meta-og-description"
       property="og:description"
-      content="Conseil stratégique, Data Science et Infrastructure IA. Une approche premium et orientée exécution."
+      content="Stratégie, Data et IA pour transformer votre présence digitale en machine de croissance."
     />
     <meta id="meta-og-locale" property="og:locale" content="fr_CH" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:image" content="https://aurelienwirtz.com/og-image.jpg" />
-    <meta property="og:image:alt" content="Aurelien Wirtz - Digital Growth Consulting" />
+    <meta property="og:image:alt" content="Aurelien Wirtz - Digital Growth Architect" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta id="meta-twitter-title" name="twitter:title" content="Aurelien Wirtz" />
     <meta
       id="meta-twitter-description"
       name="twitter:description"
-      content="Conseil stratégique, Data Science et Infrastructure IA."
+      content="Stratégie, Data et IA pour accélérer votre croissance digitale."
     />
     <meta name="twitter:image" content="https://aurelienwirtz.com/og-image.jpg" />
 
     <style>
       :root {
-        --black: #000000;
-        --white: #ffffff;
-        --ease-out: 350ms cubic-bezier(0.22, 1, 0.36, 1);
+        --bg: #050505;
+        --bg-soft: #0d0d0d;
+        --bg-card: #101010;
+        --text: #f7f7f7;
+        --muted: #a7a7a7;
+        --line: rgba(255, 255, 255, 0.16);
+        --line-strong: rgba(255, 255, 255, 0.35);
+        --accent: #9eff5f;
+        --accent-soft: rgba(158, 255, 95, 0.17);
+        --ease-out: 320ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       * {
@@ -63,11 +69,13 @@
 
       body {
         margin: 0;
-        background: var(--white);
-        color: var(--black);
-        font-family: Inter, "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
-        line-height: 1.65;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 1.62;
         text-rendering: optimizeLegibility;
+        min-height: 100vh;
+        overflow-x: clip;
       }
 
       a {
@@ -79,34 +87,101 @@
         margin: 0;
       }
 
-      .canvas-grid {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: -1;
-        opacity: 0.28;
-        background-image:
-          linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-        background-size: 72px 72px;
-      }
-
       .container {
         width: min(1240px, 92vw);
         margin-inline: auto;
+      }
+
+      .ambient-light {
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            36rem 36rem at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(158, 255, 95, 0.14),
+            rgba(158, 255, 95, 0) 58%
+          ),
+          radial-gradient(60rem 40rem at 80% 10%, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 60%);
+      }
+
+      .background-grid {
+        position: fixed;
+        inset: 0;
+        z-index: -4;
+        pointer-events: none;
+        opacity: 0.24;
+        background-image:
+          linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 72px 72px;
+      }
+
+      .background-noise {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        opacity: 0.07;
+        background-image: repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.7) 0,
+          rgba(255, 255, 255, 0.7) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+        animation: noise-drift 16s linear infinite;
+      }
+
+      @keyframes noise-drift {
+        from {
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          transform: translate3d(-48px, -24px, 0);
+        }
+      }
+
+      .cursor-orb {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        background: var(--accent);
+        pointer-events: none;
+        z-index: 40;
+        mix-blend-mode: screen;
+        filter: blur(0.2px);
+        opacity: 0;
+        transition: transform 120ms linear, opacity 200ms ease;
+      }
+
+      .cursor-orb.is-visible {
+        opacity: 0.88;
+      }
+
+      .cursor-orb::before {
+        content: "";
+        position: absolute;
+        inset: -16px;
+        border-radius: inherit;
+        background: radial-gradient(circle, rgba(158, 255, 95, 0.22), rgba(158, 255, 95, 0));
       }
 
       .site-header {
         position: sticky;
         top: 0;
         z-index: 30;
-        border-bottom: 1px solid var(--black);
-        background: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid var(--line);
+        background: rgba(5, 5, 5, 0.84);
         backdrop-filter: blur(8px);
       }
 
       .header-inner {
-        min-height: 4.9rem;
+        min-height: 4.8rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -114,45 +189,55 @@
       }
 
       .logo {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         font-weight: 800;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
         white-space: nowrap;
+      }
+
+      .logo-accent {
+        color: var(--accent);
       }
 
       .site-nav {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 1.4rem;
       }
 
       .site-nav a {
         position: relative;
-        font-size: 0.79rem;
+        font-size: 0.77rem;
         font-weight: 700;
-        letter-spacing: 0.09em;
         text-transform: uppercase;
-        padding-block: 0.25rem;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        transition: color var(--ease-out);
       }
 
       .site-nav a::after {
         content: "";
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: -0.35rem;
         width: 100%;
         height: 1px;
-        background: var(--black);
-        transform-origin: right;
+        background: var(--accent);
         transform: scaleX(0);
+        transform-origin: right;
         transition: transform var(--ease-out);
+      }
+
+      .site-nav a:hover,
+      .site-nav a:focus-visible {
+        color: var(--text);
       }
 
       .site-nav a:hover::after,
       .site-nav a:focus-visible::after {
-        transform-origin: left;
         transform: scaleX(1);
+        transform-origin: left;
       }
 
       .header-right {
@@ -162,70 +247,72 @@
       }
 
       .header-note {
-        font-size: 0.73rem;
+        border: 1px solid var(--line);
+        padding: 0.3rem 0.55rem;
+        font-size: 0.68rem;
         text-transform: uppercase;
-        letter-spacing: 0.09em;
-        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--muted);
         white-space: nowrap;
       }
 
       .lang-switch {
-        border: 1px solid var(--black);
         display: inline-flex;
         align-items: center;
-        gap: 0.3rem;
-        padding: 0.25rem 0.4rem;
+        gap: 0.22rem;
+        border: 1px solid var(--line);
+        padding: 0.22rem 0.34rem;
       }
 
       .lang-btn {
         border: 0;
         margin: 0;
-        background: var(--white);
-        color: var(--black);
-        font: inherit;
-        font-size: 0.74rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
+        background: transparent;
+        color: var(--muted);
         cursor: pointer;
-        padding: 0.2rem 0.4rem;
+        font: inherit;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.2rem 0.38rem;
         transition: background var(--ease-out), color var(--ease-out);
       }
 
       .lang-btn.is-active {
-        background: var(--black);
-        color: var(--white);
+        background: var(--accent);
+        color: #111111;
       }
 
       .section {
-        border-top: 1px solid var(--black);
+        border-top: 1px solid var(--line);
         padding: clamp(4rem, 8vw, 8rem) 0;
-        scroll-margin-top: 6.2rem;
+        scroll-margin-top: 6rem;
       }
 
-      .section--inverse {
-        background: var(--black);
-        color: var(--white);
+      .section-alt {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
       }
 
       .hero {
         border-top: 0;
-        padding-top: clamp(4.6rem, 8vw, 7rem);
-        padding-bottom: 0;
+        padding-top: clamp(4.8rem, 8vw, 7rem);
+        padding-bottom: clamp(2rem, 4.4vw, 4rem);
       }
 
-      .hero-layout {
+      .hero-grid {
         display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
         gap: 1rem;
       }
 
       .eyebrow {
-        font-size: 0.75rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.11em;
-        margin-bottom: 1rem;
+        color: var(--muted);
+        margin-bottom: 1.2rem;
       }
 
       h1,
@@ -234,39 +321,68 @@
         margin: 0;
       }
 
-      h1 {
+      .hero-title {
         font-size: clamp(2.4rem, 8vw, 7rem);
-        line-height: 0.95;
-        text-transform: uppercase;
+        line-height: 0.92;
         letter-spacing: -0.04em;
-        max-width: 12ch;
-        margin-bottom: 1.25rem;
+        text-transform: uppercase;
+        max-width: 13ch;
+        margin-bottom: 1.2rem;
+      }
+
+      .hero-title .line {
+        display: block;
+      }
+
+      .hero-word {
+        position: relative;
+        display: inline-block;
+        color: var(--accent);
+        min-width: 4.4ch;
+        text-shadow: 0 0 18px rgba(158, 255, 95, 0.2);
+      }
+
+      .hero-word.is-changing {
+        animation: word-pop 380ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      @keyframes word-pop {
+        0% {
+          transform: translateY(9px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
 
       .hero-subtitle {
-        max-width: 62ch;
-        font-size: clamp(1rem, 2vw, 1.3rem);
-        margin-bottom: 1.8rem;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        max-width: 64ch;
+        color: var(--muted);
+        margin-bottom: 1.7rem;
       }
 
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.6rem;
+        gap: 0.62rem;
+        margin-bottom: 1.3rem;
       }
 
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid var(--black);
-        padding: 0.8rem 1.25rem;
-        font-size: 0.84rem;
+        border: 1px solid var(--line-strong);
+        padding: 0.78rem 1.2rem;
+        font-size: 0.8rem;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.09em;
+        letter-spacing: 0.1em;
         transition: transform var(--ease-out), background var(--ease-out), color var(--ease-out),
-          border-color var(--ease-out);
+          border-color var(--ease-out), box-shadow var(--ease-out);
       }
 
       .btn:hover,
@@ -275,120 +391,118 @@
       }
 
       .btn-primary {
-        background: var(--black);
-        color: var(--white);
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #111111;
       }
 
       .btn-primary:hover,
       .btn-primary:focus-visible {
-        background: var(--white);
-        color: var(--black);
+        background: transparent;
+        color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent-soft);
       }
 
       .btn-secondary {
-        background: var(--white);
-        color: var(--black);
+        background: transparent;
+        color: var(--text);
       }
 
       .btn-secondary:hover,
       .btn-secondary:focus-visible {
-        background: var(--black);
-        color: var(--white);
+        border-color: var(--accent);
+        color: var(--accent);
       }
 
-      .manifesto-card {
-        border: 1px solid var(--black);
-        background: var(--black);
-        color: var(--white);
-        padding: clamp(1.25rem, 2.8vw, 2rem);
+      .trust-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .trust-item {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.02);
+        padding: 0.35rem 0.55rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .hero-panel {
+        border: 1px solid var(--line);
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+        padding: clamp(1.2rem, 2.6vw, 1.9rem);
+        min-height: 27rem;
         display: grid;
         align-content: start;
-        gap: 0.8rem;
-        min-height: 27rem;
+        gap: 0.9rem;
       }
 
-      .manifesto-label {
-        font-size: 0.72rem;
+      .panel-label {
+        font-size: 0.68rem;
         font-weight: 800;
+        letter-spacing: 0.13em;
         text-transform: uppercase;
-        letter-spacing: 0.12em;
+        color: var(--accent);
       }
 
-      .manifesto-title {
-        font-size: clamp(1.4rem, 2.8vw, 2rem);
-        line-height: 1.15;
+      .panel-title {
+        font-size: clamp(1.35rem, 2.8vw, 2rem);
+        line-height: 1.1;
         letter-spacing: -0.02em;
+        text-transform: uppercase;
       }
 
-      .manifesto-copy {
-        max-width: 34ch;
+      .panel-copy {
+        color: var(--muted);
       }
 
-      .manifesto-points {
-        margin: 0.25rem 0 0;
-        padding-left: 1.1rem;
+      .panel-list {
+        margin: 0.15rem 0 0;
+        padding-left: 1.05rem;
         display: grid;
-        gap: 0.35rem;
+        gap: 0.44rem;
       }
 
-      .hero-metrics {
+      .panel-list li::marker {
+        color: var(--accent);
+      }
+
+      .hero-marquee {
         margin-top: 1rem;
-        border: 1px solid var(--black);
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .metric-card {
-        padding: 1rem 1.2rem;
-        min-height: 8.6rem;
-        display: grid;
-        align-content: end;
-        gap: 0.35rem;
-      }
-
-      .metric-card:not(:last-child) {
-        border-right: 1px solid var(--black);
-      }
-
-      .metric-value {
-        font-size: clamp(1.55rem, 3vw, 2.3rem);
-        line-height: 1;
-        letter-spacing: -0.03em;
-        font-weight: 800;
-      }
-
-      .metric-label {
-        font-size: 0.88rem;
-      }
-
-      .marquee-shell {
-        margin-top: 1rem;
-        border-top: 1px solid var(--black);
-        border-bottom: 1px solid var(--black);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
         overflow: hidden;
+        user-select: none;
       }
 
-      .marquee-track {
+      .hero-marquee-track {
+        width: max-content;
         display: flex;
         align-items: center;
-        width: max-content;
-        will-change: transform;
-        animation: marquee 30s linear infinite;
+        animation: marquee 32s linear infinite;
       }
 
-      .marquee-item {
-        flex: 0 0 auto;
-        font-size: 0.78rem;
+      .hero-marquee-item {
+        padding: 0.88rem 0.9rem;
+        font-size: 0.75rem;
         font-weight: 800;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        letter-spacing: 0.13em;
+        color: var(--muted);
         white-space: nowrap;
-        padding: 0.95rem 1rem;
       }
 
-      .marquee-item::after {
-        content: "•";
-        margin-left: 1rem;
+      .hero-marquee-item::after {
+        content: "·";
+        margin-left: 0.9rem;
+        color: var(--accent);
       }
 
       @keyframes marquee {
@@ -401,15 +515,16 @@
       }
 
       .section-title {
-        font-size: clamp(1.8rem, 4.1vw, 3.5rem);
-        line-height: 1.03;
+        font-size: clamp(1.85rem, 4.2vw, 3.6rem);
+        line-height: 1.02;
         letter-spacing: -0.03em;
         text-transform: uppercase;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.85rem;
       }
 
       .section-intro {
         max-width: 70ch;
+        color: var(--muted);
       }
 
       .services-grid {
@@ -420,13 +535,15 @@
       }
 
       .service-card {
-        border: 1px solid var(--black);
-        padding: 1.2rem;
-        min-height: 16rem;
+        border: 1px solid var(--line);
+        background: var(--bg-card);
+        padding: 1.1rem;
+        min-height: 15.2rem;
         display: grid;
         align-content: start;
-        gap: 0.75rem;
-        transition: background var(--ease-out), color var(--ease-out), transform var(--ease-out);
+        gap: 0.7rem;
+        transform-style: preserve-3d;
+        transition: border-color var(--ease-out), background var(--ease-out), transform var(--ease-out);
       }
 
       .service-card:nth-child(1) {
@@ -450,36 +567,36 @@
       }
 
       .service-card:hover {
-        background: var(--black);
-        color: var(--white);
-        transform: translateY(-2px);
+        border-color: var(--accent);
+        background: #0f120d;
       }
 
       .service-index {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.13em;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.12em;
+        color: var(--accent);
       }
 
       .service-title {
-        font-size: 1.05rem;
-        line-height: 1.3;
+        font-size: 1.03rem;
+        line-height: 1.26;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
       }
 
       .service-list {
         margin: 0;
-        padding-left: 1.05rem;
+        padding-left: 1rem;
         display: grid;
-        gap: 0.35rem;
-        font-size: 0.91rem;
+        gap: 0.34rem;
+        color: var(--muted);
+        font-size: 0.9rem;
       }
 
-      .section--inverse .section-title,
-      .section--inverse .section-intro {
-        color: var(--white);
+      .service-list li::marker {
+        color: var(--accent);
       }
 
       .method-grid {
@@ -491,90 +608,91 @@
         gap: 1rem;
       }
 
-      .method-step {
+      .method-card {
         position: relative;
-        border: 1px solid rgba(255, 255, 255, 0.85);
-        padding: 1.15rem;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.01);
         min-height: 14rem;
+        padding: 1.12rem;
         display: grid;
-        gap: 0.7rem;
+        gap: 0.66rem;
         align-content: start;
-        transition: background var(--ease-out), color var(--ease-out), border-color var(--ease-out);
+        transition: border-color var(--ease-out), background var(--ease-out), transform var(--ease-out);
       }
 
-      .method-step:not(:last-child)::after {
+      .method-card:not(:last-child)::after {
         content: ">";
         position: absolute;
         right: -0.58rem;
         top: 50%;
         transform: translateY(-50%);
-        background: var(--black);
-        color: var(--white);
-        font-weight: 800;
+        background: var(--bg);
+        color: var(--accent);
         padding-inline: 0.2rem;
+        font-weight: 800;
       }
 
-      .method-step:hover {
-        background: var(--white);
-        color: var(--black);
-        border-color: var(--white);
-      }
-
-      .method-step:hover::after {
-        background: var(--white);
-        color: var(--black);
+      .method-card:hover {
+        border-color: var(--accent);
+        background: #0f120d;
       }
 
       .method-index {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 800;
+        letter-spacing: 0.13em;
         text-transform: uppercase;
-        letter-spacing: 0.12em;
+        color: var(--accent);
       }
 
       .method-name {
-        font-size: 1.45rem;
+        font-size: 1.3rem;
         line-height: 1.05;
         text-transform: uppercase;
         letter-spacing: -0.01em;
       }
 
       .method-copy {
-        font-size: 0.94rem;
+        color: var(--muted);
+        font-size: 0.9rem;
       }
 
-      .stack-rail {
+      .stack-row {
         margin-top: 2rem;
         display: flex;
         flex-wrap: wrap;
-        gap: 0.62rem;
+        gap: 0.58rem;
       }
 
       .stack-chip {
-        border: 1px solid var(--black);
-        padding: 0.5rem 0.78rem;
-        font-size: 0.75rem;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.02);
+        padding: 0.46rem 0.74rem;
+        font-size: 0.72rem;
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 0.09em;
-        transition: background var(--ease-out), color var(--ease-out);
+        color: var(--muted);
+        transition: border-color var(--ease-out), color var(--ease-out), background var(--ease-out);
       }
 
       .stack-chip:hover {
-        background: var(--black);
-        color: var(--white);
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(158, 255, 95, 0.08);
       }
 
-      .quote-block {
-        margin: 2rem 0 0;
-        border: 1px solid rgba(255, 255, 255, 0.75);
-        padding: clamp(1.3rem, 4vw, 2.5rem);
+      .quote-shell {
+        margin-top: 2rem;
+        border: 1px solid var(--line);
+        background: linear-gradient(140deg, rgba(158, 255, 95, 0.08), rgba(255, 255, 255, 0.01));
         max-width: 980px;
+        padding: clamp(1.3rem, 4vw, 2.4rem);
       }
 
       .quote-text {
-        font-size: clamp(1.25rem, 2.8vw, 2.35rem);
-        line-height: 1.26;
+        font-size: clamp(1.2rem, 2.9vw, 2.2rem);
+        line-height: 1.25;
         letter-spacing: -0.02em;
         margin-bottom: 1rem;
       }
@@ -583,25 +701,32 @@
         font-style: normal;
         font-size: 0.8rem;
         font-weight: 800;
-        text-transform: uppercase;
         letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
       }
 
-      .pricing-panel {
+      .pricing-card {
         margin-top: 2rem;
-        border: 1px solid var(--black);
-        padding: clamp(1.2rem, 4vw, 2.2rem);
+        border: 1px solid var(--line);
+        background: var(--bg-card);
+        padding: clamp(1.2rem, 4vw, 2rem);
         max-width: 920px;
         display: grid;
-        gap: 1.2rem;
+        gap: 1rem;
       }
 
-      .pricing-copy {
-        font-size: clamp(1.05rem, 2.3vw, 1.5rem);
+      .pricing-main {
+        font-size: clamp(1.05rem, 2.2vw, 1.48rem);
         line-height: 1.45;
       }
 
-      .contact-layout {
+      .pricing-detail {
+        color: var(--muted);
+        max-width: 64ch;
+      }
+
+      .contact-grid {
         margin-top: 2rem;
         display: grid;
         grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -610,46 +735,55 @@
 
       .contact-form-shell,
       .contact-side {
-        border: 1px solid var(--black);
-        padding: 1.15rem;
+        border: 1px solid var(--line);
+        background: var(--bg-card);
+        padding: 1.1rem;
       }
 
       .contact-form {
         display: grid;
-        gap: 0.92rem;
+        gap: 0.88rem;
       }
 
       .form-field {
         display: grid;
-        gap: 0.42rem;
+        gap: 0.4rem;
       }
 
       .form-field label {
-        font-size: 0.72rem;
+        font-size: 0.69rem;
         font-weight: 800;
-        letter-spacing: 0.11em;
         text-transform: uppercase;
+        letter-spacing: 0.11em;
+        color: var(--muted);
       }
 
       input,
       textarea {
         width: 100%;
-        border: 1px solid var(--black);
+        border: 1px solid var(--line);
         border-radius: 0;
-        background: var(--white);
-        color: var(--black);
+        background: #0a0a0a;
+        color: var(--text);
         font: inherit;
-        padding: 0.68rem;
+        padding: 0.66rem;
+        transition: border-color var(--ease-out), box-shadow var(--ease-out);
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: #777777;
       }
 
       input:focus,
       textarea:focus {
         outline: none;
-        box-shadow: inset 0 0 0 1px var(--black);
+        border-color: var(--accent);
+        box-shadow: inset 0 0 0 1px rgba(158, 255, 95, 0.25);
       }
 
       textarea {
-        min-height: 8.8rem;
+        min-height: 8.7rem;
         resize: vertical;
       }
 
@@ -660,24 +794,29 @@
       }
 
       .contact-side-title {
-        font-size: 0.73rem;
+        font-size: 0.72rem;
         font-weight: 800;
-        letter-spacing: 0.11em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
+        color: var(--accent);
       }
 
       .contact-side-copy {
-        max-width: 35ch;
+        color: var(--muted);
+        max-width: 36ch;
       }
 
       .contact-mail {
+        font-size: 1.05rem;
+        letter-spacing: 0.02em;
         text-decoration: underline;
-        text-underline-offset: 3px;
+        text-underline-offset: 4px;
       }
 
       .site-footer {
-        border-top: 1px solid var(--black);
+        border-top: 1px solid var(--line);
         padding: 2rem 0;
+        background: rgba(0, 0, 0, 0.24);
       }
 
       .footer-grid {
@@ -687,16 +826,17 @@
       }
 
       .footer-label {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 800;
-        letter-spacing: 0.11em;
         text-transform: uppercase;
-        margin-bottom: 0.45rem;
+        letter-spacing: 0.12em;
+        margin-bottom: 0.4rem;
+        color: var(--muted);
       }
 
       .footer-grid p,
       .footer-grid a {
-        font-size: 0.88rem;
+        font-size: 0.86rem;
       }
 
       .footer-grid a {
@@ -706,8 +846,8 @@
 
       .reveal {
         opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+        transform: translateY(22px);
+        transition: opacity 720ms cubic-bezier(0.16, 1, 0.3, 1), transform 720ms cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .reveal.is-visible {
@@ -715,21 +855,25 @@
         transform: translateY(0);
       }
 
+      .tilt-card {
+        will-change: transform;
+      }
+
       .btn:focus-visible,
       .lang-btn:focus-visible,
       .site-nav a:focus-visible,
       input:focus-visible,
       textarea:focus-visible {
-        outline: 1px solid var(--black);
+        outline: 1px solid var(--accent);
         outline-offset: 2px;
       }
 
       @media (max-width: 1080px) {
-        .hero-layout {
+        .hero-grid {
           grid-template-columns: 1fr;
         }
 
-        .manifesto-card {
+        .hero-panel {
           min-height: auto;
         }
 
@@ -745,24 +889,24 @@
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .method-step:nth-child(2)::after,
-        .method-step:nth-child(4)::after {
+        .method-card:nth-child(2)::after,
+        .method-card:nth-child(4)::after {
           display: none;
         }
       }
 
-      @media (max-width: 760px) {
+      @media (max-width: 780px) {
         .header-inner {
           min-height: auto;
-          padding: 0.8rem 0;
+          padding: 0.76rem 0;
           flex-wrap: wrap;
         }
 
         .site-nav {
           width: 100%;
           order: 3;
-          border-top: 1px solid var(--black);
-          padding-top: 0.7rem;
+          border-top: 1px solid var(--line);
+          padding-top: 0.68rem;
           gap: 1rem;
         }
 
@@ -770,28 +914,30 @@
           display: none;
         }
 
-        .hero-metrics {
-          grid-template-columns: 1fr;
-        }
-
-        .metric-card:not(:last-child) {
-          border-right: 0;
-          border-bottom: 1px solid var(--black);
-        }
-
         .services-grid,
         .method-grid,
         .footer-grid,
-        .contact-layout {
+        .contact-grid {
           grid-template-columns: 1fr;
         }
 
         .service-card {
           grid-column: auto !important;
+          min-height: auto;
         }
 
-        .method-step::after {
+        .method-card::after {
           display: none;
+        }
+      }
+
+      @media (hover: none) {
+        .cursor-orb {
+          display: none;
+        }
+
+        .tilt-card {
+          transform: none !important;
         }
       }
 
@@ -807,6 +953,11 @@
           transition: none !important;
         }
 
+        .cursor-orb,
+        .ambient-light {
+          display: none;
+        }
+
         .reveal {
           opacity: 1;
           transform: none;
@@ -815,11 +966,15 @@
     </style>
   </head>
   <body id="top">
-    <div class="canvas-grid" aria-hidden="true"></div>
+    <div class="ambient-light" aria-hidden="true"></div>
+    <div class="background-grid" aria-hidden="true"></div>
+    <div class="background-noise" aria-hidden="true"></div>
+    <div class="cursor-orb" id="cursor-orb" aria-hidden="true"></div>
 
     <header class="site-header">
       <div class="container header-inner reveal">
-        <a class="logo" href="#top">Aurelien Wirtz</a>
+        <a class="logo" href="#top">Aurelien <span class="logo-accent">Wirtz</span></a>
+
         <nav class="site-nav" data-i18n-aria="header.navAria">
           <a href="#services" data-i18n="nav.services">Services</a>
           <a href="#method" data-i18n="nav.method">Méthode</a>
@@ -827,7 +982,7 @@
         </nav>
 
         <div class="header-right">
-          <p class="header-note" data-i18n="header.note">Studio indépendant · Suisse</p>
+          <p class="header-note" data-i18n="header.note">Ingénierie digitale · Suisse</p>
           <div class="lang-switch" data-i18n-aria="header.languageAria">
             <button class="lang-btn is-active" type="button" data-lang="fr" aria-pressed="true">FR</button>
             <span aria-hidden="true">|</span>
@@ -839,90 +994,103 @@
 
     <main>
       <section class="section hero" id="hero">
-        <div class="container hero-layout">
+        <div class="container hero-grid">
           <div>
-            <p class="eyebrow reveal" data-i18n="hero.eyebrow">Studio conseil — Stratégie / Data / IA</p>
-            <h1 class="reveal" data-i18n="hero.title">Architecte de votre croissance digitale.</h1>
+            <p class="eyebrow reveal" data-i18n="hero.eyebrow">Digital Growth Engineering</p>
+
+            <h1 class="hero-title reveal">
+              <span class="line" data-i18n="hero.titleLine1">Vous n'avez pas besoin d'un site.</span>
+              <span class="line">
+                <span data-i18n="hero.titleLine2Prefix">Vous avez besoin d'un</span>
+                <span class="hero-word" id="hero-word">système</span>
+              </span>
+            </h1>
+
             <p class="hero-subtitle reveal" data-i18n="hero.subtitle">
-              Conseil stratégique, Data Science et Infrastructure IA.
+              Conseil stratégique, Data Science et Infrastructure IA pour transformer votre présence digitale en
+              machine de croissance mesurable.
             </p>
+
             <div class="hero-actions reveal">
-              <a href="#contact" class="btn btn-primary" data-i18n="hero.ctaPrimary">Démarrer un projet</a>
-              <a href="#method" class="btn btn-secondary" data-i18n="hero.ctaSecondary">Voir la méthode</a>
+              <a class="btn btn-primary" href="#contact" data-i18n="hero.ctaPrimary">Démarrer un projet</a>
+              <a class="btn btn-secondary" href="#method" data-i18n="hero.ctaSecondary">Voir la méthode</a>
             </div>
+
+            <ul class="trust-list reveal" id="trust-list"></ul>
           </div>
 
-          <aside class="manifesto-card reveal">
-            <p class="manifesto-label" data-i18n="hero.manifestoLabel">Positionnement</p>
-            <h2 class="manifesto-title" data-i18n="hero.manifestoTitle">Swiss Precision, Agency Energy.</h2>
-            <p class="manifesto-copy" data-i18n="hero.manifestoCopy">
-              Une approche éditoriale et opérationnelle pour transformer votre ambition en système digital concret.
+          <aside class="hero-panel tilt-card reveal">
+            <p class="panel-label" data-i18n="hero.panelLabel">Ce que vous gagnez en 30 jours</p>
+            <h2 class="panel-title" data-i18n="hero.panelTitle">Une architecture claire, prête à scaler.</h2>
+            <p class="panel-copy" data-i18n="hero.panelCopy">
+              Je conçois le système qui connecte acquisition, données et automatisation, pour que chaque action
+              digitale produise un résultat business concret.
             </p>
-            <ul class="manifesto-points" id="hero-points"></ul>
+            <ul class="panel-list" id="hero-panel-list"></ul>
           </aside>
         </div>
 
-        <div class="container">
-          <div class="hero-metrics" id="hero-metrics"></div>
-        </div>
-
-        <div class="marquee-shell" aria-hidden="true">
-          <div class="marquee-track" id="marquee-track"></div>
+        <div class="hero-marquee" aria-hidden="true">
+          <div class="hero-marquee-track" id="hero-marquee-track"></div>
         </div>
       </section>
 
-      <section class="section" id="services">
+      <section class="section section-alt" id="services">
         <div class="container">
           <h2 class="section-title reveal" data-i18n="services.title">Services</h2>
           <p class="section-intro reveal" data-i18n="services.intro">
-            Cinq expertises pour aligner stratégie, production, acquisition et automatisation.
+            Une offre conçue pour faire avancer vos priorités business, pas juste votre esthétique.
           </p>
           <div class="services-grid" id="services-grid"></div>
         </div>
       </section>
 
-      <section class="section section--inverse" id="method">
+      <section class="section" id="method">
         <div class="container">
           <h2 class="section-title reveal" data-i18n="method.title">Méthode</h2>
           <p class="section-intro reveal" data-i18n="method.intro">
-            Un process clair en quatre étapes, de l'audit initial à l'optimisation continue.
+            Un process en 4 étapes pour passer d'une idée prometteuse à un système digital performant.
           </p>
           <ol class="method-grid" id="method-grid"></ol>
         </div>
       </section>
 
-      <section class="section" id="stack">
+      <section class="section section-alt" id="stack">
         <div class="container">
           <h2 class="section-title reveal" data-i18n="stack.title">Tech Stack</h2>
           <p class="section-intro reveal" data-i18n="stack.intro">
-            Des outils robustes, assemblés pour accélérer vos opérations et vos décisions.
+            Des outils fiables pour industrialiser vos opérations et accélérer la prise de décision.
           </p>
-          <div class="stack-rail" id="stack-rail"></div>
+          <div class="stack-row" id="stack-row"></div>
         </div>
       </section>
 
-      <section class="section section--inverse" id="social-proof">
+      <section class="section" id="social-proof">
         <div class="container">
           <h2 class="section-title reveal" data-i18n="social.title">Preuve sociale</h2>
           <p class="section-intro reveal" data-i18n="social.intro">
-            Une collaboration orientée exécution, lisibilité et impact business.
+            Une collaboration orientée impact, où chaque livrable doit améliorer votre performance.
           </p>
-          <blockquote class="quote-block reveal">
+          <blockquote class="quote-shell reveal">
             <p class="quote-text" id="quote-text"></p>
             <cite class="quote-author" id="quote-author"></cite>
           </blockquote>
         </div>
       </section>
 
-      <section class="section" id="pricing">
+      <section class="section section-alt" id="pricing">
         <div class="container">
           <h2 class="section-title reveal" data-i18n="pricing.title">Tarification</h2>
-          <div class="pricing-panel reveal">
-            <p class="pricing-copy" data-i18n="pricing.copy">
+          <div class="pricing-card tilt-card reveal">
+            <p class="pricing-main" data-i18n="pricing.copy">
               Chaque projet est unique. Tarifs sur devis après une consultation gratuite.
             </p>
+            <p class="pricing-detail" data-i18n="pricing.detail">
+              Vous recevez une proposition claire, cadrée et priorisée selon vos objectifs business, votre niveau
+              de maturité digitale et votre tempo d'exécution.
+            </p>
             <p>
-              <a href="#contact" class="btn btn-primary" data-i18n="pricing.cta">Démarrer une consultation</a>
+              <a href="#contact" class="btn btn-primary" data-i18n="pricing.cta">Planifier un appel stratégique</a>
             </p>
           </div>
         </div>
@@ -932,10 +1100,11 @@
         <div class="container">
           <h2 class="section-title reveal" data-i18n="contact.title">Contact</h2>
           <p class="section-intro reveal" data-i18n="contact.intro">
-            Décrivez votre contexte et vos objectifs. Je reviens vers vous avec une proposition claire.
+            Décris-moi ton objectif, ton contexte et ton ambition. Je te réponds avec une approche claire et une
+            feuille de route actionnable.
           </p>
 
-          <div class="contact-layout">
+          <div class="contact-grid">
             <div class="contact-form-shell reveal">
               <form class="contact-form" id="contact-form">
                 <div class="form-field">
@@ -971,7 +1140,7 @@
                     name="message"
                     required
                     data-i18n-placeholder="contact.form.messagePlaceholder"
-                    placeholder="Décrivez votre besoin."
+                    placeholder="Décrivez votre besoin et vos objectifs."
                   ></textarea>
                 </div>
 
@@ -982,7 +1151,7 @@
             <aside class="contact-side reveal">
               <p class="contact-side-title" data-i18n="contact.sideTitle">Contact direct</p>
               <p class="contact-side-copy" data-i18n="contact.sideCopy">
-                Si vous préférez un échange direct, écrivez-moi et je vous réponds rapidement.
+                Pour un premier échange rapide, envoie-moi un email et je reviens vers toi sous 24h ouvrées.
               </p>
               <p>
                 <a id="contact-mailto" class="contact-mail" href="mailto:contact@aurelienwirtz.com">
@@ -1016,28 +1185,30 @@
       (function () {
         "use strict";
 
-        var STORAGE_KEY = "aw-lang";
         var CONTACT_EMAIL = "contact@aurelienwirtz.com";
+        var STORAGE_KEY = "aw-lang";
         var currentLanguage = "fr";
         var revealObserver = null;
+        var heroWordTimer = null;
+        var heroWordIndex = 0;
 
         var content = {
           fr: {
             meta: {
               title: "Aurelien Wirtz | Architecte de votre croissance digitale",
               description:
-                "Conseil stratégique, Data Science et Infrastructure IA. Aurelien Wirtz conçoit des systèmes digitaux premium, performants et évolutifs.",
+                "Conseil stratégique, Data Science et Infrastructure IA. Aurelien Wirtz construit des expériences digitales premium qui convertissent, automatisent et accélèrent la croissance.",
               ogTitle: "Aurelien Wirtz | Architecte de votre croissance digitale",
               ogDescription:
-                "Conseil stratégique, Data Science et Infrastructure IA. Une approche premium et orientée exécution.",
+                "Stratégie, Data et IA pour transformer votre présence digitale en machine de croissance.",
               ogLocale: "fr_CH",
               twitterTitle: "Aurelien Wirtz | Architecte de votre croissance digitale",
-              twitterDescription: "Conseil stratégique, Data Science et Infrastructure IA."
+              twitterDescription: "Stratégie, Data et IA pour accélérer votre croissance digitale."
             },
             header: {
               navAria: "Navigation principale",
               languageAria: "Changer de langue",
-              note: "Studio indépendant · Suisse"
+              note: "Ingénierie digitale · Suisse"
             },
             nav: {
               services: "Services",
@@ -1045,25 +1216,24 @@
               contact: "Contact"
             },
             hero: {
-              eyebrow: "Studio conseil — Stratégie / Data / IA",
-              title: "Architecte de votre croissance digitale.",
+              eyebrow: "Digital Growth Engineering",
+              titleLine1: "Vous n'avez pas besoin d'un site.",
+              titleLine2Prefix: "Vous avez besoin d'un",
+              words: ["système", "moteur", "avantage"],
               subtitle:
-                "Conseil stratégique, Data Science et Infrastructure IA. Je conçois des systèmes lisibles, rapides et orientés résultats.",
+                "Conseil stratégique, Data Science et Infrastructure IA pour transformer votre présence digitale en machine de croissance mesurable.",
               ctaPrimary: "Démarrer un projet",
-              ctaSecondary: "Découvrir la méthode",
-              manifestoLabel: "Positionnement",
-              manifestoTitle: "Swiss Precision, Agency Energy.",
-              manifestoCopy:
-                "Une direction claire, un design d'exécution et des outils concrets pour faire progresser votre business sans friction.",
-              points: [
-                "Gestion stratégique et pilotage digital",
-                "Data Analysis & BI orientée décision",
-                "Infrastructure IA et automatisation intelligente"
-              ],
-              metrics: [
-                { value: "01", label: "Vision stratégique claire" },
-                { value: "02", label: "Exécution rapide et structurée" },
-                { value: "03", label: "Optimisation continue" }
+              ctaSecondary: "Voir la méthode",
+              trust: ["Réponse sous 24h", "Approche orientée ROI", "Pilotage end-to-end"],
+              panelLabel: "Ce que vous gagnez en 30 jours",
+              panelTitle: "Une architecture claire, prête à scaler.",
+              panelCopy:
+                "Je conçois le système qui connecte acquisition, données et automatisation, pour que chaque action digitale produise un résultat business concret.",
+              panelPoints: [
+                "Audit des leviers business et techniques",
+                "Roadmap priorisée avec quick wins",
+                "Framework de tracking et dashboards décisionnels",
+                "Plan de déploiement IA adapté à votre maturité"
               ],
               marquee: [
                 "Gestion de projet digital",
@@ -1075,7 +1245,8 @@
             },
             services: {
               title: "Services",
-              intro: "Cinq expertises pour aligner stratégie, production, acquisition et automatisation.",
+              intro:
+                "Une offre conçue pour faire avancer vos priorités business, pas juste votre esthétique.",
               items: [
                 {
                   title: "Gestion de projet digital",
@@ -1101,49 +1272,65 @@
             },
             method: {
               title: "Méthode",
-              intro: "Un process clair en quatre étapes, de l'audit initial à l'optimisation continue.",
+              intro: "Un process en 4 étapes pour passer d'une idée prometteuse à un système digital performant.",
               stepPrefix: "Étape",
               steps: [
                 {
                   name: "Audit",
-                  copy: "Analyse des enjeux, des données, des outils et des points de friction."
+                  copy: "Diagnostic de votre acquisition, de vos données et de vos points de friction."
                 },
                 {
                   name: "Stratégie",
-                  copy: "Priorisation des leviers et construction d'une roadmap orientée impact."
+                  copy: "Priorisation des leviers et définition d'une roadmap orientée impact business."
                 },
                 {
                   name: "Déploiement",
-                  copy: "Mise en place des workflows, dashboards et automatisations IA."
+                  copy: "Mise en production des workflows, dashboards et automatisations IA."
                 },
                 {
                   name: "Optimisation",
-                  copy: "Mesure, itérations et amélioration continue des performances."
+                  copy: "Itérations pilotées par la donnée pour améliorer conversion et efficacité."
                 }
               ]
             },
             stack: {
               title: "Tech Stack",
-              intro: "Des outils robustes, assemblés pour accélérer vos opérations et vos décisions.",
-              items: ["Python", "SQL", "OpenAI", "Make", "Zapier", "n8n", "Looker Studio", "Notion", "GitHub"]
+              intro:
+                "Des outils fiables pour industrialiser vos opérations et accélérer la prise de décision.",
+              items: [
+                "Python",
+                "SQL",
+                "OpenAI",
+                "Make",
+                "Zapier",
+                "n8n",
+                "Looker Studio",
+                "Notion",
+                "GitHub",
+                "GA4"
+              ]
             },
             social: {
               title: "Preuve sociale",
-              intro: "Une collaboration orientée exécution, lisibilité et impact business.",
+              intro: "Une collaboration orientée impact, où chaque livrable doit améliorer votre performance.",
               quote:
-                "\"En quelques semaines, nous avons clarifié notre architecture digitale et réduit la charge manuelle sur nos équipes. La qualité d'exécution est exceptionnelle.\"",
-              author: "Direction digitale, entreprise suisse"
+                "\"En 8 semaines, notre tunnel est devenu lisible, mesurable et beaucoup plus rentable. Nous avons gagné en vitesse d'exécution et en marge.\"",
+              author: "CEO, société B2B en Suisse romande"
             },
             pricing: {
               title: "Tarification",
               copy: "Chaque projet est unique. Tarifs sur devis après une consultation gratuite.",
-              cta: "Démarrer une consultation"
+              detail:
+                "Vous recevez une proposition claire, cadrée et priorisée selon vos objectifs business, votre niveau de maturité digitale et votre tempo d'exécution.",
+              cta: "Planifier un appel stratégique"
             },
             contact: {
               title: "Contact",
-              intro: "Décrivez votre contexte et vos objectifs. Je reviens vers vous avec une proposition claire.",
+              intro:
+                "Décris-moi ton objectif, ton contexte et ton ambition. Je te réponds avec une approche claire et une feuille de route actionnable.",
               sideTitle: "Contact direct",
-              sideCopy: "Si vous préférez un échange direct, écrivez-moi et je vous réponds rapidement.",
+              sideCopy:
+                "Pour un premier échange rapide, envoie-moi un email et je reviens vers toi sous 24h ouvrées.",
               mailSubjectDirect: "Prise de contact - Aurelien Wirtz",
               mailSubjectForm: "Demande de projet - Aurelien Wirtz",
               form: {
@@ -1152,7 +1339,7 @@
                 emailLabel: "Email",
                 emailPlaceholder: "vous@entreprise.ch",
                 messageLabel: "Message",
-                messagePlaceholder: "Décrivez votre besoin et vos priorités.",
+                messagePlaceholder: "Décrivez votre besoin et vos objectifs.",
                 submit: "Envoyer"
               }
             },
@@ -1168,18 +1355,17 @@
             meta: {
               title: "Aurelien Wirtz | Architect of your digital growth",
               description:
-                "Strategic consulting, Data Science and AI Infrastructure. Aurelien Wirtz designs premium, scalable and performance-driven digital systems.",
+                "Strategic consulting, Data Science and AI Infrastructure. Aurelien Wirtz builds premium digital systems that convert, automate and scale growth.",
               ogTitle: "Aurelien Wirtz | Architect of your digital growth",
-              ogDescription:
-                "Strategic consulting, Data Science and AI Infrastructure. A premium and execution-driven approach.",
+              ogDescription: "Strategy, Data and AI to turn your digital presence into a growth engine.",
               ogLocale: "en_US",
               twitterTitle: "Aurelien Wirtz | Architect of your digital growth",
-              twitterDescription: "Strategic consulting, Data Science and AI Infrastructure."
+              twitterDescription: "Strategy, Data and AI to accelerate digital growth."
             },
             header: {
               navAria: "Primary navigation",
               languageAria: "Switch language",
-              note: "Independent studio · Switzerland"
+              note: "Digital engineering · Switzerland"
             },
             nav: {
               services: "Services",
@@ -1187,25 +1373,24 @@
               contact: "Contact"
             },
             hero: {
-              eyebrow: "Consulting studio — Strategy / Data / AI",
-              title: "Architect of your digital growth.",
+              eyebrow: "Digital Growth Engineering",
+              titleLine1: "You do not need another website.",
+              titleLine2Prefix: "You need a",
+              words: ["system", "engine", "edge"],
               subtitle:
-                "Strategic consulting, Data Science and AI Infrastructure. I design clear, fast and outcome-driven systems.",
+                "Strategic consulting, Data Science and AI Infrastructure to transform your digital presence into measurable growth.",
               ctaPrimary: "Start a project",
-              ctaSecondary: "Discover the method",
-              manifestoLabel: "Positioning",
-              manifestoTitle: "Swiss Precision, Agency Energy.",
-              manifestoCopy:
-                "A clear direction, execution-grade design and practical tools to move your business forward without friction.",
-              points: [
-                "Strategic management and digital delivery",
-                "Decision-ready Data Analysis & BI",
-                "AI infrastructure and intelligent automation"
-              ],
-              metrics: [
-                { value: "01", label: "Clear strategic direction" },
-                { value: "02", label: "Fast and structured execution" },
-                { value: "03", label: "Continuous optimization" }
+              ctaSecondary: "View the method",
+              trust: ["Reply within 24h", "ROI-focused approach", "End-to-end ownership"],
+              panelLabel: "What you gain in 30 days",
+              panelTitle: "A clear architecture, ready to scale.",
+              panelCopy:
+                "I design the system that connects acquisition, data and automation, so each digital action creates real business outcomes.",
+              panelPoints: [
+                "Business and technical leverage audit",
+                "Prioritized roadmap with quick wins",
+                "Tracking framework and decision dashboards",
+                "AI deployment plan adapted to your maturity"
               ],
               marquee: [
                 "Digital project management",
@@ -1217,7 +1402,8 @@
             },
             services: {
               title: "Services",
-              intro: "Five capabilities to align strategy, production, acquisition and automation.",
+              intro:
+                "An offer built to move your business priorities forward, not only your visual identity.",
               items: [
                 {
                   title: "Digital project management",
@@ -1243,49 +1429,63 @@
             },
             method: {
               title: "Method",
-              intro: "A clear four-step process, from initial audit to continuous optimization.",
+              intro: "A four-step process that turns promising ideas into high-performance digital systems.",
               stepPrefix: "Step",
               steps: [
                 {
                   name: "Audit",
-                  copy: "Review of business goals, data, tooling and friction points."
+                  copy: "Diagnostic of acquisition, data quality and operational friction points."
                 },
                 {
                   name: "Strategy",
-                  copy: "Prioritization of high-impact initiatives and a practical roadmap."
+                  copy: "Prioritization of high-impact levers and a practical business roadmap."
                 },
                 {
                   name: "Deployment",
-                  copy: "Implementation of workflows, dashboards and AI automations."
+                  copy: "Production rollout of workflows, dashboards and AI automations."
                 },
                 {
                   name: "Optimization",
-                  copy: "Measurement, iteration loops and continuous performance upgrades."
+                  copy: "Data-driven iterations to improve conversion and operational efficiency."
                 }
               ]
             },
             stack: {
               title: "Tech Stack",
-              intro: "Reliable tools combined to accelerate operations and decisions.",
-              items: ["Python", "SQL", "OpenAI", "Make", "Zapier", "n8n", "Looker Studio", "Notion", "GitHub"]
+              intro: "Reliable tools to industrialize operations and speed up decision-making.",
+              items: [
+                "Python",
+                "SQL",
+                "OpenAI",
+                "Make",
+                "Zapier",
+                "n8n",
+                "Looker Studio",
+                "Notion",
+                "GitHub",
+                "GA4"
+              ]
             },
             social: {
               title: "Social proof",
-              intro: "A collaboration focused on execution quality, clarity and business impact.",
+              intro: "A collaboration model focused on performance where every deliverable must move the needle.",
               quote:
-                "\"Within weeks, we clarified our digital architecture and reduced manual workload across teams. The execution quality is outstanding.\"",
-              author: "Digital leadership, Swiss company"
+                "\"In 8 weeks, our funnel became clear, measurable and far more profitable. We gained execution speed and stronger margins.\"",
+              author: "CEO, B2B company in Switzerland"
             },
             pricing: {
               title: "Pricing",
               copy: "Each project is unique. Custom quotes only after a free consultation.",
-              cta: "Start a consultation"
+              detail:
+                "You receive a clear, scoped and prioritized proposal based on your business goals, digital maturity and execution pace.",
+              cta: "Book a strategic call"
             },
             contact: {
               title: "Contact",
-              intro: "Share your context and goals. I will reply with a clear and actionable proposal.",
+              intro:
+                "Share your context, goals and ambition. I will reply with a clear approach and an actionable roadmap.",
               sideTitle: "Direct contact",
-              sideCopy: "If you prefer a direct exchange, email me and I will get back quickly.",
+              sideCopy: "For a quick first exchange, email me and I will get back to you within 24 business hours.",
               mailSubjectDirect: "Contact request - Aurelien Wirtz",
               mailSubjectForm: "Project inquiry - Aurelien Wirtz",
               form: {
@@ -1294,7 +1494,7 @@
                 emailLabel: "Email",
                 emailPlaceholder: "you@company.com",
                 messageLabel: "Message",
-                messagePlaceholder: "Describe your needs and priorities.",
+                messagePlaceholder: "Describe your needs and goals.",
                 submit: "Send"
               }
             },
@@ -1308,12 +1508,10 @@
           }
         };
 
-        function getValue(dict, path) {
-          return path.split(".").reduce(function (accumulator, key) {
-            return accumulator && Object.prototype.hasOwnProperty.call(accumulator, key)
-              ? accumulator[key]
-              : undefined;
-          }, dict);
+        function getPath(obj, path) {
+          return path.split(".").reduce(function (acc, key) {
+            return acc && Object.prototype.hasOwnProperty.call(acc, key) ? acc[key] : undefined;
+          }, obj);
         }
 
         function setMeta(id, value) {
@@ -1323,71 +1521,61 @@
           }
         }
 
-        function applyTranslations(dict) {
+        function applyText(dict) {
           document.querySelectorAll("[data-i18n]").forEach(function (el) {
-            var value = getValue(dict, el.dataset.i18n);
+            var value = getPath(dict, el.dataset.i18n);
             if (typeof value === "string") {
               el.textContent = value;
             }
           });
 
           document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
-            var value = getValue(dict, el.dataset.i18nPlaceholder);
+            var value = getPath(dict, el.dataset.i18nPlaceholder);
             if (typeof value === "string") {
               el.setAttribute("placeholder", value);
             }
           });
 
           document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
-            var value = getValue(dict, el.dataset.i18nAria);
+            var value = getPath(dict, el.dataset.i18nAria);
             if (typeof value === "string") {
               el.setAttribute("aria-label", value);
             }
           });
         }
 
-        function renderHeroPoints(points) {
-          var container = document.getElementById("hero-points");
+        function renderTrust(items) {
+          var container = document.getElementById("trust-list");
           if (!container) {
             return;
           }
 
           container.innerHTML = "";
-          points.forEach(function (point) {
-            var item = document.createElement("li");
-            item.className = "reveal";
-            item.textContent = point;
-            container.appendChild(item);
+          items.forEach(function (item) {
+            var li = document.createElement("li");
+            li.className = "trust-item reveal";
+            li.textContent = item;
+            container.appendChild(li);
           });
         }
 
-        function renderHeroMetrics(metrics) {
-          var container = document.getElementById("hero-metrics");
+        function renderHeroPanel(items) {
+          var container = document.getElementById("hero-panel-list");
           if (!container) {
             return;
           }
 
           container.innerHTML = "";
-          metrics.forEach(function (metric) {
-            var card = document.createElement("article");
-            card.className = "metric-card reveal";
-
-            var value = document.createElement("p");
-            value.className = "metric-value";
-            value.textContent = metric.value;
-
-            var label = document.createElement("p");
-            label.className = "metric-label";
-            label.textContent = metric.label;
-
-            card.appendChild(value);
-            card.appendChild(label);
-            container.appendChild(card);
+          items.forEach(function (item) {
+            var li = document.createElement("li");
+            li.className = "reveal";
+            li.textContent = item;
+            container.appendChild(li);
           });
         }
 
         function renderMarquee(items) {
-          var track = document.getElementById("marquee-track");
+          var track = document.getElementById("hero-marquee-track");
           if (!track) {
             return;
           }
@@ -1400,7 +1588,7 @@
 
           repeated.forEach(function (item) {
             var span = document.createElement("span");
-            span.className = "marquee-item";
+            span.className = "hero-marquee-item";
             span.textContent = item;
             track.appendChild(span);
           });
@@ -1415,7 +1603,7 @@
           container.innerHTML = "";
           items.forEach(function (item, index) {
             var card = document.createElement("article");
-            card.className = "service-card reveal";
+            card.className = "service-card tilt-card reveal";
 
             var idx = document.createElement("p");
             idx.className = "service-index";
@@ -1449,7 +1637,7 @@
           container.innerHTML = "";
           steps.forEach(function (step, index) {
             var li = document.createElement("li");
-            li.className = "method-step reveal";
+            li.className = "method-card tilt-card reveal";
 
             var idx = document.createElement("p");
             idx.className = "method-index";
@@ -1471,7 +1659,7 @@
         }
 
         function renderStack(items) {
-          var container = document.getElementById("stack-rail");
+          var container = document.getElementById("stack-row");
           if (!container) {
             return;
           }
@@ -1483,6 +1671,69 @@
             chip.textContent = item;
             container.appendChild(chip);
           });
+        }
+
+        function bindTiltCards(scope) {
+          var cards = (scope || document).querySelectorAll(".tilt-card");
+          cards.forEach(function (card) {
+            if (card.dataset.tiltBound === "true") {
+              return;
+            }
+            card.dataset.tiltBound = "true";
+
+            card.addEventListener("pointermove", function (event) {
+              if (window.matchMedia("(hover: none)").matches) {
+                return;
+              }
+              var rect = card.getBoundingClientRect();
+              var px = (event.clientX - rect.left) / rect.width;
+              var py = (event.clientY - rect.top) / rect.height;
+              var rotateY = (px - 0.5) * 8;
+              var rotateX = (0.5 - py) * 8;
+              card.style.transform = "perspective(900px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+            });
+
+            card.addEventListener("pointerleave", function () {
+              card.style.transform = "";
+            });
+          });
+        }
+
+        function initMouseAmbient() {
+          var root = document.documentElement;
+          var targetX = window.innerWidth / 2;
+          var targetY = window.innerHeight / 2;
+          var currentX = targetX;
+          var currentY = targetY;
+          var orb = document.getElementById("cursor-orb");
+
+          function animate() {
+            currentX += (targetX - currentX) * 0.15;
+            currentY += (targetY - currentY) * 0.15;
+            root.style.setProperty("--mouse-x", currentX + "px");
+            root.style.setProperty("--mouse-y", currentY + "px");
+
+            if (orb) {
+              orb.style.transform = "translate3d(" + (currentX - 9) + "px," + (currentY - 9) + "px,0)";
+            }
+            window.requestAnimationFrame(animate);
+          }
+
+          window.addEventListener("pointermove", function (event) {
+            targetX = event.clientX;
+            targetY = event.clientY;
+            if (orb) {
+              orb.classList.add("is-visible");
+            }
+          });
+
+          window.addEventListener("pointerleave", function () {
+            if (orb) {
+              orb.classList.remove("is-visible");
+            }
+          });
+
+          window.requestAnimationFrame(animate);
         }
 
         function buildObserver() {
@@ -1539,10 +1790,33 @@
 
         function updateLanguageButtons(language) {
           document.querySelectorAll(".lang-btn").forEach(function (button) {
-            var isActive = button.dataset.lang === language;
-            button.classList.toggle("is-active", isActive);
-            button.setAttribute("aria-pressed", String(isActive));
+            var active = button.dataset.lang === language;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", String(active));
           });
+        }
+
+        function startHeroWordCycle(words) {
+          var node = document.getElementById("hero-word");
+          if (!node || !Array.isArray(words) || words.length === 0) {
+            return;
+          }
+
+          if (heroWordTimer) {
+            window.clearInterval(heroWordTimer);
+            heroWordTimer = null;
+          }
+
+          heroWordIndex = 0;
+          node.textContent = words[heroWordIndex];
+
+          heroWordTimer = window.setInterval(function () {
+            heroWordIndex = (heroWordIndex + 1) % words.length;
+            node.classList.remove("is-changing");
+            void node.offsetWidth;
+            node.textContent = words[heroWordIndex];
+            node.classList.add("is-changing");
+          }, 1900);
         }
 
         function setLanguage(language) {
@@ -1563,13 +1837,14 @@
           setMeta("meta-twitter-title", dict.meta.twitterTitle);
           setMeta("meta-twitter-description", dict.meta.twitterDescription);
 
-          applyTranslations(dict);
-          renderHeroPoints(dict.hero.points);
-          renderHeroMetrics(dict.hero.metrics);
+          applyText(dict);
+          renderTrust(dict.hero.trust);
+          renderHeroPanel(dict.hero.panelPoints);
           renderMarquee(dict.hero.marquee);
           renderServices(dict.services.items);
           renderMethod(dict.method.stepPrefix, dict.method.steps);
           renderStack(dict.stack.items);
+          startHeroWordCycle(dict.hero.words);
 
           var quoteText = document.getElementById("quote-text");
           var quoteAuthor = document.getElementById("quote-author");
@@ -1580,14 +1855,15 @@
             quoteAuthor.textContent = dict.social.author;
           }
 
-          var directMail = document.getElementById("contact-mailto");
-          if (directMail) {
-            directMail.textContent = CONTACT_EMAIL;
-            directMail.href =
+          var contactMail = document.getElementById("contact-mailto");
+          if (contactMail) {
+            contactMail.textContent = CONTACT_EMAIL;
+            contactMail.href =
               "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(dict.contact.mailSubjectDirect);
           }
 
           updateLanguageButtons(language);
+          bindTiltCards(document);
           observeReveals(document);
 
           try {
@@ -1607,14 +1883,14 @@
         if (form) {
           form.addEventListener("submit", function (event) {
             event.preventDefault();
-
             var dict = content[currentLanguage];
             var data = new FormData(form);
+
             var name = String(data.get("name") || "").trim();
             var email = String(data.get("email") || "").trim();
             var message = String(data.get("message") || "").trim();
 
-            var bodyLines = [
+            var lines = [
               dict.contact.form.nameLabel + ": " + name,
               dict.contact.form.emailLabel + ": " + email,
               "",
@@ -1622,23 +1898,25 @@
               message
             ];
 
-            var mailto =
+            var url =
               "mailto:" +
               CONTACT_EMAIL +
               "?subject=" +
               encodeURIComponent(dict.contact.mailSubjectForm) +
               "&body=" +
-              encodeURIComponent(bodyLines.join("\n"));
+              encodeURIComponent(lines.join("\n"));
 
-            window.location.href = mailto;
+            window.location.href = url;
           });
         }
 
+        initMouseAmbient();
+
         var initialLanguage = "fr";
         try {
-          var savedLanguage = localStorage.getItem(STORAGE_KEY);
-          if (savedLanguage && content[savedLanguage]) {
-            initialLanguage = savedLanguage;
+          var saved = localStorage.getItem(STORAGE_KEY);
+          if (saved && content[saved]) {
+            initialLanguage = saved;
           }
         } catch (error) {
           initialLanguage = "fr";
