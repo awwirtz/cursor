@@ -272,23 +272,23 @@
       }
 
       .section-tone-services {
-        background: linear-gradient(180deg, rgba(142, 164, 213, 0.1), rgba(142, 164, 213, 0.02));
+        background: linear-gradient(180deg, rgba(142, 164, 213, 0.2), rgba(142, 164, 213, 0.05));
       }
 
       .section-tone-stats {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(151, 161, 179, 0.03));
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(151, 161, 179, 0.08));
       }
 
       .section-tone-method {
-        background: linear-gradient(180deg, rgba(186, 159, 223, 0.08), rgba(186, 159, 223, 0.015));
+        background: linear-gradient(180deg, rgba(186, 159, 223, 0.16), rgba(186, 159, 223, 0.04));
       }
 
       .section-tone-stack {
-        background: linear-gradient(180deg, rgba(142, 200, 187, 0.07), rgba(142, 200, 187, 0.015));
+        background: linear-gradient(180deg, rgba(142, 200, 187, 0.16), rgba(142, 200, 187, 0.04));
       }
 
       .section-tone-contact {
-        background: linear-gradient(180deg, rgba(215, 193, 153, 0.08), rgba(215, 193, 153, 0.015));
+        background: linear-gradient(180deg, rgba(215, 193, 153, 0.16), rgba(215, 193, 153, 0.04));
       }
 
       .hero {
@@ -336,6 +336,8 @@
         letter-spacing: -0.04em;
         margin-bottom: 1.05rem;
         max-width: 8.8ch;
+        margin-inline: auto;
+        text-align: center;
       }
 
       .hero-title-line {
@@ -519,6 +521,20 @@
         overflow: hidden;
       }
 
+      .clients-inner {
+        display: grid;
+        gap: 0.28rem;
+        padding-block: 0.4rem;
+      }
+
+      .clients-label {
+        font-size: 0.64rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.74);
+        font-weight: 700;
+      }
+
       .clients-track {
         width: max-content;
         display: flex;
@@ -530,7 +546,7 @@
         padding: 0.86rem 0.95rem;
         font-size: 0.79rem;
         font-weight: 700;
-        color: var(--muted);
+        color: rgba(235, 240, 248, 0.9);
         letter-spacing: 0.08em;
         text-transform: uppercase;
         white-space: nowrap;
@@ -1277,6 +1293,9 @@
       </section>
 
       <section class="clients-strip" aria-label="Clients">
+        <div class="container clients-inner">
+          <p class="clients-label reveal" data-i18n="hero.keywordsLabel">Expertises clés</p>
+        </div>
         <div class="clients-track" id="clients-track"></div>
       </section>
 
@@ -1477,6 +1496,7 @@
               words: ["convertir", "performer", "grandir"],
               ctaPrimary: "Démarrer un projet",
               ctaSecondary: "Me contacter",
+              keywordsLabel: "Expertises clés",
               clients: [
                 "Gestion de projet digital",
                 "Analyse de données & BI",
@@ -1691,6 +1711,7 @@
               words: ["experiences", "funnels", "systems"],
               ctaPrimary: "Start a project",
               ctaSecondary: "Contact me",
+              keywordsLabel: "Core expertise",
               clients: [
                 "Digital project management",
                 "Data Analysis & BI",
