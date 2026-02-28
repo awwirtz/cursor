@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#07090d" />
     <meta
       name="keywords"
-      content="Aurelien Wirtz, digital consulting, data science, AI infrastructure, growth architecture, Switzerland"
+      content="Aurelien Wirtz, conseil digital, data science, infrastructure IA, stratégie web, croissance digitale"
     />
     <link rel="canonical" href="https://aurelienwirtz.com/" />
 
@@ -34,6 +34,8 @@
     <meta id="meta-og-locale" property="og:locale" content="fr_CH" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:image" content="https://aurelienwirtz.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Aurelien Wirtz - Digital Growth Architect" />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -45,17 +47,18 @@
     />
     <meta name="twitter:image" content="https://aurelienwirtz.com/og-image.jpg" />
 
-    <style>
-      @import url("https://fonts.cdnfonts.com/css/hopscotch");
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/hopscotch" />
 
+    <style>
       :root {
         --bg: #07090d;
-        --bg-soft: #0d1118;
-        --surface: #131925;
-        --surface-soft: #171f2f;
-        --text: #f2f4f8;
-        --muted: #97a1b3;
-        --line: rgba(255, 255, 255, 0.14);
+        --bg-soft: #0e121a;
+        --surface: #151b27;
+        --surface-soft: #1b2231;
+        --text: #f1f4f8;
+        --muted: #96a2b6;
+        --line: rgba(255, 255, 255, 0.16);
         --line-soft: rgba(255, 255, 255, 0.08);
         --accent: #8ea4d5;
         --accent-alt: #ba9fdf;
@@ -63,8 +66,8 @@
         --accent-sand: #d7c199;
         --header-height: 4.8rem;
         --radius-xl: 32px;
-        --radius-lg: 24px;
-        --radius-md: 16px;
+        --radius-lg: 22px;
+        --radius-md: 15px;
         --ease: 320ms cubic-bezier(0.22, 1, 0.36, 1);
         --brand-font: "Hopscotch", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
@@ -82,10 +85,13 @@
         background: var(--bg);
         color: var(--text);
         font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-        line-height: 1.58;
+        line-height: 1.6;
         text-rendering: optimizeLegibility;
-        min-height: 100vh;
         overflow-x: clip;
+      }
+
+      body.menu-open {
+        overflow: hidden;
       }
 
       a {
@@ -95,6 +101,22 @@
 
       p {
         margin: 0;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 0.75rem;
+        top: -100%;
+        z-index: 999;
+        background: #ffffff;
+        color: #0d1118;
+        border-radius: 10px;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.78rem;
+      }
+
+      .skip-link:focus {
+        top: 0.75rem;
       }
 
       .container {
@@ -122,8 +144,8 @@
           radial-gradient(1px 1px at 79% 38%, rgba(255, 255, 255, 0.5) 98%, transparent 100%),
           radial-gradient(1px 1px at 88% 70%, rgba(255, 255, 255, 0.65) 98%, transparent 100%),
           radial-gradient(1px 1px at 95% 27%, rgba(255, 255, 255, 0.5) 98%, transparent 100%);
-        opacity: 0.85;
-        animation: stars-drift 32s linear infinite;
+        opacity: 0.84;
+        animation: stars-drift 30s linear infinite;
       }
 
       @keyframes stars-drift {
@@ -139,19 +161,19 @@
         z-index: -2;
         background:
           radial-gradient(
-            44rem 28rem at var(--mouse-x, 72%) var(--mouse-y, 20%),
+            44rem 28rem at var(--mouse-x, 70%) var(--mouse-y, 18%),
             rgba(142, 164, 213, 0.2),
             rgba(142, 164, 213, 0) 70%
           ),
-          radial-gradient(40rem 25rem at 10% 0%, rgba(186, 159, 223, 0.12), rgba(186, 159, 223, 0));
+          radial-gradient(38rem 24rem at 12% 0%, rgba(186, 159, 223, 0.15), rgba(186, 159, 223, 0));
       }
 
       .site-header {
         position: sticky;
         top: 0;
-        z-index: 40;
+        z-index: 50;
         border-bottom: 1px solid var(--line-soft);
-        background: rgba(7, 9, 13, 0.78);
+        background: rgba(7, 9, 13, 0.76);
         backdrop-filter: blur(8px);
       }
 
@@ -160,16 +182,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 1.2rem;
+        gap: 1rem;
       }
 
       .logo {
-        font-size: 0.93rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        white-space: nowrap;
         font-family: var(--brand-font);
+        font-size: 1.02rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.3rem;
       }
 
       .logo span {
@@ -179,14 +202,14 @@
       .site-nav {
         display: flex;
         align-items: center;
-        gap: 1.35rem;
+        gap: 1.3rem;
       }
 
       .site-nav a {
         position: relative;
         font-size: 0.77rem;
-        text-transform: uppercase;
         letter-spacing: 0.1em;
+        text-transform: uppercase;
         color: var(--muted);
         font-weight: 700;
         transition: color var(--ease);
@@ -216,30 +239,17 @@
         transform-origin: left;
       }
 
-      .header-right {
+      .header-actions {
         display: flex;
         align-items: center;
-        gap: 0.85rem;
-      }
-
-      .header-note {
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.02);
-        padding: 0.36rem 0.72rem;
-        font-size: 0.67rem;
-        text-transform: uppercase;
-        letter-spacing: 0.11em;
-        color: var(--muted);
-        font-weight: 700;
-        white-space: nowrap;
+        gap: 0.65rem;
       }
 
       .lang-switch {
         border: 1px solid var(--line);
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.03);
-        padding: 0.2rem 0.3rem;
+        padding: 0.18rem 0.28rem;
         display: inline-flex;
         align-items: center;
         gap: 0.2rem;
@@ -252,57 +262,171 @@
         background: transparent;
         color: var(--muted);
         font: inherit;
-        font-size: 0.71rem;
+        font-size: 0.7rem;
         font-weight: 800;
-        letter-spacing: 0.1em;
         text-transform: uppercase;
+        letter-spacing: 0.1em;
         cursor: pointer;
-        padding: 0.2rem 0.43rem;
+        padding: 0.2rem 0.45rem;
         transition: background var(--ease), color var(--ease);
       }
 
       .lang-btn.is-active {
-        background: rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.17);
         color: var(--text);
       }
 
+      .menu-toggle {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 0.5rem 0.9rem;
+        font: inherit;
+        font-size: 0.73rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+      }
+
+      .menu-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        background: rgba(7, 9, 13, 0.96);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity var(--ease), transform var(--ease);
+      }
+
+      .menu-overlay.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+      }
+
+      .menu-panel {
+        width: min(1240px, 92vw);
+        margin-inline: auto;
+        min-height: 100svh;
+        padding: 1rem 0 1.5rem;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 1rem;
+      }
+
+      .menu-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .menu-close {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        font: inherit;
+        font-size: 0.74rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.45rem 0.9rem;
+        cursor: pointer;
+      }
+
+      .menu-nav {
+        display: grid;
+        align-content: center;
+        gap: 0.68rem;
+      }
+
+      .menu-link {
+        font-size: clamp(2.2rem, 8vw, 7rem);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        color: rgba(255, 255, 255, 0.78);
+        transition: color var(--ease), transform var(--ease);
+      }
+
+      .menu-link:hover,
+      .menu-link:focus-visible {
+        color: var(--text);
+        transform: translateX(4px);
+      }
+
+      .menu-foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+      }
+
+      .menu-email {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .menu-email a {
+        color: var(--text);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
       .section {
-        padding: clamp(4rem, 7vw, 6.8rem) 0;
+        padding: clamp(3.8rem, 7vw, 6.6rem) 0;
+        border-top: 1px solid var(--line-soft);
         scroll-margin-top: calc(var(--header-height) + 0.8rem);
       }
 
       .section-tone-services {
-        background: linear-gradient(180deg, rgba(142, 164, 213, 0.2), rgba(142, 164, 213, 0.05));
+        background: linear-gradient(180deg, rgba(142, 164, 213, 0.18), rgba(142, 164, 213, 0.05));
       }
 
-      .section-tone-stats {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(151, 161, 179, 0.08));
+      .section-tone-cases {
+        background: linear-gradient(180deg, rgba(186, 159, 223, 0.14), rgba(186, 159, 223, 0.04));
       }
 
       .section-tone-method {
-        background: linear-gradient(180deg, rgba(186, 159, 223, 0.16), rgba(186, 159, 223, 0.04));
+        background: linear-gradient(180deg, rgba(142, 200, 187, 0.14), rgba(142, 200, 187, 0.04));
+      }
+
+      .section-tone-why {
+        background: linear-gradient(180deg, rgba(215, 193, 153, 0.14), rgba(215, 193, 153, 0.04));
+      }
+
+      .section-tone-stats {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(151, 161, 179, 0.07));
       }
 
       .section-tone-stack {
-        background: linear-gradient(180deg, rgba(142, 200, 187, 0.16), rgba(142, 200, 187, 0.04));
+        background: linear-gradient(180deg, rgba(142, 164, 213, 0.16), rgba(142, 164, 213, 0.04));
       }
 
       .section-tone-contact {
-        background: linear-gradient(180deg, rgba(215, 193, 153, 0.16), rgba(215, 193, 153, 0.04));
+        background: linear-gradient(180deg, rgba(186, 159, 223, 0.1), rgba(186, 159, 223, 0.03));
+      }
+
+      .section[data-cinematic] .section-inner {
+        opacity: 0.42;
+        transform: translateY(36px) scale(0.985);
+        transition: opacity 760ms cubic-bezier(0.16, 1, 0.3, 1), transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .section[data-cinematic].is-inview .section-inner {
+        opacity: 1;
+        transform: none;
       }
 
       .hero {
         min-height: calc(100svh - var(--header-height));
         display: grid;
         align-items: center;
-        padding-block: 1rem 1.2rem;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1.4rem;
-        align-items: center;
+        border-top: 0;
       }
 
       .hero-content {
@@ -316,10 +440,11 @@
         align-items: center;
         border: 1px solid var(--line);
         border-radius: 999px;
-        padding: 0.28rem 0.62rem;
-        font-size: 0.65rem;
-        letter-spacing: 0.11em;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 0.28rem 0.66rem;
+        font-size: 0.64rem;
         text-transform: uppercase;
+        letter-spacing: 0.11em;
         color: var(--muted);
         margin-bottom: 1rem;
       }
@@ -331,12 +456,11 @@
       }
 
       .hero-title {
-        font-size: clamp(2.6rem, 8vw, 6.6rem);
+        font-size: clamp(2.4rem, 8vw, 6.2rem);
         line-height: 0.9;
         letter-spacing: -0.04em;
         margin-bottom: 1.05rem;
-        max-width: 8.8ch;
-        margin-inline: auto;
+        max-width: 8.4ch;
         text-align: center;
       }
 
@@ -345,32 +469,66 @@
       }
 
       .hero-word {
-        display: inline-block;
+        position: relative;
+        display: inline-flex;
+        min-width: 5.1ch;
         color: var(--accent);
-        min-width: 4.8ch;
         font-family: var(--brand-font);
+        margin-left: 0.2ch;
       }
 
-      .hero-word.is-changing {
-        animation: hero-word-pop 340ms cubic-bezier(0.22, 1, 0.36, 1);
+      .hero-word::after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        color: var(--accent-alt);
+        opacity: 0;
+        transform: translateX(0);
+        pointer-events: none;
       }
 
-      @keyframes hero-word-pop {
+      .hero-word.is-changing::after {
+        animation: hero-glitch 420ms steps(2, end);
+      }
+
+      @keyframes hero-glitch {
+        0% {
+          opacity: 0.4;
+          transform: translateX(-2px);
+        }
+        60% {
+          opacity: 0.18;
+          transform: translateX(2px);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+      }
+
+      .hero-letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(14px);
+        filter: blur(2px);
+      }
+
+      .hero-word.is-changing .hero-letter {
+        animation: letter-rise 460ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: calc(var(--i) * 24ms);
+      }
+
+      @keyframes letter-rise {
         0% {
           opacity: 0;
-          transform: translateY(8px);
+          transform: translateY(14px);
+          filter: blur(2px);
         }
         100% {
           opacity: 1;
           transform: translateY(0);
+          filter: blur(0);
         }
-      }
-
-      .hero-subtitle {
-        font-size: clamp(0.97rem, 1.75vw, 1.16rem);
-        max-width: 58ch;
-        color: var(--muted);
-        margin-bottom: 1.2rem;
       }
 
       .hero-actions {
@@ -378,7 +536,6 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.62rem;
-        margin-bottom: 0;
       }
 
       .btn {
@@ -402,163 +559,70 @@
 
       .btn-primary {
         background: rgba(255, 255, 255, 0.92);
-        color: #121722;
+        color: #10131d;
       }
 
       .btn-primary:hover,
       .btn-primary:focus-visible {
         background: var(--accent);
+        color: #0e1118;
         border-color: var(--accent);
-        color: #0f1118;
       }
 
       .btn-secondary {
-        background: rgba(255, 255, 255, 0.06);
-        color: var(--text);
+        background: rgba(255, 255, 255, 0.07);
       }
 
       .btn-secondary:hover,
       .btn-secondary:focus-visible {
-        background: rgba(255, 255, 255, 0.13);
+        background: rgba(255, 255, 255, 0.16);
       }
 
-      .trust-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .trust-item {
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.03);
-        padding: 0.32rem 0.64rem;
-        font-size: 0.67rem;
-        text-transform: uppercase;
-        letter-spacing: 0.09em;
-        color: var(--muted);
-        font-weight: 700;
-      }
-
-      .hero-deck-shell {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-xl);
-        background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
-        padding: 0.95rem;
-      }
-
-      .deck-tip {
-        font-size: 0.67rem;
-        text-transform: uppercase;
-        letter-spacing: 0.11em;
-        color: var(--muted);
-        margin-bottom: 0.7rem;
-      }
-
-      .hero-deck {
-        position: relative;
-        min-height: 358px;
-      }
-
-      .deck-card {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: min(360px, 86%);
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--line);
-        background: rgba(13, 17, 24, 0.96);
-        backdrop-filter: blur(2px);
-        padding: 1rem;
-        cursor: pointer;
-        transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), opacity 360ms ease, border-color 260ms ease;
-      }
-
-      .deck-card:hover {
-        border-color: rgba(255, 255, 255, 0.3);
-      }
-
-      .deck-card-tag {
-        display: inline-flex;
-        align-items: center;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        padding: 0.23rem 0.54rem;
-        font-size: 0.63rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .deck-card-title {
-        margin-top: 0.65rem;
-        font-size: 1.04rem;
-        line-height: 1.25;
-      }
-
-      .deck-card-copy {
-        margin-top: 0.46rem;
-        font-size: 0.9rem;
-        color: var(--muted);
-      }
-
-      .deck-card-kpi {
-        margin-top: 0.72rem;
-        font-size: 0.72rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .clients-strip {
+      .keywords-strip {
         border-top: 1px solid var(--line-soft);
         border-bottom: 1px solid var(--line-soft);
-        background: rgba(255, 255, 255, 0.01);
+        background: rgba(255, 255, 255, 0.015);
         overflow: hidden;
       }
 
-      .clients-inner {
+      .keywords-head {
         display: grid;
-        gap: 0.28rem;
-        padding-block: 0.4rem;
+        gap: 0.3rem;
+        padding-top: 0.45rem;
       }
 
-      .clients-label {
+      .keywords-label {
         font-size: 0.64rem;
-        letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.74);
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.78);
         font-weight: 700;
       }
 
-      .clients-track {
+      .keywords-track {
         width: max-content;
         display: flex;
         align-items: center;
-        animation: clients-marquee 34s linear infinite;
+        animation: keywords-marquee 30s linear infinite;
       }
 
-      .client-item {
-        padding: 0.86rem 0.95rem;
-        font-size: 0.79rem;
+      .keyword-item {
+        padding: 0.84rem 0.9rem;
+        font-size: 0.78rem;
         font-weight: 700;
-        color: rgba(235, 240, 248, 0.9);
         letter-spacing: 0.08em;
         text-transform: uppercase;
+        color: rgba(236, 241, 248, 0.9);
         white-space: nowrap;
       }
 
-      .client-item::after {
+      .keyword-item::after {
         content: "·";
-        margin-left: 0.95rem;
-        color: rgba(255, 255, 255, 0.25);
+        margin-left: 0.88rem;
+        color: rgba(255, 255, 255, 0.26);
       }
 
-      @keyframes clients-marquee {
+      @keyframes keywords-marquee {
         from {
           transform: translateX(0);
         }
@@ -568,7 +632,7 @@
       }
 
       .section-title {
-        font-size: clamp(2rem, 5vw, 4.4rem);
+        font-size: clamp(1.9rem, 5vw, 4.1rem);
         line-height: 0.98;
         letter-spacing: -0.03em;
         margin-bottom: 0.82rem;
@@ -579,101 +643,263 @@
         color: var(--muted);
       }
 
-      .solutions-stack {
+      .services-grid {
         margin-top: 2rem;
         display: grid;
-        gap: 0.92rem;
+        gap: 0.9rem;
       }
 
-      .solution-card {
+      .service-card {
         border-radius: var(--radius-xl);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        background: linear-gradient(140deg, var(--card-base, #20263a), rgba(11, 14, 22, 0.92));
-        padding: 1.25rem;
-        min-height: 15rem;
-        position: relative;
-        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: linear-gradient(140deg, var(--card-base, #252b3e), rgba(11, 14, 22, 0.92));
+        padding: 1.2rem;
         display: grid;
         grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
         gap: 1rem;
         cursor: pointer;
+        position: relative;
+        overflow: hidden;
         transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
       }
 
-      .solution-card:nth-child(even) {
-        transform: translateX(3%);
+      .service-card:nth-child(even) {
+        transform: translateX(2.8%);
       }
 
-      .solution-card:hover,
-      .solution-card.is-active {
-        transform: translateX(0) translateY(-2px);
-        border-color: rgba(255, 255, 255, 0.34);
+      .service-card:hover,
+      .service-card.is-active {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.35);
         box-shadow: 0 18px 30px rgba(0, 0, 0, 0.25);
       }
 
-      .solution-card::before {
+      .service-card::before {
         content: "";
         position: absolute;
+        right: -90px;
+        top: -100px;
         width: 240px;
         height: 240px;
         border-radius: 999px;
-        right: -85px;
-        top: -95px;
-        background: radial-gradient(circle, var(--blob, rgba(255, 255, 255, 0.22)), rgba(255, 255, 255, 0));
+        background: radial-gradient(circle, var(--blob, rgba(255, 255, 255, 0.3)), rgba(255, 255, 255, 0));
       }
 
-      .solution-index {
+      .service-index {
         display: inline-flex;
-        border: 1px solid rgba(255, 255, 255, 0.28);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 999px;
-        padding: 0.24rem 0.55rem;
+        padding: 0.24rem 0.54rem;
         font-size: 0.63rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        color: rgba(255, 255, 255, 0.75);
+        color: rgba(255, 255, 255, 0.8);
         font-weight: 700;
       }
 
-      .solution-title {
+      .service-title {
         margin-top: 0.7rem;
-        font-size: clamp(1.3rem, 2.2vw, 2rem);
+        font-size: clamp(1.25rem, 2.2vw, 1.95rem);
         line-height: 1.08;
       }
 
-      .solution-copy {
-        margin-top: 0.6rem;
-        max-width: 52ch;
-        color: rgba(238, 241, 247, 0.78);
+      .service-copy {
+        margin-top: 0.58rem;
+        color: rgba(238, 241, 247, 0.8);
       }
 
-      .solution-tags {
+      .service-tags {
         margin-top: 0.88rem;
         display: flex;
         flex-wrap: wrap;
         gap: 0.45rem;
       }
 
-      .solution-tag {
+      .service-tag {
         border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 999px;
         padding: 0.24rem 0.54rem;
         font-size: 0.64rem;
-        letter-spacing: 0.09em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.78);
+        letter-spacing: 0.09em;
+        color: rgba(255, 255, 255, 0.8);
       }
 
-      .solution-icon {
+      .service-icon {
         justify-self: end;
         align-self: start;
         width: 124px;
         height: 124px;
         border-radius: 38px;
-        border: 1px solid rgba(255, 255, 255, 0.26);
+        border: 1px solid rgba(255, 255, 255, 0.28);
         display: grid;
         place-items: center;
         font-size: 2rem;
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .cases-grid {
+        margin-top: 2rem;
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .case-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1.05rem;
+      }
+
+      .case-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin-bottom: 0.8rem;
+      }
+
+      .case-name {
+        font-size: 1.08rem;
+      }
+
+      .case-sector {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.22rem 0.52rem;
+        font-size: 0.64rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        color: var(--muted);
+      }
+
+      .case-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.7rem;
+      }
+
+      .case-block {
+        border: 1px solid var(--line-soft);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 0.7rem;
+      }
+
+      .case-block-label {
+        font-size: 0.64rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        font-weight: 700;
+        margin-bottom: 0.28rem;
+      }
+
+      .timeline {
+        margin: 2rem 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.9rem;
+        position: relative;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 22px;
+        top: 0.2rem;
+        bottom: 0.2rem;
+        width: 1px;
+        background: var(--line);
+      }
+
+      .timeline-item {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 0.92rem;
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr);
+        gap: 0.8rem;
+      }
+
+      .timeline-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.05);
+        display: grid;
+        place-items: center;
+        z-index: 1;
+      }
+
+      .timeline-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: var(--text);
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .timeline-step {
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        letter-spacing: 0.11em;
+        color: var(--muted);
+      }
+
+      .timeline-title {
+        margin-top: 0.32rem;
+        font-size: 1.18rem;
+      }
+
+      .timeline-copy {
+        margin-top: 0.42rem;
+        color: var(--muted);
+      }
+
+      .timeline-deliverables {
+        margin-top: 0.65rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .timeline-pill {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 0.2rem 0.48rem;
+        font-size: 0.63rem;
+        color: rgba(241, 244, 248, 0.84);
+      }
+
+      .why-grid {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.9rem;
+      }
+
+      .why-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1rem;
+      }
+
+      .why-title {
+        font-size: 1.24rem;
+      }
+
+      .why-copy {
+        margin-top: 0.5rem;
+        color: var(--muted);
       }
 
       .stats-grid {
@@ -689,208 +915,16 @@
       }
 
       .stat-value {
-        font-size: clamp(2.4rem, 6.5vw, 5.4rem);
+        font-size: clamp(2.4rem, 6.3vw, 5.2rem);
         line-height: 0.95;
         letter-spacing: -0.04em;
         font-family: var(--brand-font);
       }
 
       .stat-label {
-        margin-top: 0.25rem;
+        margin-top: 0.28rem;
         color: var(--muted);
-        font-size: clamp(1rem, 1.8vw, 1.5rem);
-      }
-
-      .workflow-wrap {
-        margin-top: 2rem;
-      }
-
-      .workflow-top {
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .workflow-stage {
-        margin-top: 1rem;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-xl);
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
-        padding: clamp(1rem, 2.4vw, 1.4rem);
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 1.2rem;
-        align-items: center;
-        transition: opacity 260ms ease, transform 260ms ease;
-      }
-
-      .workflow-stage.is-switching {
-        opacity: 0.35;
-        transform: translateY(6px);
-      }
-
-      .workflow-step {
-        font-size: 0.72rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-      }
-
-      .workflow-title {
-        margin-top: 0.45rem;
-        font-size: clamp(1.5rem, 3.2vw, 2.7rem);
-        line-height: 1.04;
-      }
-
-      .workflow-copy {
-        margin-top: 0.58rem;
-        color: var(--muted);
-        max-width: 58ch;
-      }
-
-      .workflow-duration {
-        margin-top: 0.76rem;
-        display: inline-flex;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 0.24rem 0.56rem;
-        font-size: 0.64rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .workflow-icon {
-        width: 180px;
-        height: 180px;
-        border-radius: 48px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        display: grid;
-        place-items: center;
-      }
-
-      .workflow-icon svg {
-        width: 88px;
-        height: 88px;
-        stroke: rgba(255, 255, 255, 0.88);
-        fill: none;
-        stroke-width: 1.6;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .workflow-controls {
-        margin-top: 1rem;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.04);
-        padding: 0.7rem 0.85rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.8rem;
-      }
-
-      .workflow-hint {
-        font-size: 0.72rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: rgba(255, 255, 255, 0.84);
-        font-weight: 700;
-      }
-
-      .workflow-controls-actions {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-      }
-
-      .circle-btn {
-        width: 54px;
-        height: 54px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.34);
-        background: rgba(255, 255, 255, 0.15);
-        color: var(--text);
-        font-size: 1rem;
-        font-weight: 800;
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-        transition: background var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
-        animation: click-hint-pulse 2.2s ease-in-out infinite;
-      }
-
-      .circle-btn:hover,
-      .circle-btn:focus-visible {
-        transform: translateY(-1px);
-        background: rgba(255, 255, 255, 0.28);
-        border-color: rgba(255, 255, 255, 0.58);
-        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
-      }
-
-      @keyframes click-hint-pulse {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.08);
-        }
-        50% {
-          box-shadow: 0 0 0 6px rgba(255, 255, 255, 0);
-        }
-      }
-
-      .principles-headline {
-        max-width: 15ch;
-        font-size: clamp(2rem, 4.4vw, 4rem);
-        line-height: 1;
-        letter-spacing: -0.03em;
-      }
-
-      .principles-grid {
-        margin-top: 2rem;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .principle-card {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.02);
-        padding: 1rem;
-      }
-
-      .principle-icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 14px;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.04);
-        display: grid;
-        place-items: center;
-        margin-bottom: 0.68rem;
-      }
-
-      .principle-icon svg {
-        width: 22px;
-        height: 22px;
-        stroke: var(--text);
-        fill: none;
-        stroke-width: 1.8;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .principle-title {
-        font-size: 1.6rem;
-        line-height: 1.02;
-      }
-
-      .principle-copy {
-        margin-top: 0.55rem;
-        color: var(--muted);
+        font-size: clamp(1rem, 1.8vw, 1.45rem);
       }
 
       .tech-grid {
@@ -904,7 +938,7 @@
         border: 1px solid var(--line);
         border-radius: var(--radius-md);
         background: rgba(255, 255, 255, 0.025);
-        min-height: 128px;
+        min-height: 130px;
         display: grid;
         place-items: center;
         text-align: center;
@@ -940,88 +974,21 @@
 
       .tech-name {
         font-size: 0.8rem;
-        font-weight: 700;
         color: var(--muted);
-      }
-
-      .testimonial-band {
-        border-top: 1px solid var(--line-soft);
-        border-bottom: 1px solid var(--line-soft);
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .testimonial-inner {
-        padding: 1.2rem 0;
-        display: grid;
-        gap: 0.48rem;
-      }
-
-      .testimonial-text {
-        font-size: clamp(1.06rem, 2.2vw, 1.42rem);
-        line-height: 1.4;
-      }
-
-      .testimonial-author {
-        font-size: 0.76rem;
         font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.09em;
-        color: var(--muted);
-      }
-
-      .pricing-card {
-        margin-top: 2rem;
-        border-radius: var(--radius-xl);
-        border: 1px solid var(--line);
-        background: linear-gradient(150deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
-        padding: clamp(1rem, 2.5vw, 1.5rem);
-      }
-
-      .pricing-lead {
-        max-width: 60ch;
-        font-size: clamp(1.15rem, 2.4vw, 1.55rem);
-        line-height: 1.34;
-        margin-bottom: 1rem;
-      }
-
-      .pricing-cases {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.7rem;
-      }
-
-      .pricing-case {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        background: rgba(255, 255, 255, 0.03);
-        padding: 0.76rem;
-        font-size: 0.92rem;
-      }
-
-      .pricing-copy {
-        margin-top: 0.95rem;
-        font-size: clamp(1.02rem, 2.1vw, 1.28rem);
-      }
-
-      .pricing-actions {
-        margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        flex-wrap: wrap;
       }
 
       .contact-wrap {
         margin-top: 1.6rem;
         border: 1px solid var(--line);
         border-radius: var(--radius-xl);
-        background: rgba(255, 255, 255, 0.02);
-        padding: clamp(1rem, 2.8vw, 1.4rem);
+        background: rgba(255, 255, 255, 0.03);
+        padding: clamp(1rem, 2.7vw, 1.4rem);
       }
 
       .contact-form {
         display: grid;
-        gap: 0.8rem;
+        gap: 0.82rem;
       }
 
       .contact-grid {
@@ -1032,23 +999,23 @@
 
       .form-field {
         display: grid;
-        gap: 0.35rem;
+        gap: 0.34rem;
       }
 
       .form-field label {
         font-size: 0.66rem;
-        font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 0.11em;
         color: var(--muted);
+        font-weight: 800;
       }
 
       input,
       textarea {
         width: 100%;
-        border: 1px solid var(--line);
+        border: 1px solid rgba(255, 255, 255, 0.26);
         border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.06);
         color: var(--text);
         font: inherit;
         padding: 0.66rem;
@@ -1056,33 +1023,33 @@
 
       input::placeholder,
       textarea::placeholder {
-        color: #9ea8b6;
+        color: #a0abbc;
       }
 
       input:focus,
       textarea:focus {
         outline: none;
-        border-color: rgba(255, 255, 255, 0.36);
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.56);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
       }
 
       textarea {
-        min-height: 8.2rem;
+        min-height: 8.4rem;
         resize: vertical;
       }
 
       .contact-foot {
-        margin-top: 0.9rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 0.8rem;
         flex-wrap: wrap;
+        margin-top: 0.9rem;
       }
 
       .contact-direct {
-        font-size: 0.86rem;
         color: var(--muted);
+        font-size: 0.86rem;
       }
 
       .contact-direct a {
@@ -1092,7 +1059,6 @@
       }
 
       .site-footer {
-        margin-top: 1rem;
         border-top: 1px solid var(--line-soft);
         padding: 1.8rem 0;
       }
@@ -1105,11 +1071,11 @@
 
       .footer-label {
         font-size: 0.66rem;
-        letter-spacing: 0.11em;
         text-transform: uppercase;
+        letter-spacing: 0.11em;
         color: var(--muted);
         font-weight: 800;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.36rem;
       }
 
       .footer-grid p,
@@ -1124,8 +1090,8 @@
 
       .reveal {
         opacity: 0;
-        transform: translateY(18px);
-        transition: opacity 680ms cubic-bezier(0.16, 1, 0.3, 1), transform 680ms cubic-bezier(0.16, 1, 0.3, 1);
+        transform: translateY(16px);
+        transition: opacity 620ms cubic-bezier(0.16, 1, 0.3, 1), transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .reveal.is-visible {
@@ -1136,44 +1102,34 @@
       .btn:focus-visible,
       .lang-btn:focus-visible,
       .site-nav a:focus-visible,
+      .menu-toggle:focus-visible,
+      .menu-close:focus-visible,
+      .menu-link:focus-visible,
       input:focus-visible,
-      textarea:focus-visible,
-      .circle-btn:focus-visible {
-        outline: 1px solid rgba(255, 255, 255, 0.6);
+      textarea:focus-visible {
+        outline: 1px solid rgba(255, 255, 255, 0.82);
         outline-offset: 2px;
       }
 
-      @media (max-width: 1120px) {
-        .hero {
-          min-height: auto;
-          padding-block: 2.5rem 1.2rem;
-        }
-
-        .hero-deck {
-          min-height: 332px;
-        }
-
-        .solution-card {
+      @media (max-width: 1080px) {
+        .service-card {
           grid-template-columns: 1fr;
-          min-height: auto;
         }
 
-        .solution-icon {
+        .service-card:nth-child(even) {
+          transform: none;
+        }
+
+        .service-icon {
           justify-self: start;
         }
 
-        .stats-grid,
-        .principles-grid {
+        .case-grid {
           grid-template-columns: 1fr;
         }
 
-        .workflow-stage {
+        .why-grid {
           grid-template-columns: 1fr;
-        }
-
-        .workflow-icon {
-          width: 140px;
-          height: 140px;
         }
 
         .tech-grid {
@@ -1184,43 +1140,44 @@
       @media (max-width: 780px) {
         .header-inner {
           min-height: auto;
-          padding: 0.74rem 0;
-          flex-wrap: wrap;
+          padding: 0.72rem 0;
         }
 
         .site-nav {
-          width: 100%;
-          order: 3;
-          border-top: 1px solid var(--line-soft);
-          padding-top: 0.62rem;
-          gap: 1rem;
-        }
-
-        .header-note {
           display: none;
         }
 
+        .hero {
+          min-height: auto;
+          padding-top: 2.4rem;
+          padding-bottom: 2.2rem;
+        }
+
         .hero-title {
-          font-size: clamp(2.15rem, 11vw, 3.4rem);
+          font-size: clamp(2.1rem, 11.5vw, 3.6rem);
+          max-width: 9.1ch;
         }
 
-        .solution-card:nth-child(even) {
-          transform: none;
+        .hero-actions {
+          width: 100%;
         }
 
+        .hero-actions .btn {
+          width: 100%;
+        }
+
+        .stats-grid,
         .tech-grid,
-        .pricing-cases,
         .footer-grid,
         .contact-grid {
           grid-template-columns: 1fr;
         }
 
-        .contact-foot {
-          align-items: flex-start;
-          flex-direction: column;
+        .menu-link {
+          font-size: clamp(2rem, 12vw, 4rem);
         }
 
-        .workflow-controls {
+        .contact-foot {
           align-items: flex-start;
           flex-direction: column;
         }
@@ -1238,133 +1195,155 @@
           transition: none !important;
         }
 
+        .section[data-cinematic] .section-inner,
         .reveal {
-          opacity: 1;
-          transform: none;
+          opacity: 1 !important;
+          transform: none !important;
         }
       }
     </style>
   </head>
   <body id="top">
+    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
     <div class="bg-stars" aria-hidden="true"></div>
     <div class="bg-glow" aria-hidden="true"></div>
 
     <header class="site-header">
-      <div class="container header-inner reveal">
+      <div class="container header-inner">
         <a class="logo" href="#top">Aurelien <span>Wirtz</span></a>
 
         <nav class="site-nav" data-i18n-aria="header.navAria">
           <a href="#services" data-i18n="nav.services">Services</a>
+          <a href="#cases" data-i18n="nav.cases">Cas d'usage</a>
           <a href="#method" data-i18n="nav.method">Méthode</a>
+          <a href="#stack" data-i18n="nav.stack">Stack</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
 
-        <div class="header-right">
-          <p class="header-note" data-i18n="header.note">Studio de croissance digitale</p>
+        <div class="header-actions">
           <div class="lang-switch" data-i18n-aria="header.languageAria">
             <button class="lang-btn is-active" type="button" data-lang="fr" aria-pressed="true">FR</button>
             <span aria-hidden="true">|</span>
             <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
           </div>
+          <button
+            id="menu-toggle"
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menu-overlay"
+            data-i18n="header.menuOpen"
+            data-i18n-aria="header.menuAria"
+          >
+            Menu
+          </button>
         </div>
       </div>
     </header>
 
-    <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-content">
-            <p class="eyebrow reveal" data-i18n="hero.eyebrow">Stratégie digitale / Data / IA</p>
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+      <div class="menu-panel">
+        <div class="menu-top">
+          <a class="logo" href="#top">Aurelien <span>Wirtz</span></a>
+          <button id="menu-close" class="menu-close" type="button" data-i18n="header.menuClose">Fermer</button>
+        </div>
 
-            <h1 class="hero-title reveal">
-              <span class="hero-title-line" data-i18n="hero.titleLine1">Croissance digitale.</span>
-              <span class="hero-title-line">
-                <span data-i18n="hero.titleLine2Prefix">Pensée pour</span>
-                <span class="hero-word" id="hero-word">convertir</span>
+        <nav class="menu-nav" data-i18n-aria="header.menuNavAria">
+          <a class="menu-link" href="#services" data-menu-link data-i18n="nav.services">Services</a>
+          <a class="menu-link" href="#cases" data-menu-link data-i18n="nav.cases">Cas d'usage</a>
+          <a class="menu-link" href="#method" data-menu-link data-i18n="nav.method">Méthode</a>
+          <a class="menu-link" href="#stack" data-menu-link data-i18n="nav.stack">Stack</a>
+          <a class="menu-link" href="#contact" data-menu-link data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <div class="menu-foot">
+          <p class="menu-email">
+            <span data-i18n="contact.directLabel">Ou directement :</span>
+            <a id="menu-mail" href="mailto:aurelienwirtz67@gmail.com">aurelienwirtz67@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <main id="main-content">
+      <section class="hero section" data-cinematic>
+        <div class="section-inner container hero-content">
+          <p class="eyebrow reveal" data-i18n="hero.eyebrow">Stratégie digitale / Data / IA</p>
+          <h1 class="hero-title reveal">
+            <span class="hero-title-line" data-i18n="hero.titleLine1">Croissance digitale.</span>
+            <span class="hero-title-line">
+              <span data-i18n="hero.titleLine2Prefix">Pensée pour</span>
+              <span class="hero-word" id="hero-word" aria-live="polite" aria-atomic="true" data-text="convertir">
+                convertir
               </span>
-            </h1>
-
-            <div class="hero-actions reveal">
-              <a class="btn btn-primary" href="#contact" data-i18n="hero.ctaPrimary">Démarrer un projet</a>
-              <a class="btn btn-secondary" href="#contact" data-i18n="hero.ctaSecondary">Me contacter</a>
-            </div>
+            </span>
+          </h1>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#contact" data-i18n="hero.ctaPrimary">Démarrer un projet</a>
+            <a class="btn btn-secondary" href="#services" data-i18n="hero.ctaSecondary">Voir les services</a>
           </div>
         </div>
       </section>
 
-      <section class="clients-strip" aria-label="Clients">
-        <div class="container clients-inner">
-          <p class="clients-label reveal" data-i18n="hero.keywordsLabel">Expertises clés</p>
+      <section class="keywords-strip" data-cinematic>
+        <div class="container keywords-head">
+          <p class="keywords-label reveal" data-i18n="hero.keywordsLabel">Expertises clés</p>
         </div>
-        <div class="clients-track" id="clients-track"></div>
+        <div class="keywords-track" id="keywords-track"></div>
       </section>
 
-      <section class="section section-tone-services" id="services">
-        <div class="container">
+      <section class="section section-tone-services" id="services" data-cinematic>
+        <div class="section-inner container">
           <h2 class="section-title reveal" data-i18n="services.title">Nos solutions</h2>
           <p class="section-intro reveal" data-i18n="services.intro">
             Cinq expertises pensées pour connecter stratégie, exécution et résultats business.
           </p>
-          <div class="solutions-stack" id="solutions-stack"></div>
+          <div class="services-grid" id="services-grid"></div>
         </div>
       </section>
 
-      <section class="section section-tone-stats">
-        <div class="container">
+      <section class="section section-tone-cases" id="cases" data-cinematic>
+        <div class="section-inner container">
+          <h2 class="section-title reveal" data-i18n="cases.title">Cas d'usage</h2>
+          <p class="section-intro reveal" data-i18n="cases.intro">
+            Exemples anonymisés de missions, structurés en Problème, Action, Résultat observé.
+          </p>
+          <div class="cases-grid" id="cases-grid"></div>
+        </div>
+      </section>
+
+      <section class="section section-tone-method" id="method" data-cinematic>
+        <div class="section-inner container">
+          <h2 class="section-title reveal" data-i18n="method.title">Comment je travaille</h2>
+          <p class="section-intro reveal" data-i18n="method.intro">
+            Une timeline claire avec livrables concrets à chaque étape.
+          </p>
+          <ol class="timeline" id="timeline"></ol>
+        </div>
+      </section>
+
+      <section class="section section-tone-why" id="why-me" data-cinematic>
+        <div class="section-inner container">
+          <h2 class="section-title reveal" data-i18n="why.title">Pourquoi moi</h2>
+          <p class="section-intro reveal" data-i18n="why.intro">
+            Positionnement, manière de travailler et disponibilité : le cadre de collaboration est transparent.
+          </p>
+          <div class="why-grid" id="why-grid"></div>
+        </div>
+      </section>
+
+      <section class="section section-tone-stats" data-cinematic>
+        <div class="section-inner container">
           <h2 class="section-title reveal" data-i18n="stats.title">Repères de collaboration.</h2>
+          <p class="section-intro reveal" data-i18n="stats.intro">
+            Des indicateurs de méthode crédibles, pensés pour un démarrage sérieux.
+          </p>
           <div class="stats-grid" id="stats-grid"></div>
         </div>
       </section>
 
-      <section class="section section-tone-method" id="method">
-        <div class="container workflow-wrap">
-          <div class="workflow-top reveal">
-            <div>
-              <h2 class="section-title" data-i18n="method.title">Comment je travaille</h2>
-              <p class="section-intro" data-i18n="method.intro">
-                Un process clair, rapide et collaboratif pour transformer une vision en système digital.
-              </p>
-            </div>
-          </div>
-
-          <article class="workflow-stage reveal" id="workflow-stage">
-            <div>
-              <p class="workflow-step" id="workflow-step">Étape 01</p>
-              <h3 class="workflow-title" id="workflow-title">Audit & cadrage</h3>
-              <p class="workflow-copy" id="workflow-copy"></p>
-              <span class="workflow-duration" id="workflow-duration"></span>
-            </div>
-            <div class="workflow-icon" id="workflow-icon" aria-hidden="true"></div>
-          </article>
-
-          <div class="workflow-controls reveal">
-            <p class="workflow-hint" data-i18n="method.controlsHint">Cliquez sur les flèches pour naviguer</p>
-            <div class="workflow-controls-actions">
-              <button
-                class="circle-btn"
-                id="workflow-prev"
-                type="button"
-                data-i18n-aria="method.prevAria"
-                aria-label="Étape précédente"
-              >
-                ◀
-              </button>
-              <button
-                class="circle-btn"
-                id="workflow-next"
-                type="button"
-                data-i18n-aria="method.nextAria"
-                aria-label="Étape suivante"
-              >
-                ▶
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tone-stack" id="stack">
-        <div class="container">
+      <section class="section section-tone-stack" id="stack" data-cinematic>
+        <div class="section-inner container">
           <h2 class="section-title reveal" data-i18n="stack.title">Stack technologique</h2>
           <p class="section-intro reveal" data-i18n="stack.intro">
             Les technologies utilisées pour livrer des solutions robustes et évolutives.
@@ -1373,8 +1352,8 @@
         </div>
       </section>
 
-      <section class="section section-tone-contact" id="contact">
-        <div class="container">
+      <section class="section section-tone-contact" id="contact" data-cinematic>
+        <div class="section-inner container">
           <h2 class="section-title reveal" data-i18n="contact.title">Prêt à lancer votre projet ?</h2>
           <p class="section-intro reveal" data-i18n="contact.intro">
             Décrivez votre projet et vos priorités. Je vous réponds avec une proposition claire.
@@ -1451,6 +1430,39 @@
       </div>
     </footer>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Aurelien Wirtz",
+            "jobTitle": "Digital Growth Consultant",
+            "email": "mailto:aurelienwirtz67@gmail.com",
+            "url": "https://aurelienwirtz.com/",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "CH"
+            }
+          },
+          {
+            "@type": "ProfessionalService",
+            "name": "Aurelien Wirtz",
+            "url": "https://aurelienwirtz.com/",
+            "email": "mailto:aurelienwirtz67@gmail.com",
+            "areaServed": "CH",
+            "serviceType": [
+              "Digital project management",
+              "Data analysis and BI",
+              "Sales funnel strategy",
+              "AI infrastructure",
+              "Digital transformation"
+            ]
+          }
+        ]
+      }
+    </script>
+
     <script>
       (function () {
         "use strict";
@@ -1459,13 +1471,11 @@
         var STORAGE_KEY = "aw-lang";
         var currentLanguage = "fr";
         var revealObserver = null;
+        var sectionObserver = null;
+        var statObserver = null;
         var heroWordTimer = null;
         var heroWordIndex = 0;
-        var heroDeckOrder = [];
-        var heroDeckTimer = null;
-        var workflowIndex = 0;
-        var workflowSwitchTimer = null;
-        var statCounterObserver = null;
+        var lastFocusedElement = null;
 
         var content = {
           fr: {
@@ -1482,11 +1492,16 @@
             header: {
               navAria: "Navigation principale",
               languageAria: "Changer de langue",
-              note: "Studio de croissance digitale"
+              menuOpen: "Menu",
+              menuClose: "Fermer",
+              menuAria: "Ouvrir le menu plein écran",
+              menuNavAria: "Navigation menu plein écran"
             },
             nav: {
               services: "Services",
+              cases: "Cas d'usage",
               method: "Méthode",
+              stack: "Stack",
               contact: "Contact"
             },
             hero: {
@@ -1495,9 +1510,9 @@
               titleLine2Prefix: "Pensée pour",
               words: ["convertir", "performer", "grandir"],
               ctaPrimary: "Démarrer un projet",
-              ctaSecondary: "Me contacter",
+              ctaSecondary: "Voir les services",
               keywordsLabel: "Expertises clés",
-              clients: [
+              keywords: [
                 "Gestion de projet digital",
                 "Analyse de données & BI",
                 "Tunnel de vente",
@@ -1509,8 +1524,7 @@
             },
             services: {
               title: "Nos solutions",
-              intro:
-                "Cinq expertises pensées pour connecter stratégie, exécution et résultats business.",
+              intro: "Cinq expertises pensées pour connecter stratégie, exécution et résultats business.",
               items: [
                 {
                   title: "Gestion de projet digital",
@@ -1529,7 +1543,7 @@
                   blob: "rgba(152,201,255,0.35)"
                 },
                 {
-                  title: "Funnel de vente",
+                  title: "Tunnel de vente",
                   copy: "Conception de parcours de conversion fluides, du premier point de contact jusqu'à l'achat.",
                   tags: ["Conversion", "Automatisation marketing", "Relation leads"],
                   icon: "◍",
@@ -1554,73 +1568,96 @@
                 }
               ]
             },
+            cases: {
+              title: "Cas d'usage",
+              intro: "Exemples anonymisés de missions, structurés en Problème, Action, Résultat observé.",
+              labels: {
+                problem: "Problème",
+                action: "Action",
+                result: "Résultat observé"
+              },
+              items: [
+                {
+                  name: "Entreprise SaaS B2B",
+                  sector: "SaaS",
+                  problem: "Tunnel de conversion complexe, faible visibilité sur les vrais points de friction.",
+                  action: "Refonte des étapes clés, tracking unifié, simplification des messages et des points d'entrée.",
+                  result: "Parcours plus lisible, décisions plus rapides et progression nette de la qualité des leads."
+                },
+                {
+                  name: "Groupe de services",
+                  sector: "Conseil",
+                  problem: "Données marketing et commerciales dispersées, pilotage difficile.",
+                  action: "Architecture BI centralisée, KPIs communs, dashboard exécutif orienté action.",
+                  result: "Alignement des équipes autour d'une seule source fiable et meilleure réactivité opérationnelle."
+                },
+                {
+                  name: "PME en croissance",
+                  sector: "B2C",
+                  problem: "Process internes manuels et charge opérationnelle trop lourde.",
+                  action: "Digitalisation des workflows, automatisations ciblées et standardisation des étapes critiques.",
+                  result: "Moins de tâches répétitives, meilleure qualité d'exécution et plus de temps pour la stratégie."
+                }
+              ]
+            },
+            method: {
+              title: "Comment je travaille",
+              intro: "Une timeline claire avec livrables concrets à chaque étape.",
+              stepPrefix: "Étape",
+              deliverablesLabel: "Livrables",
+              steps: [
+                {
+                  icon: "discover",
+                  title: "Découverte & cadrage",
+                  copy: "Clarification des objectifs business, contraintes techniques et priorités d'impact.",
+                  deliverables: ["Audit initial", "Cadrage des enjeux", "Objectifs mesurables"]
+                },
+                {
+                  icon: "design",
+                  title: "Design stratégique",
+                  copy: "Structuration du système digital : parcours, messages, data model et plan d'action.",
+                  deliverables: ["Architecture de parcours", "Plan d'exécution", "Priorisation"]
+                },
+                {
+                  icon: "build",
+                  title: "Déploiement",
+                  copy: "Mise en place des dispositifs, des automations et des dashboards utiles au pilotage.",
+                  deliverables: ["Implémentation", "Tracking", "Documentation"]
+                },
+                {
+                  icon: "iterate",
+                  title: "Optimisation continue",
+                  copy: "Ajustements réguliers basés sur la donnée terrain et les retours opérationnels.",
+                  deliverables: ["Itérations", "Revue de performance", "Plan d'amélioration"]
+                }
+              ]
+            },
+            why: {
+              title: "Pourquoi moi",
+              intro: "Positionnement, manière de travailler et disponibilité : le cadre de collaboration est transparent.",
+              items: [
+                {
+                  title: "Positionnement",
+                  copy: "Une approche hybride entre direction stratégique, design de système et exécution technique."
+                },
+                {
+                  title: "Façon de travailler",
+                  copy: "Des cycles courts, des livrables concrets et une communication directe à chaque étape."
+                },
+                {
+                  title: "Disponibilité",
+                  copy: "Un interlocuteur unique qui suit le projet de bout en bout, avec un haut niveau d'engagement."
+                }
+              ]
+            },
             stats: {
               title: "Repères de collaboration.",
+              intro: "Des indicateurs de méthode crédibles, pensés pour un démarrage sérieux.",
               items: [
                 { value: "4", label: "Étapes de méthode" },
                 { value: "3", label: "Piliers d'expertise" },
                 { value: "1", label: "Interlocuteur dédié" },
                 { value: "100%", label: "Approche sur-mesure" }
-              ]
-            },
-            method: {
-              title: "Comment je travaille",
-              intro:
-                "Un process clair, rapide et collaboratif pour transformer une vision en système digital.",
-              stepPrefix: "Étape",
-              controlsHint: "Cliquez sur les flèches pour voir les étapes",
-              prevAria: "Étape précédente",
-              nextAria: "Étape suivante",
-              steps: [
-                {
-                  icon: "discover",
-                  title: "Découverte & cadrage",
-                  copy: "On clarifie vos objectifs, votre contexte et vos contraintes pour poser un cadre stratégique solide.",
-                  duration: "1 - 2 jours"
-                },
-                {
-                  icon: "design",
-                  title: "Design stratégique",
-                  copy: "On construit l'architecture de parcours, les messages clés et les priorités de déploiement.",
-                  duration: "3 - 5 jours"
-                },
-                {
-                  icon: "build",
-                  title: "Déploiement & intégration",
-                  copy: "Mise en production des dispositifs, tracking, automations et assets nécessaires à l'exécution.",
-                  duration: "1 - 3 semaines"
-                },
-                {
-                  icon: "iterate",
-                  title: "Boucle d'optimisation",
-                  copy: "Analyse des performances, itérations ciblées et optimisation continue orientée résultats.",
-                  duration: "Continu"
-                }
-              ]
-            },
-            principles: {
-              headline: "Créer des expériences digitales qui marquent.",
-              items: [
-                {
-                  icon: "spark",
-                  title: "Creative Excellence",
-                  copy: "Des interfaces fortes, mémorables et alignées avec votre positionnement premium."
-                },
-                {
-                  icon: "layers",
-                  title: "Customised Solutions",
-                  copy: "Chaque dispositif est conçu pour vos objectifs business, pas sur un template standard."
-                },
-                {
-                  icon: "grid",
-                  title: "Integrated Expertise",
-                  copy: "Design, data, conversion et automatisation sont pensés comme un même système."
-                },
-                {
-                  icon: "talk",
-                  title: "Open Communication",
-                  copy: "Des échanges directs, des décisions rapides et une visibilité claire à chaque étape."
-                }
               ]
             },
             stack: {
@@ -1643,21 +1680,6 @@
                 { name: "Canva", icon: "https://cdn.simpleicons.org/canva/e9eef8" },
                 { name: "Adobe", icon: "https://cdn.simpleicons.org/adobe/e9eef8" }
               ]
-            },
-            pricing: {
-              title: "Vos priorités du moment",
-              intro:
-                "Que vous soyez en phase de lancement, de structuration ou d'optimisation, je vous accompagne avec une approche claire et orientée résultat.",
-              lead:
-                "Vous devez lancer une offre, fiabiliser vos données, ou intégrer l'IA sans complexifier vos équipes ?",
-              cases: [
-                "Concevoir un site premium qui soutient vraiment vos objectifs business",
-                "Construire un système de conversion lisible, mesurable et évolutif",
-                "Automatiser vos opérations clés avec une architecture IA pragmatique"
-              ],
-              copy: "On priorise ensemble les actions à plus fort impact, puis on passe à l'exécution.",
-              ctaPrimary: "Planifier un échange",
-              ctaSecondary: "Envoyer un email"
             },
             contact: {
               title: "Prêt à lancer votre projet ?",
@@ -1697,22 +1719,27 @@
             header: {
               navAria: "Primary navigation",
               languageAria: "Switch language",
-              note: "Digital Growth Studio"
+              menuOpen: "Menu",
+              menuClose: "Close",
+              menuAria: "Open full screen menu",
+              menuNavAria: "Full screen menu navigation"
             },
             nav: {
               services: "Services",
+              cases: "Use cases",
               method: "Method",
+              stack: "Stack",
               contact: "Contact"
             },
             hero: {
               eyebrow: "Digital Strategy / Data / AI",
-              titleLine1: "Ambitious ideas.",
-              titleLine2Prefix: "Digital",
-              words: ["experiences", "funnels", "systems"],
+              titleLine1: "Digital growth.",
+              titleLine2Prefix: "Built to",
+              words: ["convert", "perform", "scale"],
               ctaPrimary: "Start a project",
-              ctaSecondary: "Contact me",
+              ctaSecondary: "View services",
               keywordsLabel: "Core expertise",
-              clients: [
+              keywords: [
                 "Digital project management",
                 "Data Analysis & BI",
                 "Sales funnel",
@@ -1745,7 +1772,7 @@
                 {
                   title: "Sales funnel",
                   copy: "Design of seamless conversion journeys from first touchpoint to customer action.",
-                  tags: ["Conversion", "Marketing Automation", "Nurturing"],
+                  tags: ["Conversion", "Marketing Automation", "Lead Nurturing"],
                   icon: "◍",
                   tone: "#2e2b3e",
                   blob: "rgba(220,190,255,0.3)"
@@ -1768,8 +1795,91 @@
                 }
               ]
             },
+            cases: {
+              title: "Use cases",
+              intro: "Anonymized examples structured as Problem, Action, Observed outcome.",
+              labels: {
+                problem: "Problem",
+                action: "Action",
+                result: "Observed outcome"
+              },
+              items: [
+                {
+                  name: "B2B SaaS company",
+                  sector: "SaaS",
+                  problem: "Complex conversion funnel with low visibility on real friction points.",
+                  action: "Restructured key steps, unified tracking and clarified messaging across entry points.",
+                  result: "Clearer journey, faster decisions and stronger lead quality over time."
+                },
+                {
+                  name: "Service group",
+                  sector: "Consulting",
+                  problem: "Scattered marketing and sales data making steering difficult.",
+                  action: "Centralized BI architecture, shared KPIs and executive dashboard with actionable views.",
+                  result: "Team alignment around one reliable source and better operational responsiveness."
+                },
+                {
+                  name: "Growing SME",
+                  sector: "B2C",
+                  problem: "Manual internal processes creating heavy operational overhead.",
+                  action: "Workflow digitalization, targeted automation and standardization of critical operations.",
+                  result: "Less repetitive work, better execution quality and more strategic bandwidth."
+                }
+              ]
+            },
+            method: {
+              title: "How I work",
+              intro: "A clear timeline with concrete deliverables at every step.",
+              stepPrefix: "Step",
+              deliverablesLabel: "Deliverables",
+              steps: [
+                {
+                  icon: "discover",
+                  title: "Discovery & framing",
+                  copy: "Clarification of business goals, constraints and impact priorities.",
+                  deliverables: ["Initial audit", "Challenge mapping", "Measurable goals"]
+                },
+                {
+                  icon: "design",
+                  title: "Strategic design",
+                  copy: "Definition of journey architecture, key messaging and rollout priorities.",
+                  deliverables: ["Journey architecture", "Execution plan", "Prioritization"]
+                },
+                {
+                  icon: "build",
+                  title: "Deployment",
+                  copy: "Implementation of systems, tracking, automation and delivery assets.",
+                  deliverables: ["Implementation", "Tracking setup", "Documentation"]
+                },
+                {
+                  icon: "iterate",
+                  title: "Continuous optimization",
+                  copy: "Regular iteration based on real-world data and operational feedback.",
+                  deliverables: ["Iteration loops", "Performance review", "Improvement roadmap"]
+                }
+              ]
+            },
+            why: {
+              title: "Why work with me",
+              intro: "Positioning, work model and availability are transparent from day one.",
+              items: [
+                {
+                  title: "Positioning",
+                  copy: "A hybrid approach blending strategic direction, systems design and technical execution."
+                },
+                {
+                  title: "Way of working",
+                  copy: "Short cycles, concrete deliverables and direct communication at each milestone."
+                },
+                {
+                  title: "Availability",
+                  copy: "One dedicated point of contact who follows the project end-to-end with high ownership."
+                }
+              ]
+            },
             stats: {
               title: "Collaboration benchmarks.",
+              intro: "Credible, method-based indicators built for an early-stage positioning.",
               items: [
                 { value: "4", label: "Method steps" },
                 { value: "3", label: "Core expertise pillars" },
@@ -1777,67 +1887,8 @@
                 { value: "100%", label: "Tailored approach" }
               ]
             },
-            method: {
-              title: "How we work",
-              intro: "A clear, fast and collaborative process to turn your vision into a digital system.",
-              stepPrefix: "Step",
-              controlsHint: "Use the arrows to navigate the steps",
-              prevAria: "Previous step",
-              nextAria: "Next step",
-              steps: [
-                {
-                  icon: "discover",
-                  title: "Discovery & Understanding",
-                  copy: "We clarify your goals, context and constraints to establish a strong strategic baseline.",
-                  duration: "1 - 2 days"
-                },
-                {
-                  icon: "design",
-                  title: "Strategic Design",
-                  copy: "We shape journey architecture, key messaging and rollout priorities for impact.",
-                  duration: "3 - 5 days"
-                },
-                {
-                  icon: "build",
-                  title: "Build & Integration",
-                  copy: "Deployment of systems, tracking, automation and assets needed for execution.",
-                  duration: "1 - 3 weeks"
-                },
-                {
-                  icon: "iterate",
-                  title: "Optimization Loop",
-                  copy: "Performance analysis, focused iteration and continuous optimization around outcomes.",
-                  duration: "Ongoing"
-                }
-              ]
-            },
-            principles: {
-              headline: "Building digital experiences people remember.",
-              items: [
-                {
-                  icon: "spark",
-                  title: "Creative Excellence",
-                  copy: "Distinctive interfaces crafted to make your brand position clear and unforgettable."
-                },
-                {
-                  icon: "layers",
-                  title: "Customised Solutions",
-                  copy: "Every system is designed around your goals, not copied from generic templates."
-                },
-                {
-                  icon: "grid",
-                  title: "Integrated Expertise",
-                  copy: "Design, data, conversion and automation are engineered as one coherent whole."
-                },
-                {
-                  icon: "talk",
-                  title: "Open Communication",
-                  copy: "Direct collaboration, clear updates and fast decisions at each project milestone."
-                }
-              ]
-            },
             stack: {
-              title: "Tech Stack",
+              title: "Technology stack",
               intro: "Technologies used to deliver robust and scalable solutions.",
               items: [
                 { name: "OpenAI", icon: "https://cdn.simpleicons.org/openai/e9eef8" },
@@ -1857,23 +1908,8 @@
                 { name: "Adobe", icon: "https://cdn.simpleicons.org/adobe/e9eef8" }
               ]
             },
-            pricing: {
-              title: "Your current priorities",
-              intro:
-                "Whether you are launching, restructuring or optimizing, I support you with a clear and outcome-driven approach.",
-              lead:
-                "Need to launch an offer, make your data reliable, or integrate AI without adding complexity?",
-              cases: [
-                "Design a premium website aligned with your business goals",
-                "Build a measurable and scalable conversion system",
-                "Automate key operations with pragmatic AI architecture"
-              ],
-              copy: "We prioritize the highest-impact actions together, then execute fast.",
-              ctaPrimary: "Book a strategic call",
-              ctaSecondary: "Send an email"
-            },
             contact: {
-              title: "Ready to get started",
+              title: "Ready to get started?",
               intro: "Share your project and priorities. I will reply with a clear proposal.",
               directLabel: "Or directly:",
               mailSubjectDirect: "Contact request - Aurelien Wirtz",
@@ -1899,10 +1935,8 @@
         };
 
         function getPath(obj, path) {
-          return path.split(".").reduce(function (accumulator, key) {
-            return accumulator && Object.prototype.hasOwnProperty.call(accumulator, key)
-              ? accumulator[key]
-              : undefined;
+          return path.split(".").reduce(function (acc, key) {
+            return acc && Object.prototype.hasOwnProperty.call(acc, key) ? acc[key] : undefined;
           }, obj);
         }
 
@@ -1945,208 +1979,60 @@
             build:
               '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1.5"></rect><rect x="3" y="14" width="18" height="6" rx="1.5"></rect><path d="M8 10v4"></path><path d="M16 10v4"></path></svg>',
             iterate:
-              '<svg viewBox="0 0 24 24"><path d="M3 12a8 8 0 0 1 13.7-5.7"></path><path d="M17 2v5h-5"></path><path d="M21 12a8 8 0 0 1-13.7 5.7"></path><path d="M7 22v-5h5"></path></svg>',
-            spark:
-              '<svg viewBox="0 0 24 24"><path d="M12 3v5"></path><path d="M12 16v5"></path><path d="M3 12h5"></path><path d="M16 12h5"></path><path d="M6.5 6.5l3.5 3.5"></path><path d="M14 14l3.5 3.5"></path><path d="M17.5 6.5L14 10"></path><path d="M10 14l-3.5 3.5"></path></svg>',
-            layers:
-              '<svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 12l9 5 9-5"></path><path d="M3 16l9 5 9-5"></path></svg>',
-            grid:
-              '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"></rect><rect x="13" y="3" width="8" height="8" rx="1.5"></rect><rect x="3" y="13" width="8" height="8" rx="1.5"></rect><rect x="13" y="13" width="8" height="8" rx="1.5"></rect></svg>',
-            talk:
-              '<svg viewBox="0 0 24 24"><path d="M5 6h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-6l-4 3v-3H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path></svg>'
+              '<svg viewBox="0 0 24 24"><path d="M3 12a8 8 0 0 1 13.7-5.7"></path><path d="M17 2v5h-5"></path><path d="M21 12a8 8 0 0 1-13.7 5.7"></path><path d="M7 22v-5h5"></path></svg>'
           };
           return icons[name] || icons.discover;
         }
 
-        function renderTrust(items) {
-          var container = document.getElementById("trust-list");
-          if (!container) {
-            return;
-          }
-
-          container.innerHTML = "";
-          items.forEach(function (item) {
-            var li = document.createElement("li");
-            li.className = "trust-item reveal";
-            li.textContent = item;
-            container.appendChild(li);
-          });
-        }
-
-        function applyDeckTransforms() {
-          var deck = document.getElementById("hero-deck");
-          if (!deck) {
-            return;
-          }
-
-          var cards = deck.querySelectorAll(".deck-card");
-          var positions = [
-            { x: 0, y: 0, r: 0, s: 1, z: 30, opacity: 1 },
-            { x: 34, y: 34, r: -3, s: 0.94, z: 20, opacity: 0.96 },
-            { x: 68, y: 68, r: 4, s: 0.88, z: 10, opacity: 0.9 }
-          ];
-
-          cards.forEach(function (card) {
-            var idx = Number(card.dataset.index);
-            var posIndex = heroDeckOrder.indexOf(idx);
-
-            if (posIndex === -1 || posIndex > 2) {
-              card.style.opacity = "0";
-              card.style.pointerEvents = "none";
-              return;
-            }
-
-            var p = positions[posIndex];
-            card.style.opacity = String(p.opacity);
-            card.style.pointerEvents = "auto";
-            card.style.zIndex = String(p.z);
-            card.style.transform =
-              "translate3d(" +
-              p.x +
-              "px, " +
-              p.y +
-              "px, 0) rotate(" +
-              p.r +
-              "deg) scale(" +
-              p.s +
-              ")";
-          });
-        }
-
-        function cycleDeck(direction) {
-          if (heroDeckOrder.length < 2) {
-            return;
-          }
-          if (direction === "prev") {
-            var last = heroDeckOrder.pop();
-            heroDeckOrder.unshift(last);
-          } else {
-            var first = heroDeckOrder.shift();
-            heroDeckOrder.push(first);
-          }
-          applyDeckTransforms();
-        }
-
-        function startDeckAutoCycle() {
-          if (heroDeckTimer) {
-            window.clearInterval(heroDeckTimer);
-            heroDeckTimer = null;
-          }
-          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            return;
-          }
-          heroDeckTimer = window.setInterval(function () {
-            cycleDeck("next");
-          }, 3600);
-        }
-
-        function renderHeroDeck(cards) {
-          var container = document.getElementById("hero-deck");
-          if (!container) {
-            return;
-          }
-
-          container.innerHTML = "";
-          heroDeckOrder = [];
-
-          cards.forEach(function (cardData, idx) {
-            heroDeckOrder.push(idx);
-
-            var card = document.createElement("article");
-            card.className = "deck-card";
-            card.dataset.index = String(idx);
-
-            var tag = document.createElement("span");
-            tag.className = "deck-card-tag";
-            tag.textContent = cardData.tag;
-
-            var title = document.createElement("h3");
-            title.className = "deck-card-title";
-            title.textContent = cardData.title;
-
-            var copy = document.createElement("p");
-            copy.className = "deck-card-copy";
-            copy.textContent = cardData.copy;
-
-            var kpi = document.createElement("p");
-            kpi.className = "deck-card-kpi";
-            kpi.textContent = cardData.kpi;
-
-            card.appendChild(tag);
-            card.appendChild(title);
-            card.appendChild(copy);
-            card.appendChild(kpi);
-
-            card.addEventListener("click", function () {
-              var clickedIdx = Number(card.dataset.index);
-              heroDeckOrder = heroDeckOrder.filter(function (orderIdx) {
-                return orderIdx !== clickedIdx;
-              });
-              heroDeckOrder.unshift(clickedIdx);
-              applyDeckTransforms();
-              startDeckAutoCycle();
-            });
-
-            container.appendChild(card);
-          });
-
-          applyDeckTransforms();
-          startDeckAutoCycle();
-        }
-
-        function renderClients(clients) {
-          var track = document.getElementById("clients-track");
+        function renderKeywords(items) {
+          var track = document.getElementById("keywords-track");
           if (!track) {
             return;
           }
-
           track.innerHTML = "";
           var repeated = [];
           for (var i = 0; i < 4; i += 1) {
-            repeated = repeated.concat(clients);
+            repeated = repeated.concat(items);
           }
-
-          repeated.forEach(function (name) {
+          repeated.forEach(function (item) {
             var span = document.createElement("span");
-            span.className = "client-item";
-            span.textContent = name;
+            span.className = "keyword-item";
+            span.textContent = item;
             track.appendChild(span);
           });
         }
 
         function renderServices(items) {
-          var container = document.getElementById("solutions-stack");
+          var container = document.getElementById("services-grid");
           if (!container) {
             return;
           }
-
           container.innerHTML = "";
 
           items.forEach(function (item, index) {
             var card = document.createElement("article");
-            card.className = "solution-card reveal";
+            card.className = "service-card reveal";
             card.style.setProperty("--card-base", item.tone);
             card.style.setProperty("--blob", item.blob);
 
             var left = document.createElement("div");
             var idx = document.createElement("span");
-            idx.className = "solution-index";
+            idx.className = "service-index";
             idx.textContent = String(index + 1).padStart(2, "0");
 
             var title = document.createElement("h3");
-            title.className = "solution-title";
+            title.className = "service-title";
             title.textContent = item.title;
 
             var copy = document.createElement("p");
-            copy.className = "solution-copy";
+            copy.className = "service-copy";
             copy.textContent = item.copy;
 
             var tags = document.createElement("div");
-            tags.className = "solution-tags";
-
+            tags.className = "service-tags";
             item.tags.forEach(function (tagText) {
               var tag = document.createElement("span");
-              tag.className = "solution-tag";
+              tag.className = "service-tag";
               tag.textContent = tagText;
               tags.appendChild(tag);
             });
@@ -2157,19 +2043,147 @@
             left.appendChild(tags);
 
             var icon = document.createElement("div");
-            icon.className = "solution-icon";
+            icon.className = "service-icon";
             icon.textContent = item.icon;
 
             card.appendChild(left);
             card.appendChild(icon);
 
             card.addEventListener("click", function () {
-              container.querySelectorAll(".solution-card").forEach(function (otherCard) {
-                otherCard.classList.remove("is-active");
+              container.querySelectorAll(".service-card").forEach(function (other) {
+                other.classList.remove("is-active");
               });
               card.classList.add("is-active");
             });
 
+            container.appendChild(card);
+          });
+        }
+
+        function renderCases(casesBlock) {
+          var container = document.getElementById("cases-grid");
+          if (!container) {
+            return;
+          }
+          container.innerHTML = "";
+
+          casesBlock.items.forEach(function (item) {
+            var card = document.createElement("article");
+            card.className = "case-card reveal";
+
+            var head = document.createElement("div");
+            head.className = "case-head";
+
+            var name = document.createElement("h3");
+            name.className = "case-name";
+            name.textContent = item.name;
+
+            var sector = document.createElement("span");
+            sector.className = "case-sector";
+            sector.textContent = item.sector;
+
+            head.appendChild(name);
+            head.appendChild(sector);
+
+            var grid = document.createElement("div");
+            grid.className = "case-grid";
+
+            function addCaseBlock(label, text) {
+              var block = document.createElement("div");
+              block.className = "case-block";
+
+              var blockLabel = document.createElement("p");
+              blockLabel.className = "case-block-label";
+              blockLabel.textContent = label;
+
+              var contentNode = document.createElement("p");
+              contentNode.textContent = text;
+
+              block.appendChild(blockLabel);
+              block.appendChild(contentNode);
+              grid.appendChild(block);
+            }
+
+            addCaseBlock(casesBlock.labels.problem, item.problem);
+            addCaseBlock(casesBlock.labels.action, item.action);
+            addCaseBlock(casesBlock.labels.result, item.result);
+
+            card.appendChild(head);
+            card.appendChild(grid);
+            container.appendChild(card);
+          });
+        }
+
+        function renderTimeline(methodBlock) {
+          var container = document.getElementById("timeline");
+          if (!container) {
+            return;
+          }
+          container.innerHTML = "";
+
+          methodBlock.steps.forEach(function (step, index) {
+            var li = document.createElement("li");
+            li.className = "timeline-item reveal";
+
+            var icon = document.createElement("div");
+            icon.className = "timeline-icon";
+            icon.innerHTML = iconSvg(step.icon);
+
+            var body = document.createElement("div");
+
+            var stepLabel = document.createElement("p");
+            stepLabel.className = "timeline-step";
+            stepLabel.textContent = methodBlock.stepPrefix + " " + String(index + 1).padStart(2, "0");
+
+            var title = document.createElement("h3");
+            title.className = "timeline-title";
+            title.textContent = step.title;
+
+            var copy = document.createElement("p");
+            copy.className = "timeline-copy";
+            copy.textContent = step.copy;
+
+            var pills = document.createElement("div");
+            pills.className = "timeline-deliverables";
+            step.deliverables.forEach(function (deliverable) {
+              var pill = document.createElement("span");
+              pill.className = "timeline-pill";
+              pill.textContent = deliverable;
+              pills.appendChild(pill);
+            });
+
+            body.appendChild(stepLabel);
+            body.appendChild(title);
+            body.appendChild(copy);
+            body.appendChild(pills);
+
+            li.appendChild(icon);
+            li.appendChild(body);
+            container.appendChild(li);
+          });
+        }
+
+        function renderWhy(items) {
+          var container = document.getElementById("why-grid");
+          if (!container) {
+            return;
+          }
+          container.innerHTML = "";
+
+          items.forEach(function (item) {
+            var card = document.createElement("article");
+            card.className = "why-card reveal";
+
+            var title = document.createElement("h3");
+            title.className = "why-title";
+            title.textContent = item.title;
+
+            var copy = document.createElement("p");
+            copy.className = "why-copy";
+            copy.textContent = item.copy;
+
+            card.appendChild(title);
+            card.appendChild(copy);
             container.appendChild(card);
           });
         }
@@ -2180,6 +2194,7 @@
             return;
           }
           container.innerHTML = "";
+
           var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
           items.forEach(function (item) {
@@ -2201,27 +2216,23 @@
           });
         }
 
-        function parseStatTarget(target) {
-          var clean = String(target || "");
+        function parseCounterTarget(raw) {
+          var clean = String(raw || "");
           var suffix = clean.replace(/[0-9.,\s]/g, "");
           var number = Number(clean.replace(/[^0-9.]/g, ""));
           if (!Number.isFinite(number)) {
             number = 0;
           }
-          return {
-            number: number,
-            suffix: suffix
-          };
+          return { number: number, suffix: suffix };
         }
 
-        function animateStatValue(node) {
+        function animateCounter(node) {
           if (!node || node.dataset.animated === "true") {
             return;
           }
-
-          var parsed = parseStatTarget(node.dataset.target);
+          var parsed = parseCounterTarget(node.dataset.target);
           var start = performance.now();
-          var duration = 1400;
+          var duration = 1300;
 
           function frame(now) {
             var progress = Math.min((now - start) / duration, 1);
@@ -2240,7 +2251,7 @@
           window.requestAnimationFrame(frame);
         }
 
-        function observeStatCounters() {
+        function observeCounters() {
           var nodes = document.querySelectorAll(".stat-value[data-target]");
           if (!nodes.length) {
             return;
@@ -2254,118 +2265,25 @@
             return;
           }
 
-          if (statCounterObserver) {
-            statCounterObserver.disconnect();
+          if (statObserver) {
+            statObserver.disconnect();
           }
 
-          statCounterObserver = new IntersectionObserver(
+          statObserver = new IntersectionObserver(
             function (entries) {
               entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                  animateStatValue(entry.target);
-                  if (statCounterObserver) {
-                    statCounterObserver.unobserve(entry.target);
-                  }
+                  animateCounter(entry.target);
+                  statObserver.unobserve(entry.target);
                 }
               });
             },
-            { threshold: 0.35 }
+            { threshold: 0.4 }
           );
 
           nodes.forEach(function (node) {
             node.dataset.animated = "false";
-            statCounterObserver.observe(node);
-          });
-        }
-
-        function workflowIcon(name) {
-          return iconSvg(name);
-        }
-
-        function updateWorkflow(dict, nextIndex) {
-          var stage = document.getElementById("workflow-stage");
-          var stepNode = document.getElementById("workflow-step");
-          var titleNode = document.getElementById("workflow-title");
-          var copyNode = document.getElementById("workflow-copy");
-          var durationNode = document.getElementById("workflow-duration");
-          var iconNode = document.getElementById("workflow-icon");
-
-          if (!stage || !stepNode || !titleNode || !copyNode || !durationNode || !iconNode) {
-            return;
-          }
-
-          var steps = dict.method.steps;
-          var step = steps[nextIndex];
-          if (!step) {
-            return;
-          }
-
-          if (workflowSwitchTimer) {
-            window.clearTimeout(workflowSwitchTimer);
-            workflowSwitchTimer = null;
-          }
-
-          stage.classList.add("is-switching");
-
-          workflowSwitchTimer = window.setTimeout(function () {
-            workflowIndex = nextIndex;
-            stepNode.textContent = dict.method.stepPrefix + " " + String(workflowIndex + 1).padStart(2, "0");
-            titleNode.textContent = step.title;
-            copyNode.textContent = step.copy;
-            durationNode.textContent = step.duration;
-            iconNode.innerHTML = workflowIcon(step.icon);
-            stage.classList.remove("is-switching");
-          }, 180);
-        }
-
-        function bindWorkflowControls(dict) {
-          var prev = document.getElementById("workflow-prev");
-          var next = document.getElementById("workflow-next");
-          if (!prev || !next) {
-            return;
-          }
-
-          prev.onclick = function () {
-            var count = dict.method.steps.length;
-            var nextIndex = (workflowIndex - 1 + count) % count;
-            updateWorkflow(dict, nextIndex);
-          };
-
-          next.onclick = function () {
-            var count = dict.method.steps.length;
-            var nextIndex = (workflowIndex + 1) % count;
-            updateWorkflow(dict, nextIndex);
-          };
-        }
-
-        function renderPrinciples(items) {
-          var container = document.getElementById("principles-grid");
-          if (!container) {
-            return;
-          }
-
-          container.innerHTML = "";
-
-          items.forEach(function (item) {
-            var card = document.createElement("article");
-            card.className = "principle-card reveal";
-
-            var icon = document.createElement("div");
-            icon.className = "principle-icon";
-            icon.innerHTML = iconSvg(item.icon);
-
-            var title = document.createElement("h3");
-            title.className = "principle-title";
-            title.textContent = item.title;
-
-            var copy = document.createElement("p");
-            copy.className = "principle-copy";
-            copy.textContent = item.copy;
-
-            card.appendChild(icon);
-            card.appendChild(title);
-            card.appendChild(copy);
-            container.appendChild(card);
+            statObserver.observe(node);
           });
         }
 
@@ -2396,13 +2314,11 @@
             img.alt = item.name + " logo";
             img.loading = "lazy";
             img.decoding = "async";
-            img.addEventListener("load", function () {
-              fallback.style.display = "none";
-            });
             img.addEventListener("error", function () {
               fallback.style.display = "inline";
               img.remove();
             });
+
             logo.appendChild(img);
             logo.appendChild(fallback);
 
@@ -2416,34 +2332,39 @@
           });
         }
 
-        function renderPricingCases(items) {
-          var container = document.getElementById("pricing-cases");
-          if (!container) {
+        function setHeroWord(word) {
+          var node = document.getElementById("hero-word");
+          if (!node) {
             return;
           }
-          container.innerHTML = "";
+          node.classList.remove("is-changing");
+          node.setAttribute("data-text", word);
+          node.innerHTML = "";
 
-          items.forEach(function (text) {
-            var card = document.createElement("p");
-            card.className = "pricing-case reveal";
-            card.textContent = text;
-            container.appendChild(card);
-          });
+          String(word)
+            .split("")
+            .forEach(function (char, index) {
+              var letter = document.createElement("span");
+              letter.className = "hero-letter";
+              letter.style.setProperty("--i", String(index));
+              letter.textContent = char;
+              node.appendChild(letter);
+            });
+
+          void node.offsetWidth;
+          node.classList.add("is-changing");
         }
 
         function startHeroWordCycle(words) {
-          var node = document.getElementById("hero-word");
-          if (!node || !Array.isArray(words) || words.length === 0) {
+          if (!Array.isArray(words) || words.length === 0) {
             return;
           }
-
           if (heroWordTimer) {
             window.clearInterval(heroWordTimer);
             heroWordTimer = null;
           }
-
           heroWordIndex = 0;
-          node.textContent = words[heroWordIndex];
+          setHeroWord(words[heroWordIndex]);
 
           if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             return;
@@ -2451,58 +2372,75 @@
 
           heroWordTimer = window.setInterval(function () {
             heroWordIndex = (heroWordIndex + 1) % words.length;
-            node.classList.remove("is-changing");
-            void node.offsetWidth;
-            node.textContent = words[heroWordIndex];
-            node.classList.add("is-changing");
+            setHeroWord(words[heroWordIndex]);
           }, 2200);
         }
 
-        function buildObserver() {
+        function initRevealObserver() {
           if (!("IntersectionObserver" in window)) {
             document.querySelectorAll(".reveal").forEach(function (node) {
               node.classList.add("is-visible");
             });
-            return null;
+            return;
           }
 
-          return new IntersectionObserver(
+          if (revealObserver) {
+            revealObserver.disconnect();
+          }
+
+          revealObserver = new IntersectionObserver(
             function (entries) {
               entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                   entry.target.classList.add("is-visible");
-                  if (revealObserver) {
-                    revealObserver.unobserve(entry.target);
-                  }
+                  revealObserver.unobserve(entry.target);
                 }
               });
             },
-            { threshold: 0.13, rootMargin: "0px 0px -8% 0px" }
+            { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
           );
+
+          document.querySelectorAll(".reveal").forEach(function (node) {
+            if (!node.classList.contains("is-visible")) {
+              revealObserver.observe(node);
+            }
+          });
         }
 
-        function observeReveals(scope) {
-          var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          var targets = (scope || document).querySelectorAll(".reveal");
-
-          if (reduceMotion) {
-            targets.forEach(function (node) {
-              node.classList.add("is-visible");
+        function initSectionObserver() {
+          if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            document.querySelectorAll("[data-cinematic]").forEach(function (section) {
+              section.classList.add("is-inview");
             });
             return;
           }
 
-          if (!revealObserver) {
-            revealObserver = buildObserver();
-          }
-          if (!revealObserver) {
-            return;
+          if (sectionObserver) {
+            sectionObserver.disconnect();
           }
 
-          targets.forEach(function (node) {
-            if (!node.classList.contains("is-visible")) {
-              revealObserver.observe(node);
-            }
+          sectionObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                entry.target.classList.toggle("is-inview", entry.isIntersecting);
+              });
+            },
+            { threshold: 0.2 }
+          );
+
+          document.querySelectorAll("[data-cinematic]").forEach(function (section) {
+            sectionObserver.observe(section);
+          });
+        }
+
+        function initMouseGlow() {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+          }
+          var root = document.documentElement;
+          window.addEventListener("pointermove", function (event) {
+            root.style.setProperty("--mouse-x", event.clientX + "px");
+            root.style.setProperty("--mouse-y", event.clientY + "px");
           });
         }
 
@@ -2514,15 +2452,99 @@
           });
         }
 
-        function initMouseGlow() {
-          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        function getMenuFocusableNodes() {
+          var menu = document.getElementById("menu-overlay");
+          if (!menu) {
+            return [];
+          }
+          return Array.prototype.slice.call(
+            menu.querySelectorAll(
+              "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])"
+            )
+          ).filter(function (el) {
+            return !el.hasAttribute("hidden");
+          });
+        }
+
+        function openMenu() {
+          var menu = document.getElementById("menu-overlay");
+          var toggle = document.getElementById("menu-toggle");
+          if (!menu || !toggle) {
+            return;
+          }
+          lastFocusedElement = document.activeElement;
+          menu.classList.add("is-open");
+          menu.setAttribute("aria-hidden", "false");
+          document.body.classList.add("menu-open");
+          toggle.setAttribute("aria-expanded", "true");
+
+          var focusables = getMenuFocusableNodes();
+          if (focusables.length) {
+            focusables[0].focus();
+          }
+        }
+
+        function closeMenu() {
+          var menu = document.getElementById("menu-overlay");
+          var toggle = document.getElementById("menu-toggle");
+          if (!menu || !toggle) {
+            return;
+          }
+          menu.classList.remove("is-open");
+          menu.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("menu-open");
+          toggle.setAttribute("aria-expanded", "false");
+
+          if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+            lastFocusedElement.focus();
+          }
+        }
+
+        function bindMenu() {
+          var toggle = document.getElementById("menu-toggle");
+          var close = document.getElementById("menu-close");
+          var menu = document.getElementById("menu-overlay");
+          if (!toggle || !close || !menu) {
             return;
           }
 
-          var root = document.documentElement;
-          window.addEventListener("pointermove", function (event) {
-            root.style.setProperty("--mouse-x", event.clientX + "px");
-            root.style.setProperty("--mouse-y", event.clientY + "px");
+          toggle.addEventListener("click", function () {
+            openMenu();
+          });
+          close.addEventListener("click", function () {
+            closeMenu();
+          });
+
+          menu.querySelectorAll("[data-menu-link]").forEach(function (link) {
+            link.addEventListener("click", function () {
+              closeMenu();
+            });
+          });
+
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && menu.classList.contains("is-open")) {
+              closeMenu();
+            }
+          });
+
+          menu.addEventListener("keydown", function (event) {
+            if (event.key !== "Tab") {
+              return;
+            }
+            var focusables = getMenuFocusableNodes();
+            if (!focusables.length) {
+              return;
+            }
+            var first = focusables[0];
+            var last = focusables[focusables.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
+            }
           });
         }
 
@@ -2530,7 +2552,6 @@
           if (!content[language]) {
             language = "fr";
           }
-
           currentLanguage = language;
           var dict = content[language];
 
@@ -2545,16 +2566,15 @@
           setMeta("meta-twitter-description", dict.meta.twitterDescription);
 
           applyI18n(dict);
-          renderClients(dict.hero.clients);
+          renderKeywords(dict.hero.keywords);
           renderServices(dict.services.items);
+          renderCases(dict.cases);
+          renderTimeline(dict.method);
+          renderWhy(dict.why.items);
           renderStats(dict.stats.items);
-          observeStatCounters();
+          observeCounters();
           renderTech(dict.stack.items);
           startHeroWordCycle(dict.hero.words);
-
-          workflowIndex = 0;
-          updateWorkflow(dict, workflowIndex);
-          bindWorkflowControls(dict);
 
           var contactMail = document.getElementById("contact-mailto");
           if (contactMail) {
@@ -2563,8 +2583,16 @@
               "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(dict.contact.mailSubjectDirect);
           }
 
+          var menuMail = document.getElementById("menu-mail");
+          if (menuMail) {
+            menuMail.textContent = CONTACT_EMAIL;
+            menuMail.href =
+              "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(dict.contact.mailSubjectDirect);
+          }
+
           updateLanguageButtons(language);
-          observeReveals(document);
+          initRevealObserver();
+          initSectionObserver();
 
           try {
             localStorage.setItem(STORAGE_KEY, language);
@@ -2585,7 +2613,6 @@
             event.preventDefault();
             var dict = content[currentLanguage];
             var data = new FormData(form);
-
             var name = String(data.get("name") || "").trim();
             var email = String(data.get("email") || "").trim();
             var message = String(data.get("message") || "").trim();
@@ -2610,13 +2637,14 @@
           });
         }
 
+        bindMenu();
         initMouseGlow();
 
         var initialLanguage = "fr";
         try {
-          var savedLanguage = localStorage.getItem(STORAGE_KEY);
-          if (savedLanguage && content[savedLanguage]) {
-            initialLanguage = savedLanguage;
+          var saved = localStorage.getItem(STORAGE_KEY);
+          if (saved && content[saved]) {
+            initialLanguage = saved;
           }
         } catch (error) {
           initialLanguage = "fr";
