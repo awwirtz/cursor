@@ -46,6 +46,8 @@
     <meta name="twitter:image" content="https://aurelienwirtz.com/og-image.jpg" />
 
     <style>
+      @import url("https://fonts.cdnfonts.com/css/hopscotch");
+
       :root {
         --bg: #07090d;
         --bg-soft: #0d1118;
@@ -64,6 +66,7 @@
         --radius-lg: 24px;
         --radius-md: 16px;
         --ease: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+        --brand-font: "Hopscotch", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
 
       * {
@@ -166,6 +169,7 @@
         text-transform: uppercase;
         letter-spacing: 0.12em;
         white-space: nowrap;
+        font-family: var(--brand-font);
       }
 
       .logo span {
@@ -267,8 +271,24 @@
         scroll-margin-top: calc(var(--header-height) + 0.8rem);
       }
 
-      .section-soft {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.005));
+      .section-tone-services {
+        background: linear-gradient(180deg, rgba(142, 164, 213, 0.1), rgba(142, 164, 213, 0.02));
+      }
+
+      .section-tone-stats {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(151, 161, 179, 0.03));
+      }
+
+      .section-tone-method {
+        background: linear-gradient(180deg, rgba(186, 159, 223, 0.08), rgba(186, 159, 223, 0.015));
+      }
+
+      .section-tone-stack {
+        background: linear-gradient(180deg, rgba(142, 200, 187, 0.07), rgba(142, 200, 187, 0.015));
+      }
+
+      .section-tone-contact {
+        background: linear-gradient(180deg, rgba(215, 193, 153, 0.08), rgba(215, 193, 153, 0.015));
       }
 
       .hero {
@@ -283,6 +303,12 @@
         grid-template-columns: minmax(0, 1fr);
         gap: 1.4rem;
         align-items: center;
+      }
+
+      .hero-content {
+        text-align: center;
+        display: grid;
+        justify-items: center;
       }
 
       .eyebrow {
@@ -320,6 +346,7 @@
         display: inline-block;
         color: var(--accent);
         min-width: 4.8ch;
+        font-family: var(--brand-font);
       }
 
       .hero-word.is-changing {
@@ -347,6 +374,7 @@
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 0.62rem;
         margin-bottom: 0;
       }
@@ -648,6 +676,7 @@
         font-size: clamp(2.4rem, 6.5vw, 5.4rem);
         line-height: 0.95;
         letter-spacing: -0.04em;
+        font-family: var(--brand-font);
       }
 
       .stat-label {
@@ -875,12 +904,22 @@
         background: rgba(255, 255, 255, 0.045);
         display: grid;
         place-items: center;
+        position: relative;
+        overflow: hidden;
       }
 
       .tech-logo img {
         width: 30px;
         height: 30px;
         object-fit: contain;
+      }
+
+      .tech-fallback {
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+        color: var(--muted);
       }
 
       .tech-name {
@@ -1218,7 +1257,7 @@
     <main>
       <section class="hero">
         <div class="container hero-grid">
-          <div>
+          <div class="hero-content">
             <p class="eyebrow reveal" data-i18n="hero.eyebrow">Stratégie digitale / Data / IA</p>
 
             <h1 class="hero-title reveal">
@@ -1241,7 +1280,7 @@
         <div class="clients-track" id="clients-track"></div>
       </section>
 
-      <section class="section section-soft" id="services">
+      <section class="section section-tone-services" id="services">
         <div class="container">
           <h2 class="section-title reveal" data-i18n="services.title">Nos solutions</h2>
           <p class="section-intro reveal" data-i18n="services.intro">
@@ -1251,14 +1290,14 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section-tone-stats">
         <div class="container">
-          <h2 class="section-title reveal" data-i18n="stats.title">Des chiffres qui parlent.</h2>
+          <h2 class="section-title reveal" data-i18n="stats.title">Repères de collaboration.</h2>
           <div class="stats-grid" id="stats-grid"></div>
         </div>
       </section>
 
-      <section class="section section-soft" id="method">
+      <section class="section section-tone-method" id="method">
         <div class="container workflow-wrap">
           <div class="workflow-top reveal">
             <div>
@@ -1305,7 +1344,7 @@
         </div>
       </section>
 
-      <section class="section section-soft" id="stack">
+      <section class="section section-tone-stack" id="stack">
         <div class="container">
           <h2 class="section-title reveal" data-i18n="stack.title">Tech Stack</h2>
           <p class="section-intro reveal" data-i18n="stack.intro">
@@ -1315,37 +1354,7 @@
         </div>
       </section>
 
-      <section class="section section-soft" id="pricing">
-        <div class="container">
-          <h2 class="section-title reveal" data-i18n="pricing.title">Vos priorités du moment</h2>
-          <p class="section-intro reveal" data-i18n="pricing.intro">
-            Que vous soyez en phase de lancement, de structuration ou d'optimisation, je vous accompagne avec une
-            approche claire et orientée résultat.
-          </p>
-          <div class="pricing-card reveal">
-            <p class="pricing-lead" data-i18n="pricing.lead">
-              Vous devez lancer une offre, fiabiliser vos données, ou intégrer l'IA sans complexifier vos équipes ?
-            </p>
-            <div class="pricing-cases" id="pricing-cases"></div>
-            <p class="pricing-copy" data-i18n="pricing.copy">
-              On priorise ensemble les actions à plus fort impact, puis on passe à l'exécution.
-            </p>
-            <div class="pricing-actions">
-              <a class="btn btn-primary" href="#contact" data-i18n="pricing.ctaPrimary">Planifier un échange</a>
-              <a
-                class="btn btn-secondary"
-                id="pricing-mail"
-                href="mailto:aurelienwirtz67@gmail.com"
-                data-i18n="pricing.ctaSecondary"
-              >
-                Envoyer un email
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="contact">
+      <section class="section section-tone-contact" id="contact">
         <div class="container">
           <h2 class="section-title reveal" data-i18n="contact.title">Prêt à lancer votre projet ?</h2>
           <p class="section-intro reveal" data-i18n="contact.intro">
@@ -1469,13 +1478,13 @@
               ctaPrimary: "Démarrer un projet",
               ctaSecondary: "Me contacter",
               clients: [
-                "Scale-up B2B",
-                "SaaS Europe",
-                "Cabinet Conseil",
-                "E-commerce",
-                "PME Suisse",
-                "Studio Produit",
-                "Entreprise dirigée par fondateur"
+                "Gestion de projet digital",
+                "Analyse de données & BI",
+                "Tunnel de vente",
+                "Infrastructure IA",
+                "Digitalisation",
+                "Automatisation",
+                "Roadmap stratégique"
               ]
             },
             services: {
@@ -1492,9 +1501,9 @@
                   blob: "rgba(198,166,255,0.35)"
                 },
                 {
-                  title: "Data Analysis & BI",
+                  title: "Analyse de données & BI",
                   copy: "Collecte, structuration et visualisation des données pour transformer les signaux en décisions concrètes.",
-                  tags: ["Collecte", "Tableaux de bord", "Insights"],
+                  tags: ["Collecte", "Tableaux de bord", "Analyse"],
                   icon: "◎",
                   tone: "#1f3147",
                   blob: "rgba(152,201,255,0.35)"
@@ -1502,7 +1511,7 @@
                 {
                   title: "Funnel de vente",
                   copy: "Conception de parcours de conversion fluides, du premier point de contact jusqu'à l'achat.",
-                  tags: ["Conversion", "Automatisation marketing", "Nurturing"],
+                  tags: ["Conversion", "Automatisation marketing", "Relation leads"],
                   icon: "◍",
                   tone: "#2e2b3e",
                   blob: "rgba(220,190,255,0.3)"
@@ -1510,7 +1519,7 @@
                 {
                   title: "Infrastructure IA",
                   copy: "Intégration d'outils IA pragmatiques pour améliorer productivité, qualité et temps de réponse.",
-                  tags: ["Intégration LLM", "Automatisation", "AI Ops"],
+                  tags: ["Intégration LLM", "Automatisation", "Opérations IA"],
                   icon: "✦",
                   tone: "#23313b",
                   blob: "rgba(161,221,210,0.35)"
@@ -1518,7 +1527,7 @@
                 {
                   title: "Digitalisation",
                   copy: "Optimisation des workflows et des process internes pour créer une machine opérationnelle plus robuste.",
-                  tags: ["Audit process", "Workflow", "Mise à l'échelle"],
+                  tags: ["Audit des process", "Flux de travail", "Mise à l'échelle"],
                   icon: "◌",
                   tone: "#352f27",
                   blob: "rgba(224,201,160,0.34)"
@@ -1526,12 +1535,12 @@
               ]
             },
             stats: {
-              title: "Des chiffres qui parlent.",
+              title: "Repères de collaboration.",
               items: [
-                { value: "80+", label: "Projets pilotés" },
-                { value: "12+", label: "Années d'expérience digitale" },
-                { value: "95%", label: "Clients accompagnés sur le long terme" },
-                { value: "32%", label: "Amélioration moyenne de conversion" }
+                { value: "4", label: "Étapes de méthode" },
+                { value: "3", label: "Piliers d'expertise" },
+                { value: "1", label: "Interlocuteur dédié" },
+                { value: "100%", label: "Approche sur-mesure" }
               ]
             },
             method: {
@@ -1598,16 +1607,21 @@
               title: "Tech Stack",
               intro: "Les technologies utilisées pour livrer des solutions robustes et évolutives.",
               items: [
-                { name: "Python", icon: "https://cdn.simpleicons.org/python/e9eef8" },
-                { name: "SQL", icon: "https://cdn.simpleicons.org/postgresql/e9eef8" },
                 { name: "OpenAI", icon: "https://cdn.simpleicons.org/openai/e9eef8" },
+                { name: "Gemini", icon: "https://cdn.simpleicons.org/googlegemini/e9eef8" },
+                { name: "Claude", icon: "https://cdn.simpleicons.org/anthropic/e9eef8" },
+                { name: "Cursor", icon: "https://cdn.simpleicons.org/cursor/e9eef8" },
                 { name: "Make", icon: "https://cdn.simpleicons.org/make/e9eef8" },
                 { name: "Zapier", icon: "https://cdn.simpleicons.org/zapier/e9eef8" },
                 { name: "n8n", icon: "https://cdn.simpleicons.org/n8n/e9eef8" },
-                { name: "Notion", icon: "https://cdn.simpleicons.org/notion/e9eef8" },
-                { name: "Looker Studio", icon: "https://cdn.simpleicons.org/looker/e9eef8" },
                 { name: "GitHub", icon: "https://cdn.simpleicons.org/github/e9eef8" },
-                { name: "GA4", icon: "https://cdn.simpleicons.org/googleanalytics/e9eef8" }
+                { name: "GA4", icon: "https://cdn.simpleicons.org/googleanalytics/e9eef8" },
+                { name: "Meta", icon: "https://cdn.simpleicons.org/meta/e9eef8" },
+                { name: "ClickFunnels", icon: "https://cdn.simpleicons.org/clickfunnels/e9eef8" },
+                { name: "GoHighLevel", icon: "https://cdn.simpleicons.org/gohighlevel/e9eef8" },
+                { name: "Salesforce", icon: "https://cdn.simpleicons.org/salesforce/e9eef8" },
+                { name: "Canva", icon: "https://cdn.simpleicons.org/canva/e9eef8" },
+                { name: "Adobe", icon: "https://cdn.simpleicons.org/adobe/e9eef8" }
               ]
             },
             pricing: {
@@ -1678,13 +1692,13 @@
               ctaPrimary: "Start a project",
               ctaSecondary: "Contact me",
               clients: [
-                "B2B Scaleup",
-                "SaaS Europe",
-                "Consulting Firm",
-                "E-commerce",
-                "Swiss SME",
-                "Product Studio",
-                "Founder-led Company"
+                "Digital project management",
+                "Data Analysis & BI",
+                "Sales funnel",
+                "AI infrastructure",
+                "Digitalization",
+                "Automation",
+                "Strategic roadmap"
               ]
             },
             services: {
@@ -1734,12 +1748,12 @@
               ]
             },
             stats: {
-              title: "Numbers that drive success.",
+              title: "Collaboration benchmarks.",
               items: [
-                { value: "80+", label: "Projects delivered" },
-                { value: "12+", label: "Years of digital experience" },
-                { value: "95%", label: "Long-term client collaboration" },
-                { value: "32%", label: "Average conversion uplift" }
+                { value: "4", label: "Method steps" },
+                { value: "3", label: "Core expertise pillars" },
+                { value: "1", label: "Dedicated point of contact" },
+                { value: "100%", label: "Tailored approach" }
               ]
             },
             method: {
@@ -1805,16 +1819,21 @@
               title: "Tech Stack",
               intro: "Technologies used to deliver robust and scalable solutions.",
               items: [
-                { name: "Python", icon: "https://cdn.simpleicons.org/python/e9eef8" },
-                { name: "SQL", icon: "https://cdn.simpleicons.org/postgresql/e9eef8" },
                 { name: "OpenAI", icon: "https://cdn.simpleicons.org/openai/e9eef8" },
+                { name: "Gemini", icon: "https://cdn.simpleicons.org/googlegemini/e9eef8" },
+                { name: "Claude", icon: "https://cdn.simpleicons.org/anthropic/e9eef8" },
+                { name: "Cursor", icon: "https://cdn.simpleicons.org/cursor/e9eef8" },
                 { name: "Make", icon: "https://cdn.simpleicons.org/make/e9eef8" },
                 { name: "Zapier", icon: "https://cdn.simpleicons.org/zapier/e9eef8" },
                 { name: "n8n", icon: "https://cdn.simpleicons.org/n8n/e9eef8" },
-                { name: "Notion", icon: "https://cdn.simpleicons.org/notion/e9eef8" },
-                { name: "Looker Studio", icon: "https://cdn.simpleicons.org/looker/e9eef8" },
                 { name: "GitHub", icon: "https://cdn.simpleicons.org/github/e9eef8" },
-                { name: "GA4", icon: "https://cdn.simpleicons.org/googleanalytics/e9eef8" }
+                { name: "GA4", icon: "https://cdn.simpleicons.org/googleanalytics/e9eef8" },
+                { name: "Meta", icon: "https://cdn.simpleicons.org/meta/e9eef8" },
+                { name: "ClickFunnels", icon: "https://cdn.simpleicons.org/clickfunnels/e9eef8" },
+                { name: "GoHighLevel", icon: "https://cdn.simpleicons.org/gohighlevel/e9eef8" },
+                { name: "Salesforce", icon: "https://cdn.simpleicons.org/salesforce/e9eef8" },
+                { name: "Canva", icon: "https://cdn.simpleicons.org/canva/e9eef8" },
+                { name: "Adobe", icon: "https://cdn.simpleicons.org/adobe/e9eef8" }
               ]
             },
             pricing: {
@@ -2343,12 +2362,28 @@
             var logo = document.createElement("div");
             logo.className = "tech-logo";
 
+            var fallback = document.createElement("span");
+            fallback.className = "tech-fallback";
+            fallback.style.display = "none";
+            fallback.textContent = String(item.name || "")
+              .replace(/[^a-zA-Z0-9]/g, "")
+              .slice(0, 3)
+              .toUpperCase();
+
             var img = document.createElement("img");
             img.src = item.icon;
             img.alt = item.name + " logo";
             img.loading = "lazy";
             img.decoding = "async";
+            img.addEventListener("load", function () {
+              fallback.style.display = "none";
+            });
+            img.addEventListener("error", function () {
+              fallback.style.display = "inline";
+              img.remove();
+            });
             logo.appendChild(img);
+            logo.appendChild(fallback);
 
             var name = document.createElement("p");
             name.className = "tech-name";
@@ -2494,7 +2529,6 @@
           renderStats(dict.stats.items);
           observeStatCounters();
           renderTech(dict.stack.items);
-          renderPricingCases(dict.pricing.cases);
           startHeroWordCycle(dict.hero.words);
 
           workflowIndex = 0;
@@ -2505,12 +2539,6 @@
           if (contactMail) {
             contactMail.textContent = CONTACT_EMAIL;
             contactMail.href =
-              "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(dict.contact.mailSubjectDirect);
-          }
-
-          var pricingMail = document.getElementById("pricing-mail");
-          if (pricingMail) {
-            pricingMail.href =
               "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(dict.contact.mailSubjectDirect);
           }
 
