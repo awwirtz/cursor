@@ -641,6 +641,19 @@
       .section-intro {
         max-width: 70ch;
         color: var(--muted);
+        position: relative;
+        padding-left: 0.9rem;
+      }
+
+      .section-intro::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.16rem;
+        bottom: 0.16rem;
+        width: 2px;
+        border-radius: 3px;
+        background: linear-gradient(180deg, rgba(197, 168, 255, 0.9), rgba(154, 214, 255, 0.48));
       }
 
       .services-grid {
@@ -745,10 +758,41 @@
       }
 
       .case-card {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.03);
-        padding: 1.05rem;
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: linear-gradient(142deg, var(--case-base, #242c40), rgba(10, 13, 21, 0.95));
+        padding: 1.1rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        gap: 0.9rem;
+        position: relative;
+        overflow: hidden;
+        transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+      }
+
+      .case-card:nth-child(even) {
+        transform: translateX(2.2%);
+      }
+
+      .case-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.36);
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.24);
+      }
+
+      .case-card:nth-child(even):hover {
+        transform: translateX(2.2%) translateY(-2px);
+      }
+
+      .case-card::before {
+        content: "";
+        position: absolute;
+        right: -90px;
+        top: -110px;
+        width: 240px;
+        height: 240px;
+        border-radius: 999px;
+        background: radial-gradient(circle, var(--case-blob, rgba(255, 255, 255, 0.25)), rgba(255, 255, 255, 0));
       }
 
       .case-head {
@@ -761,39 +805,79 @@
       }
 
       .case-name {
-        font-size: 1.08rem;
+        font-size: 1.16rem;
       }
 
       .case-sector {
-        border: 1px solid var(--line);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 999px;
         padding: 0.22rem 0.52rem;
         font-size: 0.64rem;
         text-transform: uppercase;
         letter-spacing: 0.09em;
-        color: var(--muted);
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .case-content {
+        position: relative;
+        z-index: 1;
       }
 
       .case-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.7rem;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
       }
 
       .case-block {
-        border: 1px solid var(--line-soft);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 14px;
-        background: rgba(255, 255, 255, 0.02);
-        padding: 0.7rem;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.64rem 0.72rem;
       }
 
       .case-block-label {
         font-size: 0.64rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        color: var(--muted);
+        color: rgba(255, 255, 255, 0.88);
         font-weight: 700;
         margin-bottom: 0.28rem;
+      }
+
+      .case-block-copy {
+        color: rgba(236, 241, 247, 0.78);
+        font-size: 0.92rem;
+      }
+
+      .case-graphic {
+        justify-self: end;
+        align-self: center;
+        width: 190px;
+        height: 190px;
+        border-radius: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.06);
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+
+      .case-symbol {
+        font-size: 3.1rem;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .case-shape-small {
+        position: absolute;
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.16);
+        right: 18px;
+        bottom: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.32);
       }
 
       .timeline {
@@ -802,43 +886,74 @@
         list-style: none;
         display: grid;
         gap: 0.9rem;
-        position: relative;
-      }
-
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 22px;
-        top: 0.2rem;
-        bottom: 0.2rem;
-        width: 1px;
-        background: var(--line);
       }
 
       .timeline-item {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-xl);
+        background: linear-gradient(145deg, var(--step-base, #202842), rgba(12, 15, 24, 0.95));
         padding: 0.92rem;
         display: grid;
-        grid-template-columns: 46px minmax(0, 1fr);
+        grid-template-columns: 88px minmax(0, 1fr) minmax(120px, 0.4fr);
         gap: 0.8rem;
+        position: relative;
+        overflow: hidden;
+        transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+        cursor: pointer;
       }
 
-      .timeline-icon {
-        width: 46px;
-        height: 46px;
-        border-radius: 14px;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.05);
+      .timeline-item:hover,
+      .timeline-item.is-active {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.36);
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.24);
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -70px;
+        bottom: -90px;
+        width: 220px;
+        height: 220px;
+        border-radius: 999px;
+        background: radial-gradient(circle, var(--step-blob, rgba(255, 255, 255, 0.2)), rgba(255, 255, 255, 0));
+      }
+
+      .timeline-order {
+        align-self: start;
+        justify-self: start;
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.08);
         display: grid;
         place-items: center;
+        font-family: var(--brand-font);
+        font-size: 2.2rem;
+        line-height: 1;
+      }
+
+      .timeline-content {
+        position: relative;
         z-index: 1;
       }
 
+      .timeline-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.11);
+        display: grid;
+        place-items: center;
+        margin-bottom: 0.48rem;
+      }
+
       .timeline-icon svg {
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         stroke: var(--text);
         fill: none;
         stroke-width: 1.8;
@@ -850,33 +965,59 @@
         font-size: 0.66rem;
         text-transform: uppercase;
         letter-spacing: 0.11em;
-        color: var(--muted);
+        color: rgba(255, 255, 255, 0.78);
       }
 
       .timeline-title {
         margin-top: 0.32rem;
-        font-size: 1.18rem;
+        font-size: 1.26rem;
       }
 
       .timeline-copy {
         margin-top: 0.42rem;
-        color: var(--muted);
+        color: rgba(236, 241, 247, 0.8);
+      }
+
+      .timeline-deliverables-label {
+        margin-top: 0.65rem;
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.74);
       }
 
       .timeline-deliverables {
-        margin-top: 0.65rem;
+        margin-top: 0.34rem;
         display: flex;
         flex-wrap: wrap;
         gap: 0.4rem;
       }
 
       .timeline-pill {
-        border: 1px solid var(--line);
+        border: 1px solid rgba(255, 255, 255, 0.28);
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.08);
         padding: 0.2rem 0.48rem;
         font-size: 0.63rem;
-        color: rgba(241, 244, 248, 0.84);
+        color: rgba(241, 244, 248, 0.88);
+      }
+
+      .timeline-visual {
+        justify-self: end;
+        align-self: center;
+        width: 110px;
+        height: 110px;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.09);
+        display: grid;
+        place-items: center;
+      }
+
+      .timeline-symbol {
+        font-size: 2.2rem;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.9);
       }
 
       .why-grid {
@@ -887,10 +1028,36 @@
       }
 
       .why-card {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-xl);
+        background: linear-gradient(145deg, #22293d, rgba(10, 13, 21, 0.95));
         padding: 1rem;
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 0.72rem;
+        transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+      }
+
+      .why-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.34);
+        box-shadow: 0 16px 26px rgba(0, 0, 0, 0.22);
+      }
+
+      .why-mark {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.09);
+        display: grid;
+        place-items: center;
+        font-size: 1.32rem;
+        line-height: 1;
+      }
+
+      .why-body {
+        align-self: center;
       }
 
       .why-title {
@@ -944,6 +1111,13 @@
         text-align: center;
         gap: 0.6rem;
         padding: 1rem;
+        transition: transform var(--ease), border-color var(--ease), background-color var(--ease);
+      }
+
+      .tech-item:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.06);
       }
 
       .tech-logo {
@@ -1124,8 +1298,37 @@
           justify-self: start;
         }
 
-        .case-grid {
+        .case-card {
           grid-template-columns: 1fr;
+        }
+
+        .case-card:nth-child(even) {
+          transform: none;
+        }
+
+        .case-card:nth-child(even):hover {
+          transform: translateY(-2px);
+        }
+
+        .case-graphic {
+          justify-self: start;
+          width: 150px;
+          height: 150px;
+          border-radius: 36px;
+        }
+
+        .timeline-item {
+          grid-template-columns: 72px minmax(0, 1fr);
+        }
+
+        .timeline-visual {
+          display: none;
+        }
+
+        .timeline-order {
+          width: 60px;
+          height: 60px;
+          font-size: 1.9rem;
         }
 
         .why-grid {
@@ -1175,6 +1378,27 @@
 
         .menu-link {
           font-size: clamp(2rem, 12vw, 4rem);
+        }
+
+        .case-graphic {
+          width: 120px;
+          height: 120px;
+          border-radius: 26px;
+        }
+
+        .case-symbol {
+          font-size: 2.2rem;
+        }
+
+        .timeline-item {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline-order {
+          width: 56px;
+          height: 56px;
+          border-radius: 16px;
+          font-size: 1.7rem;
         }
 
         .contact-foot {
@@ -1582,21 +1806,30 @@
                   sector: "SaaS",
                   problem: "Tunnel de conversion complexe, faible visibilité sur les vrais points de friction.",
                   action: "Refonte des étapes clés, tracking unifié, simplification des messages et des points d'entrée.",
-                  result: "Parcours plus lisible, décisions plus rapides et progression nette de la qualité des leads."
+                  result: "Parcours plus lisible, décisions plus rapides et progression nette de la qualité des leads.",
+                  symbol: "◑",
+                  tone: "#2b2343",
+                  blob: "rgba(204, 164, 255, 0.36)"
                 },
                 {
                   name: "Groupe de services",
                   sector: "Conseil",
                   problem: "Données marketing et commerciales dispersées, pilotage difficile.",
                   action: "Architecture BI centralisée, KPIs communs, dashboard exécutif orienté action.",
-                  result: "Alignement des équipes autour d'une seule source fiable et meilleure réactivité opérationnelle."
+                  result: "Alignement des équipes autour d'une seule source fiable et meilleure réactivité opérationnelle.",
+                  symbol: "◪",
+                  tone: "#203449",
+                  blob: "rgba(152, 210, 255, 0.32)"
                 },
                 {
                   name: "PME en croissance",
                   sector: "B2C",
                   problem: "Process internes manuels et charge opérationnelle trop lourde.",
                   action: "Digitalisation des workflows, automatisations ciblées et standardisation des étapes critiques.",
-                  result: "Moins de tâches répétitives, meilleure qualité d'exécution et plus de temps pour la stratégie."
+                  result: "Moins de tâches répétitives, meilleure qualité d'exécution et plus de temps pour la stratégie.",
+                  symbol: "△",
+                  tone: "#332c24",
+                  blob: "rgba(235, 201, 151, 0.32)"
                 }
               ]
             },
@@ -1610,25 +1843,37 @@
                   icon: "discover",
                   title: "Découverte & cadrage",
                   copy: "Clarification des objectifs business, contraintes techniques et priorités d'impact.",
-                  deliverables: ["Audit initial", "Cadrage des enjeux", "Objectifs mesurables"]
+                  deliverables: ["Audit initial", "Cadrage des enjeux", "Objectifs mesurables"],
+                  symbol: "◴",
+                  tone: "#2f2745",
+                  blob: "rgba(214, 181, 255, 0.34)"
                 },
                 {
                   icon: "design",
                   title: "Design stratégique",
                   copy: "Structuration du système digital : parcours, messages, data model et plan d'action.",
-                  deliverables: ["Architecture de parcours", "Plan d'exécution", "Priorisation"]
+                  deliverables: ["Architecture de parcours", "Plan d'exécution", "Priorisation"],
+                  symbol: "◪",
+                  tone: "#22364d",
+                  blob: "rgba(156, 210, 255, 0.3)"
                 },
                 {
                   icon: "build",
                   title: "Déploiement",
                   copy: "Mise en place des dispositifs, des automations et des dashboards utiles au pilotage.",
-                  deliverables: ["Implémentation", "Tracking", "Documentation"]
+                  deliverables: ["Implémentation", "Tracking", "Documentation"],
+                  symbol: "▣",
+                  tone: "#2e2b3f",
+                  blob: "rgba(195, 177, 242, 0.28)"
                 },
                 {
                   icon: "iterate",
                   title: "Optimisation continue",
                   copy: "Ajustements réguliers basés sur la donnée terrain et les retours opérationnels.",
-                  deliverables: ["Itérations", "Revue de performance", "Plan d'amélioration"]
+                  deliverables: ["Itérations", "Revue de performance", "Plan d'amélioration"],
+                  symbol: "◉",
+                  tone: "#213746",
+                  blob: "rgba(154, 220, 212, 0.3)"
                 }
               ]
             },
@@ -1638,15 +1883,21 @@
               items: [
                 {
                   title: "Positionnement",
-                  copy: "Une approche hybride entre direction stratégique, design de système et exécution technique."
+                  copy: "Une approche hybride entre direction stratégique, design de système et exécution technique.",
+                  mark: "◉",
+                  tone: "#2b2441"
                 },
                 {
                   title: "Façon de travailler",
-                  copy: "Des cycles courts, des livrables concrets et une communication directe à chaque étape."
+                  copy: "Des cycles courts, des livrables concrets et une communication directe à chaque étape.",
+                  mark: "▣",
+                  tone: "#21374a"
                 },
                 {
                   title: "Disponibilité",
-                  copy: "Un interlocuteur unique qui suit le projet de bout en bout, avec un haut niveau d'engagement."
+                  copy: "Un interlocuteur unique qui suit le projet de bout en bout, avec un haut niveau d'engagement.",
+                  mark: "◌",
+                  tone: "#332f27"
                 }
               ]
             },
@@ -1809,21 +2060,30 @@
                   sector: "SaaS",
                   problem: "Complex conversion funnel with low visibility on real friction points.",
                   action: "Restructured key steps, unified tracking and clarified messaging across entry points.",
-                  result: "Clearer journey, faster decisions and stronger lead quality over time."
+                  result: "Clearer journey, faster decisions and stronger lead quality over time.",
+                  symbol: "◑",
+                  tone: "#2b2343",
+                  blob: "rgba(204, 164, 255, 0.36)"
                 },
                 {
                   name: "Service group",
                   sector: "Consulting",
                   problem: "Scattered marketing and sales data making steering difficult.",
                   action: "Centralized BI architecture, shared KPIs and executive dashboard with actionable views.",
-                  result: "Team alignment around one reliable source and better operational responsiveness."
+                  result: "Team alignment around one reliable source and better operational responsiveness.",
+                  symbol: "◪",
+                  tone: "#203449",
+                  blob: "rgba(152, 210, 255, 0.32)"
                 },
                 {
                   name: "Growing SME",
                   sector: "B2C",
                   problem: "Manual internal processes creating heavy operational overhead.",
                   action: "Workflow digitalization, targeted automation and standardization of critical operations.",
-                  result: "Less repetitive work, better execution quality and more strategic bandwidth."
+                  result: "Less repetitive work, better execution quality and more strategic bandwidth.",
+                  symbol: "△",
+                  tone: "#332c24",
+                  blob: "rgba(235, 201, 151, 0.32)"
                 }
               ]
             },
@@ -1837,25 +2097,37 @@
                   icon: "discover",
                   title: "Discovery & framing",
                   copy: "Clarification of business goals, constraints and impact priorities.",
-                  deliverables: ["Initial audit", "Challenge mapping", "Measurable goals"]
+                  deliverables: ["Initial audit", "Challenge mapping", "Measurable goals"],
+                  symbol: "◴",
+                  tone: "#2f2745",
+                  blob: "rgba(214, 181, 255, 0.34)"
                 },
                 {
                   icon: "design",
                   title: "Strategic design",
                   copy: "Definition of journey architecture, key messaging and rollout priorities.",
-                  deliverables: ["Journey architecture", "Execution plan", "Prioritization"]
+                  deliverables: ["Journey architecture", "Execution plan", "Prioritization"],
+                  symbol: "◪",
+                  tone: "#22364d",
+                  blob: "rgba(156, 210, 255, 0.3)"
                 },
                 {
                   icon: "build",
                   title: "Deployment",
                   copy: "Implementation of systems, tracking, automation and delivery assets.",
-                  deliverables: ["Implementation", "Tracking setup", "Documentation"]
+                  deliverables: ["Implementation", "Tracking setup", "Documentation"],
+                  symbol: "▣",
+                  tone: "#2e2b3f",
+                  blob: "rgba(195, 177, 242, 0.28)"
                 },
                 {
                   icon: "iterate",
                   title: "Continuous optimization",
                   copy: "Regular iteration based on real-world data and operational feedback.",
-                  deliverables: ["Iteration loops", "Performance review", "Improvement roadmap"]
+                  deliverables: ["Iteration loops", "Performance review", "Improvement roadmap"],
+                  symbol: "◉",
+                  tone: "#213746",
+                  blob: "rgba(154, 220, 212, 0.3)"
                 }
               ]
             },
@@ -1865,15 +2137,21 @@
               items: [
                 {
                   title: "Positioning",
-                  copy: "A hybrid approach blending strategic direction, systems design and technical execution."
+                  copy: "A hybrid approach blending strategic direction, systems design and technical execution.",
+                  mark: "◉",
+                  tone: "#2b2441"
                 },
                 {
                   title: "Way of working",
-                  copy: "Short cycles, concrete deliverables and direct communication at each milestone."
+                  copy: "Short cycles, concrete deliverables and direct communication at each milestone.",
+                  mark: "▣",
+                  tone: "#21374a"
                 },
                 {
                   title: "Availability",
-                  copy: "One dedicated point of contact who follows the project end-to-end with high ownership."
+                  copy: "One dedicated point of contact who follows the project end-to-end with high ownership.",
+                  mark: "◌",
+                  tone: "#332f27"
                 }
               ]
             },
@@ -2070,6 +2348,11 @@
           casesBlock.items.forEach(function (item) {
             var card = document.createElement("article");
             card.className = "case-card reveal";
+            card.style.setProperty("--case-base", item.tone || "#232b40");
+            card.style.setProperty("--case-blob", item.blob || "rgba(210, 180, 255, 0.26)");
+
+            var contentWrap = document.createElement("div");
+            contentWrap.className = "case-content";
 
             var head = document.createElement("div");
             head.className = "case-head";
@@ -2088,15 +2371,16 @@
             var grid = document.createElement("div");
             grid.className = "case-grid";
 
-            function addCaseBlock(label, text) {
+            function addCaseBlock(label, text, symbol) {
               var block = document.createElement("div");
               block.className = "case-block";
 
               var blockLabel = document.createElement("p");
               blockLabel.className = "case-block-label";
-              blockLabel.textContent = label;
+              blockLabel.textContent = symbol + " " + label;
 
               var contentNode = document.createElement("p");
+              contentNode.className = "case-block-copy";
               contentNode.textContent = text;
 
               block.appendChild(blockLabel);
@@ -2104,12 +2388,28 @@
               grid.appendChild(block);
             }
 
-            addCaseBlock(casesBlock.labels.problem, item.problem);
-            addCaseBlock(casesBlock.labels.action, item.action);
-            addCaseBlock(casesBlock.labels.result, item.result);
+            addCaseBlock(casesBlock.labels.problem, item.problem, "◧");
+            addCaseBlock(casesBlock.labels.action, item.action, "◨");
+            addCaseBlock(casesBlock.labels.result, item.result, "◉");
 
-            card.appendChild(head);
-            card.appendChild(grid);
+            var graphic = document.createElement("div");
+            graphic.className = "case-graphic";
+
+            var shape = document.createElement("span");
+            shape.className = "case-symbol";
+            shape.textContent = item.symbol || "◐";
+
+            var shapeSmall = document.createElement("span");
+            shapeSmall.className = "case-shape-small";
+
+            graphic.appendChild(shape);
+            graphic.appendChild(shapeSmall);
+
+            contentWrap.appendChild(head);
+            contentWrap.appendChild(grid);
+
+            card.appendChild(contentWrap);
+            card.appendChild(graphic);
             container.appendChild(card);
           });
         }
@@ -2124,12 +2424,22 @@
           methodBlock.steps.forEach(function (step, index) {
             var li = document.createElement("li");
             li.className = "timeline-item reveal";
+            li.style.setProperty("--step-base", step.tone || "#242b41");
+            li.style.setProperty("--step-blob", step.blob || "rgba(169, 205, 255, 0.2)");
+            if (index === 0) {
+              li.classList.add("is-active");
+            }
+
+            var order = document.createElement("div");
+            order.className = "timeline-order";
+            order.textContent = String(index + 1).padStart(2, "0");
+
+            var body = document.createElement("div");
+            body.className = "timeline-content";
 
             var icon = document.createElement("div");
             icon.className = "timeline-icon";
             icon.innerHTML = iconSvg(step.icon);
-
-            var body = document.createElement("div");
 
             var stepLabel = document.createElement("p");
             stepLabel.className = "timeline-step";
@@ -2143,6 +2453,10 @@
             copy.className = "timeline-copy";
             copy.textContent = step.copy;
 
+            var deliverablesLabel = document.createElement("p");
+            deliverablesLabel.className = "timeline-deliverables-label";
+            deliverablesLabel.textContent = methodBlock.deliverablesLabel;
+
             var pills = document.createElement("div");
             pills.className = "timeline-deliverables";
             step.deliverables.forEach(function (deliverable) {
@@ -2152,13 +2466,32 @@
               pills.appendChild(pill);
             });
 
+            var visual = document.createElement("div");
+            visual.className = "timeline-visual";
+
+            var symbol = document.createElement("span");
+            symbol.className = "timeline-symbol";
+            symbol.textContent = step.symbol || "◍";
+
+            visual.appendChild(symbol);
+
+            body.appendChild(icon);
             body.appendChild(stepLabel);
             body.appendChild(title);
             body.appendChild(copy);
+            body.appendChild(deliverablesLabel);
             body.appendChild(pills);
 
-            li.appendChild(icon);
+            li.addEventListener("click", function () {
+              container.querySelectorAll(".timeline-item").forEach(function (other) {
+                other.classList.remove("is-active");
+              });
+              li.classList.add("is-active");
+            });
+
+            li.appendChild(order);
             li.appendChild(body);
+            li.appendChild(visual);
             container.appendChild(li);
           });
         }
@@ -2173,6 +2506,16 @@
           items.forEach(function (item) {
             var card = document.createElement("article");
             card.className = "why-card reveal";
+            card.style.background = item.tone
+              ? "linear-gradient(145deg, " + item.tone + ", rgba(10, 13, 21, 0.95))"
+              : "";
+
+            var mark = document.createElement("span");
+            mark.className = "why-mark";
+            mark.textContent = item.mark || "◌";
+
+            var body = document.createElement("div");
+            body.className = "why-body";
 
             var title = document.createElement("h3");
             title.className = "why-title";
@@ -2182,8 +2525,11 @@
             copy.className = "why-copy";
             copy.textContent = item.copy;
 
-            card.appendChild(title);
-            card.appendChild(copy);
+            body.appendChild(title);
+            body.appendChild(copy);
+
+            card.appendChild(mark);
+            card.appendChild(body);
             container.appendChild(card);
           });
         }
