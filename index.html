@@ -70,6 +70,10 @@
         --radius-md: 15px;
         --ease: 320ms cubic-bezier(0.22, 1, 0.36, 1);
         --brand-font: "Hopscotch", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --glow-color-a: rgba(142, 164, 213, 0.24);
+        --glow-color-b: rgba(186, 159, 223, 0.17);
+        --glow-size-a: 44rem 28rem;
+        --glow-size-b: 38rem 24rem;
       }
 
       * {
@@ -161,11 +165,12 @@
         z-index: -2;
         background:
           radial-gradient(
-            44rem 28rem at var(--mouse-x, 70%) var(--mouse-y, 18%),
-            rgba(142, 164, 213, 0.2),
-            rgba(142, 164, 213, 0) 70%
+            var(--glow-size-a) at var(--mouse-x, 70%) var(--mouse-y, 18%),
+            var(--glow-color-a),
+            rgba(142, 164, 213, 0) 72%
           ),
-          radial-gradient(38rem 24rem at 12% 0%, rgba(186, 159, 223, 0.15), rgba(186, 159, 223, 0));
+          radial-gradient(var(--glow-size-b) at 12% 0%, var(--glow-color-b), rgba(186, 159, 223, 0));
+        transition: background 360ms ease;
       }
 
       .site-header {
@@ -423,7 +428,8 @@
       }
 
       .hero {
-        min-height: calc(100svh - var(--header-height));
+        min-height: clamp(24rem, 76svh, 42rem);
+        padding: clamp(1.35rem, 2.2vw, 2.2rem) 0 clamp(0.9rem, 1.8vw, 1.5rem);
         display: grid;
         align-items: center;
         border-top: 0;
@@ -456,10 +462,10 @@
       }
 
       .hero-title {
-        font-size: clamp(2.4rem, 8vw, 6.2rem);
-        line-height: 0.9;
+        font-size: clamp(2.2rem, 7vw, 5.4rem);
+        line-height: 0.92;
         letter-spacing: -0.04em;
-        margin-bottom: 1.05rem;
+        margin-bottom: 0.84rem;
         max-width: 8.4ch;
         text-align: center;
       }
@@ -583,20 +589,7 @@
         border-bottom: 1px solid var(--line-soft);
         background: rgba(255, 255, 255, 0.015);
         overflow: hidden;
-      }
-
-      .keywords-head {
-        display: grid;
-        gap: 0.3rem;
-        padding-top: 0.45rem;
-      }
-
-      .keywords-label {
-        font-size: 0.64rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: rgba(255, 255, 255, 0.78);
-        font-weight: 700;
+        padding: 0.18rem 0;
       }
 
       .keywords-track {
@@ -635,7 +628,51 @@
         font-size: clamp(1.9rem, 5vw, 4.1rem);
         line-height: 0.98;
         letter-spacing: -0.03em;
-        margin-bottom: 0.82rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .section-title--center {
+        text-align: center;
+        margin-inline: auto;
+        width: fit-content;
+      }
+
+      .section-title--center::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        margin: 0.72rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(143, 202, 188, 0.86), rgba(187, 163, 226, 0.92));
+        transition: width 680ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+      }
+
+      .section-title--center.reveal {
+        transform: translateY(22px) scale(0.98);
+        filter: blur(2px);
+      }
+
+      .section-title--center.reveal.is-visible {
+        animation: title-rise 620ms cubic-bezier(0.16, 1, 0.3, 1);
+        filter: blur(0);
+      }
+
+      .section-title--center.reveal.is-visible::after {
+        width: min(180px, 38vw);
+      }
+
+      @keyframes title-rise {
+        0% {
+          transform: translateY(22px) scale(0.98);
+          opacity: 0;
+          filter: blur(2px);
+        }
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+          filter: blur(0);
+        }
       }
 
       .section-intro {
@@ -762,26 +799,15 @@
         border: 1px solid rgba(255, 255, 255, 0.22);
         background: linear-gradient(142deg, var(--case-base, #242c40), rgba(10, 13, 21, 0.95));
         padding: 1.1rem;
-        display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-        gap: 0.9rem;
         position: relative;
         overflow: hidden;
         transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
-      }
-
-      .case-card:nth-child(even) {
-        transform: translateX(2.2%);
       }
 
       .case-card:hover {
         transform: translateY(-2px);
         border-color: rgba(255, 255, 255, 0.36);
         box-shadow: 0 18px 30px rgba(0, 0, 0, 0.24);
-      }
-
-      .case-card:nth-child(even):hover {
-        transform: translateX(2.2%) translateY(-2px);
       }
 
       .case-card::before {
@@ -801,11 +827,11 @@
         justify-content: space-between;
         gap: 0.7rem;
         flex-wrap: wrap;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.58rem;
       }
 
       .case-name {
-        font-size: 1.16rem;
+        font-size: 1.18rem;
       }
 
       .case-sector {
@@ -823,61 +849,67 @@
         z-index: 1;
       }
 
-      .case-grid {
+      .case-caption {
+        color: rgba(236, 241, 247, 0.8);
+        margin-bottom: 0.75rem;
+      }
+
+      .case-diagram {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
         gap: 0.5rem;
       }
 
-      .case-block {
-        border: 1px solid rgba(255, 255, 255, 0.2);
+      .diagram-node {
+        border: 1px solid rgba(255, 255, 255, 0.24);
         border-radius: 14px;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 0.64rem 0.72rem;
+        background: rgba(255, 255, 255, 0.07);
+        padding: 0.62rem 0.58rem;
+        min-height: 90px;
+        display: grid;
+        align-content: start;
+        gap: 0.24rem;
       }
 
-      .case-block-label {
-        font-size: 0.64rem;
+      .diagram-node-label {
+        font-size: 0.62rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         color: rgba(255, 255, 255, 0.88);
         font-weight: 700;
-        margin-bottom: 0.28rem;
       }
 
-      .case-block-copy {
-        color: rgba(236, 241, 247, 0.78);
-        font-size: 0.92rem;
+      .diagram-node-copy {
+        color: rgba(240, 244, 248, 0.88);
+        font-size: 0.85rem;
+        line-height: 1.3;
+        font-weight: 600;
       }
 
-      .case-graphic {
-        justify-self: end;
-        align-self: center;
-        width: 190px;
-        height: 190px;
-        border-radius: 48px;
+      .diagram-node--problem {
+        background: linear-gradient(140deg, rgba(187, 159, 223, 0.24), rgba(255, 255, 255, 0.05));
+      }
+
+      .diagram-node--action {
+        background: linear-gradient(140deg, rgba(142, 164, 213, 0.24), rgba(255, 255, 255, 0.05));
+      }
+
+      .diagram-node--result {
+        background: linear-gradient(140deg, rgba(142, 200, 187, 0.26), rgba(255, 255, 255, 0.06));
+      }
+
+      .diagram-arrow {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
         border: 1px solid rgba(255, 255, 255, 0.28);
-        background: rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.1);
         display: grid;
         place-items: center;
-        position: relative;
-      }
-
-      .case-symbol {
-        font-size: 3.1rem;
+        font-size: 1rem;
         line-height: 1;
         color: rgba(255, 255, 255, 0.88);
-      }
-
-      .case-shape-small {
-        position: absolute;
-        width: 42px;
-        height: 42px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.16);
-        right: 18px;
-        bottom: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.32);
       }
 
       .timeline {
@@ -940,27 +972,6 @@
         z-index: 1;
       }
 
-      .timeline-icon {
-        width: 42px;
-        height: 42px;
-        border-radius: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
-        background: rgba(255, 255, 255, 0.11);
-        display: grid;
-        place-items: center;
-        margin-bottom: 0.48rem;
-      }
-
-      .timeline-icon svg {
-        width: 20px;
-        height: 20px;
-        stroke: var(--text);
-        fill: none;
-        stroke-width: 1.8;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
       .timeline-step {
         font-size: 0.66rem;
         text-transform: uppercase;
@@ -1014,10 +1025,14 @@
         place-items: center;
       }
 
-      .timeline-symbol {
-        font-size: 2.2rem;
-        line-height: 1;
-        color: rgba(255, 255, 255, 0.9);
+      .timeline-visual svg {
+        width: 42px;
+        height: 42px;
+        stroke: var(--text);
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
 
       .why-grid {
@@ -1124,8 +1139,8 @@
         width: 56px;
         height: 56px;
         border-radius: 16px;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(241, 245, 250, 0.96);
         display: grid;
         place-items: center;
         position: relative;
@@ -1133,8 +1148,8 @@
       }
 
       .tech-logo img {
-        width: 30px;
-        height: 30px;
+        width: 34px;
+        height: 34px;
         object-fit: contain;
       }
 
@@ -1298,37 +1313,27 @@
           justify-self: start;
         }
 
-        .case-card {
-          grid-template-columns: 1fr;
+        .case-diagram {
+          gap: 0.35rem;
         }
 
-        .case-card:nth-child(even) {
-          transform: none;
-        }
-
-        .case-card:nth-child(even):hover {
-          transform: translateY(-2px);
-        }
-
-        .case-graphic {
-          justify-self: start;
-          width: 150px;
-          height: 150px;
-          border-radius: 36px;
+        .diagram-node {
+          min-height: 84px;
         }
 
         .timeline-item {
-          grid-template-columns: 72px minmax(0, 1fr);
-        }
-
-        .timeline-visual {
-          display: none;
+          grid-template-columns: 72px minmax(0, 1fr) 92px;
         }
 
         .timeline-order {
           width: 60px;
           height: 60px;
           font-size: 1.9rem;
+        }
+
+        .timeline-visual {
+          width: 88px;
+          height: 88px;
         }
 
         .why-grid {
@@ -1352,13 +1357,13 @@
 
         .hero {
           min-height: auto;
-          padding-top: 2.4rem;
-          padding-bottom: 2.2rem;
+          padding-top: 1.3rem;
+          padding-bottom: 1.1rem;
         }
 
         .hero-title {
-          font-size: clamp(2.1rem, 11.5vw, 3.6rem);
-          max-width: 9.1ch;
+          font-size: clamp(1.95rem, 10.8vw, 3.35rem);
+          max-width: 9.4ch;
         }
 
         .hero-actions {
@@ -1380,14 +1385,18 @@
           font-size: clamp(2rem, 12vw, 4rem);
         }
 
-        .case-graphic {
-          width: 120px;
-          height: 120px;
-          border-radius: 26px;
+        .case-diagram {
+          grid-template-columns: 1fr;
+          gap: 0.42rem;
         }
 
-        .case-symbol {
-          font-size: 2.2rem;
+        .diagram-node {
+          min-height: auto;
+        }
+
+        .diagram-arrow {
+          transform: rotate(90deg);
+          justify-self: center;
         }
 
         .timeline-item {
@@ -1399,6 +1408,17 @@
           height: 56px;
           border-radius: 16px;
           font-size: 1.7rem;
+        }
+
+        .timeline-visual {
+          justify-self: start;
+          width: 74px;
+          height: 74px;
+        }
+
+        .timeline-visual svg {
+          width: 30px;
+          height: 30px;
         }
 
         .contact-foot {
@@ -1510,68 +1530,47 @@
       </section>
 
       <section class="keywords-strip" data-cinematic>
-        <div class="container keywords-head">
-          <p class="keywords-label reveal" data-i18n="hero.keywordsLabel">Expertises clés</p>
-        </div>
         <div class="keywords-track" id="keywords-track"></div>
       </section>
 
       <section class="section section-tone-services" id="services" data-cinematic>
         <div class="section-inner container">
-          <h2 class="section-title reveal" data-i18n="services.title">Nos solutions</h2>
-          <p class="section-intro reveal" data-i18n="services.intro">
-            Cinq expertises pensées pour connecter stratégie, exécution et résultats business.
-          </p>
+          <h2 class="section-title section-title--center reveal" data-i18n="services.title">Nos solutions</h2>
           <div class="services-grid" id="services-grid"></div>
         </div>
       </section>
 
       <section class="section section-tone-cases" id="cases" data-cinematic>
         <div class="section-inner container">
-          <h2 class="section-title reveal" data-i18n="cases.title">Cas d'usage</h2>
-          <p class="section-intro reveal" data-i18n="cases.intro">
-            Exemples anonymisés de missions, structurés en Problème, Action, Résultat observé.
-          </p>
+          <h2 class="section-title section-title--center reveal" data-i18n="cases.title">Cas d'usage</h2>
           <div class="cases-grid" id="cases-grid"></div>
         </div>
       </section>
 
       <section class="section section-tone-method" id="method" data-cinematic>
         <div class="section-inner container">
-          <h2 class="section-title reveal" data-i18n="method.title">Comment je travaille</h2>
-          <p class="section-intro reveal" data-i18n="method.intro">
-            Une timeline claire avec livrables concrets à chaque étape.
-          </p>
+          <h2 class="section-title section-title--center reveal" data-i18n="method.title">Comment je travaille</h2>
           <ol class="timeline" id="timeline"></ol>
         </div>
       </section>
 
       <section class="section section-tone-why" id="why-me" data-cinematic>
         <div class="section-inner container">
-          <h2 class="section-title reveal" data-i18n="why.title">Pourquoi moi</h2>
-          <p class="section-intro reveal" data-i18n="why.intro">
-            Positionnement, manière de travailler et disponibilité : le cadre de collaboration est transparent.
-          </p>
+          <h2 class="section-title section-title--center reveal" data-i18n="why.title">Pourquoi moi</h2>
           <div class="why-grid" id="why-grid"></div>
         </div>
       </section>
 
       <section class="section section-tone-stats" data-cinematic>
         <div class="section-inner container">
-          <h2 class="section-title reveal" data-i18n="stats.title">Repères de collaboration.</h2>
-          <p class="section-intro reveal" data-i18n="stats.intro">
-            Des indicateurs de méthode crédibles, pensés pour un démarrage sérieux.
-          </p>
+          <h2 class="section-title section-title--center reveal" data-i18n="stats.title">Repères de collaboration.</h2>
           <div class="stats-grid" id="stats-grid"></div>
         </div>
       </section>
 
       <section class="section section-tone-stack" id="stack" data-cinematic>
         <div class="section-inner container">
-          <h2 class="section-title reveal" data-i18n="stack.title">Stack technologique</h2>
-          <p class="section-intro reveal" data-i18n="stack.intro">
-            Les technologies utilisées pour livrer des solutions robustes et évolutives.
-          </p>
+          <h2 class="section-title section-title--center reveal" data-i18n="stack.title">Stack technologiques</h2>
           <div class="tech-grid" id="tech-grid"></div>
         </div>
       </section>
@@ -1796,17 +1795,18 @@
               title: "Cas d'usage",
               intro: "Exemples anonymisés de missions, structurés en Problème, Action, Résultat observé.",
               labels: {
-                problem: "Problème",
+                problem: "Avant",
                 action: "Action",
-                result: "Résultat observé"
+                result: "Après"
               },
               items: [
                 {
                   name: "Entreprise SaaS B2B",
                   sector: "SaaS",
-                  problem: "Tunnel de conversion complexe, faible visibilité sur les vrais points de friction.",
-                  action: "Refonte des étapes clés, tracking unifié, simplification des messages et des points d'entrée.",
-                  result: "Parcours plus lisible, décisions plus rapides et progression nette de la qualité des leads.",
+                  summary: "Parcours de conversion difficile à piloter.",
+                  problem: "Tunnel flou",
+                  action: "Parcours simplifié + tracking",
+                  result: "Leads mieux qualifiés",
                   symbol: "◑",
                   tone: "#2b2343",
                   blob: "rgba(204, 164, 255, 0.36)"
@@ -1814,9 +1814,10 @@
                 {
                   name: "Groupe de services",
                   sector: "Conseil",
-                  problem: "Données marketing et commerciales dispersées, pilotage difficile.",
-                  action: "Architecture BI centralisée, KPIs communs, dashboard exécutif orienté action.",
-                  result: "Alignement des équipes autour d'une seule source fiable et meilleure réactivité opérationnelle.",
+                  summary: "Pilotage lent à cause de données éparpillées.",
+                  problem: "Données dispersées",
+                  action: "BI centralisée + dashboard",
+                  result: "Décisions plus rapides",
                   symbol: "◪",
                   tone: "#203449",
                   blob: "rgba(152, 210, 255, 0.32)"
@@ -1824,9 +1825,10 @@
                 {
                   name: "PME en croissance",
                   sector: "B2C",
-                  problem: "Process internes manuels et charge opérationnelle trop lourde.",
-                  action: "Digitalisation des workflows, automatisations ciblées et standardisation des étapes critiques.",
-                  result: "Moins de tâches répétitives, meilleure qualité d'exécution et plus de temps pour la stratégie.",
+                  summary: "Exécution freinée par trop de tâches manuelles.",
+                  problem: "Opérations manuelles",
+                  action: "Workflows digitalisés",
+                  result: "Temps stratégique libéré",
                   symbol: "△",
                   tone: "#332c24",
                   blob: "rgba(235, 201, 151, 0.32)"
@@ -1896,7 +1898,7 @@
                 {
                   title: "Disponibilité",
                   copy: "Un interlocuteur unique qui suit le projet de bout en bout, avec un haut niveau d'engagement.",
-                  mark: "◌",
+                  mark: "◪",
                   tone: "#332f27"
                 }
               ]
@@ -1912,24 +1914,24 @@
               ]
             },
             stack: {
-              title: "Stack technologique",
+              title: "Stack technologiques",
               intro: "Les technologies utilisées pour livrer des solutions robustes et évolutives.",
               items: [
-                { name: "OpenAI", icon: "https://cdn.simpleicons.org/openai/e9eef8" },
-                { name: "Gemini", icon: "https://cdn.simpleicons.org/googlegemini/e9eef8" },
-                { name: "Claude", icon: "https://cdn.simpleicons.org/anthropic/e9eef8" },
-                { name: "Cursor", icon: "https://cdn.simpleicons.org/cursor/e9eef8" },
-                { name: "Make", icon: "https://cdn.simpleicons.org/make/e9eef8" },
-                { name: "Zapier", icon: "https://cdn.simpleicons.org/zapier/e9eef8" },
-                { name: "n8n", icon: "https://cdn.simpleicons.org/n8n/e9eef8" },
-                { name: "GitHub", icon: "https://cdn.simpleicons.org/github/e9eef8" },
-                { name: "GA4", icon: "https://cdn.simpleicons.org/googleanalytics/e9eef8" },
-                { name: "Meta", icon: "https://cdn.simpleicons.org/meta/e9eef8" },
-                { name: "ClickFunnels", icon: "https://cdn.simpleicons.org/clickfunnels/e9eef8" },
-                { name: "GoHighLevel", icon: "https://cdn.simpleicons.org/gohighlevel/e9eef8" },
-                { name: "Salesforce", icon: "https://cdn.simpleicons.org/salesforce/e9eef8" },
-                { name: "Canva", icon: "https://cdn.simpleicons.org/canva/e9eef8" },
-                { name: "Adobe", icon: "https://cdn.simpleicons.org/adobe/e9eef8" }
+                { name: "OpenAI", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" },
+                { name: "Gemini", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlegemini.svg" },
+                { name: "Claude", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg" },
+                { name: "Cursor", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/cursor.svg" },
+                { name: "Make", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/make.svg" },
+                { name: "Zapier", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/zapier.svg" },
+                { name: "n8n", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/n8n.svg" },
+                { name: "GitHub", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" },
+                { name: "GA4", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googleanalytics.svg" },
+                { name: "Meta", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/meta.svg" },
+                { name: "ClickFunnels", icon: "https://cdn.worldvectorlogo.com/logos/click-funnels.svg" },
+                { name: "GoHighLevel", icon: "https://www.svgrepo.com/show/326212/high-level.svg" },
+                { name: "Salesforce", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/salesforce.svg" },
+                { name: "Canva", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/canva.svg" },
+                { name: "Adobe", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobe.svg" }
               ]
             },
             contact: {
@@ -2050,17 +2052,18 @@
               title: "Use cases",
               intro: "Anonymized examples structured as Problem, Action, Observed outcome.",
               labels: {
-                problem: "Problem",
+                problem: "Before",
                 action: "Action",
-                result: "Observed outcome"
+                result: "After"
               },
               items: [
                 {
                   name: "B2B SaaS company",
                   sector: "SaaS",
-                  problem: "Complex conversion funnel with low visibility on real friction points.",
-                  action: "Restructured key steps, unified tracking and clarified messaging across entry points.",
-                  result: "Clearer journey, faster decisions and stronger lead quality over time.",
+                  summary: "A conversion journey that was hard to steer.",
+                  problem: "Unclear funnel",
+                  action: "Simplified flow + tracking",
+                  result: "Higher lead quality",
                   symbol: "◑",
                   tone: "#2b2343",
                   blob: "rgba(204, 164, 255, 0.36)"
@@ -2068,9 +2071,10 @@
                 {
                   name: "Service group",
                   sector: "Consulting",
-                  problem: "Scattered marketing and sales data making steering difficult.",
-                  action: "Centralized BI architecture, shared KPIs and executive dashboard with actionable views.",
-                  result: "Team alignment around one reliable source and better operational responsiveness.",
+                  summary: "Execution slowed down by fragmented data.",
+                  problem: "Scattered data",
+                  action: "Central BI + dashboard",
+                  result: "Faster decisions",
                   symbol: "◪",
                   tone: "#203449",
                   blob: "rgba(152, 210, 255, 0.32)"
@@ -2078,9 +2082,10 @@
                 {
                   name: "Growing SME",
                   sector: "B2C",
-                  problem: "Manual internal processes creating heavy operational overhead.",
-                  action: "Workflow digitalization, targeted automation and standardization of critical operations.",
-                  result: "Less repetitive work, better execution quality and more strategic bandwidth.",
+                  summary: "Too much manual work in daily operations.",
+                  problem: "Manual operations",
+                  action: "Digitized workflows",
+                  result: "More strategic time",
                   symbol: "△",
                   tone: "#332c24",
                   blob: "rgba(235, 201, 151, 0.32)"
@@ -2150,7 +2155,7 @@
                 {
                   title: "Availability",
                   copy: "One dedicated point of contact who follows the project end-to-end with high ownership.",
-                  mark: "◌",
+                  mark: "◪",
                   tone: "#332f27"
                 }
               ]
@@ -2169,21 +2174,21 @@
               title: "Technology stack",
               intro: "Technologies used to deliver robust and scalable solutions.",
               items: [
-                { name: "OpenAI", icon: "https://cdn.simpleicons.org/openai/e9eef8" },
-                { name: "Gemini", icon: "https://cdn.simpleicons.org/googlegemini/e9eef8" },
-                { name: "Claude", icon: "https://cdn.simpleicons.org/anthropic/e9eef8" },
-                { name: "Cursor", icon: "https://cdn.simpleicons.org/cursor/e9eef8" },
-                { name: "Make", icon: "https://cdn.simpleicons.org/make/e9eef8" },
-                { name: "Zapier", icon: "https://cdn.simpleicons.org/zapier/e9eef8" },
-                { name: "n8n", icon: "https://cdn.simpleicons.org/n8n/e9eef8" },
-                { name: "GitHub", icon: "https://cdn.simpleicons.org/github/e9eef8" },
-                { name: "GA4", icon: "https://cdn.simpleicons.org/googleanalytics/e9eef8" },
-                { name: "Meta", icon: "https://cdn.simpleicons.org/meta/e9eef8" },
-                { name: "ClickFunnels", icon: "https://cdn.simpleicons.org/clickfunnels/e9eef8" },
-                { name: "GoHighLevel", icon: "https://cdn.simpleicons.org/gohighlevel/e9eef8" },
-                { name: "Salesforce", icon: "https://cdn.simpleicons.org/salesforce/e9eef8" },
-                { name: "Canva", icon: "https://cdn.simpleicons.org/canva/e9eef8" },
-                { name: "Adobe", icon: "https://cdn.simpleicons.org/adobe/e9eef8" }
+                { name: "OpenAI", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" },
+                { name: "Gemini", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlegemini.svg" },
+                { name: "Claude", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg" },
+                { name: "Cursor", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/cursor.svg" },
+                { name: "Make", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/make.svg" },
+                { name: "Zapier", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/zapier.svg" },
+                { name: "n8n", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/n8n.svg" },
+                { name: "GitHub", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" },
+                { name: "GA4", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googleanalytics.svg" },
+                { name: "Meta", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/meta.svg" },
+                { name: "ClickFunnels", icon: "https://cdn.worldvectorlogo.com/logos/click-funnels.svg" },
+                { name: "GoHighLevel", icon: "https://www.svgrepo.com/show/326212/high-level.svg" },
+                { name: "Salesforce", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/salesforce.svg" },
+                { name: "Canva", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/canva.svg" },
+                { name: "Adobe", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobe.svg" }
               ]
             },
             contact: {
@@ -2368,48 +2373,49 @@
             head.appendChild(name);
             head.appendChild(sector);
 
-            var grid = document.createElement("div");
-            grid.className = "case-grid";
+            var caption = document.createElement("p");
+            caption.className = "case-caption";
+            caption.textContent = item.summary || "";
 
-            function addCaseBlock(label, text, symbol) {
-              var block = document.createElement("div");
-              block.className = "case-block";
+            var diagram = document.createElement("div");
+            diagram.className = "case-diagram";
 
-              var blockLabel = document.createElement("p");
-              blockLabel.className = "case-block-label";
-              blockLabel.textContent = symbol + " " + label;
+            function createNode(label, text, toneClass, symbol) {
+              var node = document.createElement("div");
+              node.className = "diagram-node " + toneClass;
 
-              var contentNode = document.createElement("p");
-              contentNode.className = "case-block-copy";
-              contentNode.textContent = text;
+              var nodeLabel = document.createElement("p");
+              nodeLabel.className = "diagram-node-label";
+              nodeLabel.textContent = (symbol ? symbol + " " : "") + label;
 
-              block.appendChild(blockLabel);
-              block.appendChild(contentNode);
-              grid.appendChild(block);
+              var nodeCopy = document.createElement("p");
+              nodeCopy.className = "diagram-node-copy";
+              nodeCopy.textContent = text;
+
+              node.appendChild(nodeLabel);
+              node.appendChild(nodeCopy);
+              return node;
             }
 
-            addCaseBlock(casesBlock.labels.problem, item.problem, "◧");
-            addCaseBlock(casesBlock.labels.action, item.action, "◨");
-            addCaseBlock(casesBlock.labels.result, item.result, "◉");
-
-            var graphic = document.createElement("div");
-            graphic.className = "case-graphic";
-
-            var shape = document.createElement("span");
-            shape.className = "case-symbol";
-            shape.textContent = item.symbol || "◐";
-
-            var shapeSmall = document.createElement("span");
-            shapeSmall.className = "case-shape-small";
-
-            graphic.appendChild(shape);
-            graphic.appendChild(shapeSmall);
+            function createArrow() {
+              var arrow = document.createElement("span");
+              arrow.className = "diagram-arrow";
+              arrow.textContent = "→";
+              return arrow;
+            }
 
             contentWrap.appendChild(head);
-            contentWrap.appendChild(grid);
+            if (caption.textContent) {
+              contentWrap.appendChild(caption);
+            }
+            diagram.appendChild(createNode(casesBlock.labels.problem, item.problem, "diagram-node--problem", "◧"));
+            diagram.appendChild(createArrow());
+            diagram.appendChild(createNode(casesBlock.labels.action, item.action, "diagram-node--action", "◨"));
+            diagram.appendChild(createArrow());
+            diagram.appendChild(createNode(casesBlock.labels.result, item.result, "diagram-node--result", "◉"));
+            contentWrap.appendChild(diagram);
 
             card.appendChild(contentWrap);
-            card.appendChild(graphic);
             container.appendChild(card);
           });
         }
@@ -2436,10 +2442,6 @@
 
             var body = document.createElement("div");
             body.className = "timeline-content";
-
-            var icon = document.createElement("div");
-            icon.className = "timeline-icon";
-            icon.innerHTML = iconSvg(step.icon);
 
             var stepLabel = document.createElement("p");
             stepLabel.className = "timeline-step";
@@ -2468,14 +2470,8 @@
 
             var visual = document.createElement("div");
             visual.className = "timeline-visual";
+            visual.innerHTML = iconSvg(step.icon);
 
-            var symbol = document.createElement("span");
-            symbol.className = "timeline-symbol";
-            symbol.textContent = step.symbol || "◍";
-
-            visual.appendChild(symbol);
-
-            body.appendChild(icon);
             body.appendChild(stepLabel);
             body.appendChild(title);
             body.appendChild(copy);
@@ -2660,6 +2656,7 @@
             img.alt = item.name + " logo";
             img.loading = "lazy";
             img.decoding = "async";
+            img.referrerPolicy = "no-referrer";
             img.addEventListener("error", function () {
               fallback.style.display = "inline";
               img.remove();
@@ -2784,10 +2781,90 @@
             return;
           }
           var root = document.documentElement;
+          var tones = [
+            {
+              id: "top",
+              colorA: "rgba(142, 164, 213, 0.24)",
+              colorB: "rgba(186, 159, 223, 0.17)",
+              sizeA: "44rem 28rem",
+              sizeB: "38rem 24rem"
+            },
+            {
+              id: "services",
+              colorA: "rgba(150, 199, 255, 0.26)",
+              colorB: "rgba(186, 161, 235, 0.18)",
+              sizeA: "46rem 30rem",
+              sizeB: "36rem 23rem"
+            },
+            {
+              id: "cases",
+              colorA: "rgba(196, 165, 255, 0.28)",
+              colorB: "rgba(146, 195, 255, 0.16)",
+              sizeA: "46rem 30rem",
+              sizeB: "38rem 22rem"
+            },
+            {
+              id: "method",
+              colorA: "rgba(139, 214, 194, 0.26)",
+              colorB: "rgba(155, 185, 255, 0.16)",
+              sizeA: "45rem 29rem",
+              sizeB: "36rem 23rem"
+            },
+            {
+              id: "why-me",
+              colorA: "rgba(225, 199, 152, 0.22)",
+              colorB: "rgba(175, 166, 235, 0.18)",
+              sizeA: "45rem 30rem",
+              sizeB: "36rem 22rem"
+            },
+            {
+              id: "stack",
+              colorA: "rgba(154, 204, 255, 0.26)",
+              colorB: "rgba(190, 172, 247, 0.18)",
+              sizeA: "46rem 31rem",
+              sizeB: "37rem 23rem"
+            },
+            {
+              id: "contact",
+              colorA: "rgba(199, 165, 247, 0.3)",
+              colorB: "rgba(146, 213, 255, 0.2)",
+              sizeA: "48rem 32rem",
+              sizeB: "39rem 24rem"
+            }
+          ];
+          var activeTone = "";
+
+          function applyTone() {
+            var checkpoint = window.scrollY + window.innerHeight * 0.45;
+            var selected = tones[0];
+
+            tones.forEach(function (tone, index) {
+              if (index === 0) {
+                return;
+              }
+              var section = document.getElementById(tone.id);
+              if (section && checkpoint >= section.offsetTop - window.innerHeight * 0.18) {
+                selected = tone;
+              }
+            });
+
+            if (selected.id === activeTone) {
+              return;
+            }
+            activeTone = selected.id;
+            root.style.setProperty("--glow-color-a", selected.colorA);
+            root.style.setProperty("--glow-color-b", selected.colorB);
+            root.style.setProperty("--glow-size-a", selected.sizeA);
+            root.style.setProperty("--glow-size-b", selected.sizeB);
+          }
+
           window.addEventListener("pointermove", function (event) {
             root.style.setProperty("--mouse-x", event.clientX + "px");
             root.style.setProperty("--mouse-y", event.clientY + "px");
           });
+          window.addEventListener("scroll", applyTone, { passive: true });
+          window.addEventListener("resize", applyTone);
+          applyTone();
         }
 
         function updateLanguageButtons(language) {
