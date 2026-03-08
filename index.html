@@ -3,25 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Programme Video - Passe au niveau superieur</title>
+    <title>Aurelien Wirtz | Agence web et IA</title>
     <meta
+      id="meta-description"
       name="description"
-      content="Landing page de vente pour un programme video premium avec accompagnement, bonus et garantie."
+      content="Agence web et IA: strategie digitale, automation et execution produit pour accelerer votre croissance."
     />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#0b1020" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aurelienwirtz.com/" />
+    <meta id="meta-og-title" property="og:title" content="Aurelien Wirtz | Agence web et IA" />
+    <meta
+      id="meta-og-description"
+      property="og:description"
+      content="Sites web performants, stack IA utile et funnel conversion pour PME et startups."
+    />
+    <meta id="meta-og-locale" property="og:locale" content="fr_CH" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta id="meta-twitter-title" name="twitter:title" content="Aurelien Wirtz | Agence web et IA" />
+    <meta
+      id="meta-twitter-description"
+      name="twitter:description"
+      content="Execution web et IA orientee resultat: rapide, claire et scalable."
+    />
+
     <style>
       :root {
         --bg: #0b1020;
-        --bg-soft: #121933;
-        --card: #ffffff;
-        --text: #0d1222;
-        --text-light: #f5f7ff;
-        --muted: #97a2c6;
-        --primary: #6959ff;
-        --primary-hover: #5747ee;
-        --accent: #1fd0a2;
-        --danger: #ff5f79;
-        --shadow: 0 18px 40px rgba(10, 18, 40, 0.18);
-        --radius: 18px;
+        --bg-soft: #111936;
+        --bg-strong: #0f1730;
+        --surface: #151f3d;
+        --surface-soft: #1a2547;
+        --line: #2c3a66;
+        --text: #f5f8ff;
+        --muted: #9ca8cb;
+        --primary: #2f6bff;
+        --primary-strong: #1f56e2;
+        --accent: #00c9a7;
+        --accent-strong: #00ab8d;
+        --danger: #ff617b;
+        --radius-lg: 20px;
+        --radius-md: 14px;
+        --radius-sm: 10px;
+        --shadow: 0 16px 34px rgba(3, 8, 24, 0.4);
+        --header-h: 4.6rem;
       }
 
       * {
@@ -35,9 +62,10 @@
       body {
         margin: 0;
         font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-        line-height: 1.55;
         color: var(--text);
-        background: linear-gradient(160deg, #f4f6ff 0%, #eef2ff 35%, #f8fbff 100%);
+        background: var(--bg);
+        line-height: 1.6;
+        text-rendering: optimizeLegibility;
       }
 
       a {
@@ -46,765 +74,1675 @@
       }
 
       .container {
-        width: min(1120px, 92vw);
+        width: min(1160px, 92vw);
         margin-inline: auto;
       }
 
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(105, 89, 255, 0.12);
-        color: #3f35b7;
-        font-size: 0.84rem;
+      .skip-link {
+        position: absolute;
+        left: 0.8rem;
+        top: -120%;
+        background: #ffffff;
+        color: #0a1228;
         font-weight: 700;
-        letter-spacing: 0.03em;
+        border-radius: 8px;
+        padding: 0.45rem 0.6rem;
+        z-index: 200;
+      }
+
+      .skip-link:focus {
+        top: 0.8rem;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--line);
+        background: rgba(11, 16, 32, 0.94);
+        backdrop-filter: blur(8px);
+      }
+
+      .header-inner {
+        min-height: var(--header-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-size: 1.02rem;
+        letter-spacing: 0.06em;
+        font-weight: 800;
         text-transform: uppercase;
       }
 
+      .logo span {
+        color: var(--accent);
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .site-nav a {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.76rem;
+        font-weight: 700;
+        padding: 0.35rem 0.5rem;
+        border-radius: 8px;
+        transition: color 0.2s ease, background-color 0.2s ease;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.2rem;
+        background: var(--surface);
+      }
+
+      .lang-btn {
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 0.26rem 0.5rem;
+      }
+
+      .lang-btn.is-active {
+        color: #fff;
+        background: var(--primary);
+      }
+
+      .menu-toggle {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface);
+        color: var(--text);
+        font-size: 0.72rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        font-weight: 800;
+        cursor: pointer;
+        padding: 0.45rem 0.78rem;
+        display: none;
+      }
+
+      .menu-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 140;
+        background: rgba(11, 16, 32, 0.98);
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+      }
+
+      .menu-overlay.is-open {
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .menu-panel {
+        min-height: 100svh;
+        width: min(1160px, 92vw);
+        margin-inline: auto;
+        padding: 1rem 0 1.5rem;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 1rem;
+      }
+
+      .menu-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .menu-close {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+        border-radius: 999px;
+        font: inherit;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.45rem 0.8rem;
+      }
+
+      .menu-nav {
+        display: grid;
+        align-content: center;
+        gap: 0.7rem;
+      }
+
+      .menu-nav a {
+        font-size: clamp(2rem, 9vw, 4.6rem);
+        line-height: 0.95;
+      }
+
+      .menu-nav a:hover,
+      .menu-nav a:focus-visible {
+        color: var(--accent);
+      }
+
+      main {
+        overflow: clip;
+      }
+
       .section {
-        padding: 84px 0;
+        padding: clamp(3.5rem, 7vw, 6rem) 0;
+        border-top: 1px solid var(--line);
+        scroll-margin-top: calc(var(--header-h) + 0.8rem);
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 720px;
       }
 
-      .section h2 {
-        font-size: clamp(1.7rem, 3vw, 2.6rem);
-        margin: 12px 0 14px;
+      .hero {
+        border-top: 0;
+        min-height: min(84svh, 48rem);
+        display: grid;
+        align-items: center;
+        background: var(--bg-strong);
       }
 
-      .section p.lead {
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+        gap: 1rem;
+        align-items: end;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.3rem 0.66rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.64rem;
+        margin-bottom: 1rem;
+      }
+
+      h1,
+      h2,
+      h3 {
         margin: 0;
-        max-width: 780px;
-        color: #455076;
+      }
+
+      .hero-title {
+        font-size: clamp(2.1rem, 7vw, 4.8rem);
+        line-height: 0.93;
+        letter-spacing: -0.03em;
+        max-width: 10ch;
+      }
+
+      .hero-title .accent {
+        color: var(--accent);
+      }
+
+      .hero-copy {
+        margin-top: 1rem;
+        color: var(--muted);
+        max-width: 66ch;
+      }
+
+      .hero-actions {
+        margin-top: 1.3rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
       }
 
       .btn {
         display: inline-flex;
-        justify-content: center;
         align-items: center;
-        gap: 10px;
-        border: none;
-        border-radius: 12px;
-        padding: 14px 22px;
-        font-size: 1rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        padding: 0.75rem 1.1rem;
+        transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
       }
 
       .btn-primary {
         background: var(--primary);
         color: #fff;
-        box-shadow: 0 10px 24px rgba(105, 89, 255, 0.35);
+        border-color: var(--primary);
       }
 
-      .btn-primary:hover {
-        background: var(--primary-hover);
+      .btn-secondary {
+        background: var(--surface);
       }
 
-      .btn-outline {
-        border: 2px solid rgba(105, 89, 255, 0.28);
-        color: #2f3a63;
-        background: #fff;
-      }
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.88);
-        border-bottom: 1px solid #e7ebff;
-        backdrop-filter: blur(8px);
-      }
-
-      .topbar-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 0;
-      }
-
-      .logo {
-        font-weight: 900;
-        font-size: 1.05rem;
-        letter-spacing: 0.02em;
-        color: #1f2951;
-      }
-
-      .logo span {
-        color: var(--primary);
-      }
-
-      .topbar nav {
-        display: flex;
-        gap: 18px;
-        font-size: 0.95rem;
-        color: #4f5a81;
-      }
-
-      .hero {
-        background: radial-gradient(circle at 20% 20%, #2a3370 0%, var(--bg) 42%, #070a15 100%);
-        color: var(--text-light);
-        padding: 88px 0 94px;
-        overflow: hidden;
-      }
-
-      .hero-grid {
+      .hero-metrics {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 36px;
-        align-items: center;
+        gap: 0.6rem;
       }
 
-      .hero h1 {
-        font-size: clamp(2rem, 4.2vw, 3.5rem);
-        line-height: 1.1;
-        margin: 18px 0 16px;
-        max-width: 16ch;
+      .metric {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--surface);
+        padding: 0.85rem;
       }
 
-      .hero .subtitle {
-        margin: 0 0 28px;
-        max-width: 60ch;
-        color: #d4dbff;
-      }
-
-      .hero-cta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 26px;
-      }
-
-      .kpis {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .kpi {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 14px;
-        padding: 14px;
-      }
-
-      .kpi b {
+      .metric strong {
         display: block;
+        font-size: 1.4rem;
+        line-height: 1;
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .section-tone-a {
+        background: var(--bg);
+      }
+
+      .section-tone-b {
+        background: var(--bg-soft);
+      }
+
+      .section-header {
+        max-width: 70ch;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 5vw, 3.4rem);
+        line-height: 0.98;
+        letter-spacing: -0.02em;
+      }
+
+      .section-copy {
+        margin-top: 0.8rem;
+        color: var(--muted);
+      }
+
+      .services-grid,
+      .cases-grid,
+      .method-grid {
+        margin-top: 1.8rem;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .service-card,
+      .case-card,
+      .method-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        padding: 1rem;
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .service-card-head,
+      .case-card-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.8rem;
+      }
+
+      .service-index,
+      .case-pill {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .service-card h3,
+      .case-card h3,
+      .method-card h3 {
         font-size: 1.2rem;
       }
 
-      .preview-card {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 24px 52px rgba(7, 10, 21, 0.5);
+      .service-card p,
+      .case-card p,
+      .method-card p {
+        margin: 0.55rem 0 0;
+        color: #d4dbf4;
       }
 
-      .preview-media {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        background: linear-gradient(45deg, #1a2455, #5c4dff);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .play-btn {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        border: 0;
-        background: #fff;
-        color: #2d3280;
-        font-size: 1.25rem;
-        font-weight: 800;
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
-      }
-
-      .preview-content {
-        padding: 20px;
-        color: #e6ebff;
-      }
-
-      .preview-content h3 {
-        margin: 0 0 6px;
-      }
-
-      .strip {
-        padding: 20px 0;
-        border-bottom: 1px solid #e8ecff;
-        border-top: 1px solid #e8ecff;
-        background: #fff;
-      }
-
-      .logos {
+      .service-tags {
+        margin-top: 0.8rem;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px 34px;
-        color: #7f8aaf;
-        font-weight: 700;
-        letter-spacing: 0.03em;
+        gap: 0.45rem;
+      }
+
+      .service-tag {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.2rem 0.45rem;
+        font-size: 0.63rem;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        font-size: 0.86rem;
+        color: var(--muted);
       }
 
-      .benefits-grid {
-        margin-top: 32px;
-        display: grid;
+      .cases-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
       }
 
-      .card {
-        background: var(--card);
-        border-radius: var(--radius);
-        padding: 24px;
-        box-shadow: var(--shadow);
+      .case-flow {
+        margin-top: 0.9rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        padding: 0.6rem;
+        display: grid;
+        gap: 0.45rem;
       }
 
-      .card .icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: rgba(105, 89, 255, 0.13);
-        color: #3d33b2;
+      .case-flow p {
+        margin: 0;
+      }
+
+      .case-flow strong {
+        color: var(--accent);
+        font-size: 0.85rem;
+      }
+
+      .method-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .method-step {
+        color: var(--accent);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
         font-weight: 800;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 12px;
       }
 
-      .program {
-        background: linear-gradient(180deg, #f6f8ff 0%, #eef2ff 100%);
+      .stack-grid {
+        margin-top: 1.8rem;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0.7rem;
       }
 
-      .modules {
-        margin-top: 28px;
+      .stack-item {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--surface);
+        min-height: 104px;
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        gap: 0.4rem;
+        padding: 0.8rem;
+        text-align: center;
+      }
+
+      .stack-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: var(--surface-soft);
+        display: grid;
+        place-items: center;
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .stack-item p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #d6ddf7;
+        font-weight: 700;
+      }
+
+      .contact-wrap {
+        margin-top: 1.6rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        padding: clamp(1rem, 2.6vw, 1.4rem);
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .contact-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
+        gap: 0.7rem;
       }
 
-      .module {
-        background: #fff;
-        border: 1px solid #dfe6ff;
-        border-radius: 14px;
-        padding: 16px 18px;
-      }
-
-      .module h3 {
-        margin: 0 0 8px;
-        font-size: 1.03rem;
-      }
-
-      .proof-grid {
-        margin-top: 32px;
+      .form-field {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
+        gap: 0.32rem;
       }
 
-      .quote {
-        padding: 22px;
-        border-radius: 16px;
-        background: #fff;
-        border: 1px solid #e6ebff;
+      .form-field label {
+        font-size: 0.65rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 800;
       }
 
-      .quote p {
-        margin: 0 0 10px;
-      }
-
-      .quote b {
-        color: #30406e;
-      }
-
-      .offer-wrap {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-
-      .offer-main {
-        background: #fff;
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-        padding: 28px;
-        border: 2px solid rgba(105, 89, 255, 0.16);
-      }
-
-      .price {
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-        margin: 14px 0 18px;
-      }
-
-      .price .old {
-        color: #8a94b6;
-        text-decoration: line-through;
-      }
-
-      .price .new {
-        color: #111939;
-        font-size: 2.2rem;
-        font-weight: 900;
-      }
-
-      .offer-list,
-      .checklist {
-        margin: 16px 0 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 10px;
-      }
-
-      .offer-list li,
-      .checklist li {
-        display: flex;
-        gap: 10px;
-      }
-
-      .bullet-ok {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: rgba(31, 208, 162, 0.18);
-        color: #067d60;
-        font-size: 0.8rem;
-        font-weight: 700;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
-
-      .urgency {
-        background: linear-gradient(140deg, #fff5f8 0%, #fff0f4 100%);
-        border: 1px solid #ffd9e2;
-        border-radius: 14px;
-        padding: 16px;
-      }
-
-      .urgency b {
-        color: #8e1634;
-      }
-
-      .guarantee {
-        margin-top: 18px;
-        padding: 14px 16px;
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--line);
         border-radius: 12px;
-        background: #f3fff9;
-        border: 1px solid #c9f5e5;
+        background: var(--bg);
+        color: var(--text);
+        padding: 0.66rem;
+        font: inherit;
       }
 
-      .faq {
-        margin-top: 28px;
-        display: grid;
-        gap: 12px;
+      textarea {
+        resize: vertical;
+        min-height: 9rem;
       }
 
-      details {
-        background: #fff;
-        border: 1px solid #e4e9ff;
-        border-radius: 12px;
-        padding: 14px 16px;
+      input:focus-visible,
+      textarea:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 1px;
       }
 
-      summary {
-        cursor: pointer;
-        font-weight: 700;
-        color: #222f58;
+      .hp {
+        display: none !important;
       }
 
-      details p {
-        margin: 10px 0 0;
-        color: #4c5781;
-      }
-
-      .final-cta {
-        margin-top: 40px;
-        padding: 30px;
-        border-radius: 18px;
-        background: linear-gradient(140deg, #1f2a63, #4a3ee6);
-        color: #eef1ff;
-        display: grid;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .footer {
-        padding: 26px 0 36px;
-        color: #66719a;
-        font-size: 0.9rem;
-      }
-
-      .footer-wrap {
+      .contact-foot {
+        margin-top: 0.4rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
+        gap: 0.8rem;
         flex-wrap: wrap;
+      }
+
+      .contact-direct {
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      .contact-direct a {
+        color: var(--text);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .form-status {
+        margin-top: 0.7rem;
+        border-radius: 10px;
+        padding: 0.58rem 0.72rem;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .form-status.is-success {
+        border-color: #0e7a66;
+        color: #9ef5e3;
+      }
+
+      .form-status.is-error {
+        border-color: #8f2f43;
+        color: #ff9fb2;
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--line);
+        padding: 1.6rem 0;
+        background: var(--bg);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .footer-label {
+        margin: 0 0 0.35rem;
+        color: var(--muted);
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 800;
+      }
+
+      .footer-grid p,
+      .footer-grid a {
+        margin: 0;
+        font-size: 0.86rem;
+      }
+
+      .footer-grid a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .cursor-ring {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 24px;
+        height: 24px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 201, 167, 0.8);
+        pointer-events: none;
+        z-index: 220;
+        opacity: 0;
+        transform: translate3d(-100px, -100px, 0);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .site-nav a:hover,
+        .site-nav a:focus-visible {
+          color: #fff;
+          background: var(--surface-soft);
+        }
+
+        .btn:hover,
+        .btn:focus-visible {
+          transform: translateY(-1px);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
+          background: var(--primary-strong);
+          border-color: var(--primary-strong);
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus-visible {
+          background: var(--surface-soft);
+        }
+
+        .service-card:hover,
+        .case-card:hover,
+        .method-card:hover,
+        .stack-item:hover {
+          transform: translateY(-2px);
+          border-color: #3b4d84;
+        }
       }
 
       @media (max-width: 980px) {
         .hero-grid,
-        .offer-wrap {
+        .cases-grid,
+        .method-grid,
+        .stack-grid {
           grid-template-columns: 1fr;
         }
 
-        .benefits-grid,
-        .proof-grid {
-          grid-template-columns: 1fr 1fr;
+        .hero-metrics {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
-        .modules {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .site-nav {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .header-inner {
+          min-height: auto;
+          padding: 0.72rem 0;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 2rem;
+        }
+
+        .hero-actions {
+          width: 100%;
+        }
+
+        .hero-actions .btn {
+          width: 100%;
+        }
+
+        .hero-metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-grid,
+        .footer-grid {
           grid-template-columns: 1fr;
         }
       }
 
-      @media (max-width: 640px) {
-        .topbar nav {
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .cursor-ring {
           display: none;
-        }
-
-        .benefits-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero {
-          padding-top: 64px;
-        }
-
-        .kpis {
-          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
-  <body>
-    <header class="topbar">
-      <div class="container topbar-wrap">
-        <a href="#" class="logo">Video<span>Impact</span></a>
-        <nav>
-          <a href="#programme">Programme</a>
-          <a href="#resultats">Resultats</a>
-          <a href="#offre">Offre</a>
-          <a href="#faq">FAQ</a>
+  <body id="top">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#top">Aurelien <span>Wirtz</span></a>
+
+        <nav class="site-nav" data-i18n-aria="header.navAria">
+          <a href="#services" data-i18n="nav.services">Services</a>
+          <a href="#cases" data-i18n="nav.cases">Cas d'usage</a>
+          <a href="#method" data-i18n="nav.method">Methode</a>
+          <a href="#stack" data-i18n="nav.stack">Stack</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
-        <a href="#offre" class="btn btn-primary">Je veux rejoindre</a>
+
+        <div class="header-actions">
+          <div class="lang-switch" data-i18n-aria="header.languageAria">
+            <button class="lang-btn is-active" type="button" data-lang="fr" aria-pressed="true">FR</button>
+            <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menu-overlay"
+            data-i18n="header.menuOpen"
+          >
+            Menu
+          </button>
+        </div>
       </div>
     </header>
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="pill">Ouverture des inscriptions 2026</span>
-          <h1>Transforme ton expertise en programme video qui se vend</h1>
-          <p class="subtitle">
-            Une methode concrete en 8 semaines pour creer, structurer et vendre ton programme video premium
-            sans audience massive ni tunnel complexe. Tu avances avec un plan clair, des scripts prets a
-            l emploi et un systeme de vente simple.
-          </p>
-          <div class="hero-cta">
-            <a href="#offre" class="btn btn-primary">Acceder a l offre maintenant</a>
-            <a href="#programme" class="btn btn-outline">Voir le contenu du programme</a>
-          </div>
-          <div class="kpis">
-            <div class="kpi">
-              <b>+2 400</b>
-              participants formes
-            </div>
-            <div class="kpi">
-              <b>4.9 / 5</b>
-              note moyenne des eleves
-            </div>
-            <div class="kpi">
-              <b>30 jours</b>
-              garantie satisfait ou rembourse
-            </div>
-          </div>
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+      <div class="menu-panel">
+        <div class="menu-top">
+          <a class="logo" href="#top">Aurelien <span>Wirtz</span></a>
+          <button class="menu-close" id="menu-close" type="button" data-i18n="header.menuClose">Fermer</button>
         </div>
-        <aside class="preview-card" aria-label="Presentation video du programme">
-          <div class="preview-media">
-            <button class="play-btn" aria-label="Lancer la video">Play</button>
+        <nav class="menu-nav" data-i18n-aria="header.menuNavAria">
+          <a href="#services" data-menu-link data-i18n="nav.services">Services</a>
+          <a href="#cases" data-menu-link data-i18n="nav.cases">Cas d'usage</a>
+          <a href="#method" data-menu-link data-i18n="nav.method">Methode</a>
+          <a href="#stack" data-menu-link data-i18n="nav.stack">Stack</a>
+          <a href="#contact" data-menu-link data-i18n="nav.contact">Contact</a>
+        </nav>
+        <p class="contact-direct">
+          <span data-i18n="contact.directLabel">Ou directement :</span>
+          <a id="menu-direct-email" href="mailto:aurelienwirtz67@gmail.com">aurelienwirtz67@gmail.com</a>
+        </p>
+      </div>
+    </div>
+
+    <main id="main-content">
+      <section class="section hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow" data-i18n="hero.eyebrow">Agence web / IA / Automation</p>
+            <h1 class="hero-title">
+              <span data-i18n="hero.titleA">Sites et systemes</span>
+              <span class="accent" data-i18n="hero.titleB">qui convertissent.</span>
+            </h1>
+            <p class="hero-copy" data-i18n="hero.copy">
+              Je conçois des experiences web rapides, une stack IA utile et une execution orientee resultats.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact" data-i18n="hero.ctaPrimary">Demarrer un projet</a>
+              <a class="btn btn-secondary" href="#services" data-i18n="hero.ctaSecondary">Voir les services</a>
+            </div>
           </div>
-          <div class="preview-content">
-            <h3>Masterclass offerte: 3 leviers pour vendre vite</h3>
-            <p>
-              Decouvre en 18 minutes comment valider ton offre, construire ton plan de contenu et obtenir tes
-              premiers clients en ligne.
-            </p>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="strip">
-      <div class="container logos">
-        <span>Vu dans</span>
-        <span>Growth Daily</span>
-        <span>Creator Mag</span>
-        <span>Business Sprint</span>
-        <span>Studio Academy</span>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <span class="pill">Pourquoi ce programme</span>
-        <h2>Tu n as pas besoin de plus d idees, tu as besoin d un systeme</h2>
-        <p class="lead">
-          Ce programme video t aide a passer de contenu disperse a une offre claire qui attire les bons clients
-          et convertit regulierement.
-        </p>
-
-        <div class="benefits-grid">
-          <article class="card">
-            <span class="icon">1</span>
-            <h3>Positionnement clair</h3>
-            <p>Tu definis une promesse forte qui te differencie et donne envie d acheter rapidement.</p>
-          </article>
-          <article class="card">
-            <span class="icon">2</span>
-            <h3>Production simplifiee</h3>
-            <p>Tu tournes des videos impactantes avec un setup leger et un script orientee conversion.</p>
-          </article>
-          <article class="card">
-            <span class="icon">3</span>
-            <h3>Vente repetitive</h3>
-            <p>Tu mets en place un tunnel minimal qui transforme tes prospects sans pression commerciale.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section program" id="programme">
-      <div class="container">
-        <span class="pill">Contenu detaille</span>
-        <h2>8 semaines pour construire et lancer ton programme video</h2>
-        <p class="lead">
-          Chaque module te fait passer a l action avec objectifs hebdomadaires, templates, checklists et retours
-          concrets.
-        </p>
-
-        <div class="modules">
-          <article class="module">
-            <h3>Semaine 1 - Offre et avatar premium</h3>
-            <p>Clarifie ton message, ton angle et la transformation achetee par ton client ideal.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 2 - Plan pedagogique magnetique</h3>
-            <p>Structure un parcours simple qui donne des resultats visibles rapidement.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 3 - Script et storytelling</h3>
-            <p>Creer des videos qui captent l attention et donnent envie de continuer jusqu au bout.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 4 - Tournage et montage efficace</h3>
-            <p>Workflow rapide pour produire avec qualite sans y passer tes week-ends.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 5 - Page de vente qui convertit</h3>
-            <p>Pose la structure complete d une page orientee resultat et preuve.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 6 - Offre et pricing premium</h3>
-            <p>Definis tes bonus, ton positionnement prix et la perception de valeur.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 7 - Acquisition et relance</h3>
-            <p>Lance ton trafic avec contenu organique + campagnes simples a faible risque.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 8 - Lancement pilote</h3>
-            <p>Execute ta premiere campagne de vente et optimise grace aux donnees collectees.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="resultats">
-      <div class="container">
-        <span class="pill">Temoignages</span>
-        <h2>Des createurs et experts qui ont lance rapidement</h2>
-        <p class="lead">
-          Pas de theorie vague: voici ce que nos eleves obtiennent en appliquant la methode.
-        </p>
-
-        <div class="proof-grid">
-          <article class="quote">
-            <p>
-              "J ai signe 11 ventes a 690 EUR en 3 semaines. La structure de page et les scripts ont tout
-              change."
-            </p>
-            <b>Sarah M. - Coach business</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Je repoussais mon programme depuis 1 an. En 6 semaines j avais mes modules prets et un funnel
-              rentable."
-            </p>
-            <b>Yanis D. - Formateur freelance</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Le plus fort: la clarte. Je sais enfin quoi dire, quoi vendre et comment convertir sans forcer."
-            </p>
-            <b>Lucie R. - Consultante marketing</b>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="offre">
-      <div class="container">
-        <span class="pill">Offre de lancement</span>
-        <h2>Rejoins VideoImpact et lance ton programme video des maintenant</h2>
-        <p class="lead">
-          Inscription unique avec acces a vie, mises a jour futures incluses et communaute privee.
-        </p>
-
-        <div class="offer-wrap">
-          <article class="offer-main">
-            <h3>Pack complet VideoImpact</h3>
-            <div class="price">
-              <span class="old">997 EUR</span>
-              <span class="new">497 EUR</span>
-            </div>
-            <p>
-              Paiement en 1 fois ou 3 mensualites de 179 EUR. Offre reservee aux 50 premieres places.
-            </p>
-            <ul class="offer-list">
-              <li><span class="bullet-ok">v</span>Programme video complet (8 semaines)</li>
-              <li><span class="bullet-ok">v</span>Templates scripts, mails et page de vente</li>
-              <li><span class="bullet-ok">v</span>2 sessions Q&amp;A live chaque mois</li>
-              <li><span class="bullet-ok">v</span>Communaute privee d entrepreneurs video</li>
-              <li><span class="bullet-ok">v</span>Acces a vie + futures mises a jour</li>
-            </ul>
-            <p style="margin-top: 20px">
-              <a class="btn btn-primary" href="https://checkout.example.com" target="_blank" rel="noreferrer">
-                Je reserve ma place maintenant
-              </a>
-            </p>
-            <div class="guarantee">
-              Garantie 30 jours: tu testes le programme, tu appliques, et si ce n est pas pour toi, tu es
-              rembourse sans discussion.
-            </div>
-          </article>
-
-          <aside class="card">
-            <div class="urgency">
-              <b>Cloture des inscriptions dans <span id="countdown">--:--:--</span></b>
-              <p style="margin: 8px 0 0">
-                Les bonus disparaissent a la fin du countdown. Prochaine ouverture dans plusieurs mois.
-              </p>
-            </div>
-
-            <h3 style="margin-top: 20px">Bonus inclus cette semaine</h3>
-            <ul class="checklist">
-              <li><span class="bullet-ok">v</span>Bonus 1: Kit "Page de vente express"</li>
-              <li><span class="bullet-ok">v</span>Bonus 2: 20 hooks video a fort taux de clic</li>
-              <li><span class="bullet-ok">v</span>Bonus 3: Script webinar 45 minutes pret a adapter</li>
-              <li><span class="bullet-ok">v</span>Bonus 4: Audit de ton offre par notre equipe</li>
-            </ul>
+          <aside class="hero-metrics" aria-label="KPI">
+            <article class="metric">
+              <strong>90+</strong>
+              <span data-i18n="hero.metricA">Pages optimisees</span>
+            </article>
+            <article class="metric">
+              <strong>35%</strong>
+              <span data-i18n="hero.metricB">Gain moyen de vitesse</span>
+            </article>
+            <article class="metric">
+              <strong>24h</strong>
+              <span data-i18n="hero.metricC">Retour initial rapide</span>
+            </article>
           </aside>
         </div>
+      </section>
 
-        <div class="final-cta">
-          <h3 style="margin: 0">Tu peux lancer ton programme video en 60 jours.</h3>
-          <p style="margin: 0">
-            Si tu veux un cadre clair, un plan concret et un accompagnement solide, cette offre est pour toi.
-          </p>
-          <p style="margin: 8px 0 0">
-            <a class="btn btn-primary" href="https://checkout.example.com" target="_blank" rel="noreferrer">
-              Oui, je rejoins VideoImpact
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <span class="pill">Questions frequentes</span>
-        <h2>FAQ</h2>
-        <div class="faq">
-          <details>
-            <summary>Est-ce adapte si je pars de zero ?</summary>
-            <p>
-              Oui. Le programme commence par le positionnement et t accompagne pas a pas jusqu au lancement.
+      <section class="section section-tone-a" id="services">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" data-i18n="services.title">Solutions agence web + IA</h2>
+            <p class="section-copy" data-i18n="services.intro">
+              Un cadre simple: strategie, build, suivi, optimisation continue.
             </p>
-          </details>
-          <details>
-            <summary>Combien de temps dois-je prevoir chaque semaine ?</summary>
-            <p>Entre 4 et 6 heures suffisent pour suivre les modules et executer les exercices.</p>
-          </details>
-          <details>
-            <summary>Et si je n ai pas encore de communaute ?</summary>
-            <p>
-              Tu apprendras a lancer avec une audience reduite grace a une strategie de contenu et relance
-              simple.
-            </p>
-          </details>
-          <details>
-            <summary>Le programme est-il accessible a vie ?</summary>
-            <p>Oui, tu gardes un acces a vie a tous les contenus et aux mises a jour futures.</p>
-          </details>
+          </div>
+          <div class="services-grid" id="services-grid"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <footer class="footer">
-      <div class="container footer-wrap">
-        <span>(c) <span id="year"></span> VideoImpact. Tous droits reserves.</span>
-        <span>
-          <a href="#">Mentions legales</a> | <a href="#">Confidentialite</a> | <a href="#">Support</a>
-        </span>
+      <section class="section section-tone-b" id="cases">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" data-i18n="cases.title">Cas d'usage</h2>
+            <p class="section-copy" data-i18n="cases.intro">
+              Missions anonymisees avec un angle problemes -> actions -> impact.
+            </p>
+          </div>
+          <div class="cases-grid" id="cases-grid"></div>
+        </div>
+      </section>
+
+      <section class="section section-tone-a" id="method">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" data-i18n="method.title">Methode de travail</h2>
+            <p class="section-copy" data-i18n="method.intro">
+              Quatre etapes, des livrables concrets, zero flou.
+            </p>
+          </div>
+          <div class="method-grid" id="method-grid"></div>
+        </div>
+      </section>
+
+      <section class="section section-tone-b" id="stack">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" data-i18n="stack.title">Stack technologique</h2>
+            <p class="section-copy" data-i18n="stack.intro">
+              Outils robustes et pragmatiques pour livrer vite.
+            </p>
+          </div>
+          <div class="stack-grid" id="stack-grid"></div>
+        </div>
+      </section>
+
+      <section class="section section-tone-a" id="contact">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" data-i18n="contact.title">Parlons de votre projet</h2>
+            <p class="section-copy" data-i18n="contact.intro">
+              Ce formulaire envoie directement votre demande au serveur, sans ouvrir votre app mail.
+            </p>
+          </div>
+
+          <div class="contact-wrap">
+            <form class="contact-form" id="contact-form" novalidate>
+              <div class="contact-grid">
+                <div class="form-field">
+                  <label for="name" data-i18n="contact.form.nameLabel">Nom</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    required
+                    data-i18n-placeholder="contact.form.namePlaceholder"
+                    placeholder="Votre nom"
+                  />
+                </div>
+                <div class="form-field">
+                  <label for="email" data-i18n="contact.form.emailLabel">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                    data-i18n-placeholder="contact.form.emailPlaceholder"
+                    placeholder="vous@entreprise.ch"
+                  />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="message" data-i18n="contact.form.messageLabel">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  data-i18n-placeholder="contact.form.messagePlaceholder"
+                  placeholder="Parlez-moi de votre projet."
+                ></textarea>
+              </div>
+
+              <input
+                class="hp"
+                type="text"
+                name="website"
+                id="website"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+              />
+
+              <div class="contact-foot">
+                <button class="btn btn-primary" id="contact-submit" type="submit" data-i18n="contact.form.submit">
+                  Envoyer
+                </button>
+                <p class="contact-direct">
+                  <span data-i18n="contact.directLabel">Ou directement :</span>
+                  <a id="contact-direct-email" href="mailto:aurelienwirtz67@gmail.com">aurelienwirtz67@gmail.com</a>
+                </p>
+              </div>
+
+              <p class="form-status" id="form-status" role="status" aria-live="polite" data-i18n="contact.statusIdle">
+                Votre message sera traite sous 24h ouvrees.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <p class="footer-label" data-i18n="footer.impressumLabel">Impressum</p>
+          <p data-i18n="footer.impressum">Aurelien Wirtz, [Address], Switzerland</p>
+        </div>
+        <div>
+          <p class="footer-label" data-i18n="footer.emailLabel">Email</p>
+          <p><a href="mailto:aurelienwirtz67@gmail.com">aurelienwirtz67@gmail.com</a></p>
+        </div>
+        <div>
+          <p class="footer-label" data-i18n="footer.copyrightLabel">Copyright</p>
+          <p data-i18n="footer.copyright">Copyright 2026 Aurelien Wirtz.</p>
+        </div>
       </div>
     </footer>
 
     <script>
       (function () {
-        var yearEl = document.getElementById("year");
-        if (yearEl) {
-          yearEl.textContent = String(new Date().getFullYear());
+        "use strict";
+
+        var EMAIL = "aurelienwirtz67@gmail.com";
+        var CONTACT_ENDPOINT = "contact.php";
+        var STORAGE_KEY = "aw-lang";
+        var currentLanguage = "fr";
+
+        var content = {
+          fr: {
+            meta: {
+              title: "Aurelien Wirtz | Agence web et IA",
+              description:
+                "Agence web et IA: strategie digitale, automation et execution produit pour accelerer votre croissance.",
+              ogTitle: "Aurelien Wirtz | Agence web et IA",
+              ogDescription: "Sites web performants, stack IA utile et funnel conversion pour PME et startups.",
+              ogLocale: "fr_CH",
+              twitterTitle: "Aurelien Wirtz | Agence web et IA",
+              twitterDescription: "Execution web et IA orientee resultat: rapide, claire et scalable."
+            },
+            header: {
+              navAria: "Navigation principale",
+              languageAria: "Changer de langue",
+              menuOpen: "Menu",
+              menuClose: "Fermer",
+              menuNavAria: "Navigation menu mobile"
+            },
+            nav: {
+              services: "Services",
+              cases: "Cas d'usage",
+              method: "Methode",
+              stack: "Stack",
+              contact: "Contact"
+            },
+            hero: {
+              eyebrow: "Agence web / IA / Automation",
+              titleA: "Sites et systemes",
+              titleB: "qui convertissent.",
+              copy: "Je conçois des experiences web rapides, une stack IA utile et une execution orientee resultats.",
+              ctaPrimary: "Demarrer un projet",
+              ctaSecondary: "Voir les services",
+              metricA: "Pages optimisees",
+              metricB: "Gain moyen de vitesse",
+              metricC: "Retour initial rapide"
+            },
+            services: {
+              title: "Solutions agence web + IA",
+              intro: "Un cadre simple: strategie, build, suivi, optimisation continue.",
+              items: [
+                {
+                  title: "Strategy & architecture",
+                  copy: "Positionnement digital, priorites business et feuille de route claire pour avancer vite.",
+                  tags: ["Audit", "Roadmap", "Priorites"]
+                },
+                {
+                  title: "Web experience & conversion",
+                  copy: "UI nette, vitesse de chargement, parcours lisibles et pages pensees pour convertir.",
+                  tags: ["UX", "Performance", "CRO"]
+                },
+                {
+                  title: "Automation & IA utile",
+                  copy: "Automatisation des process repetitifs et integration IA sur les points a fort impact.",
+                  tags: ["Workflows", "LLM", "Productivite"]
+                },
+                {
+                  title: "Data & pilotage",
+                  copy: "Tracking fiable, KPI simples et dashboard actionnable pour decider rapidement.",
+                  tags: ["GA4", "BI", "Reporting"]
+                }
+              ]
+            },
+            cases: {
+              title: "Cas d'usage",
+              intro: "Missions anonymisees avec un angle problemes -> actions -> impact.",
+              labels: {
+                before: "Avant",
+                action: "Action",
+                after: "Apres"
+              },
+              items: [
+                {
+                  name: "PME SaaS",
+                  sector: "SaaS",
+                  summary: "Pages lentes et peu de conversions.",
+                  before: "Temps de chargement eleve, abandon mobile.",
+                  action: "Refonte front rapide + simplification funnel.",
+                  after: "Conversion en hausse et UX plus claire."
+                },
+                {
+                  name: "Cabinet conseil",
+                  sector: "Services",
+                  summary: "Trop de taches manuelles dans le cycle de vente.",
+                  before: "Relances non suivies et CRM incomplet.",
+                  action: "Automations CRM + qualification IA des leads.",
+                  after: "Pipeline plus propre et gain de temps equipe."
+                },
+                {
+                  name: "E-commerce niche",
+                  sector: "Retail",
+                  summary: "Peu de visibilite sur la rentabilite marketing.",
+                  before: "Donnees dispersees, arbitrages lents.",
+                  action: "Tracking unifie + dashboard business.",
+                  after: "Decisions media plus rapides et precises."
+                }
+              ]
+            },
+            method: {
+              title: "Methode de travail",
+              intro: "Quatre etapes, des livrables concrets, zero flou.",
+              stepPrefix: "Etape",
+              items: [
+                {
+                  title: "Diagnostic",
+                  copy: "Objectifs, contraintes et quick wins priorises."
+                },
+                {
+                  title: "Design systemique",
+                  copy: "Architecture parcours, messages et stack cible."
+                },
+                {
+                  title: "Execution",
+                  copy: "Implementation web, automation et instrumentation data."
+                },
+                {
+                  title: "Optimisation",
+                  copy: "Boucle d'amelioration continue basee sur les chiffres."
+                }
+              ]
+            },
+            stack: {
+              title: "Stack technologique",
+              intro: "Outils robustes et pragmatiques pour livrer vite.",
+              items: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "OpenAI", "n8n", "GA4", "GitHub", "Docker", "Vercel"]
+            },
+            contact: {
+              title: "Parlons de votre projet",
+              intro: "Ce formulaire envoie directement votre demande au serveur, sans ouvrir votre app mail.",
+              directLabel: "Ou directement :",
+              statusIdle: "Votre message sera traite sous 24h ouvrees.",
+              statusSending: "Envoi en cours...",
+              statusSuccess: "Message envoye. Merci, je reviens vers vous rapidement.",
+              statusError: "Envoi impossible pour le moment. Essayez de nouveau ou envoyez un email direct.",
+              form: {
+                nameLabel: "Nom",
+                namePlaceholder: "Votre nom",
+                emailLabel: "Email",
+                emailPlaceholder: "vous@entreprise.ch",
+                messageLabel: "Message",
+                messagePlaceholder: "Contexte, objectif, budget, timing...",
+                submit: "Envoyer",
+                submitSending: "Envoi..."
+              }
+            },
+            footer: {
+              impressumLabel: "Impressum",
+              impressum: "Aurelien Wirtz, [Address], Switzerland",
+              emailLabel: "Email",
+              copyrightLabel: "Copyright",
+              copyright: "Copyright 2026 Aurelien Wirtz."
+            }
+          },
+          en: {
+            meta: {
+              title: "Aurelien Wirtz | Web and AI agency",
+              description:
+                "Web and AI agency: digital strategy, automation and product execution to accelerate your growth.",
+              ogTitle: "Aurelien Wirtz | Web and AI agency",
+              ogDescription: "High performance websites, useful AI stack and conversion funnel for SMEs and startups.",
+              ogLocale: "en_US",
+              twitterTitle: "Aurelien Wirtz | Web and AI agency",
+              twitterDescription: "Result-driven web and AI execution: fast, clear and scalable."
+            },
+            header: {
+              navAria: "Primary navigation",
+              languageAria: "Change language",
+              menuOpen: "Menu",
+              menuClose: "Close",
+              menuNavAria: "Mobile menu navigation"
+            },
+            nav: {
+              services: "Services",
+              cases: "Use cases",
+              method: "Method",
+              stack: "Stack",
+              contact: "Contact"
+            },
+            hero: {
+              eyebrow: "Web agency / AI / Automation",
+              titleA: "Web systems",
+              titleB: "built to convert.",
+              copy: "I build fast web experiences, useful AI workflows and execution focused on measurable outcomes.",
+              ctaPrimary: "Start a project",
+              ctaSecondary: "View services",
+              metricA: "Optimized pages",
+              metricB: "Average speed gain",
+              metricC: "Initial reply time"
+            },
+            services: {
+              title: "Web + AI agency services",
+              intro: "A simple model: strategy, build, monitoring, continuous optimization.",
+              items: [
+                {
+                  title: "Strategy & architecture",
+                  copy: "Digital positioning, business priorities and clear roadmap to move faster.",
+                  tags: ["Audit", "Roadmap", "Priorities"]
+                },
+                {
+                  title: "Web experience & conversion",
+                  copy: "Clean UI, fast loading, clear journeys and pages crafted to convert.",
+                  tags: ["UX", "Performance", "CRO"]
+                },
+                {
+                  title: "Automation & practical AI",
+                  copy: "Automate repetitive processes and integrate AI where impact is high.",
+                  tags: ["Workflows", "LLM", "Productivity"]
+                },
+                {
+                  title: "Data & steering",
+                  copy: "Reliable tracking, simple KPI and actionable dashboards for faster decisions.",
+                  tags: ["GA4", "BI", "Reporting"]
+                }
+              ]
+            },
+            cases: {
+              title: "Use cases",
+              intro: "Anonymized work with a clear problem -> action -> impact angle.",
+              labels: {
+                before: "Before",
+                action: "Action",
+                after: "After"
+              },
+              items: [
+                {
+                  name: "SME SaaS",
+                  sector: "SaaS",
+                  summary: "Slow pages and weak conversion.",
+                  before: "High loading time and mobile drop-offs.",
+                  action: "Fast front-end refactor and funnel simplification.",
+                  after: "Higher conversion and clearer UX."
+                },
+                {
+                  name: "Consulting firm",
+                  sector: "Services",
+                  summary: "Too many manual tasks in the sales cycle.",
+                  before: "Untracked follow-ups and incomplete CRM.",
+                  action: "CRM automations and AI lead qualification.",
+                  after: "Cleaner pipeline and major team time savings."
+                },
+                {
+                  name: "Niche e-commerce",
+                  sector: "Retail",
+                  summary: "Low visibility on marketing profitability.",
+                  before: "Scattered data and slow decisions.",
+                  action: "Unified tracking and business dashboard.",
+                  after: "Faster and more accurate media decisions."
+                }
+              ]
+            },
+            method: {
+              title: "Working method",
+              intro: "Four steps, concrete deliverables, zero ambiguity.",
+              stepPrefix: "Step",
+              items: [
+                {
+                  title: "Discovery",
+                  copy: "Goals, constraints and prioritized quick wins."
+                },
+                {
+                  title: "System design",
+                  copy: "Journey architecture, messaging and target stack."
+                },
+                {
+                  title: "Execution",
+                  copy: "Web implementation, automation and data instrumentation."
+                },
+                {
+                  title: "Optimization",
+                  copy: "Continuous improvement loop based on real numbers."
+                }
+              ]
+            },
+            stack: {
+              title: "Technology stack",
+              intro: "Robust and pragmatic tools to ship quickly.",
+              items: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "OpenAI", "n8n", "GA4", "GitHub", "Docker", "Vercel"]
+            },
+            contact: {
+              title: "Let's discuss your project",
+              intro: "This form sends your request directly to the server, without opening your mail app.",
+              directLabel: "Or directly:",
+              statusIdle: "Your message will be handled within 24 business hours.",
+              statusSending: "Sending...",
+              statusSuccess: "Message sent. Thanks, I will get back to you shortly.",
+              statusError: "Message could not be sent right now. Please retry or use direct email.",
+              form: {
+                nameLabel: "Name",
+                namePlaceholder: "Your name",
+                emailLabel: "Email",
+                emailPlaceholder: "you@company.com",
+                messageLabel: "Message",
+                messagePlaceholder: "Context, goals, budget, timeline...",
+                submit: "Send",
+                submitSending: "Sending..."
+              }
+            },
+            footer: {
+              impressumLabel: "Impressum",
+              impressum: "Aurelien Wirtz, [Address], Switzerland",
+              emailLabel: "Email",
+              copyrightLabel: "Copyright",
+              copyright: "Copyright 2026 Aurelien Wirtz."
+            }
+          }
+        };
+
+        function getPath(obj, path) {
+          return path.split(".").reduce(function (acc, key) {
+            return acc && Object.prototype.hasOwnProperty.call(acc, key) ? acc[key] : undefined;
+          }, obj);
         }
 
-        var countdownEl = document.getElementById("countdown");
-        if (!countdownEl) {
-          return;
+        function setMeta(id, value) {
+          var node = document.getElementById(id);
+          if (node && typeof value === "string") {
+            node.setAttribute("content", value);
+          }
         }
 
-        var end = Date.now() + 1000 * 60 * 60 * 23 + 1000 * 60 * 39 + 1000 * 42;
-        function pad(value) {
-          return String(value).padStart(2, "0");
+        function applyI18n(dict) {
+          document.querySelectorAll("[data-i18n]").forEach(function (node) {
+            var value = getPath(dict, node.dataset.i18n);
+            if (typeof value === "string") {
+              node.textContent = value;
+            }
+          });
+
+          document.querySelectorAll("[data-i18n-placeholder]").forEach(function (node) {
+            var value = getPath(dict, node.dataset.i18nPlaceholder);
+            if (typeof value === "string") {
+              node.setAttribute("placeholder", value);
+            }
+          });
+
+          document.querySelectorAll("[data-i18n-aria]").forEach(function (node) {
+            var value = getPath(dict, node.dataset.i18nAria);
+            if (typeof value === "string") {
+              node.setAttribute("aria-label", value);
+            }
+          });
         }
 
-        function renderCountdown() {
-          var left = Math.max(0, end - Date.now());
-          var hours = Math.floor(left / (1000 * 60 * 60));
-          var minutes = Math.floor((left % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((left % (1000 * 60)) / 1000);
-          countdownEl.textContent = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+        function renderServices(items) {
+          var container = document.getElementById("services-grid");
+          if (!container) {
+            return;
+          }
+          container.innerHTML = "";
+
+          items.forEach(function (item, index) {
+            var card = document.createElement("article");
+            card.className = "service-card";
+
+            var head = document.createElement("div");
+            head.className = "service-card-head";
+
+            var title = document.createElement("h3");
+            title.textContent = item.title;
+
+            var idx = document.createElement("span");
+            idx.className = "service-index";
+            idx.textContent = String(index + 1).padStart(2, "0");
+
+            head.appendChild(title);
+            head.appendChild(idx);
+
+            var copy = document.createElement("p");
+            copy.textContent = item.copy;
+
+            var tags = document.createElement("div");
+            tags.className = "service-tags";
+            item.tags.forEach(function (tagText) {
+              var tag = document.createElement("span");
+              tag.className = "service-tag";
+              tag.textContent = tagText;
+              tags.appendChild(tag);
+            });
+
+            card.appendChild(head);
+            card.appendChild(copy);
+            card.appendChild(tags);
+            container.appendChild(card);
+          });
         }
 
-        renderCountdown();
-        setInterval(renderCountdown, 1000);
+        function renderCases(casesBlock) {
+          var container = document.getElementById("cases-grid");
+          if (!container) {
+            return;
+          }
+          container.innerHTML = "";
+
+          casesBlock.items.forEach(function (item) {
+            var card = document.createElement("article");
+            card.className = "case-card";
+
+            var head = document.createElement("div");
+            head.className = "case-card-head";
+
+            var title = document.createElement("h3");
+            title.textContent = item.name;
+
+            var pill = document.createElement("span");
+            pill.className = "case-pill";
+            pill.textContent = item.sector;
+
+            head.appendChild(title);
+            head.appendChild(pill);
+
+            var summary = document.createElement("p");
+            summary.textContent = item.summary;
+
+            var flow = document.createElement("div");
+            flow.className = "case-flow";
+
+            var before = document.createElement("p");
+            before.innerHTML = "<strong>" + casesBlock.labels.before + "</strong> " + item.before;
+            var action = document.createElement("p");
+            action.innerHTML = "<strong>" + casesBlock.labels.action + "</strong> " + item.action;
+            var after = document.createElement("p");
+            after.innerHTML = "<strong>" + casesBlock.labels.after + "</strong> " + item.after;
+
+            flow.appendChild(before);
+            flow.appendChild(action);
+            flow.appendChild(after);
+
+            card.appendChild(head);
+            card.appendChild(summary);
+            card.appendChild(flow);
+            container.appendChild(card);
+          });
+        }
+
+        function renderMethod(methodBlock) {
+          var container = document.getElementById("method-grid");
+          if (!container) {
+            return;
+          }
+          container.innerHTML = "";
+
+          methodBlock.items.forEach(function (item, index) {
+            var card = document.createElement("article");
+            card.className = "method-card";
+
+            var step = document.createElement("p");
+            step.className = "method-step";
+            step.textContent = methodBlock.stepPrefix + " " + String(index + 1).padStart(2, "0");
+
+            var title = document.createElement("h3");
+            title.textContent = item.title;
+
+            var copy = document.createElement("p");
+            copy.textContent = item.copy;
+
+            card.appendChild(step);
+            card.appendChild(title);
+            card.appendChild(copy);
+            container.appendChild(card);
+          });
+        }
+
+        function renderStack(items) {
+          var container = document.getElementById("stack-grid");
+          if (!container) {
+            return;
+          }
+          container.innerHTML = "";
+
+          items.forEach(function (item) {
+            var card = document.createElement("article");
+            card.className = "stack-item";
+
+            var mark = document.createElement("span");
+            mark.className = "stack-mark";
+            mark.textContent = String(item).replace(/[^a-zA-Z0-9]/g, "").slice(0, 3).toUpperCase() || "AI";
+
+            var name = document.createElement("p");
+            name.textContent = item;
+
+            card.appendChild(mark);
+            card.appendChild(name);
+            container.appendChild(card);
+          });
+        }
+
+        function updateLanguageButtons(language) {
+          document.querySelectorAll(".lang-btn").forEach(function (button) {
+            var active = button.dataset.lang === language;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", String(active));
+          });
+        }
+
+        function setStatus(type, text) {
+          var node = document.getElementById("form-status");
+          if (!node) {
+            return;
+          }
+          node.className = "form-status";
+          if (type === "success") {
+            node.classList.add("is-success");
+          }
+          if (type === "error") {
+            node.classList.add("is-error");
+          }
+          node.textContent = text;
+        }
+
+        function setLanguage(language) {
+          if (!content[language]) {
+            language = "fr";
+          }
+          currentLanguage = language;
+          var dict = content[language];
+
+          document.documentElement.lang = language;
+          document.title = dict.meta.title;
+
+          setMeta("meta-description", dict.meta.description);
+          setMeta("meta-og-title", dict.meta.ogTitle);
+          setMeta("meta-og-description", dict.meta.ogDescription);
+          setMeta("meta-og-locale", dict.meta.ogLocale);
+          setMeta("meta-twitter-title", dict.meta.twitterTitle);
+          setMeta("meta-twitter-description", dict.meta.twitterDescription);
+
+          applyI18n(dict);
+          renderServices(dict.services.items);
+          renderCases(dict.cases);
+          renderMethod(dict.method);
+          renderStack(dict.stack.items);
+          updateLanguageButtons(language);
+          setStatus("", dict.contact.statusIdle);
+
+          var mailLink = "mailto:" + EMAIL;
+          var direct = document.getElementById("contact-direct-email");
+          var menuDirect = document.getElementById("menu-direct-email");
+          if (direct) {
+            direct.href = mailLink;
+            direct.textContent = EMAIL;
+          }
+          if (menuDirect) {
+            menuDirect.href = mailLink;
+            menuDirect.textContent = EMAIL;
+          }
+
+          try {
+            localStorage.setItem(STORAGE_KEY, language);
+          } catch (error) {
+            return;
+          }
+        }
+
+        function initMenu() {
+          var body = document.body;
+          var menu = document.getElementById("menu-overlay");
+          var toggle = document.getElementById("menu-toggle");
+          var close = document.getElementById("menu-close");
+          if (!menu || !toggle || !close) {
+            return;
+          }
+
+          function openMenu() {
+            menu.classList.add("is-open");
+            menu.setAttribute("aria-hidden", "false");
+            toggle.setAttribute("aria-expanded", "true");
+            body.style.overflow = "hidden";
+          }
+
+          function closeMenu() {
+            menu.classList.remove("is-open");
+            menu.setAttribute("aria-hidden", "true");
+            toggle.setAttribute("aria-expanded", "false");
+            body.style.overflow = "";
+          }
+
+          toggle.addEventListener("click", openMenu);
+          close.addEventListener("click", closeMenu);
+          menu.querySelectorAll("[data-menu-link]").forEach(function (link) {
+            link.addEventListener("click", closeMenu);
+          });
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && menu.classList.contains("is-open")) {
+              closeMenu();
+            }
+          });
+        }
+
+        function initCursorRing() {
+          var ring = document.getElementById("cursor-ring");
+          if (!ring) {
+            return;
+          }
+          if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+            return;
+          }
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+          }
+
+          var tx = -100;
+          var ty = -100;
+          var x = -100;
+          var y = -100;
+          var rafId = null;
+
+          function frame() {
+            x += (tx - x) * 0.22;
+            y += (ty - y) * 0.22;
+            ring.style.transform = "translate3d(" + (x - 12) + "px," + (y - 12) + "px,0)";
+            rafId = window.requestAnimationFrame(frame);
+          }
+
+          window.addEventListener(
+            "pointermove",
+            function (event) {
+              tx = event.clientX;
+              ty = event.clientY;
+              ring.style.opacity = "1";
+            },
+            { passive: true }
+          );
+          window.addEventListener("pointerdown", function () {
+            ring.style.borderColor = "rgba(47,107,255,0.9)";
+          });
+          window.addEventListener("pointerup", function () {
+            ring.style.borderColor = "rgba(0,201,167,0.8)";
+          });
+          window.addEventListener("blur", function () {
+            ring.style.opacity = "0";
+          });
+
+          if (rafId) {
+            window.cancelAnimationFrame(rafId);
+          }
+          rafId = window.requestAnimationFrame(frame);
+        }
+
+        function initForm() {
+          var form = document.getElementById("contact-form");
+          var submit = document.getElementById("contact-submit");
+          if (!form || !submit) {
+            return;
+          }
+
+          form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var dict = content[currentLanguage];
+
+            var data = new FormData(form);
+            var payload = {
+              name: String(data.get("name") || "").trim(),
+              email: String(data.get("email") || "").trim(),
+              message: String(data.get("message") || "").trim(),
+              website: String(data.get("website") || "").trim(),
+              lang: currentLanguage
+            };
+
+            if (!payload.name || !payload.email || !payload.message) {
+              setStatus("error", dict.contact.statusError);
+              return;
+            }
+
+            submit.disabled = true;
+            submit.textContent = dict.contact.form.submitSending;
+            setStatus("", dict.contact.statusSending);
+
+            fetch(CONTACT_ENDPOINT, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+              },
+              body: JSON.stringify(payload)
+            })
+              .then(function (response) {
+                return response
+                  .json()
+                  .catch(function () {
+                    return { ok: false };
+                  })
+                  .then(function (json) {
+                    return { status: response.status, json: json };
+                  });
+              })
+              .then(function (result) {
+                if (result.status >= 200 && result.status < 300 && result.json.ok) {
+                  setStatus("success", dict.contact.statusSuccess);
+                  form.reset();
+                } else {
+                  setStatus("error", dict.contact.statusError);
+                }
+              })
+              .catch(function () {
+                setStatus("error", dict.contact.statusError);
+              })
+              .finally(function () {
+                submit.disabled = false;
+                submit.textContent = dict.contact.form.submit;
+              });
+          });
+        }
+
+        document.querySelectorAll(".lang-btn").forEach(function (button) {
+          button.addEventListener("click", function () {
+            setLanguage(button.dataset.lang || "fr");
+          });
+        });
+
+        initMenu();
+        initCursorRing();
+        initForm();
+
+        var initial = "fr";
+        try {
+          var saved = localStorage.getItem(STORAGE_KEY);
+          if (saved && content[saved]) {
+            initial = saved;
+          }
+        } catch (error) {
+          initial = "fr";
+        }
+        setLanguage(initial);
       })();
     </script>
   </body>
