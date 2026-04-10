@@ -3,809 +3,393 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Programme Video - Passe au niveau superieur</title>
+    <title>Aurelien Wirtz - Consultant digital</title>
     <meta
       name="description"
-      content="Landing page de vente pour un programme video premium avec accompagnement, bonus et garantie."
+      content="Portfolio d'Aurelien Wirtz: gestion de projet digital, strategie data et infrastructure IA."
     />
-    <style>
-      :root {
-        --bg: #0b1020;
-        --bg-soft: #121933;
-        --card: #ffffff;
-        --text: #0d1222;
-        --text-light: #f5f7ff;
-        --muted: #97a2c6;
-        --primary: #6959ff;
-        --primary-hover: #5747ee;
-        --accent: #1fd0a2;
-        --danger: #ff5f79;
-        --shadow: 0 18px 40px rgba(10, 18, 40, 0.18);
-        --radius: 18px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-        line-height: 1.55;
-        color: var(--text);
-        background: linear-gradient(160deg, #f4f6ff 0%, #eef2ff 35%, #f8fbff 100%);
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .container {
-        width: min(1120px, 92vw);
-        margin-inline: auto;
-      }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(105, 89, 255, 0.12);
-        color: #3f35b7;
-        font-size: 0.84rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-      }
-
-      .section {
-        padding: 84px 0;
-      }
-
-      .section h2 {
-        font-size: clamp(1.7rem, 3vw, 2.6rem);
-        margin: 12px 0 14px;
-      }
-
-      .section p.lead {
-        margin: 0;
-        max-width: 780px;
-        color: #455076;
-      }
-
-      .btn {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border: none;
-        border-radius: 12px;
-        padding: 14px 22px;
-        font-size: 1rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn-primary {
-        background: var(--primary);
-        color: #fff;
-        box-shadow: 0 10px 24px rgba(105, 89, 255, 0.35);
-      }
-
-      .btn-primary:hover {
-        background: var(--primary-hover);
-      }
-
-      .btn-outline {
-        border: 2px solid rgba(105, 89, 255, 0.28);
-        color: #2f3a63;
-        background: #fff;
-      }
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.88);
-        border-bottom: 1px solid #e7ebff;
-        backdrop-filter: blur(8px);
-      }
-
-      .topbar-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 0;
-      }
-
-      .logo {
-        font-weight: 900;
-        font-size: 1.05rem;
-        letter-spacing: 0.02em;
-        color: #1f2951;
-      }
-
-      .logo span {
-        color: var(--primary);
-      }
-
-      .topbar nav {
-        display: flex;
-        gap: 18px;
-        font-size: 0.95rem;
-        color: #4f5a81;
-      }
-
-      .hero {
-        background: radial-gradient(circle at 20% 20%, #2a3370 0%, var(--bg) 42%, #070a15 100%);
-        color: var(--text-light);
-        padding: 88px 0 94px;
-        overflow: hidden;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 36px;
-        align-items: center;
-      }
-
-      .hero h1 {
-        font-size: clamp(2rem, 4.2vw, 3.5rem);
-        line-height: 1.1;
-        margin: 18px 0 16px;
-        max-width: 16ch;
-      }
-
-      .hero .subtitle {
-        margin: 0 0 28px;
-        max-width: 60ch;
-        color: #d4dbff;
-      }
-
-      .hero-cta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 26px;
-      }
-
-      .kpis {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .kpi {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 14px;
-        padding: 14px;
-      }
-
-      .kpi b {
-        display: block;
-        font-size: 1.2rem;
-      }
-
-      .preview-card {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 24px 52px rgba(7, 10, 21, 0.5);
-      }
-
-      .preview-media {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        background: linear-gradient(45deg, #1a2455, #5c4dff);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .play-btn {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        border: 0;
-        background: #fff;
-        color: #2d3280;
-        font-size: 1.25rem;
-        font-weight: 800;
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
-      }
-
-      .preview-content {
-        padding: 20px;
-        color: #e6ebff;
-      }
-
-      .preview-content h3 {
-        margin: 0 0 6px;
-      }
-
-      .strip {
-        padding: 20px 0;
-        border-bottom: 1px solid #e8ecff;
-        border-top: 1px solid #e8ecff;
-        background: #fff;
-      }
-
-      .logos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px 34px;
-        color: #7f8aaf;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-        font-size: 0.86rem;
-      }
-
-      .benefits-grid {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .card {
-        background: var(--card);
-        border-radius: var(--radius);
-        padding: 24px;
-        box-shadow: var(--shadow);
-      }
-
-      .card .icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: rgba(105, 89, 255, 0.13);
-        color: #3d33b2;
-        font-weight: 800;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 12px;
-      }
-
-      .program {
-        background: linear-gradient(180deg, #f6f8ff 0%, #eef2ff 100%);
-      }
-
-      .modules {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .module {
-        background: #fff;
-        border: 1px solid #dfe6ff;
-        border-radius: 14px;
-        padding: 16px 18px;
-      }
-
-      .module h3 {
-        margin: 0 0 8px;
-        font-size: 1.03rem;
-      }
-
-      .proof-grid {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .quote {
-        padding: 22px;
-        border-radius: 16px;
-        background: #fff;
-        border: 1px solid #e6ebff;
-      }
-
-      .quote p {
-        margin: 0 0 10px;
-      }
-
-      .quote b {
-        color: #30406e;
-      }
-
-      .offer-wrap {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-
-      .offer-main {
-        background: #fff;
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-        padding: 28px;
-        border: 2px solid rgba(105, 89, 255, 0.16);
-      }
-
-      .price {
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-        margin: 14px 0 18px;
-      }
-
-      .price .old {
-        color: #8a94b6;
-        text-decoration: line-through;
-      }
-
-      .price .new {
-        color: #111939;
-        font-size: 2.2rem;
-        font-weight: 900;
-      }
-
-      .offer-list,
-      .checklist {
-        margin: 16px 0 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 10px;
-      }
-
-      .offer-list li,
-      .checklist li {
-        display: flex;
-        gap: 10px;
-      }
-
-      .bullet-ok {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: rgba(31, 208, 162, 0.18);
-        color: #067d60;
-        font-size: 0.8rem;
-        font-weight: 700;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
-
-      .urgency {
-        background: linear-gradient(140deg, #fff5f8 0%, #fff0f4 100%);
-        border: 1px solid #ffd9e2;
-        border-radius: 14px;
-        padding: 16px;
-      }
-
-      .urgency b {
-        color: #8e1634;
-      }
-
-      .guarantee {
-        margin-top: 18px;
-        padding: 14px 16px;
-        border-radius: 12px;
-        background: #f3fff9;
-        border: 1px solid #c9f5e5;
-      }
-
-      .faq {
-        margin-top: 28px;
-        display: grid;
-        gap: 12px;
-      }
-
-      details {
-        background: #fff;
-        border: 1px solid #e4e9ff;
-        border-radius: 12px;
-        padding: 14px 16px;
-      }
-
-      summary {
-        cursor: pointer;
-        font-weight: 700;
-        color: #222f58;
-      }
-
-      details p {
-        margin: 10px 0 0;
-        color: #4c5781;
-      }
-
-      .final-cta {
-        margin-top: 40px;
-        padding: 30px;
-        border-radius: 18px;
-        background: linear-gradient(140deg, #1f2a63, #4a3ee6);
-        color: #eef1ff;
-        display: grid;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .footer {
-        padding: 26px 0 36px;
-        color: #66719a;
-        font-size: 0.9rem;
-      }
-
-      .footer-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      @media (max-width: 980px) {
-        .hero-grid,
-        .offer-wrap {
-          grid-template-columns: 1fr;
-        }
-
-        .benefits-grid,
-        .proof-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .modules {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .topbar nav {
-          display: none;
-        }
-
-        .benefits-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero {
-          padding-top: 64px;
-        }
-
-        .kpis {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="container topbar-wrap">
-        <a href="#" class="logo">Video<span>Impact</span></a>
-        <nav>
-          <a href="#programme">Programme</a>
-          <a href="#resultats">Resultats</a>
-          <a href="#offre">Offre</a>
-          <a href="#faq">FAQ</a>
+    <div class="bg-noise" aria-hidden="true"></div>
+    <main id="top">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a href="#top" class="logo">Aurelien Wirtz</a>
+
+          <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
+            MENU
+          </button>
+
+          <nav class="desktop-nav text-caption">
+            <a href="#work">Travaux</a>
+            <a href="#services">Services</a>
+            <a href="#about">A propos</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div class="header-contact text-caption">
+            <a href="mailto:aurelienwirtz67@gmail.com">aurelienwirtz67@gmail.com</a>
+            <span>Blonay, Suisse</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="mobile-menu" id="mobileMenu" hidden>
+        <nav class="mobile-nav">
+          <a href="#work">Travaux</a>
+          <a href="#services">Services</a>
+          <a href="#about">A propos</a>
+          <a href="#pricing">Tarifs</a>
+          <a href="#contact">Contact</a>
         </nav>
-        <a href="#offre" class="btn btn-primary">Je veux rejoindre</a>
       </div>
-    </header>
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="pill">Ouverture des inscriptions 2026</span>
-          <h1>Transforme ton expertise en programme video qui se vend</h1>
-          <p class="subtitle">
-            Une methode concrete en 8 semaines pour creer, structurer et vendre ton programme video premium
-            sans audience massive ni tunnel complexe. Tu avances avec un plan clair, des scripts prets a
-            l emploi et un systeme de vente simple.
-          </p>
-          <div class="hero-cta">
-            <a href="#offre" class="btn btn-primary">Acceder a l offre maintenant</a>
-            <a href="#programme" class="btn btn-outline">Voir le contenu du programme</a>
-          </div>
-          <div class="kpis">
-            <div class="kpi">
-              <b>+2 400</b>
-              participants formes
+      <section class="hero section">
+        <div class="hero-bg">
+          <img src="Capture d’écran 2026-02-20 à 16.34.37.png" alt="" />
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <div class="hero-grid">
+            <div class="hero-visual reveal">
+              <img src="aurel.png" alt="Portrait d'Aurelien Wirtz" />
             </div>
-            <div class="kpi">
-              <b>4.9 / 5</b>
-              note moyenne des eleves
-            </div>
-            <div class="kpi">
-              <b>30 jours</b>
-              garantie satisfait ou rembourse
+            <div class="hero-copy reveal">
+              <p class="text-caption text-primary">Consulting digital</p>
+              <h1>Gestion de projet, strategie digitale et infrastructure IA</h1>
+              <p class="lead">
+                J'aide les entreprises a clarifier leur vision, prioriser les bons leviers et deployer des systemes
+                digitaux performants de bout en bout.
+              </p>
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Commencer un projet</a>
+                <a href="#work" class="btn btn-outline">Voir les travaux</a>
+              </div>
+              <ul class="hero-tags text-caption">
+                <li>Gestion de projet</li>
+                <li>Strategie digitale</li>
+                <li>Infrastructure IA</li>
+              </ul>
             </div>
           </div>
         </div>
-        <aside class="preview-card" aria-label="Presentation video du programme">
-          <div class="preview-media">
-            <button class="play-btn" aria-label="Lancer la video">Play</button>
+      </section>
+
+      <div class="divider divider-fade"></div>
+
+      <section class="section section-dark" id="work">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">Selection</p>
+            <h2>Derniers projets</h2>
           </div>
-          <div class="preview-content">
-            <h3>Masterclass offerte: 3 leviers pour vendre vite</h3>
-            <p>
-              Decouvre en 18 minutes comment valider ton offre, construire ton plan de contenu et obtenir tes
-              premiers clients en ligne.
-            </p>
+
+          <div class="project-list">
+            <article class="project-card reveal">
+              <div class="project-media">
+                <img src="book.png" alt="Projet FENOMEN" />
+              </div>
+              <div class="project-body">
+                <div class="project-row">
+                  <h3>FENOMEN</h3>
+                  <p class="muted">2026</p>
+                </div>
+                <div class="project-row">
+                  <p>Domaine: evenement sportif</p>
+                  <p class="muted">Branding</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-media">
+                <img src="skate.png" alt="Projet Landa" />
+              </div>
+              <div class="project-body">
+                <div class="project-row">
+                  <h3>Landa_</h3>
+                  <p class="muted">2025</p>
+                </div>
+                <div class="project-row">
+                  <p>Industrie: SAAS / Productivite</p>
+                  <p class="muted">Web design + Identite</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-media">
+                <img src="louis.png" alt="Projet Brandon" />
+              </div>
+              <div class="project-body">
+                <div class="project-row">
+                  <h3>Brandon_</h3>
+                  <p class="muted">2025</p>
+                </div>
+                <div class="project-row">
+                  <p>Industrie: Portfolio / Photo</p>
+                  <p class="muted">Web + Framer</p>
+                </div>
+              </div>
+            </article>
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="strip">
-      <div class="container logos">
-        <span>Vu dans</span>
-        <span>Growth Daily</span>
-        <span>Creator Mag</span>
-        <span>Business Sprint</span>
-        <span>Studio Academy</span>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <span class="pill">Pourquoi ce programme</span>
-        <h2>Tu n as pas besoin de plus d idees, tu as besoin d un systeme</h2>
-        <p class="lead">
-          Ce programme video t aide a passer de contenu disperse a une offre claire qui attire les bons clients
-          et convertit regulierement.
-        </p>
-
-        <div class="benefits-grid">
-          <article class="card">
-            <span class="icon">1</span>
-            <h3>Positionnement clair</h3>
-            <p>Tu definis une promesse forte qui te differencie et donne envie d acheter rapidement.</p>
-          </article>
-          <article class="card">
-            <span class="icon">2</span>
-            <h3>Production simplifiee</h3>
-            <p>Tu tournes des videos impactantes avec un setup leger et un script orientee conversion.</p>
-          </article>
-          <article class="card">
-            <span class="icon">3</span>
-            <h3>Vente repetitive</h3>
-            <p>Tu mets en place un tunnel minimal qui transforme tes prospects sans pression commerciale.</p>
-          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section program" id="programme">
-      <div class="container">
-        <span class="pill">Contenu detaille</span>
-        <h2>8 semaines pour construire et lancer ton programme video</h2>
-        <p class="lead">
-          Chaque module te fait passer a l action avec objectifs hebdomadaires, templates, checklists et retours
-          concrets.
-        </p>
+      <div class="divider divider-angle"></div>
 
-        <div class="modules">
-          <article class="module">
-            <h3>Semaine 1 - Offre et avatar premium</h3>
-            <p>Clarifie ton message, ton angle et la transformation achetee par ton client ideal.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 2 - Plan pedagogique magnetique</h3>
-            <p>Structure un parcours simple qui donne des resultats visibles rapidement.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 3 - Script et storytelling</h3>
-            <p>Creer des videos qui captent l attention et donnent envie de continuer jusqu au bout.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 4 - Tournage et montage efficace</h3>
-            <p>Workflow rapide pour produire avec qualite sans y passer tes week-ends.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 5 - Page de vente qui convertit</h3>
-            <p>Pose la structure complete d une page orientee resultat et preuve.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 6 - Offre et pricing premium</h3>
-            <p>Definis tes bonus, ton positionnement prix et la perception de valeur.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 7 - Acquisition et relance</h3>
-            <p>Lance ton trafic avec contenu organique + campagnes simples a faible risque.</p>
-          </article>
-          <article class="module">
-            <h3>Semaine 8 - Lancement pilote</h3>
-            <p>Execute ta premiere campagne de vente et optimise grace aux donnees collectees.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="resultats">
-      <div class="container">
-        <span class="pill">Temoignages</span>
-        <h2>Des createurs et experts qui ont lance rapidement</h2>
-        <p class="lead">
-          Pas de theorie vague: voici ce que nos eleves obtiennent en appliquant la methode.
-        </p>
-
-        <div class="proof-grid">
-          <article class="quote">
+      <section class="section section-gradient" id="about">
+        <div class="container about-grid">
+          <div class="about-media reveal">
+            <img src="david.png" alt="A propos d'Aurelien Wirtz" />
+          </div>
+          <div class="about-copy reveal">
+            <p class="text-caption text-primary">A propos</p>
+            <h2>Aurelien_</h2>
             <p>
-              "J ai signe 11 ventes a 690 EUR en 3 semaines. La structure de page et les scripts ont tout
-              change."
+              Consultant en strategie digitale et infrastructure IA, je transforme des objectifs business en execution
+              claire: cadrage, priorisation, pilotage et mise a l'echelle.
             </p>
-            <b>Sarah M. - Coach business</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Je repoussais mon programme depuis 1 an. En 6 semaines j avais mes modules prets et un funnel
-              rentable."
-            </p>
-            <b>Yanis D. - Formateur freelance</b>
-          </article>
-          <article class="quote">
-            <p>
-              "Le plus fort: la clarte. Je sais enfin quoi dire, quoi vendre et comment convertir sans forcer."
-            </p>
-            <b>Lucie R. - Consultante marketing</b>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="offre">
-      <div class="container">
-        <span class="pill">Offre de lancement</span>
-        <h2>Rejoins VideoImpact et lance ton programme video des maintenant</h2>
-        <p class="lead">
-          Inscription unique avec acces a vie, mises a jour futures incluses et communaute privee.
-        </p>
-
-        <div class="offer-wrap">
-          <article class="offer-main">
-            <h3>Pack complet VideoImpact</h3>
-            <div class="price">
-              <span class="old">997 EUR</span>
-              <span class="new">497 EUR</span>
-            </div>
-            <p>
-              Paiement en 1 fois ou 3 mensualites de 179 EUR. Offre reservee aux 50 premieres places.
-            </p>
-            <ul class="offer-list">
-              <li><span class="bullet-ok">v</span>Programme video complet (8 semaines)</li>
-              <li><span class="bullet-ok">v</span>Templates scripts, mails et page de vente</li>
-              <li><span class="bullet-ok">v</span>2 sessions Q&amp;A live chaque mois</li>
-              <li><span class="bullet-ok">v</span>Communaute privee d entrepreneurs video</li>
-              <li><span class="bullet-ok">v</span>Acces a vie + futures mises a jour</li>
+            <ul class="timeline">
+              <li><span>Independent Product Designer</span><span>2025</span></li>
+              <li><span>Senior UX Designer - CloudForge</span><span>2024 - 2025</span></li>
+              <li><span>Product Designer - Orbit Systems</span><span>2022 - 2024</span></li>
+              <li><span>UI/UX Designer - PixelHaus</span><span>2021 - 2022</span></li>
             </ul>
-            <p style="margin-top: 20px">
-              <a class="btn btn-primary" href="https://checkout.example.com" target="_blank" rel="noreferrer">
-                Je reserve ma place maintenant
-              </a>
-            </p>
-            <div class="guarantee">
-              Garantie 30 jours: tu testes le programme, tu appliques, et si ce n est pas pour toi, tu es
-              rembourse sans discussion.
-            </div>
-          </article>
+          </div>
+        </div>
+      </section>
 
-          <aside class="card">
-            <div class="urgency">
-              <b>Cloture des inscriptions dans <span id="countdown">--:--:--</span></b>
-              <p style="margin: 8px 0 0">
-                Les bonus disparaissent a la fin du countdown. Prochaine ouverture dans plusieurs mois.
+      <div class="divider divider-fade"></div>
+
+      <section class="section section-dark">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">Logiciels</p>
+            <h2>Stack de travail</h2>
+          </div>
+          <div class="tools-grid">
+            <article class="tool-card reveal">
+              <h3>Figma</h3>
+              <p>Design collaboratif, prototypage rapide, handoff propre avec les equipes produit et dev.</p>
+            </article>
+            <article class="tool-card reveal">
+              <h3>Framer</h3>
+              <p>Web experiences modernes, interactions fluides, mise en ligne rapide et itereable.</p>
+            </article>
+            <article class="tool-card reveal">
+              <h3>Webflow</h3>
+              <p>Sites responsives robustes avec autonomie contenu et structure orientee performance.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider divider-angle"></div>
+
+      <section class="section section-soft" id="services">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">Services</p>
+            <h2>Accompagnement complet</h2>
+          </div>
+
+          <div class="accordion">
+            <details class="service-card reveal" open>
+              <summary>Gestion de projet digital</summary>
+              <div class="service-content">
+                <img src="loi.png" alt="Gestion de projet digital" />
+                <ul>
+                  <li>Cadrage strategique</li>
+                  <li>Roadmap claire</li>
+                  <li>Pilotage des priorites</li>
+                  <li>Coordination des equipes</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="service-card reveal">
+              <summary>Strategie digitale &amp; Data</summary>
+              <div class="service-content">
+                <img src="serbie.png" alt="Strategie digitale et data" />
+                <ul>
+                  <li>Analyse de donnees &amp; BI</li>
+                  <li>Tunnel de conversion</li>
+                  <li>Tracking unifie</li>
+                  <li>Tableaux de bord</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="service-card reveal">
+              <summary>Infrastructure IA</summary>
+              <div class="service-content">
+                <img src="dejan.png" alt="Infrastructure IA" />
+                <ul>
+                  <li>Integration LLM</li>
+                  <li>Automatisation des process</li>
+                  <li>Digitalisation workflows</li>
+                  <li>Mise a l'echelle</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider divider-fade"></div>
+
+      <section class="section section-dark" id="pricing">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">Pricing</p>
+            <h2>Plans d'accompagnement</h2>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="plan-card reveal">
+              <h3>Basic</h3>
+              <p class="plan-price">640 CHF <span>/mois</span></p>
+              <p>Parfait pour lancer une base solide et une execution claire.</p>
+              <ul>
+                <li>Site vitrine strategique</li>
+                <li>Cadrage initial</li>
+                <li>SEO de base</li>
+                <li>Support continu</li>
+              </ul>
+              <button class="btn btn-outline" type="button">Choisir ce plan</button>
+            </article>
+
+            <article class="plan-card featured reveal">
+              <p class="badge">Le plus choisi</p>
+              <h3>Pro</h3>
+              <p class="plan-price">1,280 CHF <span>/mois</span></p>
+              <p>Pour accelerator la croissance avec design, data et pilotage avance.</p>
+              <ul>
+                <li>Design avance</li>
+                <li>Data &amp; tracking</li>
+                <li>Tunnel de conversion</li>
+                <li>Reporting mensuel</li>
+              </ul>
+              <button class="btn btn-primary" type="button">Choisir ce plan</button>
+            </article>
+
+            <article class="plan-card reveal">
+              <h3>Max</h3>
+              <p class="plan-price">2,560 CHF <span>/mois</span></p>
+              <p>Solution complete pour structures en phase de scale.</p>
+              <ul>
+                <li>Direction digitale complete</li>
+                <li>Stack IA integree</li>
+                <li>Systemes enterprise</li>
+                <li>Support prioritaire</li>
+              </ul>
+              <button class="btn btn-outline" type="button">Choisir ce plan</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider divider-angle"></div>
+
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">FAQ</p>
+            <h2>Questions frequentes</h2>
+          </div>
+          <div class="faq-grid">
+            <details class="faq-card reveal">
+              <summary>Combien de temps dure un projet ?</summary>
+              <p>Entre 4 et 8 semaines selon le perimetre et la complexite.</p>
+            </details>
+            <details class="faq-card reveal" open>
+              <summary>Travaillez-vous avec des clients internationaux ?</summary>
+              <p>Oui, avec une organisation claire via visio, outils async et reporting cadence.</p>
+            </details>
+            <details class="faq-card reveal">
+              <summary>Couvrez-vous strategie et execution ?</summary>
+              <p>Oui, de la vision business jusqu'au deploiement operationnel.</p>
+            </details>
+            <details class="faq-card reveal">
+              <summary>Support apres le lancement ?</summary>
+              <p>Oui, maintenance, optimisations et accompagnement de performance sont proposes.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider divider-fade"></div>
+
+      <section class="section section-dark" id="contact">
+        <div class="container">
+          <div class="contact-head reveal">
+            <p class="text-caption text-primary">Contact</p>
+            <h2>Lancons votre projet ensemble</h2>
+          </div>
+
+          <form class="contact-form reveal">
+            <div class="field-grid">
+              <label class="field">
+                <span>Nom *</span>
+                <input type="text" name="name" required />
+              </label>
+              <label class="field">
+                <span>Email *</span>
+                <input type="email" name="email" required />
+              </label>
+            </div>
+            <div class="field-grid">
+              <label class="field">
+                <span>Service</span>
+                <select name="interest">
+                  <option>Gestion de projet digital</option>
+                  <option>Strategie &amp; Data</option>
+                  <option>Infrastructure IA</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Budget</span>
+                <select name="budget">
+                  <option>0 - 1,000 CHF</option>
+                  <option>1,000 - 5,000 CHF</option>
+                  <option>5,000+ CHF</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Details du projet</span>
+              <textarea name="details" rows="5"></textarea>
+            </label>
+            <div class="contact-actions">
+              <button class="btn btn-primary" type="submit">Envoyer le message</button>
+              <p class="muted">
+                Ou ecrivez directement a
+                <a href="mailto:aurelienwirtz67@gmail.com" class="text-primary">aurelienwirtz67@gmail.com</a>
               </p>
             </div>
-
-            <h3 style="margin-top: 20px">Bonus inclus cette semaine</h3>
-            <ul class="checklist">
-              <li><span class="bullet-ok">v</span>Bonus 1: Kit "Page de vente express"</li>
-              <li><span class="bullet-ok">v</span>Bonus 2: 20 hooks video a fort taux de clic</li>
-              <li><span class="bullet-ok">v</span>Bonus 3: Script webinar 45 minutes pret a adapter</li>
-              <li><span class="bullet-ok">v</span>Bonus 4: Audit de ton offre par notre equipe</li>
-            </ul>
-          </aside>
+          </form>
         </div>
+      </section>
 
-        <div class="final-cta">
-          <h3 style="margin: 0">Tu peux lancer ton programme video en 60 jours.</h3>
-          <p style="margin: 0">
-            Si tu veux un cadre clair, un plan concret et un accompagnement solide, cette offre est pour toi.
-          </p>
-          <p style="margin: 8px 0 0">
-            <a class="btn btn-primary" href="https://checkout.example.com" target="_blank" rel="noreferrer">
-              Oui, je rejoins VideoImpact
-            </a>
-          </p>
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <nav class="footer-links text-caption">
+            <a href="#work">Travaux</a>
+            <a href="#services">Services</a>
+            <a href="#about">A propos</a>
+            <a href="#top">Retour en haut</a>
+          </nav>
+          <div class="footer-bottom text-caption">
+            <p>© <span id="year"></span> Aurelien Wirtz - Portfolio</p>
+            <p>Blonay → <span id="clock"></span></p>
+            <a href="#">LinkedIn</a>
+          </div>
         </div>
-      </div>
-    </section>
+      </footer>
+    </main>
 
-    <section class="section" id="faq">
-      <div class="container">
-        <span class="pill">Questions frequentes</span>
-        <h2>FAQ</h2>
-        <div class="faq">
-          <details>
-            <summary>Est-ce adapte si je pars de zero ?</summary>
-            <p>
-              Oui. Le programme commence par le positionnement et t accompagne pas a pas jusqu au lancement.
-            </p>
-          </details>
-          <details>
-            <summary>Combien de temps dois-je prevoir chaque semaine ?</summary>
-            <p>Entre 4 et 6 heures suffisent pour suivre les modules et executer les exercices.</p>
-          </details>
-          <details>
-            <summary>Et si je n ai pas encore de communaute ?</summary>
-            <p>
-              Tu apprendras a lancer avec une audience reduite grace a une strategie de contenu et relance
-              simple.
-            </p>
-          </details>
-          <details>
-            <summary>Le programme est-il accessible a vie ?</summary>
-            <p>Oui, tu gardes un acces a vie a tous les contenus et aux mises a jour futures.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer-wrap">
-        <span>(c) <span id="year"></span> VideoImpact. Tous droits reserves.</span>
-        <span>
-          <a href="#">Mentions legales</a> | <a href="#">Confidentialite</a> | <a href="#">Support</a>
-        </span>
-      </div>
-    </footer>
-
-    <script>
-      (function () {
-        var yearEl = document.getElementById("year");
-        if (yearEl) {
-          yearEl.textContent = String(new Date().getFullYear());
-        }
-
-        var countdownEl = document.getElementById("countdown");
-        if (!countdownEl) {
-          return;
-        }
-
-        var end = Date.now() + 1000 * 60 * 60 * 23 + 1000 * 60 * 39 + 1000 * 42;
-        function pad(value) {
-          return String(value).padStart(2, "0");
-        }
-
-        function renderCountdown() {
-          var left = Math.max(0, end - Date.now());
-          var hours = Math.floor(left / (1000 * 60 * 60));
-          var minutes = Math.floor((left % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((left % (1000 * 60)) / 1000);
-          countdownEl.textContent = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
-        }
-
-        renderCountdown();
-        setInterval(renderCountdown, 1000);
-      })();
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>
