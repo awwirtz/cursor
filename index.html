@@ -8,881 +8,227 @@
       name="description"
       content="Portfolio d'Aurelien Wirtz: gestion de projet digital, strategie data et infrastructure IA."
     />
-    <style>
-      :root {
-        --bg: #0a0a0a;
-        --surface: #111111;
-        --surface-2: #171717;
-        --text: #f5f5f5;
-        --muted: #adadad;
-        --line: #2a2a2a;
-        --primary: #07c42c;
-        --white-32: rgba(255, 255, 255, 0.32);
-        --white-64: rgba(255, 255, 255, 0.64);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.5;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      img,
-      video {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      .container {
-        width: min(1160px, 92vw);
-        margin-inline: auto;
-      }
-
-      .section {
-        padding: 88px 0;
-      }
-
-      .text-caption {
-        font-size: 12px;
-        letter-spacing: 0.08em;
-      }
-
-      .text-display-1 {
-        font-size: clamp(28px, 6vw, 86px);
-        line-height: 0.95;
-      }
-
-      .text-display-2 {
-        font-size: clamp(30px, 5vw, 72px);
-        line-height: 0.96;
-      }
-
-      .letter-space--1 {
-        letter-spacing: 0.02em;
-      }
-
-      .letter-space--2 {
-        letter-spacing: 0.01em;
-      }
-
-      .letter-space--3 {
-        letter-spacing: -0.02em;
-      }
-
-      .text-primary {
-        color: var(--primary);
-      }
-
-      .text-white-64 {
-        color: var(--white-64);
-      }
-
-      .text-white-32 {
-        color: var(--white-32);
-      }
-
-      .btn {
-        border: 0;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 12px 20px;
-        font-weight: 600;
-        cursor: pointer;
-      }
-
-      .btn-primary {
-        background: var(--primary);
-        color: #041007;
-      }
-
-      .btn-outline {
-        border: 1px solid #4a4a4a;
-        color: #ececec;
-        background: transparent;
-      }
-
-      .br-line {
-        border-bottom: 1px solid var(--line);
-      }
-
-      .header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        border-bottom: 1px solid var(--line);
-        background: rgba(10, 10, 10, 0.85);
-        backdrop-filter: blur(8px);
-      }
-
-      .header-inner {
-        min-height: 76px;
-        display: grid;
-        grid-template-columns: 140px 1fr auto;
-        align-items: center;
-        gap: 18px;
-      }
-
-      .logo {
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-
-      .menu {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        color: var(--muted);
-      }
-
-      .header-contact {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 4px;
-        color: var(--muted);
-      }
-
-      .hero {
-        min-height: 86vh;
-        position: relative;
-        overflow: hidden;
-        display: grid;
-        align-items: center;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(160deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.45));
-        z-index: 1;
-      }
-
-      .bg-video {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-      }
-
-      .bg-video video,
-      .bg-video img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 2;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 0.45fr 0.55fr;
-        gap: 20px;
-        align-items: end;
-      }
-
-      .hero-visual {
-        max-width: 390px;
-      }
-
-      .hero-visual img {
-        border-radius: 16px;
-      }
-
-      .hero-bottom {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px 22px;
-        margin-top: 26px;
-        align-items: center;
-      }
-
-      .hero-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        color: var(--white-64);
-      }
-
-      .marquee {
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 18px 0;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-
-      .marquee-track {
-        display: inline-flex;
-        gap: 28px;
-        animation: slide 24s linear infinite;
-      }
-
-      @keyframes slide {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
-
-      .work-list {
-        margin-top: 34px;
-        display: grid;
-        gap: 22px;
-      }
-
-      .work-item {
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        overflow: hidden;
-        background: var(--surface);
-      }
-
-      .work-image {
-        aspect-ratio: 16 / 8;
-        background: #000;
-      }
-
-      .work-image video,
-      .work-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .work-content {
-        padding: 20px;
-        display: grid;
-        gap: 16px;
-      }
-
-      .work-top,
-      .work-bottom {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        align-items: flex-start;
-      }
-
-      .meta-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        text-align: right;
-        display: grid;
-        gap: 4px;
-      }
-
-      .about-grid {
-        display: grid;
-        grid-template-columns: 0.48fr 0.52fr;
-        gap: 28px;
-        align-items: center;
-      }
-
-      .about-video {
-        border-radius: 18px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-      }
-
-      .about-copy h2,
-      .section-title {
-        margin: 0 0 16px;
-      }
-
-      .about-copy p {
-        color: var(--white-64);
-        margin: 0;
-      }
-
-      .exp-list {
-        list-style: none;
-        margin: 26px 0 0;
-        padding: 0;
-        display: grid;
-      }
-
-      .exp-list li {
-        border-bottom: 1px solid var(--line);
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 12px 0;
-      }
-
-      .tech-grid {
-        margin-top: 28px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-
-      .tech-card {
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 18px;
-        background: var(--surface);
-        min-height: 220px;
-        display: grid;
-        gap: 10px;
-      }
-
-      .service-list {
-        margin-top: 22px;
-        display: grid;
-        gap: 12px;
-      }
-
-      details {
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 14px 16px;
-        background: var(--surface);
-      }
-
-      summary {
-        cursor: pointer;
-        font-weight: 600;
-      }
-
-      .service-content {
-        margin-top: 12px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        color: var(--white-64);
-      }
-
-      .service-content ul {
-        margin: 0;
-        padding-left: 16px;
-      }
-
-      .section-surface {
-        background: #f2f2f2;
-        color: #111;
-      }
-
-      .section-surface .muted-dark {
-        color: rgba(0, 0, 0, 0.62);
-      }
-
-      .brand-list {
-        margin-top: 20px;
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 8px;
-      }
-
-      .brand-box {
-        border: 1px solid #d8d8d8;
-        border-radius: 12px;
-        min-height: 74px;
-        display: grid;
-        place-items: center;
-        font-size: 12px;
-        color: #5e5e5e;
-        text-transform: uppercase;
-      }
-
-      .award-grid {
-        margin-top: 26px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-
-      .award-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 8px;
-      }
-
-      .award-list li {
-        border-bottom: 1px solid #d8d8d8;
-        padding-bottom: 8px;
-      }
-
-      .award-images {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
-
-      .award-images img {
-        width: 100%;
-        border-radius: 12px;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-      }
-
-      .testimonials {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        margin-top: 24px;
-      }
-
-      .testi-card {
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        overflow: hidden;
-        background: var(--surface);
-      }
-
-      .testi-card img {
-        width: 100%;
-        aspect-ratio: 4 / 3;
-        object-fit: cover;
-      }
-
-      .testi-card .content {
-        padding: 14px;
-      }
-
-      .indicators {
-        margin-top: 34px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-      }
-
-      .indicator {
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 16px;
-        background: var(--surface);
-      }
-
-      .indicator b {
-        display: block;
-        margin-top: 8px;
-        font-size: 38px;
-      }
-
-      .pricing-tabs {
-        display: flex;
-        gap: 10px;
-        margin: 22px 0;
-      }
-
-      .tab-btn {
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 10px 14px;
-        color: var(--white-64);
-      }
-
-      .tab-btn.active {
-        color: #fff;
-        border-color: #5b5b5b;
-      }
-
-      .plan-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-
-      .plan-card {
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 18px;
-        background: var(--surface);
-        display: grid;
-        gap: 10px;
-      }
-
-      .plan-card.featured {
-        border-color: #2b8b3f;
-        box-shadow: inset 0 0 0 1px #2b8b3f;
-      }
-
-      .plan-price {
-        font-size: 34px;
-        font-weight: 700;
-      }
-
-      .plan-card ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: grid;
-        gap: 8px;
-      }
-
-      .plan-card li {
-        color: var(--white-64);
-      }
-
-      .faq-list {
-        margin-top: 20px;
-        display: grid;
-        gap: 12px;
-      }
-
-      .cta-grid {
-        display: grid;
-        grid-template-columns: 0.35fr 0.65fr;
-        gap: 20px;
-        align-items: start;
-      }
-
-      .form {
-        margin-top: 24px;
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 18px;
-        background: var(--surface);
-      }
-
-      .field-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-
-      .field {
-        display: grid;
-        gap: 6px;
-      }
-
-      .field label {
-        font-size: 13px;
-        color: var(--white-64);
-      }
-
-      .field input,
-      .field select,
-      .field textarea {
-        width: 100%;
-        border-radius: 10px;
-        border: 1px solid #343434;
-        background: #0f0f0f;
-        color: #f4f4f4;
-        padding: 12px;
-        font: inherit;
-      }
-
-      .field textarea {
-        min-height: 124px;
-        resize: vertical;
-      }
-
-      .footer {
-        border-top: 1px solid var(--line);
-        padding: 22px 0 28px;
-      }
-
-      .footer-nav {
-        display: flex;
-        justify-content: space-between;
-        gap: 14px;
-        flex-wrap: wrap;
-      }
-
-      .footer-bottom {
-        margin-top: 16px;
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        color: var(--white-64);
-        flex-wrap: wrap;
-      }
-
-      @media (max-width: 1020px) {
-        .header-inner {
-          grid-template-columns: 1fr auto;
-        }
-
-        .menu {
-          display: none;
-        }
-
-        .hero-grid,
-        .about-grid,
-        .cta-grid,
-        .award-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .tech-grid,
-        .plan-grid,
-        .testimonials,
-        .indicators {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .service-content {
-          grid-template-columns: 1fr;
-        }
-
-        .brand-list {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      @media (max-width: 680px) {
-        .field-grid,
-        .tech-grid,
-        .plan-grid,
-        .testimonials,
-        .indicators {
-          grid-template-columns: 1fr;
-        }
-
-        .header-contact {
-          display: none;
-        }
-
-        .brand-list {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="counter-scroll">
-    <main id="wrapper">
-      <header class="header">
+  <body>
+    <div class="bg-noise" aria-hidden="true"></div>
+    <main id="top">
+      <header class="site-header">
         <div class="container header-inner">
-          <a href="#wrapper" class="logo">Aurelien Wirtz</a>
-          <nav class="menu text-caption">
-            <a href="#workScroll">TRAVAUX</a>
-            <a href="#serviceScroll">SERVICES</a>
-            <a href="#aboutScroll">A PROPOS</a>
-            <a href="#contactScroll">CONTACT</a>
+          <a href="#top" class="logo">Aurelien Wirtz</a>
+
+          <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
+            MENU
+          </button>
+
+          <nav class="desktop-nav text-caption">
+            <a href="#work">Travaux</a>
+            <a href="#services">Services</a>
+            <a href="#about">A propos</a>
+            <a href="#contact">Contact</a>
           </nav>
+
           <div class="header-contact text-caption">
-            <a href="mailto:aurelienwirtz67@gmail.com">AURELIENWIRTZ67@GMAIL.COM</a>
-            <span>BLONAY, SUISSE</span>
+            <a href="mailto:aurelienwirtz67@gmail.com">aurelienwirtz67@gmail.com</a>
+            <span>Blonay, Suisse</span>
           </div>
         </div>
       </header>
 
-      <section class="hero">
-        <div class="bg-video">
-          <img src="serbie.png" alt="Fond hero" />
+      <div class="mobile-menu" id="mobileMenu" hidden>
+        <nav class="mobile-nav">
+          <a href="#work">Travaux</a>
+          <a href="#services">Services</a>
+          <a href="#about">A propos</a>
+          <a href="#pricing">Tarifs</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <section class="hero section">
+        <div class="hero-bg">
+          <img src="Capture d’écran 2026-02-20 à 16.34.37.png" alt="" />
         </div>
+        <div class="hero-overlay"></div>
         <div class="container hero-content">
           <div class="hero-grid">
-            <div class="hero-visual">
-              <img src="aurel.png" alt="Portrait Aurelien Wirtz" />
+            <div class="hero-visual reveal">
+              <img src="aurel.png" alt="Portrait d'Aurelien Wirtz" />
             </div>
-            <div>
-              <h1 class="text-display-1 letter-space--3">
-                Consultant en strategie digitale et infrastructure IA
-              </h1>
-              <div class="hero-bottom">
-                <ul class="hero-list text-caption letter-space--1">
-                  <li>GESTION DE PROJET</li>
-                  <li>/</li>
-                  <li>STRATEGIE DIGITALE</li>
-                  <li>/</li>
-                  <li>INFRASTRUCTURE IA</li>
-                </ul>
-                <a href="#contactScroll" class="btn btn-primary text-caption">COMMENCER UN PROJET</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="workScroll">
-        <div class="marquee">
-          <div class="marquee-track text-display-1 letter-space--3">
-            <span>Derniers projets</span><span>•</span><span>Derniers projets</span><span>•</span>
-            <span>Derniers projets</span><span>•</span><span>Derniers projets</span><span>•</span>
-            <span>Derniers projets</span><span>•</span><span>Derniers projets</span><span>•</span>
-          </div>
-        </div>
-        <div class="container">
-          <div class="work-list">
-            <article class="work-item">
-              <div class="work-image">
-                <img src="david.png" alt="Projet FENOMEN" />
-              </div>
-              <div class="work-content">
-                <div class="work-top">
-                  <h3 class="letter-space--2">FENOMEN</h3>
-                  <ul class="meta-list text-caption">
-                    <li class="text-white-64">Domaine</li>
-                    <li>Evenement sportif</li>
-                  </ul>
-                </div>
-                <div class="work-bottom">
-                  <ul class="meta-list text-caption" style="text-align: left">
-                    <li class="text-white-64">Services</li>
-                    <li>Branding</li>
-                  </ul>
-                  <h3 class="letter-space--2">2026</h3>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-item">
-              <div class="work-image"><img src="book.png" alt="Projet Landa" /></div>
-              <div class="work-content">
-                <div class="work-top">
-                  <h3 class="letter-space--2">Landa_</h3>
-                  <ul class="meta-list text-caption">
-                    <li class="text-white-64">Industry</li>
-                    <li>SAAS</li>
-                    <li>Productivity</li>
-                  </ul>
-                </div>
-                <div class="work-bottom">
-                  <ul class="meta-list text-caption" style="text-align: left">
-                    <li class="text-white-64">Services</li>
-                    <li>Website Design</li>
-                    <li>Visual Identity</li>
-                    <li>Framer Development</li>
-                  </ul>
-                  <h3 class="letter-space--2">2025</h3>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-item">
-              <div class="work-image"><img src="skate.png" alt="Projet Brandon" /></div>
-              <div class="work-content">
-                <div class="work-top">
-                  <h3 class="letter-space--2">Brandon_</h3>
-                  <ul class="meta-list text-caption">
-                    <li class="text-white-64">Industry</li>
-                    <li>Portfolio</li>
-                    <li>Photography</li>
-                  </ul>
-                </div>
-                <div class="work-bottom">
-                  <ul class="meta-list text-caption" style="text-align: left">
-                    <li class="text-white-64">Services</li>
-                    <li>Website Design</li>
-                    <li>Visual Identity</li>
-                    <li>Framer Development</li>
-                  </ul>
-                  <h3 class="letter-space--2">2025</h3>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="aboutScroll">
-        <div class="container">
-          <div class="about-grid">
-            <div class="about-video">
-              <img src="david.png" alt="Presentation video Aurelien" />
-            </div>
-            <div class="about-copy">
-              <h2 class="text-display-2 letter-space--3 section-title">
-                A propos<br />
-                Aurelien<span class="text-primary">_</span>
-              </h2>
-              <p>
-                Je suis consultant en strategie digitale et infrastructure IA. J'aide les entreprises a transformer
-                leur presence digitale en machine de croissance en connectant strategie, data et execution.
+            <div class="hero-copy reveal">
+              <p class="text-caption text-primary">Consulting digital</p>
+              <h1>Gestion de projet, strategie digitale et infrastructure IA</h1>
+              <p class="lead">
+                J'aide les entreprises a clarifier leur vision, prioriser les bons leviers et deployer des systemes
+                digitaux performants de bout en bout.
               </p>
-              <ul class="exp-list">
-                <li><span>Independent Product Designer</span><span>2025</span></li>
-                <li><span>Senior UX Designer at CloudForge</span><span>2024 - 2025</span></li>
-                <li><span>Product Designer at Orbit Systems</span><span>2022 - 2024</span></li>
-                <li><span>UI/UX Designer at PixelHaus</span><span>2021 - 2022</span></li>
-                <li><span>Junior Designer at Brightline Studio</span><span>2020 - 2021</span></li>
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Commencer un projet</a>
+                <a href="#work" class="btn btn-outline">Voir les travaux</a>
+              </div>
+              <ul class="hero-tags text-caption">
+                <li>Gestion de projet</li>
+                <li>Strategie digitale</li>
+                <li>Infrastructure IA</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <div class="divider divider-fade"></div>
+
+      <section class="section section-dark" id="work">
         <div class="container">
-          <h2 class="text-display-2 letter-space--3 section-title" style="text-align: center">Logiciels</h2>
-          <div class="tech-grid">
-            <article class="tech-card">
-              <h3 class="letter-space--2">Figma</h3>
-              <p class="text-white-64">Collaborative design tool for creating, prototyping and refining interfaces.</p>
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">Selection</p>
+            <h2>Derniers projets</h2>
+          </div>
+
+          <div class="project-list">
+            <article class="project-card reveal">
+              <div class="project-media">
+                <img src="book.png" alt="Projet FENOMEN" />
+              </div>
+              <div class="project-body">
+                <div class="project-row">
+                  <h3>FENOMEN</h3>
+                  <p class="muted">2026</p>
+                </div>
+                <div class="project-row">
+                  <p>Domaine: evenement sportif</p>
+                  <p class="muted">Branding</p>
+                </div>
+              </div>
             </article>
-            <article class="tech-card">
-              <h3 class="letter-space--2">Framer</h3>
-              <p class="text-white-64">No-code platform for building high-fidelity and interactive websites.</p>
+
+            <article class="project-card reveal">
+              <div class="project-media">
+                <img src="skate.png" alt="Projet Landa" />
+              </div>
+              <div class="project-body">
+                <div class="project-row">
+                  <h3>Landa_</h3>
+                  <p class="muted">2025</p>
+                </div>
+                <div class="project-row">
+                  <p>Industrie: SAAS / Productivite</p>
+                  <p class="muted">Web design + Identite</p>
+                </div>
+              </div>
             </article>
-            <article class="tech-card">
-              <h3 class="letter-space--2">Webflow</h3>
-              <p class="text-white-64">Visual development tool for responsive websites and fast launch cycles.</p>
+
+            <article class="project-card reveal">
+              <div class="project-media">
+                <img src="louis.png" alt="Projet Brandon" />
+              </div>
+              <div class="project-body">
+                <div class="project-row">
+                  <h3>Brandon_</h3>
+                  <p class="muted">2025</p>
+                </div>
+                <div class="project-row">
+                  <p>Industrie: Portfolio / Photo</p>
+                  <p class="muted">Web + Framer</p>
+                </div>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="serviceScroll">
+      <div class="divider divider-angle"></div>
+
+      <section class="section section-gradient" id="about">
+        <div class="container about-grid">
+          <div class="about-media reveal">
+            <img src="david.png" alt="A propos d'Aurelien Wirtz" />
+          </div>
+          <div class="about-copy reveal">
+            <p class="text-caption text-primary">A propos</p>
+            <h2>Aurelien_</h2>
+            <p>
+              Consultant en strategie digitale et infrastructure IA, je transforme des objectifs business en execution
+              claire: cadrage, priorisation, pilotage et mise a l'echelle.
+            </p>
+            <ul class="timeline">
+              <li><span>Independent Product Designer</span><span>2025</span></li>
+              <li><span>Senior UX Designer - CloudForge</span><span>2024 - 2025</span></li>
+              <li><span>Product Designer - Orbit Systems</span><span>2022 - 2024</span></li>
+              <li><span>UI/UX Designer - PixelHaus</span><span>2021 - 2022</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider divider-fade"></div>
+
+      <section class="section section-dark">
         <div class="container">
-          <div class="br-line"></div>
-          <div class="service-list">
-            <details open>
-              <summary class="text-display-1 letter-space--3">Gestion de projet digital</summary>
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">Logiciels</p>
+            <h2>Stack de travail</h2>
+          </div>
+          <div class="tools-grid">
+            <article class="tool-card reveal">
+              <h3>Figma</h3>
+              <p>Design collaboratif, prototypage rapide, handoff propre avec les equipes produit et dev.</p>
+            </article>
+            <article class="tool-card reveal">
+              <h3>Framer</h3>
+              <p>Web experiences modernes, interactions fluides, mise en ligne rapide et itereable.</p>
+            </article>
+            <article class="tool-card reveal">
+              <h3>Webflow</h3>
+              <p>Sites responsives robustes avec autonomie contenu et structure orientee performance.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider divider-angle"></div>
+
+      <section class="section section-soft" id="services">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">Services</p>
+            <h2>Accompagnement complet</h2>
+          </div>
+
+          <div class="accordion">
+            <details class="service-card reveal" open>
+              <summary>Gestion de projet digital</summary>
               <div class="service-content">
                 <img src="loi.png" alt="Gestion de projet digital" />
                 <ul>
                   <li>Cadrage strategique</li>
-                  <li>Gouvernance agile</li>
                   <li>Roadmap claire</li>
                   <li>Pilotage des priorites</li>
-                  <li>Coordination equipes</li>
+                  <li>Coordination des equipes</li>
                 </ul>
               </div>
             </details>
-            <details>
-              <summary class="text-display-1 letter-space--3">Strategie digitale &amp; Data</summary>
+
+            <details class="service-card reveal">
+              <summary>Strategie digitale &amp; Data</summary>
               <div class="service-content">
                 <img src="serbie.png" alt="Strategie digitale et data" />
                 <ul>
                   <li>Analyse de donnees &amp; BI</li>
-                  <li>Tunnel de vente</li>
-                  <li>Tableaux de bord</li>
+                  <li>Tunnel de conversion</li>
                   <li>Tracking unifie</li>
-                  <li>Decisions data-driven</li>
+                  <li>Tableaux de bord</li>
                 </ul>
               </div>
             </details>
-            <details>
-              <summary class="text-display-1 letter-space--3">Infrastructure IA</summary>
+
+            <details class="service-card reveal">
+              <summary>Infrastructure IA</summary>
               <div class="service-content">
                 <img src="dejan.png" alt="Infrastructure IA" />
                 <ul>
                   <li>Integration LLM</li>
                   <li>Automatisation des process</li>
-                  <li>Operations IA</li>
                   <li>Digitalisation workflows</li>
                   <li>Mise a l'echelle</li>
                 </ul>
@@ -892,283 +238,158 @@
         </div>
       </section>
 
-      <section class="section section-surface">
-        <div class="container">
-          <h3 class="text-caption muted-dark">BRANDS AND PARTNERS</h3>
-          <div class="brand-list">
-            <div class="brand-box">Brand 01</div>
-            <div class="brand-box">Brand 02</div>
-            <div class="brand-box">Brand 03</div>
-            <div class="brand-box">Brand 04</div>
-            <div class="brand-box">Brand 05</div>
-            <div class="brand-box">Brand 06</div>
-            <div class="brand-box">Brand 07</div>
-            <div class="brand-box">Brand 08</div>
-            <div class="brand-box">Brand 09</div>
-            <div class="brand-box">Brand 10</div>
-          </div>
-        </div>
-      </section>
+      <div class="divider divider-fade"></div>
 
-      <section class="section section-surface">
+      <section class="section section-dark" id="pricing">
         <div class="container">
-          <div class="award-grid">
-            <div>
-              <h3 class="text-caption muted-dark">AWARDS</h3>
-              <p class="muted-dark">
-                Since 2020, my work has been honored by leading design platforms around the world.
-              </p>
-              <ul class="award-list">
-                <li>Behance x28</li>
-                <li>Awwwards x41</li>
-                <li>CSS Design Awards x67</li>
-              </ul>
-            </div>
-            <div class="award-images">
-              <img src="louis.png" alt="Award 1" />
-              <img src="aurel.png" alt="Award 2" />
-              <img src="david.png" alt="Award 3" />
-              <img src="book.png" alt="Award 4" />
-              <img src="serbie.png" alt="Award 5" />
-              <img src="skate.png" alt="Award 6" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <h3 class="text-caption text-white-64" style="text-align: center">TRUSTED BY FOUNDED</h3>
-          <div class="testimonials">
-            <article class="testi-card">
-              <img src="louis.png" alt="Temoignage 1" />
-              <div class="content">
-                <h4 class="letter-space--2">Liam Carter</h4>
-                <p class="text-white-64">Founder, Arcadia Tech</p>
-                <p>"Working with Aurelien was seamless. Modern result, clear process and measurable impact."</p>
-              </div>
-            </article>
-            <article class="testi-card">
-              <img src="dejan.png" alt="Temoignage 2" />
-              <div class="content">
-                <h4 class="letter-space--2">Sophie Bernard</h4>
-                <p class="text-white-64">CEO, Orizon Lab</p>
-                <p>"On a gagne en clarte strategique et en execution. Les priorites etaient enfin alignees."</p>
-              </div>
-            </article>
-            <article class="testi-card">
-              <img src="david.png" alt="Temoignage 3" />
-              <div class="content">
-                <h4 class="letter-space--2">Noah Keller</h4>
-                <p class="text-white-64">COO, Delta Studio</p>
-                <p>"Un accompagnement exigeant, humain et tres structure. Notre stack IA est maintenant robuste."</p>
-              </div>
-            </article>
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">Pricing</p>
+            <h2>Plans d'accompagnement</h2>
           </div>
 
-          <div class="indicators">
-            <div class="indicator">
-              <p class="text-caption"><span class="text-primary">//</span> Projects Delivered</p>
-              <b>40+</b>
-              <p class="text-white-64">Creative work that drives real results.</p>
-            </div>
-            <div class="indicator">
-              <p class="text-caption"><span class="text-primary">//</span> Clients Satisfaction</p>
-              <b>96%</b>
-              <p class="text-white-64">Focus on exceeding expectations.</p>
-            </div>
-            <div class="indicator">
-              <p class="text-caption"><span class="text-primary">//</span> Years of Experience</p>
-              <b>10+</b>
-              <p class="text-white-64">Mastering design, strategy and execution.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="marquee">
-          <div class="marquee-track text-display-1 letter-space--3">
-            <span>Pricing Plan</span><span>•</span><span>Pricing Plan</span><span>•</span>
-            <span>Pricing Plan</span><span>•</span><span>Pricing Plan</span><span>•</span>
-            <span>Pricing Plan</span><span>•</span><span>Pricing Plan</span><span>•</span>
-          </div>
-        </div>
-        <div class="container">
-          <div class="pricing-tabs">
-            <span class="tab-btn active">Monthly</span>
-            <span class="tab-btn">Annualy - Save 20%</span>
-          </div>
-          <div class="plan-grid">
-            <article class="plan-card">
+          <div class="pricing-grid">
+            <article class="plan-card reveal">
               <h3>Basic</h3>
-              <p class="plan-price">$640 <span class="text-white-64" style="font-size: 14px">/month</span></p>
-              <p class="text-white-64">For early-stage teams launching their first digital presence.</p>
-              <button class="btn btn-outline">CHOOSE THIS PLAN</button>
+              <p class="plan-price">640 CHF <span>/mois</span></p>
+              <p>Parfait pour lancer une base solide et une execution claire.</p>
               <ul>
-                <li>// Custom website design</li>
-                <li>// Responsive layouts</li>
-                <li>// Basic SEO setup</li>
-                <li>// Tool integrations</li>
-                <li>// Ongoing support</li>
+                <li>Site vitrine strategique</li>
+                <li>Cadrage initial</li>
+                <li>SEO de base</li>
+                <li>Support continu</li>
               </ul>
+              <button class="btn btn-outline" type="button">Choisir ce plan</button>
             </article>
-            <article class="plan-card featured">
+
+            <article class="plan-card featured reveal">
+              <p class="badge">Le plus choisi</p>
               <h3>Pro</h3>
-              <p class="plan-price">$1,280 <span class="text-white-64" style="font-size: 14px">/month</span></p>
-              <p class="text-white-64">For growing brands needing advanced features and flexibility.</p>
-              <button class="btn btn-primary">CHOOSE THIS PLAN</button>
+              <p class="plan-price">1,280 CHF <span>/mois</span></p>
+              <p>Pour accelerator la croissance avec design, data et pilotage avance.</p>
               <ul>
-                <li><span class="text-primary">//</span> Advanced web design</li>
-                <li><span class="text-primary">//</span> Interactive elements</li>
-                <li><span class="text-primary">//</span> Full SEO services</li>
-                <li><span class="text-primary">//</span> E-commerce setup</li>
-                <li><span class="text-primary">//</span> Monthly reports</li>
+                <li>Design avance</li>
+                <li>Data &amp; tracking</li>
+                <li>Tunnel de conversion</li>
+                <li>Reporting mensuel</li>
               </ul>
+              <button class="btn btn-primary" type="button">Choisir ce plan</button>
             </article>
-            <article class="plan-card">
+
+            <article class="plan-card reveal">
               <h3>Max</h3>
-              <p class="plan-price">$2,560 <span class="text-white-64" style="font-size: 14px">/month</span></p>
-              <p class="text-white-64">For established companies seeking bespoke digital solutions.</p>
-              <button class="btn btn-outline">CHOOSE THIS PLAN</button>
+              <p class="plan-price">2,560 CHF <span>/mois</span></p>
+              <p>Solution complete pour structures en phase de scale.</p>
               <ul>
-                <li>// Complete branding</li>
-                <li>// Premium visuals</li>
-                <li>// Enterprise systems</li>
-                <li>// Dedicated manager</li>
-                <li>// Priority support</li>
+                <li>Direction digitale complete</li>
+                <li>Stack IA integree</li>
+                <li>Systemes enterprise</li>
+                <li>Support prioritaire</li>
               </ul>
+              <button class="btn btn-outline" type="button">Choisir ce plan</button>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section section-surface">
+      <div class="divider divider-angle"></div>
+
+      <section class="section section-soft">
         <div class="container">
-          <h2 class="text-display-2 letter-space--3 section-title">
-            Questions <span class="text-primary">frequentes</span>
-          </h2>
-          <div class="faq-list">
-            <details>
+          <div class="section-head reveal">
+            <p class="text-caption text-primary">FAQ</p>
+            <h2>Questions frequentes</h2>
+          </div>
+          <div class="faq-grid">
+            <details class="faq-card reveal">
               <summary>Combien de temps dure un projet ?</summary>
-              <p class="muted-dark">
-                La plupart des projets se deroulent sur 4 a 8 semaines selon la complexite et le perimetre.
-              </p>
+              <p>Entre 4 et 8 semaines selon le perimetre et la complexite.</p>
             </details>
-            <details open>
+            <details class="faq-card reveal" open>
               <summary>Travaillez-vous avec des clients internationaux ?</summary>
-              <p class="muted-dark">
-                Oui, je collabore avec des clients dans le monde entier via des outils de visioconference.
-              </p>
+              <p>Oui, avec une organisation claire via visio, outils async et reporting cadence.</p>
             </details>
-            <details>
-              <summary>Couvrez-vous la strategie et l'execution ?</summary>
-              <p class="muted-dark">
-                Absolument. Cadrage strategique, conception systeme digital et deploiement technique.
-              </p>
+            <details class="faq-card reveal">
+              <summary>Couvrez-vous strategie et execution ?</summary>
+              <p>Oui, de la vision business jusqu'au deploiement operationnel.</p>
             </details>
-            <details>
-              <summary>Quel est votre processus de paiement ?</summary>
-              <p class="muted-dark">
-                Un acompte de 50% au lancement, puis solde a la livraison et validation du projet.
-              </p>
-            </details>
-            <details>
-              <summary>Proposez-vous un support apres le lancement ?</summary>
-              <p class="muted-dark">
-                Oui. Forfaits de maintenance, mises a jour et suivi de performance sont disponibles.
-              </p>
+            <details class="faq-card reveal">
+              <summary>Support apres le lancement ?</summary>
+              <p>Oui, maintenance, optimisations et accompagnement de performance sont proposes.</p>
             </details>
           </div>
         </div>
       </section>
 
-      <section class="section" id="contactScroll">
+      <div class="divider divider-fade"></div>
+
+      <section class="section section-dark" id="contact">
         <div class="container">
-          <div class="cta-grid">
-            <div>
-              <div class="logo">AW</div>
-            </div>
-            <div>
-              <h2 class="text-display-2 letter-space--3">Lancons votre projet ensemble !</h2>
-            </div>
+          <div class="contact-head reveal">
+            <p class="text-caption text-primary">Contact</p>
+            <h2>Lancons votre projet ensemble</h2>
           </div>
 
-          <form class="form">
+          <form class="contact-form reveal">
             <div class="field-grid">
-              <div class="field">
-                <label for="name">Nom *</label>
-                <input id="name" name="name" type="text" required />
-              </div>
-              <div class="field">
-                <label for="email">Email *</label>
-                <input id="email" name="email" type="email" required />
-              </div>
+              <label class="field">
+                <span>Nom *</span>
+                <input type="text" name="name" required />
+              </label>
+              <label class="field">
+                <span>Email *</span>
+                <input type="email" name="email" required />
+              </label>
             </div>
-            <div class="field-grid" style="margin-top: 12px">
-              <div class="field">
-                <label for="interest">Vous etes interesse par</label>
-                <select id="interest" name="interest">
+            <div class="field-grid">
+              <label class="field">
+                <span>Service</span>
+                <select name="interest">
                   <option>Gestion de projet digital</option>
                   <option>Strategie &amp; Data</option>
                   <option>Infrastructure IA</option>
                 </select>
-              </div>
-              <div class="field">
-                <label for="budget">Budget en CHF</label>
-                <select id="budget" name="budget">
-                  <option>0 CHF - 100 CHF</option>
-                  <option>100 CHF - 500 CHF</option>
-                  <option>500 CHF - 1,000 CHF</option>
+              </label>
+              <label class="field">
+                <span>Budget</span>
+                <select name="budget">
+                  <option>0 - 1,000 CHF</option>
+                  <option>1,000 - 5,000 CHF</option>
+                  <option>5,000+ CHF</option>
                 </select>
-              </div>
+              </label>
             </div>
-            <div class="field" style="margin-top: 12px">
-              <label for="details">Details du projet</label>
-              <textarea id="details" name="details"></textarea>
-            </div>
-            <div style="display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-top: 16px; flex-wrap: wrap">
-              <button type="submit" class="btn btn-primary">ENVOYER LE MESSAGE</button>
-              <p class="text-white-64" style="margin: 0">
-                Dites bonjour -
-                <a class="text-primary" href="mailto:aurelienwirtz67@gmail.com">aurelienwirtz67@gmail.com</a>
+            <label class="field">
+              <span>Details du projet</span>
+              <textarea name="details" rows="5"></textarea>
+            </label>
+            <div class="contact-actions">
+              <button class="btn btn-primary" type="submit">Envoyer le message</button>
+              <p class="muted">
+                Ou ecrivez directement a
+                <a href="mailto:aurelienwirtz67@gmail.com" class="text-primary">aurelienwirtz67@gmail.com</a>
               </p>
             </div>
           </form>
         </div>
       </section>
 
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-nav text-caption letter-space--1">
-            <a href="#workScroll">TRAVAUX</a>
-            <a href="#serviceScroll">SERVICES</a>
-            <a href="#aboutScroll">A PROPOS</a>
-            <a href="#wrapper">RETOUR EN HAUT</a>
-          </div>
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <nav class="footer-links text-caption">
+            <a href="#work">Travaux</a>
+            <a href="#services">Services</a>
+            <a href="#about">A propos</a>
+            <a href="#top">Retour en haut</a>
+          </nav>
           <div class="footer-bottom text-caption">
-            <p style="margin: 0">© AURELIEN WIRTZ - PORTFOLIO</p>
-            <p style="margin: 0">BLONAY → <span id="clock"></span></p>
-            <a href="#" style="margin: 0">LINKEDIN</a>
+            <p>© <span id="year"></span> Aurelien Wirtz - Portfolio</p>
+            <p>Blonay → <span id="clock"></span></p>
+            <a href="#">LinkedIn</a>
           </div>
         </div>
       </footer>
     </main>
 
-    <script>
-      (function () {
-        var clock = document.getElementById("clock");
-        if (!clock) return;
-        function pad(v) {
-          return String(v).padStart(2, "0");
-        }
-        function render() {
-          var now = new Date();
-          clock.textContent = pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
-        }
-        render();
-        setInterval(render, 1000);
-      })();
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>
